@@ -2,87 +2,99 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system with beige/light theme colors and green/black text */
+/* Trackora Premium Design System - Calm, Warm, Trustworthy */
 
 @layer base {
   :root {
-    /* Warm, Calming Color Palette */
-    --background: 210 30% 97%;         /* soft warm gray - safe space */
-    --foreground: 215 25% 16%;         /* charcoal - readable text */
+    /* Premium Calm Palette - Light Mode */
+    --background: 216 25% 96%;         /* warm gray foundation */
+    --foreground: 0 0% 12%;            /* charcoal text */
     --card: 0 0% 100%;                 /* pure white cards */
-    --card-foreground: 215 25% 16%;
+    --card-foreground: 0 0% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 16%;
-    --primary: 175 40% 50%;            /* muted teal - calm modern tone */
+    --popover-foreground: 0 0% 12%;
+    --primary: 218 38% 27%;            /* deep soft blue - trust */
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 25% 93%;          /* soft blue-gray */
-    --secondary-foreground: 215 25% 16%;
-    --muted: 210 25% 94%;              /* very soft gray */
-    --muted-foreground: 215 15% 45%;
-    --accent: 160 45% 55%;             /* pastel green - progress */
+    --secondary: 185 37% 48%;          /* muted teal - calm */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 216 25% 94%;              /* very soft gray */
+    --muted-foreground: 0 0% 45%;
+    --accent: 158 39% 61%;             /* pastel green - progress */
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 60% 55%;
+    --destructive: 0 65% 51%;
     --destructive-foreground: 0 0% 100%;
-    --success: 160 45% 55%;            /* pastel green */
+    --success: 158 39% 61%;            /* pastel green */
     --success-foreground: 0 0% 100%;
-    --warning: 25 85% 70%;             /* warm peach */
-    --warning-foreground: 215 25% 16%;
-    --border: 210 20% 88%;
-    --input: 210 25% 93%;
-    --ring: 175 40% 50%;
-    --radius: 1.25rem;                 /* more rounded for warmth */
+    --warning: 28 77% 85%;             /* warm beige */
+    --warning-foreground: 0 0% 12%;
+    --border: 216 20% 88%;
+    --input: 216 20% 92%;
+    --ring: 218 38% 27%;
+    --radius: 1rem;                    /* rounded for warmth */
     
-    /* Custom Trackora Colors */
-    --deep-blue: 215 40% 35%;          /* trust */
-    --calm-teal: 175 40% 50%;          /* calm modern */
-    --pastel-green: 160 45% 55%;       /* progress */
-    --warm-peach: 25 85% 70%;          /* warmth */
+    /* Trackora Brand Colors */
+    --deep-blue: 218 38% 27%;          /* primary - trust */
+    --calm-teal: 185 37% 48%;          /* secondary - modern calm */
+    --pastel-green: 158 39% 61%;       /* success - progress */
+    --warm-beige: 28 77% 85%;          /* accent - warmth */
     
-    /* Chart colors - calm palette */
-    --chart-1: 175 40% 50%;            /* teal */
-    --chart-2: 160 45% 55%;            /* green */
-    --chart-3: 215 40% 60%;            /* blue */
-    --chart-4: 25 75% 65%;             /* peach */
-    --chart-5: 280 45% 60%;            /* soft purple */
+    /* Chart colors - premium calm palette */
+    --chart-1: 185 37% 48%;            /* teal */
+    --chart-2: 158 39% 61%;            /* green */
+    --chart-3: 218 38% 50%;            /* blue */
+    --chart-4: 28 77% 70%;             /* beige/peach */
+    --chart-5: 270 40% 60%;            /* soft purple */
+    
+    /* Shadows - soft, elevated */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.1);
   }
 
   .dark {
-    --background: 215 28% 12%;         /* deep soft blue dark */
-    --foreground: 210 30% 96%;         /* warm white text */
-    --card: 215 28% 16%;               /* elevated cards */
-    --card-foreground: 210 30% 96%;
-    --popover: 215 28% 18%;
-    --popover-foreground: 210 30% 96%;
-    --primary: 175 40% 55%;            /* brighter teal for dark */
+    --background: 218 38% 12%;         /* deep blue-gray dark */
+    --foreground: 0 0% 96%;            /* warm white text */
+    --card: 218 38% 16%;               /* elevated cards */
+    --card-foreground: 0 0% 96%;
+    --popover: 218 38% 18%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 218 38% 40%;            /* lighter deep blue */
     --primary-foreground: 0 0% 100%;
-    --secondary: 215 28% 22%;
-    --secondary-foreground: 210 30% 96%;
-    --muted: 215 28% 20%;
-    --muted-foreground: 210 20% 65%;
-    --accent: 160 45% 60%;             /* brighter green for dark */
+    --secondary: 185 37% 55%;          /* brighter teal */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 218 38% 20%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 158 39% 65%;             /* brighter pastel green */
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 60% 60%;
+    --destructive: 0 65% 60%;
     --destructive-foreground: 0 0% 100%;
-    --success: 160 45% 60%;
+    --success: 158 39% 65%;
     --success-foreground: 0 0% 100%;
-    --warning: 25 75% 65%;
-    --warning-foreground: 215 25% 16%;
-    --border: 215 28% 26%;
-    --input: 215 28% 20%;
-    --ring: 175 40% 55%;
+    --warning: 28 77% 75%;
+    --warning-foreground: 0 0% 12%;
+    --border: 218 38% 26%;
+    --input: 218 38% 20%;
+    --ring: 218 38% 40%;
     
-    /* Custom Trackora Colors - adjusted for dark */
-    --deep-blue: 215 40% 45%;
-    --calm-teal: 175 40% 55%;
-    --pastel-green: 160 45% 60%;
-    --warm-peach: 25 75% 65%;
+    /* Trackora Brand Colors - dark adjusted */
+    --deep-blue: 218 38% 40%;
+    --calm-teal: 185 37% 55%;
+    --pastel-green: 158 39% 65%;
+    --warm-beige: 28 77% 75%;
     
-    /* Chart colors - adjusted for dark */
-    --chart-1: 175 40% 55%;
-    --chart-2: 160 45% 60%;
-    --chart-3: 215 40% 65%;
-    --chart-4: 25 70% 65%;
-    --chart-5: 280 45% 65%;
+    /* Chart colors - dark adjusted */
+    --chart-1: 185 37% 55%;
+    --chart-2: 158 39% 65%;
+    --chart-3: 218 38% 60%;
+    --chart-4: 28 77% 75%;
+    --chart-5: 270 40% 65%;
+    
+    /* Shadows - darker, more subtle */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.4);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.5);
+    --shadow-xl: 0 20px 25px -5px hsl(0 0% 0% / 0.6);
   }
 }
 
@@ -103,33 +115,87 @@
 }
 
 @layer utilities {
-  .glass { @apply bg-card/70 backdrop-blur-xl border border-border/50 shadow-lg; }
-  .glass-strong { @apply bg-card/90 backdrop-blur-2xl border border-border/70 shadow-xl; }
-  .gradient-text { @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent; }
-  .hover-glow { @apply transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-1 hover:scale-[1.02]; }
-  .hover-lift { @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg; }
-  .parallax { @apply transform-gpu will-change-transform; }
-
+  /* Premium Glass Effects */
+  .glass { 
+    @apply bg-card/80 backdrop-blur-xl border border-border/60 shadow-lg;
+    box-shadow: var(--shadow-lg);
+  }
+  .glass-strong { 
+    @apply bg-card/95 backdrop-blur-2xl border border-border/80 shadow-xl;
+    box-shadow: var(--shadow-xl);
+  }
+  
+  /* Soft Gradient Text */
+  .gradient-text { 
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent; 
+  }
+  
+  /* Gentle Hover Effects */
+  .hover-glow { 
+    @apply transition-all duration-300 ease-out;
+    @apply hover:shadow-xl hover:-translate-y-0.5 hover:scale-[1.01];
+  }
+  .hover-lift { 
+    @apply transition-all duration-300 ease-out hover:-translate-y-1;
+    box-shadow: var(--shadow-md);
+  }
+  .hover-lift:hover {
+    box-shadow: var(--shadow-lg);
+  }
+  
+  /* Soft Interactions */
+  .btn-soft {
+    @apply rounded-xl px-6 py-3 font-medium transition-all duration-300;
+    @apply shadow-sm hover:shadow-md active:scale-[0.98];
+  }
+  
+  /* Status Colors */
   .status-positive { @apply text-success; }
   .status-negative { @apply text-destructive; }
-  .status-neutral { @apply text-accent; }
-  .transition-smooth { @apply transition-all duration-500 ease-out; }
+  .status-neutral { @apply text-secondary; }
+  .transition-smooth { @apply transition-all duration-300 ease-out; }
+  
+  /* Progress Indicators */
+  .progress-ring {
+    @apply rounded-full p-1 bg-gradient-to-br from-accent/20 to-secondary/20;
+    box-shadow: inset 0 2px 4px hsl(var(--accent) / 0.1);
+  }
 
-  @keyframes gradient { 0%,100%{background-size:200% 200%;background-position:left center;}50%{background-size:200% 200%;background-position:right center;} }
-  @keyframes slide-up { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes fade-in { from { opacity:0; } to { opacity:1; } }
-  @keyframes count-up { from { transform:translateY(10px); opacity:0; } to { transform:translateY(0); opacity:1; } }
-  @keyframes pulse-glow { 0%,100%{box-shadow:0 0 0 0 hsl(var(--primary)/0.4);}50%{box-shadow:0 0 30px 8px hsl(var(--primary)/0.15);} }
-  @keyframes float { 0%,100%{transform:translateY(0px) rotate(0deg);}50%{transform:translateY(-20px) rotate(3deg);} }
-  @keyframes blob { 0%,100%{transform:translate(0px,0px) scale(1);}33%{transform:translate(30px,-50px) scale(1.1);}66%{transform:translate(-20px,20px) scale(0.9);} }
-  @keyframes shimmer { 0%{background-position:-1000px 0;}100%{background-position:1000px 0;} }
+  /* Calm Animations */
+  @keyframes gentle-pulse { 
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.02); }
+  }
+  @keyframes soft-slide-up { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+  }
+  @keyframes fade-in { 
+    from { opacity: 0; } 
+    to { opacity: 1; } 
+  }
+  @keyframes count-up { 
+    from { transform: translateY(8px); opacity: 0; } 
+    to { transform: translateY(0); opacity: 1; } 
+  }
+  @keyframes subtle-glow { 
+    0%, 100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.2); }
+    50% { box-shadow: 0 0 20px 4px hsl(var(--primary) / 0.1); }
+  }
+  @keyframes gentle-float { 
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes soft-shimmer { 
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
 
-  .animate-gradient { animation: gradient 8s ease infinite; }
-  .animate-slide-up { animation: slide-up 0.6s cubic-bezier(0.16,1,0.3,1); }
-  .animate-fade-in { animation: fade-in 0.4s ease-in; }
-  .animate-count-up { animation: count-up 0.8s cubic-bezier(0.34,1.56,0.64,1); }
-  .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
-  .animate-float { animation: float 6s ease-in-out infinite; }
-  .animate-blob { animation: blob 7s ease-in-out infinite; }
-  .animate-shimmer { animation: shimmer 2s linear infinite; }
+  .animate-gentle-pulse { animation: gentle-pulse 3s ease-in-out infinite; }
+  .animate-soft-slide-up { animation: soft-slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+  .animate-fade-in { animation: fade-in 0.3s ease-in; }
+  .animate-count-up { animation: count-up 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .animate-subtle-glow { animation: subtle-glow 4s ease-in-out infinite; }
+  .animate-gentle-float { animation: gentle-float 5s ease-in-out infinite; }
+  .animate-soft-shimmer { animation: soft-shimmer 2s linear infinite; }
 }
