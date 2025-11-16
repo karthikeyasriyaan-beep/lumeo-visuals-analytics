@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system with beige/light theme colors and green/black text */
+
+@layer base {
+  :root {
+    /* Warm, Calming Color Palette */
+    --background: 210 30% 97%;         /* soft warm gray - safe space */
+    --foreground: 215 25% 16%;         /* charcoal - readable text */
+    --card: 0 0% 100%;                 /* pure white cards */
+    --card-foreground: 215 25% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 16%;
+    --primary: 175 40% 50%;            /* muted teal - calm modern tone */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 25% 93%;          /* soft blue-gray */
+    --secondary-foreground: 215 25% 16%;
+    --muted: 210 25% 94%;              /* very soft gray */
+    --muted-foreground: 215 15% 45%;
+    --accent: 160 45% 55%;             /* pastel green - progress */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 60% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 160 45% 55%;            /* pastel green */
+    --success-foreground: 0 0% 100%;
+    --warning: 25 85% 70%;             /* warm peach */
+    --warning-foreground: 215 25% 16%;
+    --border: 210 20% 88%;
+    --input: 210 25% 93%;
+    --ring: 175 40% 50%;
+    --radius: 1.25rem;                 /* more rounded for warmth */
+    
+    /* Custom Trackora Colors */
+    --deep-blue: 215 40% 35%;          /* trust */
+    --calm-teal: 175 40% 50%;          /* calm modern */
+    --pastel-green: 160 45% 55%;       /* progress */
+    --warm-peach: 25 85% 70%;          /* warmth */
+    
+    /* Chart colors - calm palette */
+    --chart-1: 175 40% 50%;            /* teal */
+    --chart-2: 160 45% 55%;            /* green */
+    --chart-3: 215 40% 60%;            /* blue */
+    --chart-4: 25 75% 65%;             /* peach */
+    --chart-5: 280 45% 60%;            /* soft purple */
+  }
+
+  .dark {
+    --background: 215 28% 12%;         /* deep soft blue dark */
+    --foreground: 210 30% 96%;         /* warm white text */
+    --card: 215 28% 16%;               /* elevated cards */
+    --card-foreground: 210 30% 96%;
+    --popover: 215 28% 18%;
+    --popover-foreground: 210 30% 96%;
+    --primary: 175 40% 55%;            /* brighter teal for dark */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215 28% 22%;
+    --secondary-foreground: 210 30% 96%;
+    --muted: 215 28% 20%;
+    --muted-foreground: 210 20% 65%;
+    --accent: 160 45% 60%;             /* brighter green for dark */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 60% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 160 45% 60%;
+    --success-foreground: 0 0% 100%;
+    --warning: 25 75% 65%;
+    --warning-foreground: 215 25% 16%;
+    --border: 215 28% 26%;
+    --input: 215 28% 20%;
+    --ring: 175 40% 55%;
+    
+    /* Custom Trackora Colors - adjusted for dark */
+    --deep-blue: 215 40% 45%;
+    --calm-teal: 175 40% 55%;
+    --pastel-green: 160 45% 60%;
+    --warm-peach: 25 75% 65%;
+    
+    /* Chart colors - adjusted for dark */
+    --chart-1: 175 40% 55%;
+    --chart-2: 160 45% 60%;
+    --chart-3: 215 40% 65%;
+    --chart-4: 25 70% 65%;
+    --chart-5: 280 45% 65%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--foreground); /* enforce black/white text */
+  }
+}
+
+@layer utilities {
+  .glass { @apply bg-card/70 backdrop-blur-xl border border-border/50 shadow-lg; }
+  .glass-strong { @apply bg-card/90 backdrop-blur-2xl border border-border/70 shadow-xl; }
+  .gradient-text { @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent; }
+  .hover-glow { @apply transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-1 hover:scale-[1.02]; }
+  .hover-lift { @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg; }
+  .parallax { @apply transform-gpu will-change-transform; }
+
+  .status-positive { @apply text-success; }
+  .status-negative { @apply text-destructive; }
+  .status-neutral { @apply text-accent; }
+  .transition-smooth { @apply transition-all duration-500 ease-out; }
+
+  @keyframes gradient { 0%,100%{background-size:200% 200%;background-position:left center;}50%{background-size:200% 200%;background-position:right center;} }
+  @keyframes slide-up { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fade-in { from { opacity:0; } to { opacity:1; } }
+  @keyframes count-up { from { transform:translateY(10px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+  @keyframes pulse-glow { 0%,100%{box-shadow:0 0 0 0 hsl(var(--primary)/0.4);}50%{box-shadow:0 0 30px 8px hsl(var(--primary)/0.15);} }
+  @keyframes float { 0%,100%{transform:translateY(0px) rotate(0deg);}50%{transform:translateY(-20px) rotate(3deg);} }
+  @keyframes blob { 0%,100%{transform:translate(0px,0px) scale(1);}33%{transform:translate(30px,-50px) scale(1.1);}66%{transform:translate(-20px,20px) scale(0.9);} }
+  @keyframes shimmer { 0%{background-position:-1000px 0;}100%{background-position:1000px 0;} }
+
+  .animate-gradient { animation: gradient 8s ease infinite; }
+  .animate-slide-up { animation: slide-up 0.6s cubic-bezier(0.16,1,0.3,1); }
+  .animate-fade-in { animation: fade-in 0.4s ease-in; }
+  .animate-count-up { animation: count-up 0.8s cubic-bezier(0.34,1.56,0.64,1); }
+  .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-blob { animation: blob 7s ease-in-out infinite; }
+  .animate-shimmer { animation: shimmer 2s linear infinite; }
+}
