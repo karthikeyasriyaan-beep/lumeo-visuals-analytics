@@ -4,29 +4,24 @@ import { ArrowLeft, Shield, Smartphone, Activity, Download, Trash2, Key } from "
 import { useNavigate } from "react-router-dom";
 import { NoIndexMeta } from "@/components/NoIndexMeta";
 import { motion } from "framer-motion";
-
 const Security = () => {
   const navigate = useNavigate();
-
-  return (
-    <>
+  return <>
       <NoIndexMeta />
       <div className="min-h-screen bg-background">
         <div className="container mx-auto px-4 py-8 max-w-4xl">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate(-1)}
-            className="mb-6"
-          >
+          <Button variant="ghost" onClick={() => navigate(-1)} className="mb-6">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back
           </Button>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="space-y-6"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} className="space-y-6">
             <div className="space-y-2">
               <h1 className="text-4xl font-bold font-display gradient-text">
                 Security & Privacy
@@ -72,22 +67,7 @@ const Security = () => {
             </Card>
 
             {/* Two-Factor Authentication */}
-            <Card className="glass hover-lift">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Key className="h-5 w-5 text-primary" />
-                  Two-Factor Authentication
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-sm text-muted-foreground">
-                  Add an extra layer of security to your account with two-factor authentication.
-                </p>
-                <Button variant="secondary" className="w-full">
-                  Enable 2FA
-                </Button>
-              </CardContent>
-            </Card>
+            
 
             {/* Device Management */}
             <Card className="glass hover-lift">
@@ -200,8 +180,6 @@ const Security = () => {
           </motion.div>
         </div>
       </div>
-    </>
-  );
+    </>;
 };
-
 export default Security;
