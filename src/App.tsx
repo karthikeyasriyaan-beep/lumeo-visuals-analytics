@@ -15,6 +15,7 @@ import Savings from "./pages/Savings";
 import Analytics from "./pages/Analytics";
 import Budget from "./pages/Budget";
 import Security from "./pages/Security";
+import Receipts from "./pages/Receipts";
 import Settings from "./pages/Settings";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -63,6 +64,7 @@ const App = () => (
                   <Route path="/loans" element={<Loans />} />
                   <Route path="/savings" element={<Savings />} />
                   <Route path="/analytics" element={<Analytics />} />
+                  <Route path="/receipts" element={<Receipts />} />
                   <Route path="/security" element={<Security />} />
                   <Route path="/settings" element={<Settings />} />
                 </Route>
