@@ -13,7 +13,9 @@ import {
   BarChart3,
   Settings,
   LogOut,
-  Calculator
+  Calculator,
+  Wallet,
+  Shield
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
@@ -25,10 +27,12 @@ import { toast } from "sonner";
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: Home },
   { name: "Transactions", href: "/transactions", icon: Receipt },
+  { name: "Budget", href: "/budget", icon: Wallet },
   { name: "Subscriptions", href: "/subscriptions", icon: Repeat },
   { name: "Loans", href: "/loans", icon: CreditCard },
   { name: "Savings", href: "/savings", icon: PiggyBank },
   { name: "Analytics", href: "/analytics", icon: BarChart3 },
+  { name: "Security", href: "/security", icon: Shield },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
 
