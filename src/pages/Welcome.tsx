@@ -4,11 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { 
-  Shield, Lock, Globe, Zap, ArrowRight,
-  Camera, DollarSign, Repeat, Target, Receipt, BarChart3,
-  CheckCircle2, Sparkles
-} from "lucide-react";
+import { Shield, Lock, Globe, Zap, ArrowRight, Camera, DollarSign, Repeat, Target, Receipt, BarChart3, CheckCircle2, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -17,7 +13,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
-
 const Welcome = () => {
   const [showAuth, setShowAuth] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
@@ -25,115 +20,100 @@ const Welcome = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
-  const { signInWithEmail, signUpWithEmail } = useAuth();
-  const { toast } = useToast();
-
+  const {
+    signInWithEmail,
+    signUpWithEmail
+  } = useAuth();
+  const {
+    toast
+  } = useToast();
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
     try {
-      const { error } = isSignUp 
-        ? await signUpWithEmail(email, password, fullName)
-        : await signInWithEmail(email, password);
-      
+      const {
+        error
+      } = isSignUp ? await signUpWithEmail(email, password, fullName) : await signInWithEmail(email, password);
       if (error) {
         toast({
           title: "Error",
           description: error.message,
-          variant: "destructive",
+          variant: "destructive"
         });
       }
     } catch {
       toast({
         title: "Error",
         description: "Something went wrong. Please try again.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setLoading(false);
     }
   };
-
-  const features = [
-    { 
-      icon: Camera, 
-      title: "Receipt Scanner", 
-      description: "Snap a photo of any receipt and watch Trackora automatically extract amounts, vendors, dates, and categories. Never lose track of a purchase again.",
-      highlight: "Snap → Extract → Sorted"
-    },
-    { 
-      icon: DollarSign, 
-      title: "Loans & Debts Tracker", 
-      description: "Stay on top of all your loans comfortably. Track balances, monitor interest rates, and get gentle reminders about upcoming EMI payments.",
-      highlight: "Peace of mind for your debts"
-    },
-    { 
-      icon: Repeat, 
-      title: "Subscription Control", 
-      description: "See all your subscriptions in one place. Get alerts before renewals, understand your monthly costs, and easily spot subscriptions you might want to cancel.",
-      highlight: "No more surprise charges"
-    },
-    { 
-      icon: Target, 
-      title: "Goals & Progress", 
-      description: "Set savings goals and watch your progress grow. Visual progress rings and encouraging insights help you celebrate every milestone on your journey.",
-      highlight: "You're getting closer — keep going"
-    },
-    { 
-      icon: Receipt, 
-      title: "Smart Expense Tracking", 
-      description: "Log expenses and income effortlessly with intelligent auto-categorization. Color-coded categories and quick-add buttons make tracking feel natural.",
-      highlight: "Every rupee accounted for"
-    },
-    { 
-      icon: BarChart3, 
-      title: "Friendly Analytics", 
-      description: "Beautiful charts that speak your language. Get insights into spending patterns and trends without judgment — just helpful, encouraging guidance.",
-      highlight: "Numbers that help, not stress"
-    }
-  ];
-
-  const whyChoose = [
-    { 
-      icon: Shield, 
-      title: "Bank-Level Security", 
-      description: "Your financial data is protected with 256-bit encryption, the same security standard used by major banks worldwide." 
-    },
-    { 
-      icon: Lock, 
-      title: "Privacy First Always", 
-      description: "We never sell, share, or monetize your data. Your financial information is yours alone, and we're committed to keeping it that way." 
-    },
-    { 
-      icon: Globe, 
-      title: "Global Compliance", 
-      description: "Fully compliant with GDPR, CCPA, and international data protection regulations. Your rights are protected no matter where you are." 
-    },
-    { 
-      icon: Zap, 
-      title: "Real-Time Sync", 
-      description: "All your devices stay perfectly in sync. Add an expense on your phone and see it instantly on your laptop — seamlessly." 
-    }
-  ];
-
-  return (
-    <div className="relative min-h-screen bg-gradient-to-br from-background via-background to-accent/5 text-foreground overflow-hidden">
+  const features = [{
+    icon: Camera,
+    title: "Receipt Scanner",
+    description: "Snap a photo of any receipt and watch Trackora automatically extract amounts, vendors, dates, and categories. Never lose track of a purchase again.",
+    highlight: "Snap → Extract → Sorted"
+  }, {
+    icon: DollarSign,
+    title: "Loans & Debts Tracker",
+    description: "Stay on top of all your loans comfortably. Track balances, monitor interest rates, and get gentle reminders about upcoming EMI payments.",
+    highlight: "Peace of mind for your debts"
+  }, {
+    icon: Repeat,
+    title: "Subscription Control",
+    description: "See all your subscriptions in one place. Get alerts before renewals, understand your monthly costs, and easily spot subscriptions you might want to cancel.",
+    highlight: "No more surprise charges"
+  }, {
+    icon: Target,
+    title: "Goals & Progress",
+    description: "Set savings goals and watch your progress grow. Visual progress rings and encouraging insights help you celebrate every milestone on your journey.",
+    highlight: "You're getting closer — keep going"
+  }, {
+    icon: Receipt,
+    title: "Smart Expense Tracking",
+    description: "Log expenses and income effortlessly with intelligent auto-categorization. Color-coded categories and quick-add buttons make tracking feel natural.",
+    highlight: "Every rupee accounted for"
+  }, {
+    icon: BarChart3,
+    title: "Friendly Analytics",
+    description: "Beautiful charts that speak your language. Get insights into spending patterns and trends without judgment — just helpful, encouraging guidance.",
+    highlight: "Numbers that help, not stress"
+  }];
+  const whyChoose = [{
+    icon: Shield,
+    title: "Bank-Level Security",
+    description: "Your financial data is protected with 256-bit encryption, the same security standard used by major banks worldwide."
+  }, {
+    icon: Lock,
+    title: "Privacy First Always",
+    description: "We never sell, share, or monetize your data. Your financial information is yours alone, and we're committed to keeping it that way."
+  }, {
+    icon: Globe,
+    title: "Global Compliance",
+    description: "Fully compliant with GDPR, CCPA, and international data protection regulations. Your rights are protected no matter where you are."
+  }, {
+    icon: Zap,
+    title: "Real-Time Sync",
+    description: "All your devices stay perfectly in sync. Add an expense on your phone and see it instantly on your laptop — seamlessly."
+  }];
+  return <div className="relative min-h-screen bg-gradient-to-br from-background via-background to-accent/5 text-foreground overflow-hidden">
       <CookieConsent />
       
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Sparkles className="h-6 w-6 text-primary" />
+            
             <span className="font-bold text-xl">Trackora</span>
           </div>
           <div className="flex items-center gap-3">
-            <Button
-              onClick={() => { setShowAuth(true); setIsSignUp(false); }}
-              variant="ghost"
-              className="hidden sm:inline-flex"
-            >
+            <Button onClick={() => {
+            setShowAuth(true);
+            setIsSignUp(false);
+          }} variant="ghost" className="hidden sm:inline-flex">
               Sign In
             </Button>
             <ThemeToggle />
@@ -143,66 +123,77 @@ const Welcome = () => {
 
       {/* Hero Section */}
       <section className="container mx-auto px-6 pt-32 pb-20 flex flex-col items-center text-center relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.6
+      }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
           <Sparkles className="h-4 w-4" />
           A calm space to understand your money
         </motion.div>
 
-        <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-5xl mb-6"
-        >
+        <motion.h1 initial={{
+        opacity: 0,
+        y: 30
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        duration: 0.7,
+        delay: 0.1
+      }} className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-5xl mb-6">
           Financial clarity without the stress
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.7 }}
-          className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed"
-        >
+        <motion.p initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        delay: 0.3,
+        duration: 0.7
+      }} className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed">
           Trackora helps you track expenses, manage loans, monitor subscriptions, and reach your financial goals — 
           all in one peaceful, intelligent space designed to make you feel safe and in control.
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.7 }}
-          className="flex flex-col sm:flex-row gap-4 items-center mb-12"
-        >
-          <Button
-            onClick={() => { setShowAuth(true); setIsSignUp(true); }}
-            size="lg"
-            className="text-lg px-10 py-7 rounded-2xl shadow-lg hover:shadow-xl transition-all bg-primary hover:bg-primary/90"
-          >
+        <motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        delay: 0.5,
+        duration: 0.7
+      }} className="flex flex-col sm:flex-row gap-4 items-center mb-12">
+          <Button onClick={() => {
+          setShowAuth(true);
+          setIsSignUp(true);
+        }} size="lg" className="text-lg px-10 py-7 rounded-2xl shadow-lg hover:shadow-xl transition-all bg-primary hover:bg-primary/90">
             Start Free — No Credit Card
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
 
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={() => setShowAuth(true)}
-            className="text-lg px-10 py-7 rounded-2xl border-2"
-          >
+          <Button variant="outline" size="lg" onClick={() => setShowAuth(true)} className="text-lg px-10 py-7 rounded-2xl border-2">
             Sign In
           </Button>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.7 }}
-          className="max-w-2xl px-6 py-5 rounded-2xl bg-success/10 border border-success/20"
-        >
+        <motion.div initial={{
+        opacity: 0
+      }} animate={{
+        opacity: 1
+      }} transition={{
+        delay: 0.7,
+        duration: 0.7
+      }} className="max-w-2xl px-6 py-5 rounded-2xl bg-success/10 border border-success/20">
           <p className="text-sm leading-relaxed text-foreground">
             <strong className="text-success">Currently in Beta:</strong> Trackora is free while we perfect the experience. 
             Your data is completely safe with bank-level security. Share your feedback at{" "}
@@ -217,42 +208,54 @@ const Welcome = () => {
       <section id="features" className="py-20 bg-gradient-to-br from-primary/5 to-accent/5">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
-            >
+            <motion.div initial={{
+            opacity: 0,
+            y: 20
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} viewport={{
+            once: true
+          }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
               <CheckCircle2 className="h-4 w-4" />
               Everything you need
             </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-bold mb-4"
-            >
+            <motion.h2 initial={{
+            opacity: 0,
+            y: 20
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} viewport={{
+            once: true
+          }} className="text-3xl md:text-5xl font-bold mb-4">
               Tools designed for <span className="text-primary">peace of mind</span>
             </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-muted-foreground text-lg max-w-2xl mx-auto"
-            >
+            <motion.p initial={{
+            opacity: 0,
+            y: 20
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} viewport={{
+            once: true
+          }} className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Every feature is crafted to be simple, supportive, and stress-free
             </motion.p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, idx) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-              >
+            {features.map((feature, idx) => <motion.div key={feature.title} initial={{
+            opacity: 0,
+            y: 20
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} viewport={{
+            once: true
+          }} transition={{
+            delay: idx * 0.1
+          }}>
                 <Card className="h-full border-2 hover:border-primary/50 transition-all hover:shadow-lg bg-card/50 backdrop-blur">
                   <CardContent className="p-6">
                     <div className="w-12 h-12 mb-4 flex items-center justify-center rounded-xl bg-primary/10">
@@ -263,8 +266,7 @@ const Welcome = () => {
                     <p className="text-sm font-medium text-primary italic">"{feature.highlight}"</p>
                   </CardContent>
                 </Card>
-              </motion.div>
-            ))}
+              </motion.div>)}
           </div>
         </div>
       </section>
@@ -273,33 +275,42 @@ const Welcome = () => {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-bold mb-4"
-            >
+            <motion.h2 initial={{
+            opacity: 0,
+            y: 20
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} viewport={{
+            once: true
+          }} className="text-3xl md:text-5xl font-bold mb-4">
               Built on <span className="text-primary">trust</span> and <span className="text-accent">safety</span>
             </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-muted-foreground text-lg max-w-2xl mx-auto"
-            >
+            <motion.p initial={{
+            opacity: 0,
+            y: 20
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} viewport={{
+            once: true
+          }} className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Your financial data deserves the highest level of protection and respect
             </motion.p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {whyChoose.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-              >
+            {whyChoose.map((item, idx) => <motion.div key={item.title} initial={{
+            opacity: 0,
+            y: 20
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} viewport={{
+            once: true
+          }} transition={{
+            delay: idx * 0.1
+          }}>
                 <Card className="p-6 border-2 hover:border-primary/50 transition-all hover:shadow-lg bg-card/50 backdrop-blur h-full">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-primary/10 flex-shrink-0">
@@ -311,8 +322,7 @@ const Welcome = () => {
                     </div>
                   </div>
                 </Card>
-              </motion.div>
-            ))}
+              </motion.div>)}
           </div>
         </div>
       </section>
@@ -320,12 +330,15 @@ const Welcome = () => {
       {/* Final CTA */}
       <section className="py-20 bg-gradient-to-br from-primary/10 via-accent/5 to-background">
         <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} className="max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-bold mb-6">
               Start managing your money with peace
             </h2>
@@ -334,20 +347,15 @@ const Welcome = () => {
               It's free, it's safe, and it's designed to make you feel good about your finances.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                onClick={() => { setShowAuth(true); setIsSignUp(true); }}
-                size="lg"
-                className="text-lg px-10 py-7 rounded-2xl shadow-lg hover:shadow-xl transition-all bg-primary hover:bg-primary/90"
-              >
+              <Button onClick={() => {
+              setShowAuth(true);
+              setIsSignUp(true);
+            }} size="lg" className="text-lg px-10 py-7 rounded-2xl shadow-lg hover:shadow-xl transition-all bg-primary hover:bg-primary/90">
                 Get Started Free
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
               <a href="/features">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="text-lg px-10 py-7 rounded-2xl border-2"
-                >
+                <Button variant="outline" size="lg" className="text-lg px-10 py-7 rounded-2xl border-2">
                   Explore Features
                 </Button>
               </a>
@@ -366,56 +374,27 @@ const Welcome = () => {
             <DialogTitle className="text-2xl">{isSignUp ? "Create Account" : "Welcome Back"}</DialogTitle>
           </DialogHeader>
           <form onSubmit={handleAuth} className="space-y-4">
-            {isSignUp && (
-              <div className="space-y-2">
+            {isSignUp && <div className="space-y-2">
                 <Label htmlFor="fullName">Full Name</Label>
-                <Input 
-                  id="fullName" 
-                  value={fullName} 
-                  onChange={(e) => setFullName(e.target.value)} 
-                  required 
-                  className="rounded-xl"
-                />
-              </div>
-            )}
+                <Input id="fullName" value={fullName} onChange={e => setFullName(e.target.value)} required className="rounded-xl" />
+              </div>}
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input 
-                id="email" 
-                type="email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
-                required 
-                className="rounded-xl"
-              />
+              <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} required className="rounded-xl" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
-              <Input 
-                id="password" 
-                type="password" 
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
-                required 
-                className="rounded-xl"
-              />
+              <Input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} required className="rounded-xl" />
             </div>
             <Button type="submit" className="w-full rounded-xl" disabled={loading}>
               {loading ? "Loading..." : isSignUp ? "Create Account" : "Sign In"}
             </Button>
-            <Button 
-              type="button" 
-              variant="ghost" 
-              className="w-full rounded-xl" 
-              onClick={() => setIsSignUp(!isSignUp)}
-            >
+            <Button type="button" variant="ghost" className="w-full rounded-xl" onClick={() => setIsSignUp(!isSignUp)}>
               {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
             </Button>
           </form>
         </DialogContent>
       </Dialog>
-    </div>
-  );
+    </div>;
 };
-
 export default Welcome;
