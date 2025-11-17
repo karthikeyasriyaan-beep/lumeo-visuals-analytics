@@ -16,7 +16,9 @@ import {
   Camera,
   Wallet,
   Shield,
-  AlertCircle
+  AlertCircle,
+  Zap,
+  Plus
 } from "lucide-react";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import LiveSummaryBar from "@/components/LiveSummaryBar";
@@ -118,6 +120,10 @@ export default function Dashboard() {
     enabled: !!user,
   });
 
+  const refetchAll = () => {
+    // Trigger refetch for all queries
+  };
+
   const totalExpenses = expenses.reduce((sum, exp) => sum + Number(exp.amount), 0);
   const totalIncome = income.reduce((sum, inc) => sum + Number(inc.amount), 0);
   const budgetProgress = monthlyBudget 
@@ -147,23 +153,28 @@ export default function Dashboard() {
             <Calculator />
           </motion.div>
 
-          {/* Quick Actions */}
+          {/* Quick Add Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="grid grid-cols-2 sm:grid-cols-3 gap-3"
+            className="space-y-3"
           >
-            <AddExpenseDialog />
-            <AddIncomeDialog />
-            <Button 
-              onClick={() => navigate("/transactions")}
-              variant="outline"
-              className="h-auto py-4 flex-col gap-2 col-span-2 sm:col-span-1"
-            >
-              <Camera className="h-5 w-5" />
-              <span className="text-xs sm:text-sm">Scan Receipt</span>
-            </Button>
+            <h2 className="text-xl font-semibold flex items-center gap-2">
+              <Zap className="h-5 w-5 text-primary" />
+              Quick Add
+            </h2>
+            <div className="grid gap-3 sm:grid-cols-3">
+              <AddExpenseDialog onSuccess={refetchAll} />
+              <AddIncomeDialog onSuccess={refetchAll} />
+              <Button 
+                className="gap-2"
+                onClick={() => navigate('/receipts')}
+              >
+                <Camera className="h-4 w-4" />
+                Scan Receipt
+              </Button>
+            </div>
           </motion.div>
 
           {/* Budget Overview Widget */}
