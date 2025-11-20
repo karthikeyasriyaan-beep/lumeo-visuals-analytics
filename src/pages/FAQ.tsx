@@ -43,8 +43,6 @@ export default function FAQ() {
           a: "Only you. Your financial data is completely private and belongs to you alone. Trackora staff cannot access your personal financial information unless you explicitly grant permission for support purposes. We follow a strict zero-knowledge architecture where your sensitive data remains encrypted."
         },
         {
-          q: "How do you handle my receipt images?",
-          a: "Receipt images are stored securely in encrypted storage. When you upload a receipt, our AI processes it to extract transaction details, but the image remains private to your account. You can delete receipt images at any time, and they will be permanently removed from our servers."
         },
         {
           q: "Are you GDPR and CCPA compliant?",
@@ -61,9 +59,7 @@ export default function FAQ() {
       icon: Database,
       questions: [
         {
-          q: "How does the receipt scanner work?",
-          a: "Our receipt scanner uses advanced OCR (Optical Character Recognition) technology. Simply take a photo of any receipt using your phone or upload an image. Trackora automatically extracts the merchant name, amount, date, and categories the expense. You can review and edit the details before saving. It works with printed receipts, digital invoices, and even handwritten notes."
-        },
+          
         {
           q: "Which currencies does Trackora support?",
           a: "Trackora supports multiple currencies including Indian Rupee (₹), US Dollar ($), Euro (€), British Pound (£), and many others. You can set your preferred currency in Settings, and all your financial data will be displayed in that currency. The currency selector is available in the top navigation for quick switching."
@@ -149,9 +145,7 @@ export default function FAQ() {
           a: "Click the 'Forgot Password' link on the login page, enter your email address, and we'll send you a password reset link. Follow the instructions in the email to create a new secure password. If you don't receive the email, check your spam folder or contact support."
         },
         {
-          q: "The receipt scanner isn't working properly. What should I do?",
-          a: "For best results, ensure the receipt is well-lit, flat, and the text is clearly visible. Try taking the photo from directly above the receipt. If the scanner still has trouble, you can manually enter the transaction details and we'll work on improving our OCR accuracy."
-        },
+        
         {
           q: "How do I contact support?",
           a: "You can reach our support team at support@trackorapp.in or use the contact form on our Contact page. We typically respond within 24-48 hours. For urgent issues, please mention 'Urgent' in the subject line."
