@@ -22,6 +22,22 @@ export function Footer() {
           </div>
           
           <div>
+            <h3 className="font-bold mb-4">Resources</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/blog" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  FAQ / Help
+                </Link>
+              </li>
+            </ul>
+          </div>
+          
+          <div>
             <h3 className="font-bold mb-4">Support</h3>
             <ul className="space-y-2">
               <li>
