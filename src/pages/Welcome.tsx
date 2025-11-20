@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Shield, Lock, Globe, Zap, ArrowRight, Camera, DollarSign, Repeat, Target, Receipt, BarChart3, CheckCircle2, Sparkles } from "lucide-react";
+import { Shield, Lock, Globe, Zap, ArrowRight, Camera, DollarSign, Repeat, Target, BarChart3, CheckCircle2, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -51,37 +51,32 @@ const Welcome = () => {
       setLoading(false);
     }
   };
-  const features = [{
-    icon: Camera,
-    title: "Receipt Scanner",
-    description: "Snap a photo of any receipt and watch Trackora automatically extract amounts, vendors, dates, and categories. Never lose track of a purchase again.",
-    highlight: "Snap → Extract → Sorted"
-  }, {
-    icon: DollarSign,
-    title: "Loans & Debts Tracker",
-    description: "Stay on top of all your loans comfortably. Track balances, monitor interest rates, and get gentle reminders about upcoming EMI payments.",
-    highlight: "Peace of mind for your debts"
-  }, {
-    icon: Repeat,
-    title: "Subscription Control",
-    description: "See all your subscriptions in one place. Get alerts before renewals, understand your monthly costs, and easily spot subscriptions you might want to cancel.",
-    highlight: "No more surprise charges"
-  }, {
-    icon: Target,
-    title: "Goals & Progress",
-    description: "Set savings goals and watch your progress grow. Visual progress rings and encouraging insights help you celebrate every milestone on your journey.",
-    highlight: "You're getting closer — keep going"
-  }, {
-    icon: Receipt,
-    title: "Smart Expense Tracking",
-    description: "Log expenses and income effortlessly with intelligent auto-categorization. Color-coded categories and quick-add buttons make tracking feel natural.",
-    highlight: "Every rupee accounted for"
-  }, {
-    icon: BarChart3,
-    title: "Friendly Analytics",
-    description: "Beautiful charts that speak your language. Get insights into spending patterns and trends without judgment — just helpful, encouraging guidance.",
-    highlight: "Numbers that help, not stress"
-  }];
+  const features = [
+    {
+      icon: DollarSign,
+      title: "Loans & Debts Tracker",
+      description: "Stay on top of all your loans comfortably. Track balances, monitor interest rates, and get gentle reminders about upcoming EMI payments.",
+      highlight: "Peace of mind for your debts"
+    },
+    {
+      icon: Repeat,
+      title: "Subscription Control",
+      description: "See all your subscriptions in one place. Get alerts before renewals, understand your monthly costs, and easily spot subscriptions you might want to cancel.",
+      highlight: "No more surprise charges"
+    },
+    {
+      icon: Target,
+      title: "Goals & Progress",
+      description: "Set savings goals and watch your progress grow. Visual progress rings and encouraging insights help you celebrate every milestone on your journey.",
+      highlight: "You're getting closer — keep going"
+    },
+    {
+      icon: BarChart3,
+      title: "Friendly Analytics",
+      description: "Beautiful charts that speak your language. Get insights into spending patterns and trends without judgment — just helpful, encouraging guidance.",
+      highlight: "Numbers that help, not stress"
+    }
+  ];
   const whyChoose = [{
     icon: Shield,
     title: "Bank-Level Security",
