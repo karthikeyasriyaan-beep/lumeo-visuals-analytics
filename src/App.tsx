@@ -22,14 +22,17 @@ import Terms from "./pages/Terms";
 import Features from "./pages/Features";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
+import Blog from "./pages/Blog";
+import PersonalFinanceBasics from "./pages/blog/PersonalFinanceBasics";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import { CookieConsent } from "./components/CookieConsent";
 
 function AppLayout() {
   const location = useLocation();
-  const publicPaths = ["/", "/privacy", "/terms", "/features", "/about", "/contact"];
-  const showNav = !publicPaths.includes(location.pathname);
+  const publicPaths = ["/", "/privacy", "/terms", "/features", "/about", "/contact", "/faq", "/blog"];
+  const showNav = !publicPaths.includes(location.pathname) && !location.pathname.startsWith("/blog/");
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden scroll-smooth">
@@ -74,6 +77,9 @@ const App = () => (
                 <Route path="/features" element={<Features />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/personal-finance-basics" element={<PersonalFinanceBasics />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
