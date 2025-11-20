@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrency } from "@/components/currency-selector";
-import { PiggyBank, CreditCard, DollarSign, Camera, Wallet, Shield, AlertCircle, Zap, Plus } from "lucide-react";
+import { PiggyBank, CreditCard, DollarSign, Wallet, Shield, AlertCircle, Zap, Plus } from "lucide-react";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import LiveSummaryBar from "@/components/LiveSummaryBar";
 import { Calculator } from "@/components/Calculator";
@@ -151,13 +151,9 @@ export default function Dashboard() {
               <Zap className="h-5 w-5 text-primary" />
               Quick Add
             </h2>
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className="grid gap-3 sm:grid-cols-2">
               <AddExpenseDialog onSuccess={refetchAll} />
               <AddIncomeDialog onSuccess={refetchAll} />
-              <Button className="gap-2" onClick={() => navigate('/receipts')}>
-                <Camera className="h-4 w-4" />
-                Scan Receipt
-              </Button>
             </div>
           </motion.div>
 

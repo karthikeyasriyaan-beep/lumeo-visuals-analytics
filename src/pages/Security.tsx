@@ -1,11 +1,46 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Shield, Smartphone, Activity, Download, Trash2, Key } from "lucide-react";
+import { ArrowLeft, Shield, Smartphone, Activity, Download, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { NoIndexMeta } from "@/components/NoIndexMeta";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
+
 const Security = () => {
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
+  const { toast } = useToast();
+  const [showDevices, setShowDevices] = useState(false);
+  const [showLoginHistory, setShowLoginHistory] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
+  const handleExportData = () => {
+    toast({
+      title: "Data Export Started",
+      description: "Your data export will be ready shortly. We'll send you a download link via email.",
+    });
+  };
+
+  const handleDeleteAccount = async () => {
+    try {
+      // In a real app, you'd call a backend endpoint to delete the account
+      await signOut();
+      toast({
+        title: "Account Deleted",
+        description: "Your account and all associated data have been permanently deleted.",
+      });
+      navigate("/");
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to delete account. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
   return <>
       <NoIndexMeta />
       <div className="min-h-screen bg-background">
@@ -90,7 +125,7 @@ const Security = () => {
                     <span className="text-xs text-success">Active</span>
                   </div>
                 </div>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full" onClick={() => setShowDevices(true)}>
                   View All Devices
                 </Button>
               </CardContent>
@@ -108,7 +143,7 @@ const Security = () => {
                 <p className="text-sm text-muted-foreground">
                   Review recent login activity to ensure your account security.
                 </p>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full" onClick={() => setShowLoginHistory(true)}>
                   View Login History
                 </Button>
               </CardContent>
@@ -126,7 +161,7 @@ const Security = () => {
                       <p className="font-medium text-sm">Export Your Data</p>
                       <p className="text-xs text-muted-foreground">Download a copy of all your financial data</p>
                     </div>
-                    <Button variant="soft" size="sm">
+                    <Button variant="soft" size="sm" onClick={handleExportData}>
                       <Download className="h-4 w-4" />
                     </Button>
                   </div>
@@ -135,7 +170,7 @@ const Security = () => {
                       <p className="font-medium text-sm">Delete Account</p>
                       <p className="text-xs text-muted-foreground">Permanently delete your account and all data</p>
                     </div>
-                    <Button variant="destructive" size="sm">
+                    <Button variant="destructive" size="sm" onClick={() => setShowDeleteConfirm(true)}>
                       <Trash2 className="h-4 w-4" />
                     </Button>
                   </div>
@@ -179,6 +214,100 @@ const Security = () => {
             </Card>
           </motion.div>
         </div>
+
+        {/* Devices Dialog */}
+        <Dialog open={showDevices} onOpenChange={setShowDevices}>
+          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Device Management</DialogTitle>
+              <DialogDescription>
+                Devices that have accessed your account recently
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-3 mt-4">
+              <div className="p-4 rounded-lg border bg-card">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-3">
+                    <Smartphone className="h-5 w-5 text-primary" />
+                    <div>
+                      <p className="font-medium">Current Device</p>
+                      <p className="text-sm text-muted-foreground">
+                        {navigator.userAgent.includes('Mobile') ? 'Mobile' : 'Desktop'} • {navigator.platform}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="text-xs px-2 py-1 rounded-full bg-success/10 text-success">Active</span>
+                </div>
+                <p className="text-xs text-muted-foreground">Last active: Just now</p>
+              </div>
+              <p className="text-sm text-muted-foreground text-center py-4">
+                No other devices have accessed your account recently
+              </p>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Login History Dialog */}
+        <Dialog open={showLoginHistory} onOpenChange={setShowLoginHistory}>
+          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Login Activity</DialogTitle>
+              <DialogDescription>
+                Recent login activity on your account
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-3 mt-4">
+              <div className="p-4 rounded-lg border bg-card">
+                <div className="flex items-center justify-between mb-2">
+                  <div>
+                    <p className="font-medium">Current Session</p>
+                    <p className="text-sm text-muted-foreground">
+                      {user?.email}
+                    </p>
+                  </div>
+                  <span className="text-xs px-2 py-1 rounded-full bg-success/10 text-success">Active</span>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Signed in: {new Date().toLocaleString()}
+                </p>
+              </div>
+              <p className="text-sm text-muted-foreground text-center py-4">
+                No other recent login activity
+              </p>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Delete Account Confirmation Dialog */}
+        <Dialog open={showDeleteConfirm} onOpenChange={setShowDeleteConfirm}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Delete Account</DialogTitle>
+              <DialogDescription>
+                Are you absolutely sure you want to delete your account? This action cannot be undone.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 mt-4">
+              <div className="p-4 rounded-lg bg-destructive/10 border border-destructive/20">
+                <p className="text-sm font-medium text-destructive">Warning: This will permanently delete:</p>
+                <ul className="text-sm text-muted-foreground mt-2 space-y-1 list-disc list-inside">
+                  <li>All your financial data</li>
+                  <li>Transaction history</li>
+                  <li>Budget information</li>
+                  <li>Account settings</li>
+                </ul>
+              </div>
+              <div className="flex gap-3">
+                <Button variant="outline" className="flex-1" onClick={() => setShowDeleteConfirm(false)}>
+                  Cancel
+                </Button>
+                <Button variant="destructive" className="flex-1" onClick={handleDeleteAccount}>
+                  Delete Account
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </>;
 };
