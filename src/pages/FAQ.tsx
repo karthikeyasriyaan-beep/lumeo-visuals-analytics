@@ -43,8 +43,6 @@ export default function FAQ() {
           a: "Only you. Your financial data is completely private and belongs to you alone. Trackora staff cannot access your personal financial information unless you explicitly grant permission for support purposes. We follow a strict zero-knowledge architecture where your sensitive data remains encrypted."
         },
         {
-        },
-        {
           q: "Are you GDPR and CCPA compliant?",
           a: "Yes. Trackora is fully compliant with GDPR (General Data Protection Regulation) and CCPA (California Consumer Privacy Act). You have the right to access, export, or delete your data at any time. Visit our Privacy Policy for complete details on how we protect your information."
         },
@@ -58,8 +56,6 @@ export default function FAQ() {
       title: "Features & Functionality",
       icon: Database,
       questions: [
-        {
-          
         {
           q: "Which currencies does Trackora support?",
           a: "Trackora supports multiple currencies including Indian Rupee (₹), US Dollar ($), Euro (€), British Pound (£), and many others. You can set your preferred currency in Settings, and all your financial data will be displayed in that currency. The currency selector is available in the top navigation for quick switching."
@@ -144,8 +140,6 @@ export default function FAQ() {
           q: "I forgot my password. How do I reset it?",
           a: "Click the 'Forgot Password' link on the login page, enter your email address, and we'll send you a password reset link. Follow the instructions in the email to create a new secure password. If you don't receive the email, check your spam folder or contact support."
         },
-        {
-        
         {
           q: "How do I contact support?",
           a: "You can reach our support team at support@trackorapp.in or use the contact form on our Contact page. We typically respond within 24-48 hours. For urgent issues, please mention 'Urgent' in the subject line."
