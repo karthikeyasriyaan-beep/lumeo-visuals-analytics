@@ -153,9 +153,14 @@ const Welcome = () => {
       }} transition={{
         delay: 0.3,
         duration: 0.7
-      }} className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 leading-relaxed">
-          Trackora helps you track expenses, manage loans, monitor subscriptions, and reach your financial goals — 
-          all in one peaceful, intelligent space designed to make you feel safe and in control.
+      }} className="text-lg md:text-xl text-muted-foreground max-w-3xl mb-10 leading-relaxed">
+          Trackora is a comprehensive personal finance management platform that helps you track expenses, 
+          manage loans and debts, monitor subscriptions, and reach your financial goals. Whether you're 
+          budgeting for the first time or looking to optimize your spending habits, Trackora provides 
+          intuitive tools and beautiful analytics to make financial management effortless. Our platform 
+          combines powerful features with a clean, user-friendly interface designed to reduce financial 
+          stress and help you make informed decisions about your money. From automated expense categorization 
+          to detailed spending insights, Trackora gives you complete visibility into your financial health.
         </motion.p>
 
         <motion.div initial={{
@@ -197,6 +202,49 @@ const Welcome = () => {
             </a>
           </p>
         </motion.div>
+      </section>
+
+      {/* What is Trackora Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="prose prose-lg max-w-none"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+              What is Trackora? Your Complete Financial Management Solution
+            </h2>
+            <div className="space-y-6 text-muted-foreground leading-relaxed">
+              <p>
+                Trackora is a modern personal finance management application designed to simplify how you manage your money. 
+                In today's complex financial landscape, keeping track of expenses, subscriptions, loans, and savings goals 
+                can be overwhelming. Trackora brings all these aspects together in one intuitive platform, making financial 
+                management accessible to everyone, regardless of their financial expertise.
+              </p>
+              <p>
+                Our platform offers comprehensive expense tracking that automatically categorizes your spending, helping you 
+                understand exactly where your money goes each month. With detailed analytics and visual reports, you can 
+                identify spending patterns, discover opportunities to save, and make data-driven decisions about your finances. 
+                Whether you're tracking daily coffee purchases or major expenses, Trackora ensures nothing falls through the cracks.
+              </p>
+              <p>
+                Beyond basic expense tracking, Trackora includes powerful tools for managing debts and loans. Track multiple 
+                loans simultaneously, monitor interest rates, calculate payoff timelines, and set up payment reminders. Our 
+                loan management features help you stay on top of your financial obligations and work toward becoming debt-free 
+                faster. The platform also includes subscription tracking to help you identify and eliminate unnecessary recurring 
+                charges that drain your budget.
+              </p>
+              <p>
+                Financial goal setting is at the heart of Trackora's mission. Set specific savings targets for emergencies, 
+                vacations, large purchases, or retirement. Our visual progress tracking keeps you motivated with clear milestones 
+                and encouraging insights. Combined with intelligent budgeting tools that adapt to your spending habits, Trackora 
+                provides the guidance you need to achieve your financial goals while maintaining a healthy work-life balance.
+              </p>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Features Showcase */}
@@ -263,6 +311,42 @@ const Welcome = () => {
                 </Card>
               </motion.div>)}
           </div>
+        </div>
+      </section>
+
+      {/* How Trackora Works */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+              How Trackora Works: Simple, Secure, and Effective
+            </h2>
+            <div className="space-y-6 text-muted-foreground leading-relaxed mb-12">
+              <p>
+                Getting started with Trackora is incredibly simple. Create your free account in seconds using your email 
+                address—no credit card required. Once you're in, you'll find an intuitive dashboard that provides a 
+                comprehensive overview of your financial health at a glance. The clean, modern interface makes navigation 
+                effortless, whether you're using a desktop computer, tablet, or smartphone.
+              </p>
+              <p>
+                Adding expenses and income is quick and straightforward. Simply click the "Add Expense" button, enter the 
+                amount and description, and Trackora automatically categorizes the transaction based on intelligent pattern 
+                recognition. Over time, the system learns your spending habits and becomes even more accurate. You can also 
+                add notes, attach tags, and customize categories to match your unique financial situation.
+              </p>
+              <p>
+                Security is paramount at Trackora. All your financial data is protected with bank-level 256-bit AES encryption, 
+                both when it's transmitted and when it's stored on our servers. We never sell or share your personal information 
+                with third parties. You maintain complete control over your data with the ability to export or delete it at any 
+                time. Our infrastructure is hosted on enterprise-grade cloud servers with 99.9% uptime, ensuring your financial 
+                information is always accessible when you need it.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
