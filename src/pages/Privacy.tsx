@@ -42,8 +42,7 @@ const Privacy = () => {
                 </p>
                 <ul className="list-disc list-inside text-muted-foreground mt-2 space-y-2">
                   <li><strong>Account Information:</strong> Name, email address, and authentication credentials from your Google account</li>
-                  <li><strong>Financial Data:</strong> Income records, expenses, loans, subscriptions, savings goals, and receipts you choose to track</li>
-                  <li><strong>Receipt Images:</strong> Photos of receipts you upload for expense tracking</li>
+                  <li><strong>Financial Data:</strong> Income records, expenses, loans, subscriptions, and savings goals you choose to track</li>
                   <li><strong>Usage Data:</strong> How you interact with our app, features you use, and preferences you set</li>
                   <li><strong>Device Information:</strong> Browser type, operating system, and device identifiers</li>
                 </ul>
@@ -57,7 +56,6 @@ const Privacy = () => {
                 <ul className="list-disc list-inside text-muted-foreground mt-2 space-y-2">
                   <li>Securely storing and organizing your financial data</li>
                   <li>Providing personalized analytics, insights, and budget recommendations</li>
-                  <li>Processing receipt images to extract transaction details</li>
                   <li>Sending important service updates and security alerts</li>
                   <li>Protecting against fraud and ensuring account security</li>
                   <li>Improving our features based on usage patterns</li>

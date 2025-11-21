@@ -49,7 +49,6 @@ const Terms = () => {
                 </p>
                 <ul className="list-disc list-inside text-muted-foreground mt-2 space-y-2">
                   <li>Track income, expenses, loans, subscriptions, and savings goals</li>
-                  <li>Upload and organize receipts for expense tracking</li>
                   <li>Set budgets and receive gentle spending guidance</li>
                   <li>Visualize your financial health through analytics and reports</li>
                   <li>Securely store your financial data in the cloud</li>
@@ -105,8 +104,6 @@ const Terms = () => {
                 <ul className="list-disc list-inside text-muted-foreground mt-2 space-y-2">
                   <li>You are responsible for verifying the accuracy of all data you enter</li>
                   <li>We recommend regularly reconciling Trackora data with official bank statements</li>
-                  <li>Receipt scanning uses OCR technology and may occasionally have errors</li>
-                  <li>Always double-check extracted receipt data before saving</li>
                 </ul>
               </section>
 

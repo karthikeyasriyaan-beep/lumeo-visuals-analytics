@@ -18,7 +18,7 @@ export default function FAQ() {
         },
         {
           q: "Is Trackora really free to use?",
-          a: "Yes! Trackora is currently in public beta and is completely free to use. All features including receipt scanning, budget tracking, loan management, and analytics are available at no cost. We're committed to making financial management accessible to everyone."
+          a: "Yes! Trackora is currently in public beta and is completely free to use. All features including budget tracking, loan management, and analytics are available at no cost. We're committed to making financial management accessible to everyone."
         },
         {
           q: "What devices can I use Trackora on?",
@@ -48,7 +48,7 @@ export default function FAQ() {
         },
         {
           q: "Can I delete my account and all my data?",
-          a: "Yes, you have complete control. You can delete your account at any time from the Settings page. When you delete your account, all your personal data, financial records, and receipt images are permanently removed from our servers within 30 days."
+          a: "Yes, you have complete control. You can delete your account at any time from the Settings page. When you delete your account, all your personal data and financial records are permanently removed from our servers within 30 days."
         }
       ]
     },
@@ -84,7 +84,7 @@ export default function FAQ() {
       questions: [
         {
           q: "Can I export my financial data?",
-          a: "Yes. You can export all your data at any time in CSV or JSON format from the Settings page. This includes expenses, income, receipts, loans, subscriptions, and savings goals. Exported data can be used for tax filing, financial analysis, or importing into other tools."
+          a: "Yes. You can export all your data at any time in CSV or JSON format from the Settings page. This includes expenses, income, loans, subscriptions, and savings goals. Exported data can be used for tax filing, financial analysis, or importing into other tools."
         },
         {
           q: "How far back does Trackora store my data?",
@@ -92,7 +92,7 @@ export default function FAQ() {
         },
         {
           q: "Can I import data from other apps or spreadsheets?",
-          a: "Currently, Trackora supports manual entry and receipt scanning. We're working on import features for CSV and Excel files. If you need to migrate data from another app, please contact our support team, and we'll help you with the process."
+          a: "Currently, Trackora supports manual entry of expenses and income. We're working on import features for CSV and Excel files. If you need to migrate data from another app, please contact our support team, and we'll help you with the process."
         }
       ]
     },
@@ -124,7 +124,7 @@ export default function FAQ() {
         },
         {
           q: "Can I use Trackora offline?",
-          a: "Basic viewing functionality works offline, but adding new transactions, scanning receipts, and syncing data requires an internet connection. We're working on enhanced offline capabilities so you can track expenses anywhere and sync when you're back online."
+          a: "Basic viewing functionality works offline, but adding new transactions and syncing data requires an internet connection. We're working on enhanced offline capabilities so you can track expenses anywhere and sync when you're back online."
         },
         {
           q: "Is Trackora accessible for users with disabilities?",
