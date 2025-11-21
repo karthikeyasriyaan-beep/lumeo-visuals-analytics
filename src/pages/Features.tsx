@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { 
-  Camera, DollarSign, Repeat, Target, Receipt, BarChart3, 
+  DollarSign, Repeat, Target, BarChart3, 
   Shield, Zap, CheckCircle2, ArrowRight,
-  Sparkles, Globe
+  Sparkles, Globe, Wallet
 } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
@@ -13,20 +13,6 @@ const Features = () => {
   const navigate = useNavigate();
 
   const mainFeatures = [
-    {
-      icon: Camera,
-      title: "📸 Receipt Scanner — Snap & Forget",
-      description: "The heart of Trackora. Take a photo of any receipt and watch the magic happen:",
-      features: [
-        "Automatic OCR extraction of amounts, vendors, dates, and categories",
-        "Receipt library with searchable thumbnails",
-        "Auto-organized by date and merchant",
-        "Export receipt data for tax time or expense reports",
-        "Works with printed receipts, digital invoices, and handwritten notes"
-      ],
-      highlight: "Never manually enter a receipt again — just snap and it's done.",
-      color: "from-primary/20 to-accent/20"
-    },
     {
       icon: DollarSign,
       title: "💰 Loans & Debts Tracker — Breathe Easy",
@@ -70,7 +56,7 @@ const Features = () => {
       color: "from-accent/20 to-primary/20"
     },
     {
-      icon: Receipt,
+      icon: Wallet,
       title: "📝 Smart Expense & Income Tracking",
       description: "Every rupee accounted for — without the effort:",
       features: [
@@ -166,7 +152,7 @@ const Features = () => {
           className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
         >
           Trackora brings together everything you need to manage your money with confidence and calm. 
-          From receipt scanning to debt tracking, every feature is designed to reduce stress, not add to it.
+          From expense tracking to debt management, every feature is designed to reduce stress, not add to it.
         </motion.p>
       </section>
 

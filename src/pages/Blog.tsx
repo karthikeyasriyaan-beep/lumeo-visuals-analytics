@@ -26,15 +26,6 @@ export default function Blog() {
       category: "Budgeting"
     },
     {
-      slug: "receipt-management-guide",
-      title: "Complete Guide to Receipt Management for Tax Season and Beyond",
-      excerpt: "Master the art of receipt organization with digital tools. Learn why keeping receipts matters, how long to store them, and how modern receipt scanners can save you hours during tax time.",
-      date: "November 5, 2025",
-      readTime: "7 min read",
-      author: "Trackora Team",
-      category: "Organization"
-    },
-    {
       slug: "debt-payoff-strategies",
       title: "Proven Debt Payoff Strategies: Snowball vs. Avalanche Method",
       excerpt: "Feeling overwhelmed by debt? This guide compares popular debt repayment strategies and helps you choose the best approach for your situation. Includes calculators and real-world examples.",

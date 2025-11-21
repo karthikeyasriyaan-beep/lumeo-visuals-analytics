@@ -73,7 +73,7 @@ export default function PersonalFinanceBasics() {
                 <p>
                   Start by tracking every single expense for at least one month. This includes everything from your rent or 
                   mortgage payment to that morning coffee. Modern tools like Trackora make this incredibly easy with features 
-                  like receipt scanning and automatic categorization, so you don't have to manually log every transaction.
+                  like automatic categorization and visual budgeting, so managing your finances becomes effortless.
                 </p>
 
                 <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">The Core Principles of Financial Wellness</h2>
@@ -155,7 +155,7 @@ export default function PersonalFinanceBasics() {
                 </p>
 
                 <ul className="list-disc list-inside space-y-2 ml-4">
-                  <li>Receipt scanning that automatically logs and categorizes expenses</li>
+                  <li>Quick expense entry with automatic categorization</li>
                   <li>Visual budgets that show spending progress in real-time</li>
                   <li>Debt tracking that calculates payoff timelines and interest costs</li>
                   <li>Subscription monitoring to catch wasteful recurring charges</li>
