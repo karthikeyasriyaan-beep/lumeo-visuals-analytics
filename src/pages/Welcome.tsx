@@ -144,7 +144,7 @@ const Welcome = () => {
           Financial clarity without the stress
         </motion.h1>
 
-        <motion.p initial={{
+        <motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -153,13 +153,39 @@ const Welcome = () => {
       }} transition={{
         delay: 0.3,
         duration: 0.7
-      }} className="text-lg md:text-xl text-muted-foreground max-w-3xl mb-10 leading-relaxed">
-          Take control of your personal finances with Trackora, a modern expense tracking and budget management 
-          platform. Track your daily spending, manage debts and loans, monitor recurring subscriptions, and work 
-          toward meaningful savings goals—all in one beautifully designed application. Perfect for individuals 
-          who want to build better money habits, reduce financial stress, and gain clarity about where their 
-          money goes each month.
-        </motion.p>
+      }} className="max-w-3xl mb-10">
+          <p className="text-lg md:text-xl leading-relaxed mb-6">
+            <span className="text-foreground font-semibold">Take control of your personal finances</span>{" "}
+            <span className="text-muted-foreground">with Trackora, a modern</span>{" "}
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-semibold">
+              expense tracking and budget management platform
+            </span>
+            <span className="text-muted-foreground">.</span>
+          </p>
+          
+          <div className="grid sm:grid-cols-2 gap-4 text-base md:text-lg">
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-primary/5 border border-primary/10">
+              <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+              <span className="text-muted-foreground leading-relaxed">
+                <span className="text-foreground font-medium">Track your daily spending</span>, manage debts and loans
+              </span>
+            </div>
+            
+            <div className="flex items-start gap-3 p-4 rounded-xl bg-accent/5 border border-accent/10">
+              <div className="w-2 h-2 rounded-full bg-accent mt-2 flex-shrink-0"></div>
+              <span className="text-muted-foreground leading-relaxed">
+                <span className="text-foreground font-medium">Monitor recurring subscriptions</span> and work toward goals
+              </span>
+            </div>
+          </div>
+          
+          <p className="text-base md:text-lg text-muted-foreground mt-6 leading-relaxed text-center">
+            Perfect for individuals who want to{" "}
+            <span className="text-primary font-medium">build better money habits</span>,{" "}
+            <span className="text-accent font-medium">reduce financial stress</span>, and gain clarity about 
+            where their money goes each month.
+          </p>
+        </motion.div>
 
         <motion.div initial={{
         opacity: 0,
