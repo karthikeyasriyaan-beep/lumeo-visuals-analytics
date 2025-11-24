@@ -154,13 +154,11 @@ const Welcome = () => {
         delay: 0.3,
         duration: 0.7
       }} className="text-lg md:text-xl text-muted-foreground max-w-3xl mb-10 leading-relaxed">
-          Trackora is a comprehensive personal finance management platform that helps you track expenses, 
-          manage loans and debts, monitor subscriptions, and reach your financial goals. Whether you're 
-          budgeting for the first time or looking to optimize your spending habits, Trackora provides 
-          intuitive tools and beautiful analytics to make financial management effortless. Our platform 
-          combines powerful features with a clean, user-friendly interface designed to reduce financial 
-          stress and help you make informed decisions about your money. From automated expense categorization 
-          to detailed spending insights, Trackora gives you complete visibility into your financial health.
+          Take control of your personal finances with Trackora, a modern expense tracking and budget management 
+          platform. Track your daily spending, manage debts and loans, monitor recurring subscriptions, and work 
+          toward meaningful savings goals—all in one beautifully designed application. Perfect for individuals 
+          who want to build better money habits, reduce financial stress, and gain clarity about where their 
+          money goes each month.
         </motion.p>
 
         <motion.div initial={{
@@ -214,33 +212,40 @@ const Welcome = () => {
             className="prose prose-lg max-w-none"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-              What is Trackora? Your Complete Financial Management Solution
+              What is Trackora? Your Personal Finance Management Solution
             </h2>
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <p>
-                Trackora is a modern personal finance management application designed to simplify how you manage your money. 
-                In today's complex financial landscape, keeping track of expenses, subscriptions, loans, and savings goals 
-                can be overwhelming. Trackora brings all these aspects together in one intuitive platform, making financial 
-                management accessible to everyone, regardless of their financial expertise.
+                Managing personal finances doesn't have to be complicated or stressful. Trackora is designed as a 
+                simple yet powerful tool to help you understand and control your money. Whether you're just starting 
+                your financial journey or looking to optimize your existing budget, our platform provides the clarity 
+                and insights you need to make confident financial decisions.
               </p>
               <p>
-                Our platform offers comprehensive expense tracking that automatically categorizes your spending, helping you 
-                understand exactly where your money goes each month. With detailed analytics and visual reports, you can 
-                identify spending patterns, discover opportunities to save, and make data-driven decisions about your finances. 
-                Whether you're tracking daily coffee purchases or major expenses, Trackora ensures nothing falls through the cracks.
+                At its core, Trackora helps you track every expense and income source throughout the month. By 
+                categorizing your spending automatically, you can quickly see where your money goes—from groceries 
+                and dining to utilities and entertainment. This visibility is the first step toward building better 
+                financial habits and identifying areas where you can save more effectively.
               </p>
               <p>
-                Beyond basic expense tracking, Trackora includes powerful tools for managing debts and loans. Track multiple 
-                loans simultaneously, monitor interest rates, calculate payoff timelines, and set up payment reminders. Our 
-                loan management features help you stay on top of your financial obligations and work toward becoming debt-free 
-                faster. The platform also includes subscription tracking to help you identify and eliminate unnecessary recurring 
-                charges that drain your budget.
+                Managing debt is one of the most challenging aspects of personal finance. Trackora simplifies this 
+                by letting you track all your loans in one place—personal loans, student debt, credit cards, and more. 
+                Monitor your balances, track interest charges, and see projected payoff dates. Set up friendly reminders 
+                for upcoming payments so you never miss a due date, helping you maintain a healthy credit score while 
+                working toward financial freedom.
               </p>
               <p>
-                Financial goal setting is at the heart of Trackora's mission. Set specific savings targets for emergencies, 
-                vacations, large purchases, or retirement. Our visual progress tracking keeps you motivated with clear milestones 
-                and encouraging insights. Combined with intelligent budgeting tools that adapt to your spending habits, Trackora 
-                provides the guidance you need to achieve your financial goals while maintaining a healthy work-life balance.
+                Subscription services have become a significant part of modern spending. From streaming platforms to 
+                software subscriptions, these recurring charges can quietly drain your budget. Trackora helps you catalog 
+                all your subscriptions, alerts you before renewals, and shows you exactly how much you're spending monthly 
+                and annually. This awareness helps you make informed decisions about which subscriptions truly add value 
+                to your life.
+              </p>
+              <p>
+                Setting and achieving financial goals becomes achievable with the right tools. Whether you're saving for 
+                an emergency fund, planning a vacation, or working toward a major purchase, Trackora lets you create 
+                custom savings goals with target amounts and deadlines. Visual progress indicators keep you motivated, 
+                and helpful insights encourage you along the way. Every small contribution brings you closer to your goals.
               </p>
             </div>
           </motion.div>
@@ -327,23 +332,30 @@ const Welcome = () => {
             </h2>
             <div className="space-y-6 text-muted-foreground leading-relaxed mb-12">
               <p>
-                Getting started with Trackora is incredibly simple. Create your free account in seconds using your email 
-                address—no credit card required. Once you're in, you'll find an intuitive dashboard that provides a 
-                comprehensive overview of your financial health at a glance. The clean, modern interface makes navigation 
-                effortless, whether you're using a desktop computer, tablet, or smartphone.
+                Getting started with Trackora takes just minutes. Sign up with your email address—no credit card or 
+                payment information required during our free beta period. The onboarding process is straightforward 
+                and guides you through setting up your first budget and adding your initial expenses. Within moments, 
+                you'll have a clear dashboard showing your financial snapshot.
               </p>
               <p>
-                Adding expenses and income is quick and straightforward. Simply click the "Add Expense" button, enter the 
-                amount and description, and Trackora automatically categorizes the transaction based on intelligent pattern 
-                recognition. Over time, the system learns your spending habits and becomes even more accurate. You can also 
-                add notes, attach tags, and customize categories to match your unique financial situation.
+                Daily usage is designed to be effortless. When you make a purchase, open Trackora, tap the "Add Expense" 
+                button, enter the amount and a quick description, and select a category. The entire process takes seconds. 
+                You can add expenses from your phone while you're out shopping or from your computer when reviewing 
+                transactions at home. Trackora works seamlessly across all your devices, keeping everything synchronized 
+                in real-time.
               </p>
               <p>
-                Security is paramount at Trackora. All your financial data is protected with bank-level 256-bit AES encryption, 
-                both when it's transmitted and when it's stored on our servers. We never sell or share your personal information 
-                with third parties. You maintain complete control over your data with the ability to export or delete it at any 
-                time. Our infrastructure is hosted on enterprise-grade cloud servers with 99.9% uptime, ensuring your financial 
-                information is always accessible when you need it.
+                The analytics dashboard transforms your raw transaction data into meaningful insights. View colorful 
+                charts showing spending by category, compare your current month to previous periods, and identify trends 
+                in your financial behavior. These visual reports help you understand your money habits without complex 
+                calculations or spreadsheet formulas. Everything is presented clearly and intuitively.
+              </p>
+              <p>
+                Security and privacy are built into every aspect of Trackora. We use industry-standard 256-bit encryption 
+                to protect your data, the same level of security used by major financial institutions. Your information 
+                is stored on secure servers with multiple layers of protection. We never sell your data to advertisers or 
+                third parties. You have full control over your information, with the ability to export or permanently 
+                delete your account at any time.
               </p>
             </div>
           </motion.div>
