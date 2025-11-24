@@ -229,50 +229,132 @@ const Welcome = () => {
       </section>
 
       {/* What is Trackora Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-6 max-w-5xl">
+      <section className="py-16 bg-gradient-to-br from-primary/5 via-background to-accent/5">
+        <div className="container mx-auto px-6 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="prose prose-lg max-w-none"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-              What is Trackora? Your Personal Finance Management Solution
-            </h2>
-            <div className="space-y-6 text-muted-foreground leading-relaxed">
-              <p>
-                Managing personal finances doesn't have to be complicated or stressful. Trackora is designed as a 
-                simple yet powerful tool to help you understand and control your money. Whether you're just starting 
-                your financial journey or looking to optimize your existing budget, our platform provides the clarity 
-                and insights you need to make confident financial decisions.
-              </p>
-              <p>
-                At its core, Trackora helps you track every expense and income source throughout the month. By 
-                categorizing your spending automatically, you can quickly see where your money goes—from groceries 
-                and dining to utilities and entertainment. This visibility is the first step toward building better 
-                financial habits and identifying areas where you can save more effectively.
-              </p>
-              <p>
-                Managing debt is one of the most challenging aspects of personal finance. Trackora simplifies this 
-                by letting you track all your loans in one place—personal loans, student debt, credit cards, and more. 
-                Monitor your balances, track interest charges, and see projected payoff dates. Set up friendly reminders 
-                for upcoming payments so you never miss a due date, helping you maintain a healthy credit score while 
-                working toward financial freedom.
-              </p>
-              <p>
-                Subscription services have become a significant part of modern spending. From streaming platforms to 
-                software subscriptions, these recurring charges can quietly drain your budget. Trackora helps you catalog 
-                all your subscriptions, alerts you before renewals, and shows you exactly how much you're spending monthly 
-                and annually. This awareness helps you make informed decisions about which subscriptions truly add value 
-                to your life.
-              </p>
-              <p>
-                Setting and achieving financial goals becomes achievable with the right tools. Whether you're saving for 
-                an emergency fund, planning a vacation, or working toward a major purchase, Trackora lets you create 
-                custom savings goals with target amounts and deadlines. Visual progress indicators keep you motivated, 
-                and helpful insights encourage you along the way. Every small contribution brings you closer to your goals.
-              </p>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                <Sparkles className="h-4 w-4" />
+                What is Trackora?
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Your <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Personal Finance Management</span> Solution
+              </h2>
+            </div>
+
+            <Card className="mb-8 border-2 hover:border-primary/30 transition-all">
+              <CardContent className="p-6 sm:p-8">
+                <p className="text-lg leading-relaxed mb-6">
+                  <span className="text-foreground font-semibold">Managing personal finances doesn't have to be complicated or stressful.</span>{" "}
+                  <span className="text-muted-foreground">
+                    Trackora is designed as a simple yet powerful tool to help you understand and control your money. 
+                    Whether you're just starting your financial journey or looking to optimize your existing budget, 
+                    our platform provides the clarity and insights you need to make confident financial decisions.
+                  </span>
+                </p>
+              </CardContent>
+            </Card>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+              >
+                <Card className="h-full border-2 hover:border-primary/30 transition-all bg-gradient-to-br from-primary/5 to-transparent">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <DollarSign className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-bold">Track Every Dollar</h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      At its core, Trackora helps you <span className="text-foreground font-medium">track every expense and income source</span> throughout 
+                      the month. By categorizing your spending automatically, you can quickly see where your money goes—from 
+                      groceries and dining to utilities and entertainment. This visibility is the first step toward building 
+                      better financial habits and identifying areas where you can save more effectively.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <Card className="h-full border-2 hover:border-accent/30 transition-all bg-gradient-to-br from-accent/5 to-transparent">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center flex-shrink-0">
+                        <Target className="w-5 h-5 text-accent" />
+                      </div>
+                      <h3 className="text-xl font-bold">Conquer Debt</h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Managing debt is one of the most challenging aspects of personal finance. Trackora simplifies this by 
+                      letting you <span className="text-foreground font-medium">track all your loans in one place</span>—personal loans, student debt, credit cards, 
+                      and more. Monitor your balances, track interest charges, and see projected payoff dates. Set up friendly 
+                      reminders for upcoming payments so you never miss a due date.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+              >
+                <Card className="h-full border-2 hover:border-primary/30 transition-all bg-gradient-to-br from-primary/5 to-transparent">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0">
+                        <Repeat className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-bold">Control Subscriptions</h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Subscription services have become a significant part of modern spending. From streaming platforms to 
+                      software subscriptions, these recurring charges can quietly drain your budget. Trackora helps you{" "}
+                      <span className="text-foreground font-medium">catalog all your subscriptions</span>, alerts you before renewals, and shows you exactly 
+                      how much you're spending monthly and annually.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+              >
+                <Card className="h-full border-2 hover:border-accent/30 transition-all bg-gradient-to-br from-accent/5 to-transparent">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center flex-shrink-0">
+                        <BarChart3 className="w-5 h-5 text-accent" />
+                      </div>
+                      <h3 className="text-xl font-bold">Achieve Goals</h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Setting and achieving financial goals becomes achievable with the right tools. Whether you're saving 
+                      for an emergency fund, planning a vacation, or working toward a major purchase, Trackora lets you{" "}
+                      <span className="text-foreground font-medium">create custom savings goals</span> with target amounts and deadlines. Visual progress 
+                      indicators keep you motivated every step of the way.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -347,42 +429,125 @@ const Welcome = () => {
 
       {/* How Trackora Works */}
       <section className="py-16 bg-background">
-        <div className="container mx-auto px-6 max-w-5xl">
+        <div className="container mx-auto px-6 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-              How Trackora Works: Simple, Secure, and Effective
-            </h2>
-            <div className="space-y-6 text-muted-foreground leading-relaxed mb-12">
-              <p>
-                Getting started with Trackora takes just minutes. Sign up with your email address—no credit card or 
-                payment information required during our free beta period. The onboarding process is straightforward 
-                and guides you through setting up your first budget and adding your initial expenses. Within moments, 
-                you'll have a clear dashboard showing your financial snapshot.
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
+                <Zap className="h-4 w-4" />
+                How It Works
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Simple, Secure, and <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">Effective</span>
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Get started in minutes and experience effortless financial management
               </p>
-              <p>
-                Daily usage is designed to be effortless. When you make a purchase, open Trackora, tap the "Add Expense" 
-                button, enter the amount and a quick description, and select a category. The entire process takes seconds. 
-                You can add expenses from your phone while you're out shopping or from your computer when reviewing 
-                transactions at home. Trackora works seamlessly across all your devices, keeping everything synchronized 
-                in real-time.
-              </p>
-              <p>
-                The analytics dashboard transforms your raw transaction data into meaningful insights. View colorful 
-                charts showing spending by category, compare your current month to previous periods, and identify trends 
-                in your financial behavior. These visual reports help you understand your money habits without complex 
-                calculations or spreadsheet formulas. Everything is presented clearly and intuitively.
-              </p>
-              <p>
-                Security and privacy are built into every aspect of Trackora. We use industry-standard 256-bit encryption 
-                to protect your data, the same level of security used by major financial institutions. Your information 
-                is stored on secure servers with multiple layers of protection. We never sell your data to advertisers or 
-                third parties. You have full control over your information, with the ability to export or permanently 
-                delete your account at any time.
-              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+              >
+                <Card className="h-full border-2 hover:border-accent/30 transition-all relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-accent/20 to-transparent rounded-bl-[100px]"></div>
+                  <CardContent className="p-8 relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center text-accent font-bold text-xl">
+                        1
+                      </div>
+                      <h3 className="text-2xl font-bold">Quick Start</h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Getting started with Trackora takes just minutes. <span className="text-foreground font-medium">Sign up with your email 
+                      address</span>—no credit card or payment information required during our free beta period. The onboarding 
+                      process is straightforward and guides you through setting up your first budget and adding your initial 
+                      expenses. Within moments, you'll have a clear dashboard showing your financial snapshot.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
+                <Card className="h-full border-2 hover:border-primary/30 transition-all relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-bl-[100px]"></div>
+                  <CardContent className="p-8 relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary font-bold text-xl">
+                        2
+                      </div>
+                      <h3 className="text-2xl font-bold">Effortless Tracking</h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Daily usage is designed to be effortless. When you make a purchase, open Trackora, tap the{" "}
+                      <span className="text-foreground font-medium">"Add Expense" button</span>, enter the amount and a quick description, 
+                      and select a category. The entire process takes seconds. You can add expenses from your phone while 
+                      you're out shopping or from your computer when reviewing transactions at home.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+              >
+                <Card className="h-full border-2 hover:border-primary/30 transition-all relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/20 to-transparent rounded-bl-[100px]"></div>
+                  <CardContent className="p-8 relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary font-bold text-xl">
+                        3
+                      </div>
+                      <h3 className="text-2xl font-bold">Beautiful Insights</h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      The analytics dashboard transforms your raw transaction data into meaningful insights. View{" "}
+                      <span className="text-foreground font-medium">colorful charts showing spending by category</span>, compare your current 
+                      month to previous periods, and identify trends in your financial behavior. These visual reports help 
+                      you understand your money habits without complex calculations or spreadsheet formulas.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+              >
+                <Card className="h-full border-2 hover:border-accent/30 transition-all relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-accent/20 to-transparent rounded-bl-[100px]"></div>
+                  <CardContent className="p-8 relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center text-accent font-bold text-xl">
+                        4
+                      </div>
+                      <h3 className="text-2xl font-bold">Bank-Level Security</h3>
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Security and privacy are built into every aspect of Trackora. We use{" "}
+                      <span className="text-foreground font-medium">industry-standard 256-bit encryption</span> to protect your data, the same 
+                      level of security used by major financial institutions. Your information is stored on secure servers 
+                      with multiple layers of protection. We never sell your data to advertisers or third parties.
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </div>
           </motion.div>
         </div>
