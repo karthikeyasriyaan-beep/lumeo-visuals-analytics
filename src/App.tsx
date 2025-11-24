@@ -24,6 +24,7 @@ import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
 import Blog from "./pages/Blog";
 import PersonalFinanceBasics from "./pages/blog/PersonalFinanceBasics";
+import SmartBudgetingStrategies from "./pages/blog/SmartBudgetingStrategies";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import { CookieConsent } from "./components/CookieConsent";
@@ -78,6 +79,7 @@ const App = () => (
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/personal-finance-basics" element={<PersonalFinanceBasics />} />
+                <Route path="/blog/smart-budgeting-strategies" element={<SmartBudgetingStrategies />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
