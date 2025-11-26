@@ -123,24 +123,6 @@ export default function Blog() {
             </motion.div>
           ))}
         </div>
-
-        {/* Coming Soon Notice */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12"
-        >
-          <Card className="bg-gradient-to-br from-primary/10 to-accent/10 border-primary/20">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold mb-3">More Articles Coming Soon</h3>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                We're constantly publishing new content to help you improve your financial wellness. 
-                Stay tuned for more guides, tips, and insights.
-              </p>
-            </CardContent>
-          </Card>
-        </motion.div>
       </div>
       
       <Footer />
