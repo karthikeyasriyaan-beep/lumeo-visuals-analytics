@@ -7,42 +7,20 @@ import { Footer } from "@/components/Footer";
 
 export default function Blog() {
   const blogPosts = [
-    {
-      slug: "personal-finance-basics",
-      title: "Personal Finance Basics: A Beginner's Guide to Taking Control of Your Money",
-      excerpt: "Learn the fundamental principles of personal finance management, from budgeting to saving and investing. This comprehensive guide covers everything you need to know to start your financial wellness journey.",
-      date: "November 15, 2025",
-      readTime: "8 min read",
-      author: "Trackora Team",
-      category: "Finance Tips"
-    },
-    {
-      slug: "smart-budgeting-strategies",
-      title: "Smart Budgeting Strategies That Actually Work in 2025",
-      excerpt: "Discover proven budgeting techniques that help you save money without feeling restricted. From the 50/30/20 rule to zero-based budgeting, find the method that works best for your lifestyle.",
-      date: "November 10, 2025",
-      readTime: "6 min read",
-      author: "Trackora Team",
-      category: "Budgeting"
-    },
-    {
-      slug: "debt-payoff-strategies",
-      title: "Proven Debt Payoff Strategies: Snowball vs. Avalanche Method",
-      excerpt: "Feeling overwhelmed by debt? This guide compares popular debt repayment strategies and helps you choose the best approach for your situation. Includes calculators and real-world examples.",
-      date: "October 28, 2025",
-      readTime: "9 min read",
-      author: "Trackora Team",
-      category: "Debt Management"
-    },
-    {
-      slug: "subscription-audit-guide",
-      title: "How to Perform a Subscription Audit and Save Hundreds Annually",
-      excerpt: "Most people are paying for subscriptions they don't use. Learn how to audit your recurring expenses, identify waste, and optimize your subscriptions to save significant money each year.",
-      date: "October 20, 2025",
-      readTime: "5 min read",
-      author: "Trackora Team",
-      category: "Money Saving"
-    }
+    { slug: "what-is-personal-finance", title: "What is Personal Finance? A Complete Beginner's Guide", excerpt: "Personal finance encompasses all financial decisions and activities of an individual or household. Understanding personal finance is the foundation for building wealth and achieving financial security.", date: "November 20, 2025", readTime: "12 min read", author: "Trackora Team", category: "Finance Basics" },
+    { slug: "why-tracking-expenses", title: "Why Tracking Expenses is the First Step to Financial Freedom", excerpt: "Financial freedom begins with awareness. You cannot control what you do not measure. Tracking your expenses is the foundational habit that separates those who achieve financial success.", date: "November 18, 2025", readTime: "10 min read", author: "Trackora Team", category: "Expense Tracking" },
+    { slug: "fifty-thirty-twenty-rule", title: "The 50/30/20 Rule Explained: A Simple Budget That Works", excerpt: "The 50/30/20 rule is one of the most popular and effective budgeting methods. This simple framework helps you balance spending, saving, and enjoying life without complex calculations.", date: "November 16, 2025", readTime: "11 min read", author: "Trackora Team", category: "Budgeting" },
+    { slug: "personal-finance-basics", title: "Personal Finance Basics: A Beginner's Guide to Taking Control of Your Money", excerpt: "Learn the fundamental principles of personal finance management, from budgeting to saving and investing. This comprehensive guide covers everything you need to know.", date: "November 15, 2025", readTime: "8 min read", author: "Trackora Team", category: "Finance Tips" },
+    { slug: "build-emergency-fund", title: "How to Build an Emergency Fund: Your Financial Safety Net", excerpt: "An emergency fund is your financial safety net—money set aside specifically for life's unexpected expenses. Without one, a single emergency can derail your financial progress.", date: "November 14, 2025", readTime: "10 min read", author: "Trackora Team", category: "Savings" },
+    { slug: "money-management-students", title: "Money Management Tips for Students: Building Financial Habits Early", excerpt: "College and university life offers incredible opportunities—but it also brings financial challenges. Learning to manage money as a student sets the foundation for lifelong success.", date: "November 12, 2025", readTime: "11 min read", author: "Trackora Team", category: "Student Finance" },
+    { slug: "smart-budgeting-strategies", title: "Smart Budgeting Strategies That Actually Work in 2025", excerpt: "Discover proven budgeting techniques that help you save money without feeling restricted. From the 50/30/20 rule to zero-based budgeting, find your method.", date: "November 10, 2025", readTime: "6 min read", author: "Trackora Team", category: "Budgeting" },
+    { slug: "control-unnecessary-spending", title: "How to Control Unnecessary Spending: Practical Strategies That Work", excerpt: "Unnecessary spending is the silent wealth killer. It's not the big purchases that derail our finances—it's the countless small, thoughtless expenditures.", date: "November 8, 2025", readTime: "12 min read", author: "Trackora Team", category: "Spending Habits" },
+    { slug: "freelancer-income-tracking", title: "How Freelancers Can Track Irregular Income Properly", excerpt: "Freelancing offers incredible freedom but comes with a unique financial challenge: irregular income. Mastering income tracking is essential for freelance financial stability.", date: "November 6, 2025", readTime: "13 min read", author: "Trackora Team", category: "Freelance Finance" },
+    { slug: "digital-vs-manual-tracking", title: "Manual vs Digital Expense Tracking: Which Method is Right for You?", excerpt: "The best expense tracking system is one you'll actually use. Understanding the pros and cons of each approach helps you choose methods for financial success.", date: "November 4, 2025", readTime: "10 min read", author: "Trackora Team", category: "Finance Tools" },
+    { slug: "financial-goal-setting", title: "How to Set Financial Goals Using an Expense Tracker", excerpt: "Financial goals without tracking are just wishes. An expense tracker transforms vague aspirations into concrete, achievable targets.", date: "November 2, 2025", readTime: "11 min read", author: "Trackora Team", category: "Goal Setting" },
+    { slug: "psychology-of-spending", title: "The Psychology of Spending: Why We Overspend and How to Stop", excerpt: "Our spending decisions are rarely as rational as we believe. Psychology, emotions, cognitive biases, and social pressures shape our financial behavior.", date: "October 30, 2025", readTime: "14 min read", author: "Trackora Team", category: "Behavioral Finance" },
+    { slug: "debt-payoff-strategies", title: "Proven Debt Payoff Strategies: Snowball vs. Avalanche Method", excerpt: "Feeling overwhelmed by debt? This guide compares popular debt repayment strategies and helps you choose the best approach for your situation.", date: "October 28, 2025", readTime: "9 min read", author: "Trackora Team", category: "Debt Management" },
+    { slug: "subscription-audit-guide", title: "How to Perform a Subscription Audit and Save Hundreds Annually", excerpt: "Most people are paying for subscriptions they don't use. Learn how to audit your recurring expenses and save significant money each year.", date: "October 20, 2025", readTime: "5 min read", author: "Trackora Team", category: "Money Saving" },
   ];
 
   return (
