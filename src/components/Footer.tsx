@@ -1,64 +1,113 @@
 import { Link } from "react-router-dom";
+import { BarChart3, Mail } from "lucide-react";
 
 export function Footer() {
   return (
     <footer className="w-full border-t bg-background/95 backdrop-blur">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-10">
+          {/* Brand Column */}
+          <div className="col-span-2 md:col-span-1">
+            <Link to="/" className="flex items-center gap-2 mb-4">
+              <BarChart3 className="h-6 w-6 text-primary" />
+              <span className="font-display font-bold text-xl">Trackora</span>
+            </Link>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+              Your personal finance companion. Track expenses, manage budgets, and achieve your financial goals with clarity.
+            </p>
+            <a 
+              href="mailto:support@trackorapp.in" 
+              className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+            >
+              <Mail className="h-4 w-4" />
+              support@trackorapp.in
+            </a>
+          </div>
+
+          {/* Product Links */}
           <div>
-            <h3 className="font-bold mb-4">Product</h3>
-            <ul className="space-y-2">
+            <h3 className="font-display font-semibold mb-4">Product</h3>
+            <ul className="space-y-3">
               <li>
                 <Link to="/features" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Features
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  About Us
+                <Link to="/#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Expense Tracking
+                </Link>
+              </li>
+              <li>
+                <Link to="/#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Budget Analytics
+                </Link>
+              </li>
+              <li>
+                <Link to="/#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Savings Goals
                 </Link>
               </li>
             </ul>
           </div>
           
+          {/* Resources Links */}
           <div>
-            <h3 className="font-bold mb-4">Resources</h3>
-            <ul className="space-y-2">
+            <h3 className="font-display font-semibold mb-4">Resources</h3>
+            <ul className="space-y-3">
               <li>
                 <Link to="/blog" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Blog
+                  Finance Blog
                 </Link>
               </li>
               <li>
                 <Link to="/faq" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  FAQ / Help
+                  FAQ & Help Center
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog/what-is-personal-finance" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Getting Started Guide
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog/fifty-thirty-twenty-rule" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Budgeting Tips
                 </Link>
               </li>
             </ul>
           </div>
           
+          {/* Company Links */}
           <div>
-            <h3 className="font-bold mb-4">Support</h3>
-            <ul className="space-y-2">
+            <h3 className="font-display font-semibold mb-4">Company</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  About Us
+                </Link>
+              </li>
               <li>
                 <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Contact Us
+                  Contact
                 </Link>
               </li>
               <li>
                 <a 
-                  href="mailto:support@trackorapp.in" 
+                  href="mailto:pla.team@cadliotech.com" 
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  Support
+                  Business Inquiries
                 </a>
               </li>
             </ul>
           </div>
           
+          {/* Legal Links */}
           <div>
-            <h3 className="font-bold mb-4">Legal</h3>
-            <ul className="space-y-2">
+            <h3 className="font-display font-semibold mb-4">Legal</h3>
+            <ul className="space-y-3">
               <li>
                 <Link to="/privacy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Privacy Policy
@@ -76,29 +125,21 @@ export function Footer() {
               </li>
             </ul>
           </div>
-          
-          <div>
-            <h3 className="font-bold mb-4">Contact</h3>
-            <ul className="space-y-2">
-              <li>
-                <a 
-                  href="mailto:pla.team@cadliotech.com" 
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  pla.team@cadliotech.com
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
         
+        {/* Bottom Bar */}
         <div className="pt-8 border-t">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-center md:text-left">
+              <p className="text-sm text-muted-foreground">
+                © {new Date().getFullYear()} Trackora by Cadlio Tech Private Limited. All rights reserved.
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Hyderabad, Telangana, India
+              </p>
+            </div>
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Trackora. All rights reserved.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              Built with ❤️ for better financial wellness
+              Smart expense tracking & budget analytics for everyone
             </p>
           </div>
         </div>
