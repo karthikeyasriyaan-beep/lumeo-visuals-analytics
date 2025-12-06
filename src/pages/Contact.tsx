@@ -178,9 +178,24 @@ export default function Contact() {
                     <MapPin className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium mb-1">Location</p>
+                    <p className="font-medium mb-1">Business Address</p>
                     <p className="text-sm text-muted-foreground">
-                      Serving users globally
+                      Cadlio Tech Private Limited
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      Hyderabad, Telangana, India
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium mb-1">Working Hours</p>
+                    <p className="text-sm text-muted-foreground">
+                      Monday - Friday: 9:00 AM - 6:00 PM IST
                     </p>
                   </div>
                 </div>

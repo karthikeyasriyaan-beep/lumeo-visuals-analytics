@@ -147,7 +147,30 @@ const Privacy = () => {
               </section>
 
               <section>
-                <h2 className="text-xl font-semibold mb-3 text-foreground">8. Third-Party Services</h2>
+                <h2 className="text-xl font-semibold mb-3 text-foreground">8. Third-Party Advertising</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  We may use third-party advertising companies, including Google AdSense, to serve ads when you visit our website. 
+                  These companies may use information (not including your name, address, email address, or telephone number) about 
+                  your visits to this and other websites in order to provide advertisements about goods and services of interest to you.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-3">
+                  <strong>Google AdSense & DoubleClick Cookie:</strong> Third-party vendors, including Google, use cookies to serve 
+                  ads based on your prior visits to our website or other websites. Google's use of advertising cookies enables it 
+                  and its partners to serve ads to you based on your visit to our site and/or other sites on the Internet.
+                </p>
+                <p className="text-muted-foreground leading-relaxed mt-3">
+                  You may opt out of personalized advertising by visiting{" "}
+                  <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                    Google Ads Settings
+                  </a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting{" "}
+                  <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                    www.aboutads.info
+                  </a>.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-semibold mb-3 text-foreground">9. Third-Party Services</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Trackora uses trusted third-party services for specific functions:
                 </p>
@@ -162,21 +185,21 @@ const Privacy = () => {
               </section>
 
               <section>
-                <h2 className="text-xl font-semibold mb-3 text-foreground">9. Children's Privacy</h2>
+                <h2 className="text-xl font-semibold mb-3 text-foreground">10. Children's Privacy</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   Trackora is not intended for children under 13 years old. We do not knowingly collect data from children. If you believe a child has provided us with personal information, please contact us immediately at <strong>privacy@trackorapp.in</strong>.
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-semibold mb-3 text-foreground">10. Changes to This Policy</h2>
+                <h2 className="text-xl font-semibold mb-3 text-foreground">11. Changes to This Policy</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   We may update this Privacy Policy from time to time. When we make significant changes, we'll notify you via email or through a prominent notice in the app. Your continued use of Trackora after changes become effective means you accept the updated policy.
                 </p>
               </section>
 
               <section>
-                <h2 className="text-xl font-semibold mb-3 text-foreground">11. Contact Us</h2>
+                <h2 className="text-xl font-semibold mb-3 text-foreground">12. Contact Us</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   If you have questions, concerns, or requests about this Privacy Policy or your data:
                 </p>

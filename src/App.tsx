@@ -27,6 +27,17 @@ import PersonalFinanceBasics from "./pages/blog/PersonalFinanceBasics";
 import SmartBudgetingStrategies from "./pages/blog/SmartBudgetingStrategies";
 import DebtPayoffStrategies from "./pages/blog/DebtPayoffStrategies";
 import SubscriptionAuditGuide from "./pages/blog/SubscriptionAuditGuide";
+import WhatIsPersonalFinance from "./pages/blog/WhatIsPersonalFinance";
+import WhyTrackingExpenses from "./pages/blog/WhyTrackingExpenses";
+import FiftyThirtyTwentyRule from "./pages/blog/FiftyThirtyTwentyRule";
+import BuildEmergencyFund from "./pages/blog/BuildEmergencyFund";
+import MoneyManagementStudents from "./pages/blog/MoneyManagementStudents";
+import ControlUnnecessarySpending from "./pages/blog/ControlUnnecessarySpending";
+import FreelancerIncomeTracking from "./pages/blog/FreelancerIncomeTracking";
+import DigitalVsManualTracking from "./pages/blog/DigitalVsManualTracking";
+import FinancialGoalSetting from "./pages/blog/FinancialGoalSetting";
+import PsychologyOfSpending from "./pages/blog/PsychologyOfSpending";
+import Disclaimer from "./pages/Disclaimer";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import { CookieConsent } from "./components/CookieConsent";
@@ -84,6 +95,17 @@ const App = () => (
                 <Route path="/blog/smart-budgeting-strategies" element={<SmartBudgetingStrategies />} />
                 <Route path="/blog/debt-payoff-strategies" element={<DebtPayoffStrategies />} />
                 <Route path="/blog/subscription-audit-guide" element={<SubscriptionAuditGuide />} />
+                <Route path="/blog/what-is-personal-finance" element={<WhatIsPersonalFinance />} />
+                <Route path="/blog/why-tracking-expenses" element={<WhyTrackingExpenses />} />
+                <Route path="/blog/fifty-thirty-twenty-rule" element={<FiftyThirtyTwentyRule />} />
+                <Route path="/blog/build-emergency-fund" element={<BuildEmergencyFund />} />
+                <Route path="/blog/money-management-students" element={<MoneyManagementStudents />} />
+                <Route path="/blog/control-unnecessary-spending" element={<ControlUnnecessarySpending />} />
+                <Route path="/blog/freelancer-income-tracking" element={<FreelancerIncomeTracking />} />
+                <Route path="/blog/digital-vs-manual-tracking" element={<DigitalVsManualTracking />} />
+                <Route path="/blog/financial-goal-setting" element={<FinancialGoalSetting />} />
+                <Route path="/blog/psychology-of-spending" element={<PsychologyOfSpending />} />
+                <Route path="/disclaimer" element={<Disclaimer />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
