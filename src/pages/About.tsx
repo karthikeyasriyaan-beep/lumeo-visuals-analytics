@@ -209,6 +209,40 @@ export default function About() {
           </Card>
         </motion.div>
 
+        {/* Company Info */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
+          className="mb-12"
+        >
+          <Card className="border-primary/20">
+            <CardContent className="p-6 sm:p-8">
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">Company Information</h2>
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Legal Entity</h3>
+                  <p className="text-muted-foreground">Cadlio Tech Private Limited</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Headquarters</h3>
+                  <p className="text-muted-foreground">Hyderabad, Telangana, India</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Year Founded</h3>
+                  <p className="text-muted-foreground">2024</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Contact</h3>
+                  <a href="mailto:pla.team@cadliotech.com" className="text-primary hover:underline">
+                    pla.team@cadliotech.com
+                  </a>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
         {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
