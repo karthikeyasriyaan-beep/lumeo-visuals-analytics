@@ -17,11 +17,11 @@ export function Footer() {
               Your personal finance companion. Track expenses, manage budgets, and achieve your financial goals with clarity.
             </p>
             <a 
-              href="mailto:support@trackorapp.in" 
+              href="mailto:trackorateam@trackorapp.in" 
               className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
             >
               <Mail className="h-4 w-4" />
-              support@trackorapp.in
+              trackorateam@trackorapp.in
             </a>
           </div>
 
@@ -95,7 +95,7 @@ export function Footer() {
               </li>
               <li>
                 <a 
-                  href="mailto:pla.team@cadliotech.com" 
+                  href="mailto:trackorateam@trackorapp.in" 
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   Business Inquiries
