@@ -192,7 +192,7 @@ export default function Dashboard() {
                   </div>
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Progress</span>
+                      <span className="text-muted-foreground">Completed</span>
                       <span className="font-medium">{budgetProgress.toFixed(0)}%</span>
                     </div>
                     <Progress value={budgetProgress} indicatorClassName={budgetProgress > 90 ? "from-destructive to-destructive/80" : budgetProgress > 75 ? "from-warning to-warning/80" : "from-success to-success/80"} />
