@@ -128,7 +128,7 @@ const Welcome = () => {
         duration: 0.6
       }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
           <Sparkles className="h-4 w-4" />
-          A calm space to understand your money
+          All the power of an app. Without installing.
         </motion.div>
 
         <motion.h1 initial={{
