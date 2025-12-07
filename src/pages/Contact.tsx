@@ -165,10 +165,10 @@ export default function Contact() {
                   <div>
                     <p className="font-medium mb-1">Support</p>
                     <a 
-                      href="mailto:support@trackorapp.in" 
+                      href="mailto:pla.team@cadliotech.com" 
                       className="text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
-                      support@trackorapp.in
+                      pla.team@cadliotech.com
                     </a>
                   </div>
                 </div>
