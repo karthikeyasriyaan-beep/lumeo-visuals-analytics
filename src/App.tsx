@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Outlet, useLocation } from "react-router-dom";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { AuthProvider } from "@/hooks/useAuth";
 import { CurrencyProvider } from "@/components/currency-selector";
 import { MobileNav } from "@/components/MobileNav";
@@ -62,6 +63,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <BrowserRouter>
+      <ScrollToTop />
       <AuthProvider>
         <CurrencyProvider>
           <TooltipProvider>
