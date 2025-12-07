@@ -148,12 +148,12 @@ export default function Contact() {
                     <Mail className="h-5 w-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-medium mb-1">Email</p>
+                    <p className="font-medium mb-1">General Inquiries</p>
                     <a 
-                      href="mailto:pla.team@cadliotech.com" 
+                      href="mailto:trackorateam@trackorapp.in" 
                       className="text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
-                      pla.team@cadliotech.com
+                      trackorateam@trackorapp.in
                     </a>
                   </div>
                 </div>
