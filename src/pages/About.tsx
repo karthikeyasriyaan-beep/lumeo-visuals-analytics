@@ -209,7 +209,7 @@ export default function About() {
           </Card>
         </motion.div>
 
-        {/* Company Info */}
+        {/* Publisher Info */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -218,14 +218,16 @@ export default function About() {
         >
           <Card className="border-primary/20">
             <CardContent className="p-6 sm:p-8">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4">Company Information</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">About the Publisher</h2>
               <div className="grid sm:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Legal Entity</h3>
-                  <p className="text-muted-foreground">Cadlio Tech Private Limited</p>
+                  <h3 className="font-semibold text-lg mb-2">Created By</h3>
+                  <a href="https://cadliotech.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                    cadliotech.com
+                  </a>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-lg mb-2">Headquarters</h3>
+                  <h3 className="font-semibold text-lg mb-2">Location</h3>
                   <p className="text-muted-foreground">Hyderabad, Telangana, India</p>
                 </div>
                 <div>
