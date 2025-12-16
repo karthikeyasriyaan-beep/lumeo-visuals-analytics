@@ -132,7 +132,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-center md:text-left">
               <p className="text-sm text-muted-foreground">
-                © {new Date().getFullYear()} Trackora by Cadlio Tech Private Limited. All rights reserved.
+                © {new Date().getFullYear()} Created by Sriyaan Karthikeya. All rights reserved.
               </p>
               <p className="text-xs text-muted-foreground mt-1">
                 Hyderabad, Telangana, India
