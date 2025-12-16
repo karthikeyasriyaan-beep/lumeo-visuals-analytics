@@ -270,25 +270,84 @@ const Welcome = () => {
         </div>
       </section>
 
-      {/* Final CTA - Simple */}
-      <section className="py-20 bg-muted/20">
-        <div className="container mx-auto px-6 text-center">
+      {/* How It Works Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              Simple to Get Started
+            </h2>
+            <p className="text-muted-foreground text-lg">
+              Three steps to financial clarity.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { step: "1", title: "Create Account", desc: "Sign up in seconds. No credit card required." },
+              { step: "2", title: "Add Your Data", desc: "Log expenses, income, subscriptions, and goals." },
+              { step: "3", title: "Track & Grow", desc: "Watch your finances improve with clear insights." }
+            ].map((item, idx) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-2xl font-bold text-primary-foreground">
+                  {item.step}
+                </div>
+                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                <p className="text-muted-foreground">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10" />
+        <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-2xl md:text-4xl font-bold mb-8">
-              Ready to take control of your finances?
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                All the power of an app. Without installing.
+              </span>
             </h2>
-            <Button
-              onClick={() => { setShowAuth(true); setIsSignUp(true); }}
-              size="lg"
-              className="text-lg px-10 py-6 rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary"
-            >
-              Get Started Free
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
+            <p className="text-muted-foreground text-lg mb-10 max-w-xl mx-auto">
+              Start managing your finances with clarity and confidence today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                onClick={() => { setShowAuth(true); setIsSignUp(true); }}
+                size="lg"
+                className="text-lg px-12 py-7 rounded-2xl font-bold shadow-xl hover:shadow-2xl transition-all bg-gradient-to-r from-primary to-secondary"
+              >
+                Get Started Free
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+              <a href="/features">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="text-lg px-12 py-7 rounded-2xl border-2 border-primary/50 hover:bg-primary/10 font-semibold"
+                >
+                  Explore Features
+                </Button>
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
