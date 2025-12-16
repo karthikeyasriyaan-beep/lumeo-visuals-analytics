@@ -270,45 +270,25 @@ const Welcome = () => {
         </div>
       </section>
 
-      {/* Final CTA - Slogan Reinforcement */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10" />
-        <div className="container mx-auto px-6 text-center relative z-10">
+      {/* Final CTA - Simple */}
+      <section className="py-20 bg-muted/20">
+        <div className="container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-xl md:text-2xl font-semibold text-muted-foreground mb-4">
-              Remember:
-            </p>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-                All the power of an app. Without installing.
-              </span>
+            <h2 className="text-2xl md:text-4xl font-bold mb-8">
+              Ready to take control of your finances?
             </h2>
-            <p className="text-muted-foreground text-lg mb-10 max-w-xl mx-auto">
-              Join thousands managing their finances with clarity and confidence.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={() => { setShowAuth(true); setIsSignUp(true); }}
-                size="lg"
-                className="text-lg px-12 py-7 rounded-2xl font-bold shadow-xl hover:shadow-2xl transition-all bg-gradient-to-r from-primary to-secondary"
-              >
-                Get Started Free
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <a href="/features">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="text-lg px-12 py-7 rounded-2xl border-2 border-primary/50 hover:bg-primary/10 font-semibold"
-                >
-                  Explore Features
-                </Button>
-              </a>
-            </div>
+            <Button
+              onClick={() => { setShowAuth(true); setIsSignUp(true); }}
+              size="lg"
+              className="text-lg px-10 py-6 rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary"
+            >
+              Get Started Free
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
           </motion.div>
         </div>
       </section>
