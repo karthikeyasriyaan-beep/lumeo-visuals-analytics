@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Shield, Lock, Globe, Zap, ArrowRight, DollarSign, Repeat, Target, BarChart3 } from "lucide-react";
+import { Shield, Lock, Globe, Zap, ArrowRight, DollarSign, Repeat, Target, BarChart3, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { Footer } from "@/components/Footer";
+import { supabase } from "@/integrations/supabase/client";
 import { CookieConsent } from "@/components/CookieConsent";
 
 const Welcome = () => {
@@ -21,8 +22,42 @@ const Welcome = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
   const { signInWithEmail, signUpWithEmail } = useAuth();
   const { toast } = useToast();
+
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) {
+      toast({
+        title: "Error",
+        description: "Please enter your email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+    setLoading(true);
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/dashboard`,
+      });
+      if (error) throw error;
+      toast({
+        title: "Email Sent",
+        description: "Check your email for a password reset link.",
+      });
+      setIsForgotPassword(false);
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to send reset email.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -356,64 +391,120 @@ const Welcome = () => {
       <Footer />
 
       {/* Auth Dialog */}
-      <Dialog open={showAuth} onOpenChange={setShowAuth}>
+      <Dialog open={showAuth} onOpenChange={(open) => { setShowAuth(open); if (!open) setIsForgotPassword(false); }}>
         <DialogContent className="sm:max-w-[425px] rounded-2xl">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold">
-              {isSignUp ? "Create Account" : "Welcome Back"}
+              {isForgotPassword ? "Reset Password" : isSignUp ? "Create Account" : "Welcome Back"}
             </DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleAuth} className="space-y-4">
-            {isSignUp && (
+          
+          {isForgotPassword ? (
+            <form onSubmit={handleForgotPassword} className="space-y-4">
+              <p className="text-sm text-muted-foreground">
+                Enter your email address and we'll send you a link to reset your password.
+              </p>
               <div className="space-y-2">
-                <Label htmlFor="fullName">Full Name</Label>
+                <Label htmlFor="resetEmail">Email</Label>
                 <Input
-                  id="fullName"
-                  value={fullName}
-                  onChange={e => setFullName(e.target.value)}
+                  id="resetEmail"
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  required
+                  className="rounded-xl"
+                  placeholder="your@email.com"
+                />
+              </div>
+              <Button
+                type="submit"
+                className="w-full rounded-xl bg-gradient-to-r from-primary to-secondary font-bold"
+                disabled={loading}
+              >
+                {loading ? "Sending..." : "Send Reset Link"}
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                className="w-full rounded-xl"
+                onClick={() => setIsForgotPassword(false)}
+              >
+                Back to Sign In
+              </Button>
+            </form>
+          ) : (
+            <form onSubmit={handleAuth} className="space-y-4">
+              {isSignUp && (
+                <div className="space-y-2">
+                  <Label htmlFor="fullName">Full Name</Label>
+                  <Input
+                    id="fullName"
+                    value={fullName}
+                    onChange={e => setFullName(e.target.value)}
+                    required
+                    className="rounded-xl"
+                  />
+                </div>
+              )}
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
                   required
                   className="rounded-xl"
                 />
               </div>
-            )}
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                required
-                className="rounded-xl"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                required
-                className="rounded-xl"
-              />
-            </div>
-            <Button
-              type="submit"
-              className="w-full rounded-xl bg-gradient-to-r from-primary to-secondary font-bold"
-              disabled={loading}
-            >
-              {loading ? "Loading..." : isSignUp ? "Create Account" : "Sign In"}
-            </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              className="w-full rounded-xl"
-              onClick={() => setIsSignUp(!isSignUp)}
-            >
-              {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
-            </Button>
-          </form>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="password">Password</Label>
+                  {!isSignUp && (
+                    <button
+                      type="button"
+                      onClick={() => setIsForgotPassword(true)}
+                      className="text-xs text-primary hover:underline"
+                    >
+                      Forgot Password?
+                    </button>
+                  )}
+                </div>
+                <div className="relative">
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    required
+                    className="rounded-xl pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
+              </div>
+              <Button
+                type="submit"
+                className="w-full rounded-xl bg-gradient-to-r from-primary to-secondary font-bold"
+                disabled={loading}
+              >
+                {loading ? "Loading..." : isSignUp ? "Create Account" : "Sign In"}
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                className="w-full rounded-xl"
+                onClick={() => setIsSignUp(!isSignUp)}
+              >
+                {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
+              </Button>
+            </form>
+          )}
         </DialogContent>
       </Dialog>
     </div>
