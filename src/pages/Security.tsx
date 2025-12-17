@@ -39,7 +39,7 @@ const Security = () => {
     setIsResettingPassword(true);
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(user.email, {
-        redirectTo: `${window.location.origin}/dashboard`,
+        redirectTo: `${window.location.origin}/reset-password`,
       });
 
       if (error) throw error;

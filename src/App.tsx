@@ -39,13 +39,14 @@ import DigitalVsManualTracking from "./pages/blog/DigitalVsManualTracking";
 import FinancialGoalSetting from "./pages/blog/FinancialGoalSetting";
 import PsychologyOfSpending from "./pages/blog/PsychologyOfSpending";
 import Disclaimer from "./pages/Disclaimer";
+import ResetPassword from "./pages/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import { CookieConsent } from "./components/CookieConsent";
 
 function AppLayout() {
   const location = useLocation();
-  const publicPaths = ["/", "/privacy", "/terms", "/features", "/about", "/contact", "/faq", "/blog", "/disclaimer"];
+  const publicPaths = ["/", "/privacy", "/terms", "/features", "/about", "/contact", "/faq", "/blog", "/disclaimer", "/reset-password"];
   const showNav = !publicPaths.includes(location.pathname) && !location.pathname.startsWith("/blog/");
 
   return (
@@ -108,6 +109,7 @@ const App = () => (
                 <Route path="/blog/financial-goal-setting" element={<FinancialGoalSetting />} />
                 <Route path="/blog/psychology-of-spending" element={<PsychologyOfSpending />} />
                 <Route path="/disclaimer" element={<Disclaimer />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
