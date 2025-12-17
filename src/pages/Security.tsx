@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Shield, Smartphone, Activity, Download, Trash2 } from "lucide-react";
+import { ArrowLeft, Shield, Smartphone, Activity, Download, Trash2, KeyRound } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { NoIndexMeta } from "@/components/NoIndexMeta";
 import { motion } from "framer-motion";
@@ -8,6 +8,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Security = () => {
   const navigate = useNavigate();
@@ -16,12 +17,46 @@ const Security = () => {
   const [showDevices, setShowDevices] = useState(false);
   const [showLoginHistory, setShowLoginHistory] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [isResettingPassword, setIsResettingPassword] = useState(false);
 
   const handleExportData = () => {
     toast({
       title: "Data Export Started",
       description: "Your data export will be ready shortly. We'll send you a download link via email.",
     });
+  };
+
+  const handleResetPassword = async () => {
+    if (!user?.email) {
+      toast({
+        title: "Error",
+        description: "No email address found for your account.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsResettingPassword(true);
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(user.email, {
+        redirectTo: `${window.location.origin}/dashboard`,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Password Reset Email Sent",
+        description: "Check your email for a link to reset your password.",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to send reset email. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsResettingPassword(false);
+    }
   };
 
   const handleDeleteAccount = async () => {
@@ -101,8 +136,35 @@ const Security = () => {
               </CardContent>
             </Card>
 
-            {/* Two-Factor Authentication */}
-            
+            {/* Password Reset */}
+            <Card className="glass hover-lift">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <KeyRound className="h-5 w-5 text-primary" />
+                  Password Security
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm text-muted-foreground">
+                  Keep your account secure by using a strong, unique password.
+                </p>
+                <div className="flex items-center justify-between p-3 rounded-lg border">
+                  <div>
+                    <p className="font-medium text-sm">Reset Password</p>
+                    <p className="text-xs text-muted-foreground">Send a password reset link to your email</p>
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={handleResetPassword}
+                    disabled={isResettingPassword}
+                  >
+                    {isResettingPassword ? "Sending..." : "Reset"}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
 
             {/* Device Management */}
             <Card className="glass hover-lift">
