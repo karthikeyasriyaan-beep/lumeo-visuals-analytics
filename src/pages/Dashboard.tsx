@@ -8,11 +8,12 @@ import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrency } from "@/components/currency-selector";
-import { PiggyBank, CreditCard, DollarSign, Wallet, Shield, AlertCircle, Zap } from "lucide-react";
+import { PiggyBank, CreditCard, DollarSign, Wallet, Shield, AlertCircle, Zap, Mic } from "lucide-react";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import { NoIndexMeta } from "@/components/NoIndexMeta";
 import { AddExpenseDialog } from "@/components/forms/AddExpenseDialog";
 import { AddIncomeDialog } from "@/components/forms/AddIncomeDialog";
+import { VoiceAssistant } from "@/components/VoiceAssistant";
 import { useNavigate } from "react-router-dom";
 export default function Dashboard() {
   const {
@@ -138,6 +139,20 @@ export default function Dashboard() {
               <AddIncomeDialog onSuccess={refetchAll} />
             </div>
           </div>
+
+          {/* Voice Assistant */}
+          <Card className="border border-border/50 bg-card/95">
+            <CardContent className="p-4 flex flex-col items-center gap-3">
+              <div className="flex items-center gap-2">
+                <Mic className="h-4 w-4 text-primary" />
+                <h3 className="font-medium text-sm">Voice Assistant</h3>
+              </div>
+              <p className="text-xs text-muted-foreground text-center max-w-xs">
+                Tap the mic and say "Add expense 50 dollars for groceries" or "Add income 1000 salary"
+              </p>
+              <VoiceAssistant onExpenseAdded={refetchAll} onIncomeAdded={refetchAll} />
+            </CardContent>
+          </Card>
 
           {/* Budget Overview Widget */}
           {monthlyBudget && (
