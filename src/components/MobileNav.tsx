@@ -14,8 +14,7 @@ import {
   Settings,
   LogOut,
   Calculator,
-  Wallet,
-  Shield
+  Wallet
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
@@ -32,7 +31,6 @@ const navigation = [
   { name: "Loans", href: "/loans", icon: CreditCard },
   { name: "Savings", href: "/savings", icon: PiggyBank },
   { name: "Analytics", href: "/analytics", icon: BarChart3 },
-  { name: "Security", href: "/security", icon: Shield },
   { name: "Settings", href: "/settings", icon: Settings },
 ];
 

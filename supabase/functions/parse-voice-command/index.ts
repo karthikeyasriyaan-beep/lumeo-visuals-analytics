@@ -36,7 +36,7 @@ serve(async (req) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "openai/gpt-5-nano",
+        model: "google/gemini-2.5-flash-lite",
         messages: [
           {
             role: "system",
@@ -64,7 +64,6 @@ If you cannot determine the type or amount, respond with: {"type": null, "amount
           }
         ],
         max_tokens: 150,
-        temperature: 0.1,
       }),
     });
 

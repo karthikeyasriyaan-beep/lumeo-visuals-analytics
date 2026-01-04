@@ -27,6 +27,10 @@ const Welcome = () => {
   const { signInWithEmail, signUpWithEmail } = useAuth();
   const { toast } = useToast();
 
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showNewPassword, setShowNewPassword] = useState(false);
+
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) {

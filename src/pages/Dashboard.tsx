@@ -4,121 +4,99 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrency } from "@/components/currency-selector";
-import { PiggyBank, CreditCard, DollarSign, Wallet, Shield, AlertCircle, Zap, Mic } from "lucide-react";
+import { PiggyBank, CreditCard, DollarSign, Wallet, AlertCircle, Mic } from "lucide-react";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import { NoIndexMeta } from "@/components/NoIndexMeta";
-import { AddExpenseDialog } from "@/components/forms/AddExpenseDialog";
-import { AddIncomeDialog } from "@/components/forms/AddIncomeDialog";
 import { VoiceAssistant } from "@/components/VoiceAssistant";
 import { useNavigate } from "react-router-dom";
+
 export default function Dashboard() {
-  const {
-    user
-  } = useAuth();
-  const {
-    formatAmount
-  } = useCurrency();
+  const { user } = useAuth();
+  const { formatAmount } = useCurrency();
   const navigate = useNavigate();
-  const {
-    data: income = []
-  } = useQuery({
+
+  const { data: income = [] } = useQuery({
     queryKey: ["income", user?.id],
     queryFn: async () => {
       if (!user) return [];
-      const {
-        data
-      } = await supabase.from("income").select("*").eq("user_id", user.id);
+      const { data } = await supabase.from("income").select("*").eq("user_id", user.id);
       return data || [];
     },
     enabled: !!user
   });
-  const {
-    data: expenses = []
-  } = useQuery({
+
+  const { data: expenses = [] } = useQuery({
     queryKey: ["expenses", user?.id],
     queryFn: async () => {
       if (!user) return [];
-      const {
-        data
-      } = await supabase.from("expenses").select("*").eq("user_id", user.id);
+      const { data } = await supabase.from("expenses").select("*").eq("user_id", user.id);
       return data || [];
     },
     enabled: !!user
   });
-  const {
-    data: loans = []
-  } = useQuery({
+
+  const { data: loans = [] } = useQuery({
     queryKey: ["loans", user?.id],
     queryFn: async () => {
       if (!user) return [];
-      const {
-        data
-      } = await supabase.from("loans").select("*").eq("user_id", user.id);
+      const { data } = await supabase.from("loans").select("*").eq("user_id", user.id);
       return data || [];
     },
     enabled: !!user
   });
-  const {
-    data: savings = []
-  } = useQuery({
+
+  const { data: savings = [] } = useQuery({
     queryKey: ["savings", user?.id],
     queryFn: async () => {
       if (!user) return [];
-      const {
-        data
-      } = await supabase.from("savings").select("*").eq("user_id", user.id);
+      const { data } = await supabase.from("savings").select("*").eq("user_id", user.id);
       return data || [];
     },
     enabled: !!user
   });
-  const {
-    data: budgets = []
-  } = useQuery({
+
+  const { data: budgets = [] } = useQuery({
     queryKey: ["budgets", user?.id],
     queryFn: async () => {
       if (!user) return [];
       const currentMonth = new Date().getMonth() + 1;
       const currentYear = new Date().getFullYear();
-      const {
-        data
-      } = await supabase.from("budgets").select("*").eq("user_id", user.id).eq("month", currentMonth).eq("year", currentYear);
+      const { data } = await supabase.from("budgets").select("*").eq("user_id", user.id).eq("month", currentMonth).eq("year", currentYear);
       return data || [];
     },
     enabled: !!user
   });
-  const {
-    data: monthlyBudget
-  } = useQuery({
+
+  const { data: monthlyBudget } = useQuery({
     queryKey: ["monthly_budgets", user?.id],
     queryFn: async () => {
       if (!user) return null;
       const currentMonth = new Date().getMonth() + 1;
       const currentYear = new Date().getFullYear();
-      const {
-        data
-      } = await supabase.from("monthly_budgets").select("*").eq("user_id", user.id).eq("month", currentMonth).eq("year", currentYear).single();
+      const { data } = await supabase.from("monthly_budgets").select("*").eq("user_id", user.id).eq("month", currentMonth).eq("year", currentYear).single();
       return data;
     },
     enabled: !!user
   });
+
   const refetchAll = () => {
     // Trigger refetch for all queries
   };
+
   const totalExpenses = expenses.reduce((sum, exp) => sum + Number(exp.amount), 0);
   const totalIncome = income.reduce((sum, inc) => sum + Number(inc.amount), 0);
   const budgetProgress = monthlyBudget ? Math.min(totalExpenses / monthlyBudget.total_limit * 100, 100) : 0;
-  return <>
+
+  return (
+    <>
       <NoIndexMeta />
       <div className="relative min-h-screen w-full overflow-x-hidden">
         <BackgroundBlobs />
 
         <div className="relative max-w-7xl mx-auto space-y-4 sm:space-y-6 p-4 sm:p-6 lg:p-8">
-          
-
           <div className="space-y-2">
             <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
               Welcome Back
@@ -126,18 +104,6 @@ export default function Dashboard() {
             <p className="text-muted-foreground text-sm sm:text-base">
               Track your finances with clarity
             </p>
-          </div>
-
-          {/* Quick Add Section */}
-          <div className="space-y-3">
-            <h2 className="text-lg font-semibold flex items-center gap-2">
-              <Zap className="h-4 w-4 text-primary" />
-              Quick Add
-            </h2>
-            <div className="grid gap-3 sm:grid-cols-2">
-              <AddExpenseDialog onSuccess={refetchAll} />
-              <AddIncomeDialog onSuccess={refetchAll} />
-            </div>
           </div>
 
           {/* Voice Assistant */}
@@ -220,21 +186,8 @@ export default function Dashboard() {
               </Card>
             ))}
           </div>
-
-          {/* Security Banner */}
-          <Card className="border border-success/20 bg-card/95 cursor-pointer hover:bg-card transition-colors" onClick={() => navigate("/security")}>
-            <CardContent className="p-3 flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-success/10">
-                <Shield className="h-4 w-4 text-success" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-medium text-sm">Your data is secure</p>
-                <p className="text-xs text-muted-foreground truncate">Bank-level encryption • Privacy-first</p>
-              </div>
-              <Badge variant="outline" className="hidden sm:inline-flex text-success border-success/30">Protected</Badge>
-            </CardContent>
-          </Card>
         </div>
       </div>
-    </>;
+    </>
+  );
 }
