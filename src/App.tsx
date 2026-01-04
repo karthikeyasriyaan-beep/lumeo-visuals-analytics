@@ -7,6 +7,8 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { AuthProvider } from "@/hooks/useAuth";
 import { CurrencyProvider } from "@/components/currency-selector";
 import { MobileNav } from "@/components/MobileNav";
+import { PageTransition } from "@/components/PageTransition";
+import { AnimatePresence } from "framer-motion";
 import Welcome from "./pages/Welcome";
 import Dashboard from "./pages/Dashboard";
 import Transactions from "./pages/Transactions";
@@ -15,7 +17,6 @@ import Loans from "./pages/Loans";
 import Savings from "./pages/Savings";
 import Analytics from "./pages/Analytics";
 import Budget from "./pages/Budget";
-import Security from "./pages/Security";
 import Settings from "./pages/Settings";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -53,7 +54,11 @@ function AppLayout() {
     <div className="min-h-screen w-full overflow-x-hidden scroll-smooth">
       {showNav && <MobileNav />}
       <div className={showNav ? "pt-14 sm:pt-16" : ""}>
-        <Outlet />
+        <AnimatePresence mode="wait">
+          <PageTransition key={location.pathname}>
+            <Outlet />
+          </PageTransition>
+        </AnimatePresence>
       </div>
     </div>
   );
@@ -83,7 +88,7 @@ const App = () => (
                   <Route path="/loans" element={<Loans />} />
                   <Route path="/savings" element={<Savings />} />
                   <Route path="/analytics" element={<Analytics />} />
-                  <Route path="/security" element={<Security />} />
+                  
                   <Route path="/settings" element={<Settings />} />
                 </Route>
 
