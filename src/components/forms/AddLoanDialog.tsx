@@ -37,39 +37,83 @@ export function AddLoanDialog({ onSuccess }: AddLoanDialogProps) {
     e.preventDefault();
     if (!user) return;
 
+    // Validate required fields
+    if (!formData.name.trim()) {
+      toast({
+        title: "Validation Error",
+        description: "Please enter a loan name.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const initialAmount = parseFloat(formData.initial_amount) || 0;
+    const interestRate = parseFloat(formData.interest_rate) || 0;
+    const monthlyPayment = parseFloat(formData.monthly_payment) || 0;
+
+    if (initialAmount <= 0) {
+      toast({
+        title: "Validation Error",
+        description: "Loan amount must be greater than 0.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (monthlyPayment <= 0) {
+      toast({
+        title: "Validation Error",
+        description: "Monthly payment must be greater than 0.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setLoading(true);
     try {
-      const initialAmount = parseFloat(formData.initial_amount);
-      const interestRate = parseFloat(formData.interest_rate);
-      const monthlyPayment = parseFloat(formData.monthly_payment);
-      
       // Calculate end date based on loan amortization
       let endDate = null;
       if (interestRate > 0 && monthlyPayment > 0) {
         const monthlyRate = interestRate / 12 / 100;
-        const numerator = Math.log(1 - (initialAmount * monthlyRate) / monthlyPayment);
-        const denominator = Math.log(1 + monthlyRate);
-        const months = Math.ceil(-numerator / denominator);
+        const principalTimesRate = initialAmount * monthlyRate;
         
-        const startDate = new Date(formData.start_date);
-        const calculatedEndDate = new Date(startDate);
-        calculatedEndDate.setMonth(calculatedEndDate.getMonth() + months);
-        endDate = calculatedEndDate.toISOString().split('T')[0];
+        // Only calculate if monthly payment is greater than interest
+        if (monthlyPayment > principalTimesRate) {
+          const numerator = Math.log(monthlyPayment / (monthlyPayment - principalTimesRate));
+          const denominator = Math.log(1 + monthlyRate);
+          const months = Math.ceil(numerator / denominator);
+          
+          if (months > 0 && months < 1200) { // Max 100 years
+            const startDate = new Date(formData.start_date);
+            const calculatedEndDate = new Date(startDate);
+            calculatedEndDate.setMonth(calculatedEndDate.getMonth() + months);
+            endDate = calculatedEndDate.toISOString().split('T')[0];
+          }
+        }
+      } else if (monthlyPayment > 0) {
+        // Simple calculation without interest
+        const months = Math.ceil(initialAmount / monthlyPayment);
+        if (months > 0 && months < 1200) {
+          const startDate = new Date(formData.start_date);
+          const calculatedEndDate = new Date(startDate);
+          calculatedEndDate.setMonth(calculatedEndDate.getMonth() + months);
+          endDate = calculatedEndDate.toISOString().split('T')[0];
+        }
       }
 
       const { error } = await supabase
         .from('loans')
         .insert({
           user_id: user.id,
-          name: formData.name,
+          name: formData.name.trim(),
           initial_amount: initialAmount,
-          current_balance: initialAmount, // Start with full amount
+          current_balance: initialAmount,
           interest_rate: interestRate,
           monthly_payment: monthlyPayment,
           start_date: formData.start_date,
           end_date: endDate,
           status: formData.status,
-          notes: formData.notes
+          notes: formData.notes.trim() || null
         });
 
       if (error) throw error;

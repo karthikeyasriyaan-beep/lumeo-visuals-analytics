@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { TrendingUp, TrendingDown, Filter, Search, DollarSign, Pencil } from "lucide-react";
+import { useState, useMemo } from "react";
+import { TrendingUp, TrendingDown, Filter, Search, DollarSign, Pencil, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,6 +16,13 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import { NoIndexMeta } from "@/components/NoIndexMeta";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function Transactions() {
   const { formatAmount } = useCurrency();
@@ -23,6 +30,10 @@ export default function Transactions() {
   const [selectedIncome, setSelectedIncome] = useState<any>(null);
   const [selectedExpense, setSelectedExpense] = useState<any>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [filterCategory, setFilterCategory] = useState<string>("all");
+  const [filterDateRange, setFilterDateRange] = useState<string>("all");
+  const [filterType, setFilterType] = useState<string>("all");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const { data: income = [], refetch: refetchIncome } = useQuery({
     queryKey: ['income', user?.id],
@@ -56,18 +67,76 @@ export default function Transactions() {
   const totalExpenses = expenses.reduce((sum, item) => sum + Number(item.amount), 0);
   const netBalance = totalIncome - totalExpenses;
 
+  // Get unique categories from both income and expenses
+  const allCategories = useMemo(() => {
+    const incomeCategories = income.map(i => i.category).filter(Boolean);
+    const expenseCategories = expenses.map(e => e.category).filter(Boolean);
+    return [...new Set([...incomeCategories, ...expenseCategories])];
+  }, [income, expenses]);
+
   // Combined and sorted transactions
   const allTransactions = [
     ...income.map(item => ({ ...item, type: 'income' as const })),
     ...expenses.map(item => ({ ...item, type: 'expense' as const }))
   ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-  const filteredTransactions = allTransactions.filter(t => {
-    const title = t.type === 'income' ? t.source : t.name;
-    const description = t.notes || '';
-    return title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      description.toLowerCase().includes(searchQuery.toLowerCase());
-  });
+  const filteredTransactions = useMemo(() => {
+    return allTransactions.filter(t => {
+      const title = t.type === 'income' ? t.source : t.name;
+      const description = t.notes || '';
+      
+      // Search filter
+      const matchesSearch = title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        description.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      // Category filter
+      const matchesCategory = filterCategory === 'all' || t.category === filterCategory;
+      
+      // Type filter
+      const matchesType = filterType === 'all' || t.type === filterType;
+      
+      // Date range filter
+      let matchesDate = true;
+      if (filterDateRange !== 'all') {
+        const transactionDate = new Date(t.date);
+        const today = new Date();
+        today.setHours(23, 59, 59, 999);
+        
+        switch (filterDateRange) {
+          case 'today':
+            const startOfToday = new Date();
+            startOfToday.setHours(0, 0, 0, 0);
+            matchesDate = transactionDate >= startOfToday && transactionDate <= today;
+            break;
+          case 'week':
+            const weekAgo = new Date();
+            weekAgo.setDate(weekAgo.getDate() - 7);
+            matchesDate = transactionDate >= weekAgo && transactionDate <= today;
+            break;
+          case 'month':
+            const monthAgo = new Date();
+            monthAgo.setMonth(monthAgo.getMonth() - 1);
+            matchesDate = transactionDate >= monthAgo && transactionDate <= today;
+            break;
+          case 'year':
+            const yearAgo = new Date();
+            yearAgo.setFullYear(yearAgo.getFullYear() - 1);
+            matchesDate = transactionDate >= yearAgo && transactionDate <= today;
+            break;
+        }
+      }
+      
+      return matchesSearch && matchesCategory && matchesType && matchesDate;
+    });
+  }, [allTransactions, searchQuery, filterCategory, filterType, filterDateRange]);
+
+  const hasActiveFilters = filterCategory !== 'all' || filterDateRange !== 'all' || filterType !== 'all';
+
+  const clearFilters = () => {
+    setFilterCategory('all');
+    setFilterDateRange('all');
+    setFilterType('all');
+  };
 
   return (
     <>
@@ -147,11 +216,110 @@ export default function Transactions() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
-              <Button variant="outline" className="gap-2 min-h-[44px] min-w-[44px]">
-                <Filter className="h-4 w-4" />
-                <span className="hidden sm:inline">Filter</span>
-              </Button>
+              <Popover open={isFilterOpen} onOpenChange={setIsFilterOpen}>
+                <PopoverTrigger asChild>
+                  <Button 
+                    variant={hasActiveFilters ? "default" : "outline"} 
+                    className="gap-2 min-h-[44px] min-w-[44px] relative"
+                  >
+                    <Filter className="h-4 w-4" />
+                    <span className="hidden sm:inline">Filter</span>
+                    {hasActiveFilters && (
+                      <span className="absolute -top-1 -right-1 w-3 h-3 bg-destructive rounded-full" />
+                    )}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-80" align="end">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <h4 className="font-medium">Filters</h4>
+                      {hasActiveFilters && (
+                        <Button variant="ghost" size="sm" onClick={clearFilters} className="h-8 px-2 text-xs">
+                          <X className="h-3 w-3 mr-1" />
+                          Clear all
+                        </Button>
+                      )}
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label className="text-sm">Type</Label>
+                      <Select value={filterType} onValueChange={setFilterType}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="All types" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All types</SelectItem>
+                          <SelectItem value="income">Income only</SelectItem>
+                          <SelectItem value="expense">Expenses only</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="text-sm">Category</Label>
+                      <Select value={filterCategory} onValueChange={setFilterCategory}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="All categories" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All categories</SelectItem>
+                          {allCategories.map(cat => (
+                            <SelectItem key={cat} value={cat}>{cat}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="text-sm">Date Range</Label>
+                      <Select value={filterDateRange} onValueChange={setFilterDateRange}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="All time" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All time</SelectItem>
+                          <SelectItem value="today">Today</SelectItem>
+                          <SelectItem value="week">Last 7 days</SelectItem>
+                          <SelectItem value="month">Last 30 days</SelectItem>
+                          <SelectItem value="year">Last year</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <Button 
+                      className="w-full" 
+                      onClick={() => setIsFilterOpen(false)}
+                    >
+                      Apply Filters
+                    </Button>
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
+            
+            {/* Active filters display */}
+            {hasActiveFilters && (
+              <div className="flex flex-wrap gap-2 mt-3">
+                {filterType !== 'all' && (
+                  <Badge variant="secondary" className="gap-1">
+                    Type: {filterType}
+                    <X className="h-3 w-3 cursor-pointer" onClick={() => setFilterType('all')} />
+                  </Badge>
+                )}
+                {filterCategory !== 'all' && (
+                  <Badge variant="secondary" className="gap-1">
+                    Category: {filterCategory}
+                    <X className="h-3 w-3 cursor-pointer" onClick={() => setFilterCategory('all')} />
+                  </Badge>
+                )}
+                {filterDateRange !== 'all' && (
+                  <Badge variant="secondary" className="gap-1">
+                    Date: {filterDateRange === 'today' ? 'Today' : filterDateRange === 'week' ? 'Last 7 days' : filterDateRange === 'month' ? 'Last 30 days' : 'Last year'}
+                    <X className="h-3 w-3 cursor-pointer" onClick={() => setFilterDateRange('all')} />
+                  </Badge>
+                )}
+              </div>
+            )}
           </CardContent>
         </Card>
 

@@ -497,7 +497,7 @@ const Welcome = () => {
                 className="w-full rounded-xl bg-gradient-to-r from-primary to-secondary font-bold"
                 disabled={loading}
               >
-                {loading ? "Loading..." : isSignUp ? "Create Account" : "Sign In"}
+                {loading ? "Loading..." : isSignUp ? "Create Account" : "Enter"}
               </Button>
               <Button
                 type="button"
@@ -505,7 +505,7 @@ const Welcome = () => {
                 className="w-full rounded-xl"
                 onClick={() => setIsSignUp(!isSignUp)}
               >
-                {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
+                {isSignUp ? "Already have an account? Enter" : "Don't have an account? Sign Up"}
               </Button>
             </form>
           )}
