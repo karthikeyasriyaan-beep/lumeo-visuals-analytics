@@ -138,7 +138,7 @@ const Welcome = () => {
               variant="ghost" 
               className="hidden sm:inline-flex font-semibold"
             >
-              Sign In
+              Enter
             </Button>
             <ThemeToggle />
           </div>
@@ -209,7 +209,7 @@ const Welcome = () => {
             onClick={() => setShowAuth(true)}
             className="text-lg px-10 py-7 rounded-2xl border-2 border-primary/50 hover:bg-primary/10 font-semibold"
           >
-            Sign In
+            Enter
           </Button>
         </motion.div>
 
