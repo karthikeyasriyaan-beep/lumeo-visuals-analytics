@@ -7,10 +7,10 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Shield, Lock, Globe, Zap, ArrowRight, DollarSign, Repeat, Target, BarChart3 } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 const Welcome = () => {
-  const navigate = useNavigate();
+  const { enterAsGuest } = useAuth();
 
   const features = [
     {
@@ -58,7 +58,7 @@ const Welcome = () => {
           </span>
           <div className="flex items-center gap-3">
             <Button 
-              onClick={() => navigate('/dashboard')} 
+              onClick={enterAsGuest} 
               variant="ghost" 
               className="hidden sm:inline-flex font-semibold"
             >
@@ -120,7 +120,7 @@ const Welcome = () => {
           className="flex flex-col sm:flex-row gap-4 items-center mb-12"
         >
           <Button
-            onClick={() => navigate('/dashboard')}
+            onClick={enterAsGuest}
             size="lg"
             className="text-lg px-10 py-7 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-primary to-secondary hover:opacity-90"
           >
@@ -130,7 +130,7 @@ const Welcome = () => {
           <Button
             variant="outline"
             size="lg"
-            onClick={() => navigate('/dashboard')}
+            onClick={enterAsGuest}
             className="text-lg px-10 py-7 rounded-2xl border-2 border-primary/50 hover:bg-primary/10 font-semibold"
           >
             Enter
@@ -294,7 +294,7 @@ const Welcome = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
-                onClick={() => navigate('/dashboard')}
+                onClick={enterAsGuest}
                 size="lg"
                 className="text-lg px-12 py-7 rounded-2xl font-bold shadow-xl hover:shadow-2xl transition-all bg-gradient-to-r from-primary to-secondary"
               >
