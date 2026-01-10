@@ -5,16 +5,17 @@ import { useNavigate } from 'react-router-dom';
 
 // Guest user object for no-auth mode
 const GUEST_USER: User = {
-  id: 'guest-user',
-  aud: 'authenticated',
-  role: 'authenticated',
-  email: 'guest@trackora.app',
+  // Must be a valid UUID because most queries/columns use uuid type.
+  id: "00000000-0000-0000-0000-000000000000",
+  aud: "authenticated",
+  role: "authenticated",
+  email: "guest@trackora.app",
   email_confirmed_at: new Date().toISOString(),
-  phone: '',
+  phone: "",
   confirmed_at: new Date().toISOString(),
   last_sign_in_at: new Date().toISOString(),
-  app_metadata: { provider: 'guest', providers: ['guest'] },
-  user_metadata: { full_name: 'Guest User' },
+  app_metadata: { provider: "guest", providers: ["guest"] },
+  user_metadata: { full_name: "Guest User" },
   identities: [],
   created_at: new Date().toISOString(),
   updated_at: new Date().toISOString(),
