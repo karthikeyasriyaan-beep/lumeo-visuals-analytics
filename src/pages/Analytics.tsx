@@ -121,39 +121,39 @@ export default function Analytics() {
   return (
     <>
       <NoIndexMeta />
-      <div className="relative min-h-screen w-full overflow-x-hidden p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-8 animate-fade-in">
+      <div className="relative min-h-screen w-full overflow-x-hidden p-3 sm:p-6 lg:p-8 space-y-4 sm:space-y-6 animate-fade-in">
       <BackgroundBlobs />
       
       <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
         {/* Header */}
-        <div className="space-y-2 sm:space-y-3 mb-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold font-display tracking-tight break-words">Insights & Analytics</h1>
-          <p className="text-muted-foreground text-sm sm:text-base md:text-lg break-words">Scan your finances at a glance</p>
+        <div className="space-y-1 sm:space-y-2 mb-4">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold font-display tracking-tight">Insights & Analytics</h1>
+          <p className="text-muted-foreground text-xs sm:text-sm md:text-base lg:text-lg">Scan your finances at a glance</p>
       </div>
 
         <Tabs defaultValue="summary" className="space-y-4 sm:space-y-6">
-          <TabsList className="glass-strong grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-1 w-full h-auto p-1">
-            <TabsTrigger value="summary" className="text-xs sm:text-sm min-h-[44px]">Monthly</TabsTrigger>
-            <TabsTrigger value="earnings" className="text-xs sm:text-sm min-h-[44px]">Earnings</TabsTrigger>
-            <TabsTrigger value="spending" className="text-xs sm:text-sm min-h-[44px]">Spending</TabsTrigger>
-            <TabsTrigger value="goals" className="text-xs sm:text-sm min-h-[44px]">Goals</TabsTrigger>
-            <TabsTrigger value="subscriptions" className="text-xs sm:text-sm min-h-[44px]">Subs</TabsTrigger>
-            <TabsTrigger value="loans" className="text-xs sm:text-sm min-h-[44px]">Loans</TabsTrigger>
+          <TabsList className="glass-strong grid grid-cols-3 sm:grid-cols-6 gap-0.5 sm:gap-1 w-full h-auto p-0.5 sm:p-1">
+            <TabsTrigger value="summary" className="text-[10px] sm:text-xs md:text-sm min-h-[36px] sm:min-h-[44px] px-1 sm:px-3">Monthly</TabsTrigger>
+            <TabsTrigger value="earnings" className="text-[10px] sm:text-xs md:text-sm min-h-[36px] sm:min-h-[44px] px-1 sm:px-3">Earnings</TabsTrigger>
+            <TabsTrigger value="spending" className="text-[10px] sm:text-xs md:text-sm min-h-[36px] sm:min-h-[44px] px-1 sm:px-3">Spending</TabsTrigger>
+            <TabsTrigger value="goals" className="text-[10px] sm:text-xs md:text-sm min-h-[36px] sm:min-h-[44px] px-1 sm:px-3">Goals</TabsTrigger>
+            <TabsTrigger value="subscriptions" className="text-[10px] sm:text-xs md:text-sm min-h-[36px] sm:min-h-[44px] px-1 sm:px-3">Subs</TabsTrigger>
+            <TabsTrigger value="loans" className="text-[10px] sm:text-xs md:text-sm min-h-[36px] sm:min-h-[44px] px-1 sm:px-3">Loans</TabsTrigger>
           </TabsList>
 
           <TabsContent value="summary" className="space-y-4 sm:space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6">
-              <div className="p-3 sm:p-4 rounded-lg bg-background/40 backdrop-blur min-h-[100px]">
-                <p className="text-xs sm:text-sm text-muted-foreground mb-1 break-words">Total Income</p>
-                <p className="text-2xl sm:text-3xl font-bold font-display gradient-text animate-count-up break-words">{formatAmount(totalIncome)}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+              <div className="p-3 sm:p-4 rounded-lg bg-background/40 backdrop-blur min-h-[80px] sm:min-h-[100px]">
+                <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground mb-1">Total Income</p>
+                <p className="text-lg sm:text-2xl md:text-3xl font-bold font-display gradient-text animate-count-up break-all">{formatAmount(totalIncome)}</p>
             </div>
-              <div className="p-3 sm:p-4 rounded-lg bg-background/40 backdrop-blur min-h-[100px]">
-                <p className="text-xs sm:text-sm text-muted-foreground mb-1 break-words">Total Expenses</p>
-                <p className="text-2xl sm:text-3xl font-bold font-display gradient-text animate-count-up break-words">{formatAmount(totalExpenses)}</p>
+              <div className="p-3 sm:p-4 rounded-lg bg-background/40 backdrop-blur min-h-[80px] sm:min-h-[100px]">
+                <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground mb-1">Total Expenses</p>
+                <p className="text-lg sm:text-2xl md:text-3xl font-bold font-display gradient-text animate-count-up break-all">{formatAmount(totalExpenses)}</p>
               </div>
-              <div className="p-3 sm:p-4 rounded-lg bg-background/40 backdrop-blur min-h-[100px]">
-                <p className="text-xs sm:text-sm text-muted-foreground mb-1 break-words">Net Savings</p>
-                <p className="text-2xl sm:text-3xl font-bold font-display gradient-text animate-count-up break-words">{formatAmount(netSavings)}</p>
+              <div className="p-3 sm:p-4 rounded-lg bg-background/40 backdrop-blur min-h-[80px] sm:min-h-[100px]">
+                <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground mb-1">Net Savings</p>
+                <p className="text-lg sm:text-2xl md:text-3xl font-bold font-display gradient-text animate-count-up break-all">{formatAmount(netSavings)}</p>
               </div>
             </div>
 
@@ -162,32 +162,32 @@ export default function Analytics() {
               <ExpenseAnalytics expenses={expenses} formatAmount={formatAmount} />
             </div>
 
-            <p className="text-xs sm:text-sm text-muted-foreground break-words">You saved {formatAmount(netSavings)} this period.</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">You saved {formatAmount(netSavings)} this period.</p>
           </TabsContent>
 
           <TabsContent value="earnings" className="space-y-4">
             <IncomeAnalytics income={income} formatAmount={formatAmount} />
-            <p className="text-xs sm:text-sm text-muted-foreground break-words">Total income: {formatAmount(totalIncome)}.</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Total income: {formatAmount(totalIncome)}.</p>
           </TabsContent>
 
           <TabsContent value="spending" className="space-y-4">
             <ExpenseAnalytics expenses={expenses} formatAmount={formatAmount} />
-            <p className="text-xs sm:text-sm text-muted-foreground break-words">Total expenses: {formatAmount(totalExpenses)}.</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Total expenses: {formatAmount(totalExpenses)}.</p>
           </TabsContent>
 
           <TabsContent value="goals" className="space-y-4">
             <SavingsGoalsAnalytics savings={savings} goals={[]} formatAmount={formatAmount} />
-            <p className="text-xs sm:text-sm text-muted-foreground break-words">Saved {formatAmount(totalSaved)} of {formatAmount(totalTarget)} ({overallProgress.toFixed(1)}%).</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Saved {formatAmount(totalSaved)} of {formatAmount(totalTarget)} ({overallProgress.toFixed(1)}%).</p>
           </TabsContent>
 
           <TabsContent value="subscriptions" className="space-y-4">
             <SubscriptionAnalytics subscriptions={subscriptions} formatAmount={formatAmount} />
-            <p className="text-xs sm:text-sm text-muted-foreground break-words">Active: {activeSubscriptions.length} • Monthly: {formatAmount(totalMonthlySubs)}.</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Active: {activeSubscriptions.length} • Monthly: {formatAmount(totalMonthlySubs)}.</p>
           </TabsContent>
 
           <TabsContent value="loans" className="space-y-4">
             <LoanAnalytics loans={loans} formatAmount={formatAmount} />
-            <p className="text-xs sm:text-sm text-muted-foreground break-words">Debt: {formatAmount(totalDebt)} • Paid: {formatAmount(totalPaidDebt)}.</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Debt: {formatAmount(totalDebt)} • Paid: {formatAmount(totalPaidDebt)}.</p>
           </TabsContent>
         </Tabs>
       </div>
