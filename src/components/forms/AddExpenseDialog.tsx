@@ -21,13 +21,13 @@ import { Plus } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { addGuestExpense } from "@/lib/guest-storage";
 
 interface AddExpenseDialogProps {
   onSuccess?: () => void;
 }
 
-// Common selectable titles
-const expenseTitles = [
+const expenseCategories = [
   "Groceries",
   "Rent",
   "Utilities",
@@ -38,22 +38,23 @@ const expenseTitles = [
   "Medical",
   "Education",
   "Travel",
+  "Entertainment",
+  "Transport",
   "Other",
 ];
 
 export function AddExpenseDialog({ onSuccess }: AddExpenseDialogProps) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [customTitle, setCustomTitle] = useState("");
-  const [useCustomTitle, setUseCustomTitle] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     amount: "",
+    category: "",
     notes: "",
     date: new Date().toISOString().split("T")[0],
   });
 
-  const { user } = useAuth();
+  const { user, isGuest } = useAuth();
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -62,40 +63,49 @@ export function AddExpenseDialog({ onSuccess }: AddExpenseDialogProps) {
 
     setLoading(true);
     try {
-      const titleToUse = useCustomTitle ? customTitle : formData.name;
+      if (isGuest) {
+        // Save to local storage for guest users
+        addGuestExpense({
+          name: formData.name,
+          amount: parseFloat(formData.amount),
+          category: formData.category || "Other",
+          notes: formData.notes,
+          date: formData.date,
+          user_id: user.id,
+        });
+      } else {
+        // Save to Supabase for authenticated users
+        const { error } = await supabase.from("expenses").insert({
+          user_id: user.id,
+          name: formData.name,
+          category: formData.category || "Other",
+          amount: parseFloat(formData.amount),
+          notes: formData.notes,
+          date: formData.date,
+        });
 
-      const { error } = await supabase.from("expenses").insert({
-        user_id: user.id,
-        name: titleToUse,
-        category: titleToUse,
-        amount: parseFloat(formData.amount),
-        notes: formData.notes,
-        date: formData.date,
-      });
-
-      if (error) throw error;
+        if (error) throw error;
+      }
 
       toast({
-        title: "Expense added successfully",
-        description: `${titleToUse} has been added to your expense records.`,
+        title: "Expense added",
+        description: `${formData.name} has been added successfully.`,
       });
 
       setFormData({
         name: "",
         amount: "",
+        category: "",
         notes: "",
         date: new Date().toISOString().split("T")[0],
       });
-      setCustomTitle("");
-      setUseCustomTitle(false);
       setOpen(false);
       onSuccess?.();
     } catch (error) {
       console.error("Error adding expense:", error);
       toast({
-        title: "Error adding expense",
-        description:
-          "There was an error adding your expense. Please try again.",
+        title: "Error",
+        description: "Failed to add expense. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -106,66 +116,29 @@ export function AddExpenseDialog({ onSuccess }: AddExpenseDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="gap-2">
+        <Button size="sm" className="gap-2 shadow-lg hover:shadow-xl transition-all duration-300">
           <Plus className="h-4 w-4" />
-          Add Expense
+          <span className="hidden sm:inline">Add Expense</span>
+          <span className="sm:hidden">Expense</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] border-border/50 bg-background/95 backdrop-blur-sm">
         <DialogHeader>
-          <DialogTitle>Add New Expense</DialogTitle>
+          <DialogTitle className="text-xl font-semibold">Add Expense</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Title Field */}
           <div className="space-y-2">
-            <Label>Title</Label>
-            {!useCustomTitle ? (
-              <Select
-                onValueChange={(value) => {
-                  if (value === "custom") {
-                    setUseCustomTitle(true);
-                    setFormData({ ...formData, name: "" });
-                  } else {
-                    setFormData({ ...formData, name: value });
-                  }
-                }}
-                value={formData.name || ""}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select a title" />
-                </SelectTrigger>
-                <SelectContent>
-                  {expenseTitles.map((title) => (
-                    <SelectItem key={title} value={title}>
-                      {title}
-                    </SelectItem>
-                  ))}
-                  <SelectItem value="custom">+ Custom Title</SelectItem>
-                </SelectContent>
-              </Select>
-            ) : (
-              <div className="flex gap-2">
-                <Input
-                  placeholder="Enter custom title"
-                  value={customTitle}
-                  onChange={(e) => setCustomTitle(e.target.value)}
-                  required
-                />
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => {
-                    setUseCustomTitle(false);
-                    setCustomTitle("");
-                  }}
-                >
-                  Back
-                </Button>
-              </div>
-            )}
+            <Label htmlFor="name">Title</Label>
+            <Input
+              id="name"
+              placeholder="e.g., Grocery shopping"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="h-11"
+              required
+            />
           </div>
 
-          {/* Amount & Date */}
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="amount">Amount</Label>
@@ -175,9 +148,8 @@ export function AddExpenseDialog({ onSuccess }: AddExpenseDialogProps) {
                 step="0.01"
                 placeholder="0.00"
                 value={formData.amount}
-                onChange={(e) =>
-                  setFormData({ ...formData, amount: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
+                className="h-11"
                 required
               />
             </div>
@@ -187,38 +159,54 @@ export function AddExpenseDialog({ onSuccess }: AddExpenseDialogProps) {
                 id="date"
                 type="date"
                 value={formData.date}
-                onChange={(e) =>
-                  setFormData({ ...formData, date: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                className="h-11"
                 required
               />
             </div>
           </div>
 
-          {/* Notes */}
+          <div className="space-y-2">
+            <Label>Category</Label>
+            <Select
+              value={formData.category}
+              onValueChange={(value) => setFormData({ ...formData, category: value })}
+            >
+              <SelectTrigger className="h-11">
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+              <SelectContent>
+                {expenseCategories.map((cat) => (
+                  <SelectItem key={cat} value={cat}>
+                    {cat}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="notes">Notes (Optional)</Label>
             <Textarea
               id="notes"
-              placeholder="Add any additional notes..."
+              placeholder="Add any notes..."
               value={formData.notes}
-              onChange={(e) =>
-                setFormData({ ...formData, notes: e.target.value })
-              }
-              rows={3}
+              onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+              rows={2}
+              className="resize-none"
             />
           </div>
 
-          {/* Actions */}
-          <div className="flex justify-end gap-2">
+          <div className="flex gap-3 pt-2">
             <Button
               type="button"
               variant="outline"
               onClick={() => setOpen(false)}
+              className="flex-1 h-11"
             >
               Cancel
             </Button>
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading} className="flex-1 h-11">
               {loading ? "Adding..." : "Add Expense"}
             </Button>
           </div>
