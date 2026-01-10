@@ -8,12 +8,13 @@ import { Progress } from "@/components/ui/progress";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrency } from "@/components/currency-selector";
-import { PiggyBank, CreditCard, DollarSign, Wallet, AlertCircle, Mic } from "lucide-react";
+import { PiggyBank, CreditCard, DollarSign, Wallet, AlertCircle, TrendingUp, TrendingDown, ArrowRight } from "lucide-react";
 import BackgroundBlobs from "@/components/BackgroundBlobs";
 import { NoIndexMeta } from "@/components/NoIndexMeta";
-import { VoiceAssistant } from "@/components/VoiceAssistant";
 import { useNavigate } from "react-router-dom";
 import { getGuestExpenses, getGuestIncome, type GuestExpense, type GuestIncome } from "@/lib/guest-storage";
+import { AddExpenseDialog } from "@/components/forms/AddExpenseDialog";
+import { AddIncomeDialog } from "@/components/forms/AddIncomeDialog";
 
 export default function Dashboard() {
   const { user, isGuest } = useAuth();
@@ -24,10 +25,14 @@ export default function Dashboard() {
   const [guestIncome, setGuestIncome] = useState<GuestIncome[]>([]);
   const [guestExpenses, setGuestExpenses] = useState<GuestExpense[]>([]);
 
-  useEffect(() => {
-    if (!isGuest) return;
+  const refreshGuestData = () => {
     setGuestIncome(getGuestIncome());
     setGuestExpenses(getGuestExpenses());
+  };
+
+  useEffect(() => {
+    if (!isGuest) return;
+    refreshGuestData();
   }, [isGuest]);
 
   const { data: income = [] } = useQuery({
@@ -70,23 +75,6 @@ export default function Dashboard() {
     enabled: !!user && !isGuest
   });
 
-  const { data: budgets = [] } = useQuery({
-    queryKey: ["budgets", user?.id],
-    queryFn: async () => {
-      if (!user) return [];
-      const currentMonth = new Date().getMonth() + 1;
-      const currentYear = new Date().getFullYear();
-      const { data } = await supabase
-        .from("budgets")
-        .select("*")
-        .eq("user_id", user.id)
-        .eq("month", currentMonth)
-        .eq("year", currentYear);
-      return data || [];
-    },
-    enabled: !!user && !isGuest
-  });
-
   const { data: monthlyBudget } = useQuery({
     queryKey: ["monthly_budgets", user?.id],
     queryFn: async () => {
@@ -107,8 +95,7 @@ export default function Dashboard() {
 
   const refetchAll = () => {
     if (isGuest) {
-      setGuestIncome(getGuestIncome());
-      setGuestExpenses(getGuestExpenses());
+      refreshGuestData();
       return;
     }
 
@@ -116,7 +103,6 @@ export default function Dashboard() {
     queryClient.invalidateQueries({ queryKey: ["expenses", user?.id] });
     queryClient.invalidateQueries({ queryKey: ["loans", user?.id] });
     queryClient.invalidateQueries({ queryKey: ["savings", user?.id] });
-    queryClient.invalidateQueries({ queryKey: ["budgets", user?.id] });
     queryClient.invalidateQueries({ queryKey: ["monthly_budgets", user?.id] });
   };
 
@@ -125,7 +111,16 @@ export default function Dashboard() {
 
   const totalExpenses = displayedExpenses.reduce((sum, exp: any) => sum + Number(exp.amount), 0);
   const totalIncome = displayedIncome.reduce((sum, inc: any) => sum + Number(inc.amount), 0);
+  const netBalance = totalIncome - totalExpenses;
   const budgetProgress = monthlyBudget ? Math.min(totalExpenses / monthlyBudget.total_limit * 100, 100) : 0;
+
+  // Recent transactions (last 5)
+  const recentTransactions = [
+    ...displayedIncome.map((i: any) => ({ ...i, type: 'income' as const })),
+    ...displayedExpenses.map((e: any) => ({ ...e, type: 'expense' as const }))
+  ]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 5);
 
   return (
     <>
@@ -133,29 +128,73 @@ export default function Dashboard() {
       <div className="relative min-h-screen w-full overflow-x-hidden">
         <BackgroundBlobs />
 
-        <div className="relative max-w-7xl mx-auto space-y-4 sm:space-y-6 p-4 sm:p-6 lg:p-8">
-          <div className="space-y-2">
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
-              Welcome Back
-            </h1>
-            <p className="text-muted-foreground text-sm sm:text-base">
-              Track your finances with clarity
-            </p>
+        <div className="relative max-w-7xl mx-auto space-y-6 p-4 sm:p-6 lg:p-8">
+          {/* Header with Quick Actions */}
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+                Welcome Back
+              </h1>
+              <p className="text-muted-foreground text-sm sm:text-base">
+                Track your finances with clarity
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <AddIncomeDialog onSuccess={refetchAll} />
+              <AddExpenseDialog onSuccess={refetchAll} />
+            </div>
           </div>
 
-          {/* Voice Assistant */}
-          <Card className="border border-border/50 bg-card/95">
-            <CardContent className="p-4 flex flex-col items-center gap-3">
-              <div className="flex items-center gap-2">
-                <Mic className="h-4 w-4 text-primary" />
-                <h3 className="font-medium text-sm">Voice Assistant</h3>
-              </div>
-              <p className="text-xs text-muted-foreground text-center max-w-xs">
-                Tap the mic and say "Add expense 50 dollars for groceries" or "Add income 1000 salary"
-              </p>
-              <VoiceAssistant onExpenseAdded={refetchAll} onIncomeAdded={refetchAll} />
-            </CardContent>
-          </Card>
+          {/* Summary Cards */}
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-3">
+            <Card className="border border-border/50 bg-card/95 hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-muted-foreground font-medium">Net Balance</p>
+                    <p className={`text-2xl sm:text-3xl font-bold mt-1 ${netBalance >= 0 ? 'text-success' : 'text-destructive'}`}>
+                      {netBalance >= 0 ? '+' : ''}{formatAmount(netBalance)}
+                    </p>
+                  </div>
+                  <div className={`p-3 rounded-xl ${netBalance >= 0 ? 'bg-success/10' : 'bg-destructive/10'}`}>
+                    <DollarSign className={`h-6 w-6 ${netBalance >= 0 ? 'text-success' : 'text-destructive'}`} />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-border/50 bg-card/95 hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-muted-foreground font-medium">Total Income</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-success mt-1">
+                      +{formatAmount(totalIncome)}
+                    </p>
+                  </div>
+                  <div className="p-3 rounded-xl bg-success/10">
+                    <TrendingUp className="h-6 w-6 text-success" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-border/50 bg-card/95 hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-muted-foreground font-medium">Total Expenses</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-destructive mt-1">
+                      -{formatAmount(totalExpenses)}
+                    </p>
+                  </div>
+                  <div className="p-3 rounded-xl bg-destructive/10">
+                    <TrendingDown className="h-6 w-6 text-destructive" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
           {/* Budget Overview Widget */}
           {monthlyBudget && (
@@ -202,27 +241,94 @@ export default function Dashboard() {
           )}
 
           {/* Stats Grid */}
-          <div className="grid gap-3 grid-cols-1 sm:grid-cols-3">
-            {[
-              { icon: DollarSign, label: "Transactions", value: displayedIncome.length + displayedExpenses.length, subtitle: "This month", color: "text-primary" },
-              { icon: PiggyBank, label: "Goals", value: savings.length, subtitle: "Active goals", color: "text-success" },
-              { icon: CreditCard, label: "Loans", value: loans.length, subtitle: "Active loans", color: "text-destructive" },
-            ].map((item, index) => (
-              <Card key={index} className="border border-border/50 bg-card/95 hover:bg-card transition-colors">
-                <CardContent className="p-4">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg bg-muted ${item.color}`}>
-                      <item.icon className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold">{item.value}</p>
-                      <p className="text-xs text-muted-foreground">{item.label}</p>
-                    </div>
+          <div className="grid gap-4 grid-cols-1 sm:grid-cols-3">
+            <Card className="border border-border/50 bg-card/95 hover:shadow-md transition-all cursor-pointer" onClick={() => navigate('/transactions')}>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-lg bg-primary/10">
+                    <DollarSign className="h-5 w-5 text-primary" />
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                  <div>
+                    <p className="text-2xl font-bold">{displayedIncome.length + displayedExpenses.length}</p>
+                    <p className="text-xs text-muted-foreground">Transactions</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-border/50 bg-card/95 hover:shadow-md transition-all cursor-pointer" onClick={() => navigate('/savings')}>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-lg bg-success/10">
+                    <PiggyBank className="h-5 w-5 text-success" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{savings.length}</p>
+                    <p className="text-xs text-muted-foreground">Savings Goals</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="border border-border/50 bg-card/95 hover:shadow-md transition-all cursor-pointer" onClick={() => navigate('/loans')}>
+              <CardContent className="p-4">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-lg bg-destructive/10">
+                    <CreditCard className="h-5 w-5 text-destructive" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">{loans.length}</p>
+                    <p className="text-xs text-muted-foreground">Active Loans</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
+
+          {/* Recent Transactions */}
+          <Card className="border border-border/50 bg-card/95">
+            <CardHeader className="pb-3">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-base font-semibold">Recent Transactions</CardTitle>
+                <Button variant="ghost" size="sm" onClick={() => navigate("/transactions")} className="text-xs h-8 gap-1">
+                  View All
+                  <ArrowRight className="h-3 w-3" />
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {recentTransactions.length === 0 ? (
+                <div className="text-center py-8 text-muted-foreground">
+                  <DollarSign className="h-12 w-12 mx-auto mb-3 opacity-30" />
+                  <p className="text-sm font-medium">No transactions yet</p>
+                  <p className="text-xs">Start by adding income or expenses above</p>
+                </div>
+              ) : (
+                recentTransactions.map((t, idx) => (
+                  <div key={`${t.type}-${t.id}-${idx}`} className="flex items-center gap-3 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 transition-colors">
+                    <div className={`p-2 rounded-lg ${t.type === 'income' ? 'bg-success/10' : 'bg-destructive/10'}`}>
+                      {t.type === 'income' ? (
+                        <TrendingUp className="h-4 w-4 text-success" />
+                      ) : (
+                        <TrendingDown className="h-4 w-4 text-destructive" />
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium truncate">
+                        {t.type === 'income' ? t.source : t.name}
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        {new Date(t.date).toLocaleDateString()}
+                      </p>
+                    </div>
+                    <p className={`text-sm font-semibold ${t.type === 'income' ? 'text-success' : 'text-destructive'}`}>
+                      {t.type === 'income' ? '+' : '-'}{formatAmount(t.amount)}
+                    </p>
+                  </div>
+                ))
+              )}
+            </CardContent>
+          </Card>
         </div>
       </div>
     </>
