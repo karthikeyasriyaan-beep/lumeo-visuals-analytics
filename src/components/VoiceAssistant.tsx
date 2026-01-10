@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { addGuestExpense, addGuestIncome } from "@/lib/guest-storage";
 
 interface VoiceAssistantProps {
   onExpenseAdded?: () => void;
@@ -16,7 +17,7 @@ export function VoiceAssistant({ onExpenseAdded, onIncomeAdded }: VoiceAssistant
   const [transcript, setTranscript] = useState("");
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const { toast } = useToast();
-  const { user } = useAuth();
+  const { user, isGuest } = useAuth();
 
   useEffect(() => {
     // Check for browser support
@@ -102,6 +103,21 @@ export function VoiceAssistant({ onExpenseAdded, onIncomeAdded }: VoiceAssistant
   const addExpense = async (data: { amount: number; name: string; category?: string }) => {
     if (!user) return;
 
+    if (isGuest) {
+      addGuestExpense({
+        name: data.name || "Voice Expense",
+        amount: data.amount,
+        category: data.category || "Other",
+      });
+
+      toast({
+        title: "Expense Added",
+        description: `Added ${data.name || "expense"} (saved locally)`,
+      });
+      onExpenseAdded?.();
+      return;
+    }
+
     const { error } = await supabase.from("expenses").insert({
       user_id: user.id,
       name: data.name || "Voice Expense",
@@ -121,6 +137,21 @@ export function VoiceAssistant({ onExpenseAdded, onIncomeAdded }: VoiceAssistant
 
   const addIncome = async (data: { amount: number; name: string; category?: string }) => {
     if (!user) return;
+
+    if (isGuest) {
+      addGuestIncome({
+        source: data.name || "Voice Income",
+        amount: data.amount,
+        category: data.category || "Other",
+      });
+
+      toast({
+        title: "Income Added",
+        description: `Added ${data.name || "income"} (saved locally)`,
+      });
+      onIncomeAdded?.();
+      return;
+    }
 
     const { error } = await supabase.from("income").insert({
       user_id: user.id,

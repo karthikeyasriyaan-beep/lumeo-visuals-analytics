@@ -1,6 +1,7 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -12,11 +13,22 @@ import BackgroundBlobs from "@/components/BackgroundBlobs";
 import { NoIndexMeta } from "@/components/NoIndexMeta";
 import { VoiceAssistant } from "@/components/VoiceAssistant";
 import { useNavigate } from "react-router-dom";
+import { getGuestExpenses, getGuestIncome, type GuestExpense, type GuestIncome } from "@/lib/guest-storage";
 
 export default function Dashboard() {
-  const { user } = useAuth();
+  const { user, isGuest } = useAuth();
   const { formatAmount } = useCurrency();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const [guestIncome, setGuestIncome] = useState<GuestIncome[]>([]);
+  const [guestExpenses, setGuestExpenses] = useState<GuestExpense[]>([]);
+
+  useEffect(() => {
+    if (!isGuest) return;
+    setGuestIncome(getGuestIncome());
+    setGuestExpenses(getGuestExpenses());
+  }, [isGuest]);
 
   const { data: income = [] } = useQuery({
     queryKey: ["income", user?.id],
@@ -25,7 +37,7 @@ export default function Dashboard() {
       const { data } = await supabase.from("income").select("*").eq("user_id", user.id);
       return data || [];
     },
-    enabled: !!user
+    enabled: !!user && !isGuest
   });
 
   const { data: expenses = [] } = useQuery({
@@ -35,7 +47,7 @@ export default function Dashboard() {
       const { data } = await supabase.from("expenses").select("*").eq("user_id", user.id);
       return data || [];
     },
-    enabled: !!user
+    enabled: !!user && !isGuest
   });
 
   const { data: loans = [] } = useQuery({
@@ -45,7 +57,7 @@ export default function Dashboard() {
       const { data } = await supabase.from("loans").select("*").eq("user_id", user.id);
       return data || [];
     },
-    enabled: !!user
+    enabled: !!user && !isGuest
   });
 
   const { data: savings = [] } = useQuery({
@@ -55,7 +67,7 @@ export default function Dashboard() {
       const { data } = await supabase.from("savings").select("*").eq("user_id", user.id);
       return data || [];
     },
-    enabled: !!user
+    enabled: !!user && !isGuest
   });
 
   const { data: budgets = [] } = useQuery({
@@ -64,10 +76,15 @@ export default function Dashboard() {
       if (!user) return [];
       const currentMonth = new Date().getMonth() + 1;
       const currentYear = new Date().getFullYear();
-      const { data } = await supabase.from("budgets").select("*").eq("user_id", user.id).eq("month", currentMonth).eq("year", currentYear);
+      const { data } = await supabase
+        .from("budgets")
+        .select("*")
+        .eq("user_id", user.id)
+        .eq("month", currentMonth)
+        .eq("year", currentYear);
       return data || [];
     },
-    enabled: !!user
+    enabled: !!user && !isGuest
   });
 
   const { data: monthlyBudget } = useQuery({
@@ -76,18 +93,38 @@ export default function Dashboard() {
       if (!user) return null;
       const currentMonth = new Date().getMonth() + 1;
       const currentYear = new Date().getFullYear();
-      const { data } = await supabase.from("monthly_budgets").select("*").eq("user_id", user.id).eq("month", currentMonth).eq("year", currentYear).single();
+      const { data } = await supabase
+        .from("monthly_budgets")
+        .select("*")
+        .eq("user_id", user.id)
+        .eq("month", currentMonth)
+        .eq("year", currentYear)
+        .single();
       return data;
     },
-    enabled: !!user
+    enabled: !!user && !isGuest
   });
 
   const refetchAll = () => {
-    // Trigger refetch for all queries
+    if (isGuest) {
+      setGuestIncome(getGuestIncome());
+      setGuestExpenses(getGuestExpenses());
+      return;
+    }
+
+    queryClient.invalidateQueries({ queryKey: ["income", user?.id] });
+    queryClient.invalidateQueries({ queryKey: ["expenses", user?.id] });
+    queryClient.invalidateQueries({ queryKey: ["loans", user?.id] });
+    queryClient.invalidateQueries({ queryKey: ["savings", user?.id] });
+    queryClient.invalidateQueries({ queryKey: ["budgets", user?.id] });
+    queryClient.invalidateQueries({ queryKey: ["monthly_budgets", user?.id] });
   };
 
-  const totalExpenses = expenses.reduce((sum, exp) => sum + Number(exp.amount), 0);
-  const totalIncome = income.reduce((sum, inc) => sum + Number(inc.amount), 0);
+  const displayedIncome = isGuest ? guestIncome : (income as any[]);
+  const displayedExpenses = isGuest ? guestExpenses : (expenses as any[]);
+
+  const totalExpenses = displayedExpenses.reduce((sum, exp: any) => sum + Number(exp.amount), 0);
+  const totalIncome = displayedIncome.reduce((sum, inc: any) => sum + Number(inc.amount), 0);
   const budgetProgress = monthlyBudget ? Math.min(totalExpenses / monthlyBudget.total_limit * 100, 100) : 0;
 
   return (
@@ -167,7 +204,7 @@ export default function Dashboard() {
           {/* Stats Grid */}
           <div className="grid gap-3 grid-cols-1 sm:grid-cols-3">
             {[
-              { icon: DollarSign, label: "Transactions", value: income.length + expenses.length, subtitle: "This month", color: "text-primary" },
+              { icon: DollarSign, label: "Transactions", value: displayedIncome.length + displayedExpenses.length, subtitle: "This month", color: "text-primary" },
               { icon: PiggyBank, label: "Goals", value: savings.length, subtitle: "Active goals", color: "text-success" },
               { icon: CreditCard, label: "Loans", value: loans.length, subtitle: "Active loans", color: "text-destructive" },
             ].map((item, index) => (
