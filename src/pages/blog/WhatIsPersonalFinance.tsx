@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function WhatIsPersonalFinance() {
   return (
@@ -159,6 +161,9 @@ export default function WhatIsPersonalFinance() {
                   Start your financial journey with Trackora. Our intuitive expense tracking and budgeting tools make managing your money simple and effective.
                 </p>
               </div>
+
+              <AuthorSection />
+              <RelatedArticles currentSlug="what-is-personal-finance" />
             </CardContent>
           </Card>
         </motion.article>

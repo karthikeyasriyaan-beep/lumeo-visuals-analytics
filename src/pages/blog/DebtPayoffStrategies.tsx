@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function DebtPayoffStrategies() {
   return (
@@ -247,6 +249,9 @@ export default function DebtPayoffStrategies() {
                     and receive reminders for upcoming payments—helping you stay on track toward financial freedom.
                   </p>
                 </div>
+
+                <AuthorSection />
+                <RelatedArticles currentSlug="debt-payoff-strategies" />
               </CardContent>
             </Card>
           </div>

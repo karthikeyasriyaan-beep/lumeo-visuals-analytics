@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function WhyTrackingExpenses() {
   return (
@@ -167,6 +169,9 @@ export default function WhyTrackingExpenses() {
                   Trackora makes expense tracking simple and insightful. Begin your path to financial freedom today with our intuitive tracking tools.
                 </p>
               </div>
+
+              <AuthorSection />
+              <RelatedArticles currentSlug="why-tracking-expenses" />
             </CardContent>
           </Card>
         </motion.article>

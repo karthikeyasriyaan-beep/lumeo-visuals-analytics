@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, Shield } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Footer } from "@/components/Footer";
 
 const Privacy = () => {
   const navigate = useNavigate();
@@ -218,6 +219,8 @@ const Privacy = () => {
           </Card>
         </motion.div>
       </div>
+      
+      <Footer />
     </div>
   );
 };

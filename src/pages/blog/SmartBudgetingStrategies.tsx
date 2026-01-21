@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function SmartBudgetingStrategies() {
   return (
@@ -193,6 +195,9 @@ export default function SmartBudgetingStrategies() {
                     your spending patterns—making any budgeting method easier to follow.
                   </p>
                 </div>
+
+                <AuthorSection />
+                <RelatedArticles currentSlug="smart-budgeting-strategies" />
               </CardContent>
             </Card>
           </div>

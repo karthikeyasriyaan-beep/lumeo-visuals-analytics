@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function BuildEmergencyFund() {
   return (
@@ -217,6 +219,9 @@ export default function BuildEmergencyFund() {
                   Use Trackora to set savings goals and watch your emergency fund grow. Our visual progress tracking keeps you motivated on your journey to financial security.
                 </p>
               </div>
+
+              <AuthorSection />
+              <RelatedArticles currentSlug="build-emergency-fund" />
             </CardContent>
           </Card>
         </motion.article>

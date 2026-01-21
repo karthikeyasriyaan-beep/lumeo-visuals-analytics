@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function DigitalVsManualTracking() {
   return (
@@ -232,6 +234,9 @@ export default function DigitalVsManualTracking() {
                   Experience the best of digital expense tracking—quick logging, smart categorization, and insightful analytics—all in one intuitive app.
                 </p>
               </div>
+
+              <AuthorSection />
+              <RelatedArticles currentSlug="digital-vs-manual-tracking" />
             </CardContent>
           </Card>
         </motion.article>

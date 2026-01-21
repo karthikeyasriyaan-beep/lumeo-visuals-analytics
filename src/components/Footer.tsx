@@ -35,17 +35,17 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/features" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Expense Tracking
                 </Link>
               </li>
               <li>
-                <Link to="/#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/features" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Budget Analytics
                 </Link>
               </li>
               <li>
-                <Link to="/#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link to="/features" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Savings Goals
                 </Link>
               </li>

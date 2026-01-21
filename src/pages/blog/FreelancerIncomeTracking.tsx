@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function FreelancerIncomeTracking() {
   return (
@@ -253,6 +255,9 @@ export default function FreelancerIncomeTracking() {
                   Trackora helps freelancers track income, expenses, and financial goals in one place. Perfect for managing the complexity of variable income.
                 </p>
               </div>
+
+              <AuthorSection />
+              <RelatedArticles currentSlug="freelancer-income-tracking" />
             </CardContent>
           </Card>
         </motion.article>

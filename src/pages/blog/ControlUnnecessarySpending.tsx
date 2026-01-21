@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function ControlUnnecessarySpending() {
   return (
@@ -225,6 +227,9 @@ export default function ControlUnnecessarySpending() {
                   Trackora helps you see exactly where your money goes, identify unnecessary spending, and build better financial habits. Start taking control today.
                 </p>
               </div>
+
+              <AuthorSection />
+              <RelatedArticles currentSlug="control-unnecessary-spending" />
             </CardContent>
           </Card>
         </motion.article>

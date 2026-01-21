@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function FinancialGoalSetting() {
   return (
@@ -294,6 +296,9 @@ export default function FinancialGoalSetting() {
                   Trackora's goal tracking features help you set realistic financial targets and monitor progress with visual insights and analytics.
                 </p>
               </div>
+
+              <AuthorSection />
+              <RelatedArticles currentSlug="financial-goal-setting" />
             </CardContent>
           </Card>
         </motion.article>

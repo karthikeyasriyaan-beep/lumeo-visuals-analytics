@@ -159,17 +159,17 @@ const Welcome = () => {
           </Button>
         </motion.div>
 
-        {/* Beta Notice */}
+        {/* Support Notice */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          className="px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-accent/15 border border-accent/30 mx-4"
+          className="px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-primary/10 border border-primary/30 mx-4"
         >
           <p className="text-xs sm:text-sm font-medium">
-            <span className="text-accent font-bold">Beta:</span>{" "}
-            Free during development. Questions?{" "}
-            <a href="mailto:pla.team@cadliotech.com" className="text-accent underline font-semibold">
+            <span className="text-primary font-bold">✓ Free to Use</span>{" "}
+            — Questions? Contact{" "}
+            <a href="mailto:pla.team@cadliotech.com" className="text-primary underline font-semibold">
               pla.team@cadliotech.com
             </a>
           </p>

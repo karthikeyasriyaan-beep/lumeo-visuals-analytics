@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function MoneyManagementStudents() {
   return (
@@ -238,6 +240,9 @@ export default function MoneyManagementStudents() {
                   Trackora helps students track expenses, manage budgets, and build healthy financial habits. Start your journey to financial literacy today.
                 </p>
               </div>
+
+              <AuthorSection />
+              <RelatedArticles currentSlug="money-management-students" />
             </CardContent>
           </Card>
         </motion.article>

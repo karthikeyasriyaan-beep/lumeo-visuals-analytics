@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function PsychologyOfSpending() {
   return (
@@ -235,6 +237,9 @@ export default function PsychologyOfSpending() {
                   Expense tracking is the foundation of mindful spending. Trackora helps you see your patterns clearly and make conscious financial choices.
                 </p>
               </div>
+
+              <AuthorSection />
+              <RelatedArticles currentSlug="psychology-of-spending" />
             </CardContent>
           </Card>
         </motion.article>
