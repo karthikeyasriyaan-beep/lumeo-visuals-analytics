@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Shield, Lock, Globe, Zap, ArrowRight, DollarSign, Repeat, Target, BarChart3, Smartphone, Laptop, CheckCircle2, TrendingUp, Wallet, PieChart, Clock, Sparkles } from "lucide-react";
+import { Shield, Lock, Globe, Zap, ArrowRight, DollarSign, Repeat, Target, BarChart3, Smartphone, Laptop, CheckCircle2, TrendingUp, Wallet, PieChart, Clock, Sparkles, BookOpen, GraduationCap, Calculator, CreditCard } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { useAuth } from "@/hooks/useAuth";
@@ -378,6 +379,104 @@ const Welcome = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Learn & Grow Section - Educational Guides */}
+      <section className="py-12 sm:py-20 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10 sm:mb-16"
+          >
+            <div className="inline-flex items-center gap-2 mb-4">
+              <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+              <span className="text-xs sm:text-sm font-semibold text-primary uppercase tracking-wider">Learn & Grow</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 sm:mb-4">
+              Master Your Finances
+            </h2>
+            <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">
+              Free in-depth guides to help you budget smarter, save more, and manage debt effectively.
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {[
+              { 
+                icon: BookOpen, 
+                title: "How It Works", 
+                desc: "Complete walkthrough of all features and how to use Trackora effectively",
+                link: "/how-it-works",
+                color: "from-blue-500 to-blue-600"
+              },
+              { 
+                icon: Calculator, 
+                title: "Budgeting Guide", 
+                desc: "Proven budgeting methods like 50/30/20, zero-based, and envelope budgeting",
+                link: "/budgeting-guide",
+                color: "from-emerald-500 to-emerald-600"
+              },
+              { 
+                icon: Target, 
+                title: "Savings Guide", 
+                desc: "Build emergency funds, set savings goals, and grow your wealth systematically",
+                link: "/savings-guide",
+                color: "from-amber-500 to-amber-600"
+              },
+              { 
+                icon: CreditCard, 
+                title: "Debt Management", 
+                desc: "Snowball vs avalanche methods, strategic payoff plans, and debt-free strategies",
+                link: "/debt-management-guide",
+                color: "from-rose-500 to-rose-600"
+              }
+            ].map((guide, idx) => (
+              <motion.div
+                key={guide.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+              >
+                <Link to={guide.link}>
+                  <Card className="h-full luxury-card border-border/50 hover:border-primary/50 bg-card hover:shadow-lg transition-all group cursor-pointer">
+                    <CardContent className="p-4 sm:p-6 pt-6 sm:pt-8">
+                      <div className={`w-10 h-10 sm:w-14 sm:h-14 mb-3 sm:mb-5 rounded-xl sm:rounded-2xl bg-gradient-to-br ${guide.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform`}>
+                        <guide.icon className="w-5 h-5 sm:w-7 sm:h-7 text-white" />
+                      </div>
+                      <h3 className="text-base sm:text-xl font-bold mb-1 sm:mb-2 group-hover:text-primary transition-colors">{guide.title}</h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground mb-3">{guide.desc}</p>
+                      <span className="inline-flex items-center text-xs sm:text-sm font-medium text-primary group-hover:underline">
+                        Read Guide <ArrowRight className="ml-1 w-3 h-3 sm:w-4 sm:h-4" />
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Additional Blog CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="text-center mt-8 sm:mt-12"
+          >
+            <p className="text-muted-foreground text-sm sm:text-base mb-4">
+              Want more financial tips and insights?
+            </p>
+            <Link to="/blog">
+              <Button variant="outline" className="rounded-xl sm:rounded-2xl font-semibold border-2 border-primary/50 hover:bg-primary/10">
+                <BookOpen className="mr-2 w-4 h-4" />
+                Explore Our Finance Blog
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </section>
 

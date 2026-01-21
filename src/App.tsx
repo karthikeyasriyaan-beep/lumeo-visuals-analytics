@@ -40,6 +40,10 @@ import DigitalVsManualTracking from "./pages/blog/DigitalVsManualTracking";
 import FinancialGoalSetting from "./pages/blog/FinancialGoalSetting";
 import PsychologyOfSpending from "./pages/blog/PsychologyOfSpending";
 import Disclaimer from "./pages/Disclaimer";
+import HowItWorks from "./pages/HowItWorks";
+import BudgetingGuide from "./pages/BudgetingGuide";
+import SavingsGuide from "./pages/SavingsGuide";
+import DebtManagementGuide from "./pages/DebtManagementGuide";
 import ResetPassword from "./pages/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
@@ -47,7 +51,7 @@ import { CookieConsent } from "./components/CookieConsent";
 
 function AppLayout() {
   const location = useLocation();
-  const publicPaths = ["/", "/privacy", "/terms", "/features", "/about", "/contact", "/faq", "/blog", "/disclaimer", "/reset-password"];
+  const publicPaths = ["/", "/privacy", "/terms", "/features", "/about", "/contact", "/faq", "/blog", "/disclaimer", "/reset-password", "/how-it-works", "/budgeting-guide", "/savings-guide", "/debt-management-guide"];
   const showNav = !publicPaths.includes(location.pathname) && !location.pathname.startsWith("/blog/");
 
   return (
@@ -115,6 +119,10 @@ const App = () => (
                 <Route path="/blog/psychology-of-spending" element={<PsychologyOfSpending />} />
                 <Route path="/disclaimer" element={<Disclaimer />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/how-it-works" element={<HowItWorks />} />
+                <Route path="/budgeting-guide" element={<BudgetingGuide />} />
+                <Route path="/savings-guide" element={<SavingsGuide />} />
+                <Route path="/debt-management-guide" element={<DebtManagementGuide />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
