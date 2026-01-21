@@ -67,13 +67,23 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="/blog/what-is-personal-finance" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Getting Started Guide
+                <Link to="/how-it-works" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  How It Works
                 </Link>
               </li>
               <li>
-                <Link to="/blog/fifty-thirty-twenty-rule" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  Budgeting Tips
+                <Link to="/budgeting-guide" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Budgeting Guide
+                </Link>
+              </li>
+              <li>
+                <Link to="/savings-guide" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Savings Guide
+                </Link>
+              </li>
+              <li>
+                <Link to="/debt-management-guide" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Debt Management
                 </Link>
               </li>
             </ul>
