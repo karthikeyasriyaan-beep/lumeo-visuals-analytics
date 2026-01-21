@@ -105,8 +105,8 @@ const Features = () => {
     },
     {
       icon: CheckCircle2,
-      title: "Always Free Beta",
-      description: "Use Trackora free while we perfect the experience."
+      title: "Free to Use",
+      description: "Access all features at no cost—track your finances today."
     }
   ];
 
@@ -246,10 +246,10 @@ const Features = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Ready to experience calm finance?
+                Ready to take control of your finances?
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Join thousands finding peace of mind with Trackora. Free during beta, safe forever.
+                Join thousands of users who have transformed their relationship with money. Free to use, secure forever.
               </p>
               <Button
                 onClick={() => navigate("/")}

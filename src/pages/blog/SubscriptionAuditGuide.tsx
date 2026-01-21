@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function SubscriptionAuditGuide() {
   return (
@@ -288,6 +290,9 @@ export default function SubscriptionAuditGuide() {
                     alerts, and see exactly how much you're spending monthly and annually on subscriptions.
                   </p>
                 </div>
+
+                <AuthorSection />
+                <RelatedArticles currentSlug="subscription-audit-guide" />
               </CardContent>
             </Card>
           </div>

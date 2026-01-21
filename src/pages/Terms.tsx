@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, FileText } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Footer } from "@/components/Footer";
 
 const Terms = () => {
   const navigate = useNavigate();
@@ -227,6 +228,8 @@ const Terms = () => {
           </Card>
         </motion.div>
       </div>
+      
+      <Footer />
     </div>
   );
 };

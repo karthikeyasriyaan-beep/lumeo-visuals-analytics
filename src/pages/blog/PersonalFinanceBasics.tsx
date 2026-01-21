@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function PersonalFinanceBasics() {
   return (
@@ -195,6 +197,9 @@ export default function PersonalFinanceBasics() {
                     financial goals with ease.
                   </p>
                 </div>
+
+                <AuthorSection />
+                <RelatedArticles currentSlug="personal-finance-basics" />
               </CardContent>
             </Card>
           </div>

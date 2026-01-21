@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { AuthorSection } from "@/components/blog/AuthorSection";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 export default function FiftyThirtyTwentyRule() {
   return (
@@ -205,6 +207,9 @@ export default function FiftyThirtyTwentyRule() {
                   Trackora automatically categorizes your expenses, making it simple to see if you're hitting your 50/30/20 targets. Start budgeting smarter today.
                 </p>
               </div>
+
+              <AuthorSection />
+              <RelatedArticles currentSlug="fifty-thirty-twenty-rule" />
             </CardContent>
           </Card>
         </motion.article>
