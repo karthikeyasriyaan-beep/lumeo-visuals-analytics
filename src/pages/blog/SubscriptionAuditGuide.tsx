@@ -6,9 +6,30 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
 
 export default function SubscriptionAuditGuide() {
   return (
+    <>
+      <SEOHead
+        title="Complete Subscription Audit Guide: Find and Cancel Wasteful Subscriptions"
+        description="Learn how to audit your subscriptions, identify wasteful spending, and save hundreds annually. Step-by-step guide to managing recurring payments effectively."
+        keywords="subscription audit, cancel subscriptions, save money on subscriptions, recurring payments, subscription management, wasteful spending"
+        canonicalUrl="https://trackorapp.in/blog/subscription-audit-guide"
+        type="article"
+        publishedTime="2025-10-15"
+        modifiedTime="2026-02-02"
+        section="Money Saving"
+      />
+      <SchemaMarkup
+        type="article"
+        headline="Complete Subscription Audit Guide: Find and Cancel Wasteful Subscriptions"
+        description="Learn how to audit your subscriptions, identify wasteful spending, and save hundreds annually."
+        datePublished="2025-10-15"
+        dateModified="2026-02-02"
+        url="https://trackorapp.in/blog/subscription-audit-guide"
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-4xl">
         {/* Header */}
@@ -301,5 +322,6 @@ export default function SubscriptionAuditGuide() {
       
       <Footer />
     </div>
+    </>
   );
 }

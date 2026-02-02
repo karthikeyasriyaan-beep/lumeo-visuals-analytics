@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, Calendar, Clock, User, ArrowRight } from "lucide-react";
 import { Footer } from "@/components/Footer";
+import { SEOHead } from "@/components/SEOHead";
 
 export default function Blog() {
   const blogPosts = [
@@ -24,6 +25,13 @@ export default function Blog() {
   ];
 
   return (
+    <>
+      <SEOHead
+        title="Financial Blog - Tips on Budgeting, Saving & Money Management"
+        description="Explore expert articles on personal finance, budgeting strategies, expense tracking, debt management, and saving money. Practical tips to take control of your finances."
+        keywords="personal finance blog, budgeting tips, money management articles, saving money tips, expense tracking blog, financial advice"
+        canonicalUrl="https://trackorapp.in/blog"
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-6xl">
         {/* Header */}
@@ -105,5 +113,6 @@ export default function Blog() {
       
       <Footer />
     </div>
+    </>
   );
 }

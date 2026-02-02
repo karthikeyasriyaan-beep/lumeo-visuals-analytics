@@ -6,9 +6,30 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
 
 export default function WhatIsPersonalFinance() {
   return (
+    <>
+      <SEOHead
+        title="What is Personal Finance? A Complete Beginner's Guide"
+        description="Learn what personal finance means, the five pillars of money management, and how to build financial security. Comprehensive guide for beginners on budgeting, saving, and investing."
+        keywords="what is personal finance, personal finance basics, money management guide, financial literacy, five pillars of finance"
+        canonicalUrl="https://trackorapp.in/blog/what-is-personal-finance"
+        type="article"
+        publishedTime="2025-11-20"
+        modifiedTime="2026-02-02"
+        section="Finance Basics"
+      />
+      <SchemaMarkup
+        type="article"
+        headline="What is Personal Finance? A Complete Beginner's Guide"
+        description="Learn what personal finance means, the five pillars of money management, and how to build financial security."
+        datePublished="2025-11-20"
+        dateModified="2026-02-02"
+        url="https://trackorapp.in/blog/what-is-personal-finance"
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-4xl">
         <Link to="/blog">
@@ -171,5 +192,6 @@ export default function WhatIsPersonalFinance() {
       
       <Footer />
     </div>
+    </>
   );
 }

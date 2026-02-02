@@ -6,9 +6,30 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
 
 export default function BuildEmergencyFund() {
   return (
+    <>
+      <SEOHead
+        title="How to Build an Emergency Fund: Step-by-Step Guide"
+        description="Learn how to build an emergency fund from scratch. Discover how much to save, where to keep it, and strategies to reach your emergency fund goal faster."
+        keywords="emergency fund, how to save money, financial safety net, savings strategy, rainy day fund, financial security"
+        canonicalUrl="https://trackorapp.in/blog/build-emergency-fund"
+        type="article"
+        publishedTime="2025-11-08"
+        modifiedTime="2026-02-02"
+        section="Savings"
+      />
+      <SchemaMarkup
+        type="article"
+        headline="How to Build an Emergency Fund: Step-by-Step Guide"
+        description="Learn how to build an emergency fund from scratch."
+        datePublished="2025-11-08"
+        dateModified="2026-02-02"
+        url="https://trackorapp.in/blog/build-emergency-fund"
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-4xl">
         <Link to="/blog">
@@ -229,5 +250,6 @@ export default function BuildEmergencyFund() {
       
       <Footer />
     </div>
+    </>
   );
 }

@@ -6,9 +6,30 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
 
 export default function MoneyManagementStudents() {
   return (
+    <>
+      <SEOHead
+        title="Money Management for Students: Financial Tips for College Life"
+        description="Essential money management tips for college students. Learn budgeting on a tight income, avoiding student debt traps, and building financial habits for life."
+        keywords="student money management, college budgeting, student finance tips, managing money in college, student budget"
+        canonicalUrl="https://trackorapp.in/blog/money-management-students"
+        type="article"
+        publishedTime="2025-11-05"
+        modifiedTime="2026-02-02"
+        section="Student Finance"
+      />
+      <SchemaMarkup
+        type="article"
+        headline="Money Management for Students: Financial Tips for College Life"
+        description="Essential money management tips for college students."
+        datePublished="2025-11-05"
+        dateModified="2026-02-02"
+        url="https://trackorapp.in/blog/money-management-students"
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-4xl">
         <Link to="/blog">
@@ -250,5 +271,6 @@ export default function MoneyManagementStudents() {
       
       <Footer />
     </div>
+    </>
   );
 }

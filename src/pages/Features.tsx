@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
+import { SEOHead } from "@/components/SEOHead";
 
 const Features = () => {
   const navigate = useNavigate();
@@ -111,6 +112,13 @@ const Features = () => {
   ];
 
   return (
+    <>
+      <SEOHead
+        title="Trackora Features - Expense Tracking, Budgeting & Savings Tools"
+        description="Explore Trackora's powerful features: expense tracking, budget management, subscription monitoring, loan tracking, savings goals, and spending analytics. All free to use."
+        keywords="expense tracking features, budget management tools, subscription tracker, loan management, savings goals, spending analytics"
+        canonicalUrl="https://trackorapp.in/features"
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/5">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
@@ -266,6 +274,7 @@ const Features = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 

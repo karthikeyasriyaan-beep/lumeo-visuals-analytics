@@ -6,9 +6,30 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
 
 export default function WhyTrackingExpenses() {
   return (
+    <>
+      <SEOHead
+        title="Why Tracking Expenses Matters: The Key to Financial Success"
+        description="Discover why tracking expenses is the foundation of financial success. Learn how expense tracking helps you save money, reduce debt, and achieve your financial goals."
+        keywords="expense tracking, why track expenses, money management, financial awareness, spending habits, budget tracking"
+        canonicalUrl="https://trackorapp.in/blog/why-tracking-expenses"
+        type="article"
+        publishedTime="2025-11-18"
+        modifiedTime="2026-02-02"
+        section="Finance Tips"
+      />
+      <SchemaMarkup
+        type="article"
+        headline="Why Tracking Expenses Matters: The Key to Financial Success"
+        description="Discover why tracking expenses is the foundation of financial success."
+        datePublished="2025-11-18"
+        dateModified="2026-02-02"
+        url="https://trackorapp.in/blog/why-tracking-expenses"
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-4xl">
         <Link to="/blog">
@@ -179,5 +200,6 @@ export default function WhyTrackingExpenses() {
       
       <Footer />
     </div>
+    </>
   );
 }

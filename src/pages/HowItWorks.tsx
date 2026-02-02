@@ -9,9 +9,20 @@ import {
 } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { useAuth } from "@/hooks/useAuth";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
 
 export default function HowItWorks() {
   const { enterAsGuest } = useAuth();
+
+  const howToSteps = [
+    { name: "Create Your Free Account", text: "Sign up with just your email address and create a secure password. No credit card required." },
+    { name: "Set Up Your Financial Profile", text: "Configure your preferred currency, set monthly budget limits, and define spending categories." },
+    { name: "Add Your Financial Data", text: "Enter your income sources, recurring expenses, active subscriptions, outstanding loans, and savings goals." },
+    { name: "Track Daily Spending", text: "Log your expenses as they happen or at the end of each day using our quick-add features." },
+    { name: "Analyze Your Patterns", text: "View beautiful charts and visualizations that reveal your spending habits and trends." },
+    { name: "Optimize and Grow", text: "Use your insights to make better financial decisions and watch your financial health improve." }
+  ];
 
   const steps = [
     {
@@ -143,6 +154,19 @@ export default function HowItWorks() {
   ];
 
   return (
+    <>
+      <SEOHead
+        title="How Trackora Works - Step-by-Step Guide to Financial Clarity"
+        description="Learn how to use Trackora expense tracker in 6 simple steps. From creating your account to analyzing spending patterns and achieving your financial goals."
+        keywords="how to use Trackora, expense tracking guide, budget tracker tutorial, financial tracking steps, personal finance app guide"
+        canonicalUrl="https://trackorapp.in/how-it-works"
+      />
+      <SchemaMarkup
+        type="howto"
+        name="How to Take Control of Your Finances with Trackora"
+        description="A step-by-step guide to using Trackora for expense tracking and budget management."
+        steps={howToSteps}
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
@@ -372,5 +396,6 @@ export default function HowItWorks() {
 
       <Footer />
     </div>
+    </>
   );
 }

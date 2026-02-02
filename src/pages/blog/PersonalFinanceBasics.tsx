@@ -6,9 +6,30 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
 
 export default function PersonalFinanceBasics() {
   return (
+    <>
+      <SEOHead
+        title="Personal Finance Basics: A Beginner's Guide to Taking Control of Your Money"
+        description="Learn the fundamentals of personal finance including budgeting, saving, debt management, and building financial security. A comprehensive beginner's guide to managing money effectively."
+        keywords="personal finance basics, money management, budgeting tips, saving money, debt management, financial planning for beginners"
+        canonicalUrl="https://trackorapp.in/blog/personal-finance-basics"
+        type="article"
+        publishedTime="2025-11-15"
+        modifiedTime="2026-02-02"
+        section="Finance Tips"
+      />
+      <SchemaMarkup
+        type="article"
+        headline="Personal Finance Basics: A Beginner's Guide to Taking Control of Your Money"
+        description="Learn the fundamentals of personal finance including budgeting, saving, debt management, and building financial security."
+        datePublished="2025-11-15"
+        dateModified="2026-02-02"
+        url="https://trackorapp.in/blog/personal-finance-basics"
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-4xl">
         {/* Header */}
@@ -208,5 +229,6 @@ export default function PersonalFinanceBasics() {
       
       <Footer />
     </div>
+    </>
   );
 }

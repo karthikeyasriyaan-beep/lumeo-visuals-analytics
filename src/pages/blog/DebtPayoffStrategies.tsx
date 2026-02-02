@@ -6,9 +6,30 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
 
 export default function DebtPayoffStrategies() {
   return (
+    <>
+      <SEOHead
+        title="Proven Debt Payoff Strategies: Snowball vs. Avalanche Method"
+        description="Compare the debt snowball and avalanche methods to find the best strategy for paying off debt. Learn step-by-step approaches to become debt-free faster."
+        keywords="debt payoff strategies, debt snowball method, debt avalanche, pay off debt, debt management, credit card debt"
+        canonicalUrl="https://trackorapp.in/blog/debt-payoff-strategies"
+        type="article"
+        publishedTime="2025-10-28"
+        modifiedTime="2026-02-02"
+        section="Debt Management"
+      />
+      <SchemaMarkup
+        type="article"
+        headline="Proven Debt Payoff Strategies: Snowball vs. Avalanche Method"
+        description="Compare the debt snowball and avalanche methods to find the best strategy for paying off debt."
+        datePublished="2025-10-28"
+        dateModified="2026-02-02"
+        url="https://trackorapp.in/blog/debt-payoff-strategies"
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-4xl">
         {/* Header */}
@@ -260,5 +281,6 @@ export default function DebtPayoffStrategies() {
       
       <Footer />
     </div>
+    </>
   );
 }
