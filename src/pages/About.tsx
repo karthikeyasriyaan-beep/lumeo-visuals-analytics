@@ -2,10 +2,21 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Target, Heart, Shield, Users, ArrowLeft } from "lucide-react";
+import { Target, Heart, Shield, Users, ArrowLeft, GraduationCap, Briefcase, Home, Wallet, TrendingUp, Award } from "lucide-react";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
+import { Footer } from "@/components/Footer";
 
 export default function About() {
   return (
+    <>
+      <SEOHead
+        title="About Trackora - Our Mission to Democratize Financial Management"
+        description="Learn about Trackora's mission to make personal finance accessible to everyone. Discover our story, values, and commitment to helping you achieve financial wellness."
+        keywords="about Trackora, expense tracker company, personal finance app, financial management tool, Trackora team"
+        canonicalUrl="https://trackorapp.in/about"
+      />
+      <SchemaMarkup type="organization" />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-4xl">
         {/* Header */}
@@ -146,6 +157,99 @@ export default function About() {
           </div>
         </motion.div>
 
+        {/* Who Uses Trackora */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="mb-12"
+        >
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Who Uses Trackora?</h2>
+          <p className="text-muted-foreground mb-8 text-lg">
+            Trackora is designed for anyone who wants to take control of their finances. From students 
+            just starting out to professionals managing complex budgets, our platform adapts to your needs.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <Card className="hover:shadow-lg transition-shadow border-l-4 border-l-primary">
+              <CardContent className="p-6">
+                <div className="p-3 rounded-lg bg-primary/10 w-fit mb-4">
+                  <GraduationCap className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold mb-2">Students</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Managing limited budgets, tracking part-time income, and building financial habits 
+                  that last a lifetime. Perfect for college students navigating their first independent finances.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow border-l-4 border-l-secondary">
+              <CardContent className="p-6">
+                <div className="p-3 rounded-lg bg-secondary/10 w-fit mb-4">
+                  <Briefcase className="h-6 w-6 text-secondary" />
+                </div>
+                <h3 className="text-lg font-bold mb-2">Working Professionals</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Balancing multiple income sources, tracking business expenses, managing subscriptions, 
+                  and planning for major life goals like retirement or buying a home.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow border-l-4 border-l-accent">
+              <CardContent className="p-6">
+                <div className="p-3 rounded-lg bg-accent/10 w-fit mb-4">
+                  <Home className="h-6 w-6 text-accent" />
+                </div>
+                <h3 className="text-lg font-bold mb-2">Families</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Managing household budgets, planning for children's education, tracking shared expenses, 
+                  and building savings for family vacations and emergencies.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow border-l-4 border-l-primary">
+              <CardContent className="p-6">
+                <div className="p-3 rounded-lg bg-primary/10 w-fit mb-4">
+                  <Wallet className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-lg font-bold mb-2">Freelancers</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Managing variable income, tracking business expenses for tax purposes, and maintaining 
+                  financial stability despite irregular payment schedules.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow border-l-4 border-l-secondary">
+              <CardContent className="p-6">
+                <div className="p-3 rounded-lg bg-secondary/10 w-fit mb-4">
+                  <TrendingUp className="h-6 w-6 text-secondary" />
+                </div>
+                <h3 className="text-lg font-bold mb-2">Debt-Free Seekers</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Actively paying down loans, credit cards, or other debts. Using our loan tracker to 
+                  visualize progress and stay motivated on the journey to financial freedom.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition-shadow border-l-4 border-l-accent">
+              <CardContent className="p-6">
+                <div className="p-3 rounded-lg bg-accent/10 w-fit mb-4">
+                  <Award className="h-6 w-6 text-accent" />
+                </div>
+                <h3 className="text-lg font-bold mb-2">Goal Setters</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Saving for specific targets—dream vacations, new gadgets, down payments, or emergency funds. 
+                  Using visual progress tracking to stay motivated and reach goals faster.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </motion.div>
+
         {/* Why We Built This */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -268,6 +372,9 @@ export default function About() {
           </Card>
         </motion.div>
       </div>
+      
+      <Footer />
     </div>
+    </>
   );
 }

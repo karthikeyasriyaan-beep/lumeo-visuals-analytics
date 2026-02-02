@@ -6,9 +6,30 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
 
 export default function ControlUnnecessarySpending() {
   return (
+    <>
+      <SEOHead
+        title="How to Control Unnecessary Spending and Save More Money"
+        description="Learn proven strategies to stop impulse buying and control unnecessary spending. Practical tips to identify spending triggers and build better money habits."
+        keywords="control spending, stop impulse buying, unnecessary spending, save money tips, spending habits, impulse purchases"
+        canonicalUrl="https://trackorapp.in/blog/control-unnecessary-spending"
+        type="article"
+        publishedTime="2025-10-30"
+        modifiedTime="2026-02-02"
+        section="Money Saving"
+      />
+      <SchemaMarkup
+        type="article"
+        headline="How to Control Unnecessary Spending and Save More Money"
+        description="Learn proven strategies to stop impulse buying and control unnecessary spending."
+        datePublished="2025-10-30"
+        dateModified="2026-02-02"
+        url="https://trackorapp.in/blog/control-unnecessary-spending"
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-4xl">
         <Link to="/blog">
@@ -237,5 +258,6 @@ export default function ControlUnnecessarySpending() {
       
       <Footer />
     </div>
+    </>
   );
 }

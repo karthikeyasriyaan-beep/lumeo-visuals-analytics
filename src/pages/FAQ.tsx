@@ -5,6 +5,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, HelpCircle, Shield, Database, CreditCard, Globe, Smartphone, Lock } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Footer } from "@/components/Footer";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
+
+// FAQ data for schema markup
+const allFaqQuestions = [
+  { question: "How do I create an account on Trackora?", answer: "Creating an account is simple and free. Click the 'Get Started' button on our homepage, enter your email address and create a secure password. You'll receive a confirmation email to verify your account, and then you can start tracking your finances immediately." },
+  { question: "Is Trackora really free to use?", answer: "Yes! Trackora is currently completely free to use. All features including budget tracking, loan management, and analytics are available at no cost. We're committed to making financial management accessible to everyone." },
+  { question: "Is my financial data safe with Trackora?", answer: "Absolutely. We take your security seriously. All your data is encrypted using bank-level 256-bit AES encryption both in transit and at rest. We use the same security standards as major financial institutions." },
+  { question: "Which currencies does Trackora support?", answer: "Trackora supports multiple currencies including Indian Rupee (₹), US Dollar ($), Euro (€), British Pound (£), and many others. You can set your preferred currency in Settings." },
+  { question: "How does budget tracking work?", answer: "Budget tracking is simple and visual. Set a monthly budget for each category (like Food, Transport, Entertainment) or set an overall monthly spending limit. Trackora shows your spending progress with color-coded progress bars and alerts you gently when you're approaching your limits." },
+  { question: "Can I export my financial data?", answer: "Yes. You can export all your data at any time in CSV or JSON format from the Settings page. This includes expenses, income, loans, subscriptions, and savings goals." },
+  { question: "Is there a mobile app for Trackora?", answer: "Trackora is a Progressive Web App (PWA), which means it works beautifully on mobile browsers and can be added to your home screen for a native app-like experience." },
+  { question: "How do I contact support?", answer: "You can reach our support team at support@trackorapp.in or use the contact form on our Contact page. We typically respond within 24-48 hours." }
+];
 
 export default function FAQ() {
   const faqCategories = [
@@ -157,6 +171,17 @@ export default function FAQ() {
   ];
 
   return (
+    <>
+      <SEOHead
+        title="FAQ - Frequently Asked Questions About Trackora"
+        description="Get answers to common questions about Trackora expense tracker. Learn about features, security, pricing, supported currencies, data export, and how to get started."
+        keywords="Trackora FAQ, expense tracker help, budgeting app questions, Trackora support, financial tracking help"
+        canonicalUrl="https://trackorapp.in/faq"
+      />
+      <SchemaMarkup
+        type="faq"
+        questions={allFaqQuestions}
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-5xl">
         {/* Header */}
@@ -250,5 +275,6 @@ export default function FAQ() {
       
       <Footer />
     </div>
+    </>
   );
 }

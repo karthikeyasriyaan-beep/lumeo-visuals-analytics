@@ -6,9 +6,30 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
 
 export default function SmartBudgetingStrategies() {
   return (
+    <>
+      <SEOHead
+        title="Smart Budgeting Strategies That Actually Work in 2025"
+        description="Discover proven budgeting methods including the 50/30/20 rule, zero-based budgeting, and envelope budgeting. Learn practical strategies to manage money effectively."
+        keywords="budgeting strategies, 50/30/20 rule, zero-based budgeting, envelope budgeting, money management, budget tips"
+        canonicalUrl="https://trackorapp.in/blog/smart-budgeting-strategies"
+        type="article"
+        publishedTime="2025-11-10"
+        modifiedTime="2026-02-02"
+        section="Budgeting"
+      />
+      <SchemaMarkup
+        type="article"
+        headline="Smart Budgeting Strategies That Actually Work in 2025"
+        description="Discover proven budgeting methods including the 50/30/20 rule, zero-based budgeting, and envelope budgeting."
+        datePublished="2025-11-10"
+        dateModified="2026-02-02"
+        url="https://trackorapp.in/blog/smart-budgeting-strategies"
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-4xl">
         {/* Header */}
@@ -206,5 +227,6 @@ export default function SmartBudgetingStrategies() {
       
       <Footer />
     </div>
+    </>
   );
 }

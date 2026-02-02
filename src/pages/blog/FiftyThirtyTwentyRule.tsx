@@ -6,9 +6,30 @@ import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { AuthorSection } from "@/components/blog/AuthorSection";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { SEOHead } from "@/components/SEOHead";
+import { SchemaMarkup } from "@/components/SchemaMarkup";
 
 export default function FiftyThirtyTwentyRule() {
   return (
+    <>
+      <SEOHead
+        title="The 50/30/20 Budget Rule: Simple Money Management That Works"
+        description="Master the 50/30/20 budget rule to manage your finances effectively. Learn how to allocate 50% to needs, 30% to wants, and 20% to savings for financial success."
+        keywords="50/30/20 rule, budget rule, money management, budgeting method, needs wants savings, personal budget"
+        canonicalUrl="https://trackorapp.in/blog/fifty-thirty-twenty-rule"
+        type="article"
+        publishedTime="2025-11-12"
+        modifiedTime="2026-02-02"
+        section="Budgeting"
+      />
+      <SchemaMarkup
+        type="article"
+        headline="The 50/30/20 Budget Rule: Simple Money Management That Works"
+        description="Master the 50/30/20 budget rule to manage your finances effectively."
+        datePublished="2025-11-12"
+        dateModified="2026-02-02"
+        url="https://trackorapp.in/blog/fifty-thirty-twenty-rule"
+      />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 max-w-4xl">
         <Link to="/blog">
@@ -217,5 +238,6 @@ export default function FiftyThirtyTwentyRule() {
       
       <Footer />
     </div>
+    </>
   );
 }
