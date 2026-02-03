@@ -39,6 +39,14 @@ import FreelancerIncomeTracking from "./pages/blog/FreelancerIncomeTracking";
 import DigitalVsManualTracking from "./pages/blog/DigitalVsManualTracking";
 import FinancialGoalSetting from "./pages/blog/FinancialGoalSetting";
 import PsychologyOfSpending from "./pages/blog/PsychologyOfSpending";
+import ImportanceExpenseTracking from "./pages/blog/ImportanceExpenseTracking";
+import MonthlyBudgetingGuide from "./pages/blog/MonthlyBudgetingGuide";
+import SavingMoneyEffectively from "./pages/blog/SavingMoneyEffectively";
+import ExpenseTrackingStudents from "./pages/blog/ExpenseTrackingStudents";
+import BudgetingFamilies from "./pages/blog/BudgetingFamilies";
+import CommonFinancialMistakes from "./pages/blog/CommonFinancialMistakes";
+import UnderstandingSpendingPatterns from "./pages/blog/UnderstandingSpendingPatterns";
+import FinancialDisciplineHabits from "./pages/blog/FinancialDisciplineHabits";
 import Disclaimer from "./pages/Disclaimer";
 import HowItWorks from "./pages/HowItWorks";
 import BudgetingGuide from "./pages/BudgetingGuide";
@@ -117,6 +125,14 @@ const App = () => (
                 <Route path="/blog/digital-vs-manual-tracking" element={<DigitalVsManualTracking />} />
                 <Route path="/blog/financial-goal-setting" element={<FinancialGoalSetting />} />
                 <Route path="/blog/psychology-of-spending" element={<PsychologyOfSpending />} />
+                <Route path="/blog/importance-expense-tracking" element={<ImportanceExpenseTracking />} />
+                <Route path="/blog/monthly-budgeting-guide" element={<MonthlyBudgetingGuide />} />
+                <Route path="/blog/saving-money-effectively" element={<SavingMoneyEffectively />} />
+                <Route path="/blog/expense-tracking-students" element={<ExpenseTrackingStudents />} />
+                <Route path="/blog/budgeting-families" element={<BudgetingFamilies />} />
+                <Route path="/blog/common-financial-mistakes" element={<CommonFinancialMistakes />} />
+                <Route path="/blog/understanding-spending-patterns" element={<UnderstandingSpendingPatterns />} />
+                <Route path="/blog/financial-discipline-habits" element={<FinancialDisciplineHabits />} />
                 <Route path="/disclaimer" element={<Disclaimer />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/how-it-works" element={<HowItWorks />} />
