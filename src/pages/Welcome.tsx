@@ -161,16 +161,22 @@ const Welcome = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
               What is Trackora?
             </h2>
-            <div className="text-base sm:text-lg text-muted-foreground space-y-4 text-left">
-              <p>
-                <strong className="text-foreground">Trackora is a comprehensive personal finance management platform</strong> designed to help individuals and families take complete control of their money. Unlike simple expense trackers that only record transactions, Trackora provides a complete financial ecosystem where you can manage daily expenses, track multiple income sources, monitor loan repayments, control subscription costs, and work toward meaningful savings goals.
-              </p>
-              <p>
-                Whether you're a college student managing a tight budget, a working professional juggling multiple financial responsibilities, or a family planning for the future, Trackora adapts to your unique financial situation. The platform is built on the principle that financial clarity leads to better decisions, and better decisions lead to financial freedom.
-              </p>
-              <p>
-                <strong className="text-foreground">Key benefits you'll experience:</strong> Instantly see where your money goes each month, identify spending patterns you weren't aware of, receive gentle alerts before subscription renewals, track your debt payoff journey with visual progress indicators, and celebrate milestones as you reach your savings targets.
-              </p>
+            <div className="text-base sm:text-lg space-y-5 text-left">
+              <div className="relative pl-5 border-l-4 border-primary/40 py-3 px-4 rounded-r-xl bg-primary/5">
+                <p className="text-muted-foreground leading-relaxed">
+                  <strong className="text-foreground">Trackora is a comprehensive personal finance management platform</strong> designed to help individuals and families take complete control of their money. Unlike simple expense trackers that only record transactions, Trackora provides a complete financial ecosystem where you can manage daily expenses, track multiple income sources, monitor loan repayments, control subscription costs, and work toward meaningful savings goals.
+                </p>
+              </div>
+              <div className="relative pl-5 border-l-4 border-secondary/40 py-3 px-4 rounded-r-xl bg-secondary/5">
+                <p className="text-muted-foreground leading-relaxed">
+                  Whether you're a college student managing a tight budget, a working professional juggling multiple financial responsibilities, or a family planning for the future, Trackora adapts to your unique financial situation. The platform is built on the principle that <strong className="text-foreground">financial clarity leads to better decisions</strong>, and better decisions lead to financial freedom.
+                </p>
+              </div>
+              <div className="relative pl-5 border-l-4 border-accent/40 py-3 px-4 rounded-r-xl bg-accent/5">
+                <p className="text-muted-foreground leading-relaxed">
+                  <strong className="text-foreground">Key benefits you'll experience:</strong> Instantly see where your money goes each month, identify spending patterns you weren't aware of, receive gentle alerts before subscription renewals, track your debt payoff journey with visual progress indicators, and celebrate milestones as you reach your savings targets.
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -211,16 +217,22 @@ const Welcome = () => {
                     </div>
                     <h3 className="text-xl font-bold">The Problem</h3>
                   </div>
-                  <div className="space-y-3 text-muted-foreground">
-                    <p>
-                      Studies show that most people have no clear idea where their money actually goes. Small daily purchases—a coffee here, a snack there, an impulse buy online—add up to hundreds or even thousands of rupees each month that simply "disappear."
-                    </p>
-                    <p>
-                      Without tracking, you might believe you're spending ₹5,000 on food when you're actually spending ₹12,000. This gap between perception and reality prevents people from saving money, paying off debts, and reaching their financial goals.
-                    </p>
-                    <p>
-                      Many people avoid tracking because traditional methods are tedious—spreadsheets are time-consuming, and most apps are either too complex or too limited. This creates a cycle where financial awareness remains low, and improvement feels impossible.
-                    </p>
+                  <div className="space-y-4">
+                    <div className="pl-4 border-l-3 border-destructive/30 py-2">
+                      <p className="text-muted-foreground leading-relaxed">
+                        Studies show that most people have no clear idea where their money actually goes. Small daily purchases—a coffee here, a snack there, an impulse buy online—add up to <strong className="text-foreground">hundreds or even thousands of rupees</strong> each month that simply "disappear."
+                      </p>
+                    </div>
+                    <div className="pl-4 border-l-3 border-destructive/30 py-2">
+                      <p className="text-muted-foreground leading-relaxed">
+                        Without tracking, you might believe you're spending ₹5,000 on food when you're actually spending ₹12,000. This <strong className="text-foreground">gap between perception and reality</strong> prevents people from saving money, paying off debts, and reaching their financial goals.
+                      </p>
+                    </div>
+                    <div className="rounded-xl bg-destructive/5 p-4 border border-destructive/10">
+                      <p className="text-muted-foreground leading-relaxed text-sm">
+                        💡 Many people avoid tracking because traditional methods are tedious—spreadsheets are time-consuming, and most apps are either too complex or too limited. This creates a cycle where financial awareness remains low.
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -239,16 +251,22 @@ const Welcome = () => {
                     </div>
                     <h3 className="text-xl font-bold">The Solution</h3>
                   </div>
-                  <div className="space-y-3 text-muted-foreground">
-                    <p>
-                      <strong className="text-foreground">Trackora makes financial awareness effortless.</strong> By providing quick-add features, intelligent categorization, and beautiful visualizations, tracking becomes a natural part of your daily routine—taking seconds, not minutes.
-                    </p>
-                    <p>
-                      When you can clearly see that dining out costs ₹8,000/month while groceries cost ₹4,000, you gain the power to make informed choices. Maybe you decide to cook more often, or maybe you realize dining out brings you joy worth the cost. Either way, you're in control.
-                    </p>
-                    <p>
-                      Research shows that simply becoming aware of spending patterns leads to natural reduction in unnecessary expenses—typically 15-20% savings without any strict budgeting rules. Trackora gives you this awareness without the complexity.
-                    </p>
+                  <div className="space-y-4">
+                    <div className="pl-4 border-l-3 border-primary/30 py-2">
+                      <p className="text-muted-foreground leading-relaxed">
+                        <strong className="text-foreground">Trackora makes financial awareness effortless.</strong> By providing quick-add features, intelligent categorization, and beautiful visualizations, tracking becomes a natural part of your daily routine—taking seconds, not minutes.
+                      </p>
+                    </div>
+                    <div className="pl-4 border-l-3 border-primary/30 py-2">
+                      <p className="text-muted-foreground leading-relaxed">
+                        When you can clearly see that dining out costs ₹8,000/month while groceries cost ₹4,000, you gain the power to make <strong className="text-foreground">informed choices</strong>. Maybe you decide to cook more often, or maybe you realize dining out brings you joy worth the cost. Either way, you're in control.
+                      </p>
+                    </div>
+                    <div className="rounded-xl bg-primary/5 p-4 border border-primary/10">
+                      <p className="text-muted-foreground leading-relaxed text-sm">
+                        📊 Research shows that simply becoming aware of spending patterns leads to a natural <strong className="text-foreground">15-20% reduction</strong> in unnecessary expenses—without any strict budgeting rules.
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -296,16 +314,22 @@ const Welcome = () => {
                     </p>
                   </div>
                   <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 text-muted-foreground mb-6">
-                      <p>
-                        <strong className="text-foreground">Trackora helps you record daily expenses such as food, travel, bills, shopping, and entertainment with minimal effort.</strong> By automatically categorizing transactions, you can identify spending habits and reduce unnecessary costs without spending hours on manual data entry.
-                      </p>
-                      <p>
-                        The quick-add feature allows you to log expenses in under 5 seconds. Simply enter the amount, select a category (or let Trackora suggest one based on your history), and add an optional note. That's it—your expense is recorded and immediately reflected in your monthly totals and analytics.
-                      </p>
-                      <p>
-                        Color-coded categories make visual scanning effortless. At a glance, you can see how much you've spent on groceries versus dining out, or how transportation costs compare to entertainment. This visual clarity helps you make quick, informed decisions about your spending.
-                      </p>
+                    <div className="space-y-4 mb-6">
+                      <div className="pl-4 border-l-3 border-primary/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          <strong className="text-foreground">Record daily expenses with minimal effort.</strong> By automatically categorizing transactions, you can identify spending habits and reduce unnecessary costs without spending hours on manual data entry.
+                        </p>
+                      </div>
+                      <div className="rounded-xl bg-muted/50 p-4">
+                        <p className="text-muted-foreground leading-relaxed text-sm">
+                          ⚡ The quick-add feature lets you log expenses in <strong className="text-foreground">under 5 seconds</strong>. Enter the amount, select a category, add an optional note—done. Immediately reflected in your analytics.
+                        </p>
+                      </div>
+                      <div className="pl-4 border-l-3 border-primary/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          Color-coded categories make visual scanning effortless. At a glance, see how much you've spent on groceries versus dining out, or how transportation costs compare to entertainment.
+                        </p>
+                      </div>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-3">
                       {[
@@ -350,16 +374,22 @@ const Welcome = () => {
                     </p>
                   </div>
                   <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 text-muted-foreground mb-6">
-                      <p>
-                        <strong className="text-foreground">Understanding your income is just as important as tracking expenses.</strong> Trackora allows you to record all your income sources—salary, freelance payments, rental income, dividends, gifts, and more—giving you a complete picture of your cash flow.
-                      </p>
-                      <p>
-                        For freelancers and gig workers with variable income, Trackora helps identify patterns. You can see which months are typically higher or lower, plan for lean periods, and calculate your true average monthly income for better budgeting.
-                      </p>
-                      <p>
-                        The income vs. expense comparison shows you exactly how much you're saving (or overspending) each month. This single metric is the foundation of wealth building—knowing whether you're moving forward or falling behind financially.
-                      </p>
+                    <div className="space-y-4 mb-6">
+                      <div className="pl-4 border-l-3 border-secondary/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          <strong className="text-foreground">Understanding your income is just as important as tracking expenses.</strong> Record all your income sources—salary, freelance payments, rental income, dividends, gifts—giving you a complete picture of your cash flow.
+                        </p>
+                      </div>
+                      <div className="rounded-xl bg-muted/50 p-4">
+                        <p className="text-muted-foreground leading-relaxed text-sm">
+                          📈 For freelancers and gig workers: identify which months are typically higher or lower, plan for lean periods, and calculate your <strong className="text-foreground">true average monthly income</strong> for better budgeting.
+                        </p>
+                      </div>
+                      <div className="pl-4 border-l-3 border-secondary/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          The income vs. expense comparison shows you exactly how much you're saving (or overspending) each month—the <strong className="text-foreground">foundation of wealth building</strong>.
+                        </p>
+                      </div>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-3">
                       {[
@@ -404,16 +434,22 @@ const Welcome = () => {
                     </p>
                   </div>
                   <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 text-muted-foreground mb-6">
-                      <p>
-                        <strong className="text-foreground">Managing debt shouldn't feel overwhelming.</strong> Trackora makes it calm and clear by bringing all your loans into one unified view—personal loans, student loans, home loans, car loans, and credit card balances.
-                      </p>
-                      <p>
-                        For each loan, you can track the principal amount, interest rate, monthly EMI, and remaining balance. Trackora calculates how much interest you've paid, how much is remaining, and when you'll be debt-free if you continue current payments.
-                      </p>
-                      <p>
-                        Visual progress bars show your payoff journey, turning what feels like an endless burden into a manageable path with a clear destination. Seeing your debt decrease month by month provides motivation to stay on track or even accelerate payments.
-                      </p>
+                    <div className="space-y-4 mb-6">
+                      <div className="pl-4 border-l-3 border-accent/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          <strong className="text-foreground">Managing debt shouldn't feel overwhelming.</strong> Trackora brings all your loans into one unified view—personal loans, student loans, home loans, car loans, and credit card balances.
+                        </p>
+                      </div>
+                      <div className="rounded-xl bg-muted/50 p-4">
+                        <p className="text-muted-foreground leading-relaxed text-sm">
+                          🎯 Track principal amount, interest rate, monthly EMI, and remaining balance. Know exactly <strong className="text-foreground">when you'll be debt-free</strong> if you continue current payments.
+                        </p>
+                      </div>
+                      <div className="pl-4 border-l-3 border-accent/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          Visual progress bars turn what feels like an endless burden into a <strong className="text-foreground">manageable path with a clear destination</strong>. Seeing debt decrease month by month provides motivation to stay on track.
+                        </p>
+                      </div>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-3">
                       {[
@@ -458,16 +494,22 @@ const Welcome = () => {
                     </p>
                   </div>
                   <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 text-muted-foreground mb-6">
-                      <p>
-                        <strong className="text-foreground">The average person spends ₹2,000-5,000 monthly on subscriptions they barely use.</strong> Streaming services, gym memberships, software tools, cloud storage, magazines—these recurring charges silently drain your bank account without you even noticing.
-                      </p>
-                      <p>
-                        Trackora gives you a unified view of all your subscriptions with their costs and renewal dates. Before each renewal, you receive a notification asking: "Do you still need this?" This simple prompt has helped users cancel forgotten subscriptions worth thousands of rupees per year.
-                      </p>
-                      <p>
-                        The subscription dashboard shows your total monthly and yearly subscription costs. Many users are shocked to discover they're spending ₹40,000+ annually on subscriptions—money that could go toward savings, investments, or experiences that truly matter.
-                      </p>
+                    <div className="space-y-4 mb-6">
+                      <div className="rounded-xl bg-warning/5 p-4 border border-warning/15">
+                        <p className="text-muted-foreground leading-relaxed text-sm">
+                          ⚠️ <strong className="text-foreground">The average person spends ₹2,000-5,000 monthly</strong> on subscriptions they barely use. Streaming, gym, software, cloud storage—these charges silently drain your account.
+                        </p>
+                      </div>
+                      <div className="pl-4 border-l-3 border-primary/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          Trackora gives you a unified view with costs and renewal dates. Before each renewal: <strong className="text-foreground">"Do you still need this?"</strong> This simple prompt has helped users save thousands per year.
+                        </p>
+                      </div>
+                      <div className="pl-4 border-l-3 border-primary/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          Many users are shocked to discover they're spending <strong className="text-foreground">₹40,000+ annually</strong> on subscriptions—money that could go toward savings, investments, or experiences that truly matter.
+                        </p>
+                      </div>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-3">
                       {[
@@ -512,16 +554,22 @@ const Welcome = () => {
                     </p>
                   </div>
                   <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 text-muted-foreground mb-6">
-                      <p>
-                        <strong className="text-foreground">Saving money becomes exciting when you have clear goals to work toward.</strong> Trackora lets you create custom savings goals for anything—an emergency fund, dream vacation, new laptop, wedding, home down payment, or your child's education.
-                      </p>
-                      <p>
-                        Each goal has a target amount and optional deadline. Visual progress rings show how close you are, making every contribution feel rewarding. Research shows that visualizing progress increases the likelihood of reaching goals by over 40%.
-                      </p>
-                      <p>
-                        Trackora provides gentle encouragement and celebrates milestones. Reached 25% of your goal? You'll see a congratulatory message. Hit 50%? The progress ring glows brighter. These small celebrations maintain motivation over the months or years it takes to reach major financial goals.
-                      </p>
+                    <div className="space-y-4 mb-6">
+                      <div className="pl-4 border-l-3 border-secondary/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          <strong className="text-foreground">Saving becomes exciting with clear goals.</strong> Create custom goals for anything—emergency fund, dream vacation, new laptop, wedding, home down payment, or your child's education.
+                        </p>
+                      </div>
+                      <div className="rounded-xl bg-secondary/5 p-4 border border-secondary/10">
+                        <p className="text-muted-foreground leading-relaxed text-sm">
+                          🏆 Visualizing progress increases the likelihood of reaching goals by <strong className="text-foreground">over 40%</strong>. Progress rings make every contribution feel rewarding.
+                        </p>
+                      </div>
+                      <div className="pl-4 border-l-3 border-secondary/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          Reached 25%? Congratulatory message. Hit 50%? The progress ring glows brighter. These <strong className="text-foreground">small celebrations maintain motivation</strong> over the months it takes to reach major financial goals.
+                        </p>
+                      </div>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-3">
                       {[
@@ -566,16 +614,22 @@ const Welcome = () => {
                     </p>
                   </div>
                   <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 text-muted-foreground mb-6">
-                      <p>
-                        <strong className="text-foreground">A budget isn't about restriction—it's about giving every rupee a purpose.</strong> Trackora's budget planning feature helps you allocate your income across different categories, ensuring you're spending on what truly matters to you.
-                      </p>
-                      <p>
-                        Set monthly limits for each category (Food: ₹8,000, Transport: ₹3,000, Entertainment: ₹2,000) or an overall monthly spending limit. As you track expenses, progress bars show how much you've spent versus your limit, with gentle color changes as you approach boundaries.
-                      </p>
-                      <p>
-                        The system is designed to be encouraging, not punitive. Instead of harsh "You're over budget!" warnings, Trackora uses positive language like "You're doing great this month!" or "Consider slowing down on dining out to stay on track." This approach helps build sustainable habits without creating financial anxiety.
-                      </p>
+                    <div className="space-y-4 mb-6">
+                      <div className="pl-4 border-l-3 border-accent/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          <strong className="text-foreground">A budget isn't about restriction—it's about giving every rupee a purpose.</strong> Allocate income across categories, ensuring you spend on what truly matters to you.
+                        </p>
+                      </div>
+                      <div className="rounded-xl bg-muted/50 p-4">
+                        <p className="text-muted-foreground leading-relaxed text-sm">
+                          📋 Set limits per category (Food: ₹8,000, Transport: ₹3,000, Entertainment: ₹2,000) or an <strong className="text-foreground">overall monthly spending limit</strong>. Progress bars show how close you are with gentle color changes.
+                        </p>
+                      </div>
+                      <div className="pl-4 border-l-3 border-accent/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          Designed to be <strong className="text-foreground">encouraging, not punitive</strong>. Instead of harsh warnings, Trackora uses positive language like "You're doing great!" to build sustainable habits without financial anxiety.
+                        </p>
+                      </div>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-3">
                       {[
@@ -619,16 +673,22 @@ const Welcome = () => {
                     </p>
                   </div>
                   <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 text-muted-foreground mb-6">
-                      <p>
-                        <strong className="text-foreground">Data becomes powerful when it's presented clearly.</strong> Trackora transforms your financial data into beautiful, easy-to-understand charts and visualizations that reveal patterns you might never notice otherwise.
-                      </p>
-                      <p>
-                        See monthly spending breakdowns by category with colorful pie charts. Compare income vs expenses over time with trend lines. Identify which months you tend to overspend (holiday season? Summer vacations?) and prepare accordingly.
-                      </p>
-                      <p>
-                        The analytics dashboard shows you insights like "You spent 35% more on dining out this month compared to last month" or "Your utility bills have increased 20% over the past quarter." These actionable insights help you spot issues early and make informed adjustments.
-                      </p>
+                    <div className="space-y-4 mb-6">
+                      <div className="pl-4 border-l-3 border-primary/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          <strong className="text-foreground">Data becomes powerful when presented clearly.</strong> Beautiful charts and visualizations reveal patterns you might never notice otherwise.
+                        </p>
+                      </div>
+                      <div className="pl-4 border-l-3 border-primary/30 py-2">
+                        <p className="text-muted-foreground leading-relaxed">
+                          Colorful pie charts for category breakdowns. Trend lines for income vs expenses. Identify which months you tend to <strong className="text-foreground">overspend</strong> and prepare accordingly.
+                        </p>
+                      </div>
+                      <div className="rounded-xl bg-primary/5 p-4 border border-primary/10">
+                        <p className="text-muted-foreground leading-relaxed text-sm">
+                          💡 Insights like <strong className="text-foreground">"You spent 35% more on dining out this month"</strong> help you spot issues early and make informed adjustments.
+                        </p>
+                      </div>
                     </div>
                     <div className="grid sm:grid-cols-2 gap-3">
                       {[
