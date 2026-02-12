@@ -51,7 +51,7 @@ const Welcome = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 sm:px-6 pt-24 sm:pt-32 pb-12 sm:pb-16 flex flex-col items-center text-center">
+      <section className="container mx-auto px-4 sm:px-6 pt-28 sm:pt-36 pb-16 sm:pb-24 flex flex-col items-center text-center">
         {/* Device Recommendation Notice */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -150,7 +150,7 @@ const Welcome = () => {
       </section>
 
       {/* What is Trackora Section - Educational Introduction */}
-      <section className="py-16 sm:py-24 bg-muted/30">
+      <section className="py-20 sm:py-32 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -183,7 +183,7 @@ const Welcome = () => {
       </section>
 
       {/* Why Expense Tracking Matters - Educational Content */}
-      <section className="py-16 sm:py-24">
+      <section className="py-20 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -276,7 +276,7 @@ const Welcome = () => {
       </section>
 
       {/* Detailed Features Section - High Value Content */}
-      <section className="py-16 sm:py-24 bg-muted/30">
+      <section className="py-20 sm:py-32 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -297,16 +297,16 @@ const Welcome = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-16 sm:mb-20"
           >
             <Card className="overflow-hidden">
               <CardContent className="p-0">
                 <div className="grid lg:grid-cols-5">
-                  <div className="lg:col-span-2 bg-gradient-to-br from-primary/20 to-secondary/20 p-8 flex flex-col justify-center">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-4">
+                  <div className="lg:col-span-2 bg-gradient-to-br from-primary/20 to-secondary/20 p-8 sm:p-10 flex flex-col justify-center">
+                    <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-5">
                       <Wallet className="w-8 h-8 text-primary" />
                     </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-3">
                       💰 Smart Expense Tracking
                     </h3>
                     <p className="text-primary font-medium">
@@ -357,7 +357,7 @@ const Welcome = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-16 sm:mb-20"
           >
             <Card className="overflow-hidden">
               <CardContent className="p-0">
@@ -417,7 +417,7 @@ const Welcome = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-16 sm:mb-20"
           >
             <Card className="overflow-hidden">
               <CardContent className="p-0">
@@ -477,7 +477,7 @@ const Welcome = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-16 sm:mb-20"
           >
             <Card className="overflow-hidden">
               <CardContent className="p-0">
@@ -537,7 +537,7 @@ const Welcome = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-16 sm:mb-20"
           >
             <Card className="overflow-hidden">
               <CardContent className="p-0">
@@ -597,7 +597,7 @@ const Welcome = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12"
+            className="mb-16 sm:mb-20"
           >
             <Card className="overflow-hidden">
               <CardContent className="p-0">
@@ -714,7 +714,7 @@ const Welcome = () => {
       </section>
 
       {/* Who Uses Trackora - Use Cases */}
-      <section className="py-16 sm:py-24">
+      <section className="py-20 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -730,7 +730,7 @@ const Welcome = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 icon: GraduationCap,
@@ -792,7 +792,7 @@ const Welcome = () => {
       </section>
 
       {/* Security Section */}
-      <section className="py-16 sm:py-24 bg-gradient-to-br from-foreground to-foreground/95 text-background">
+      <section className="py-20 sm:py-32 bg-gradient-to-br from-foreground to-foreground/95 text-background">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -808,7 +808,7 @@ const Welcome = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {[
               { icon: Shield, title: "256-bit Encryption", desc: "The same encryption standard used by major banks protects all your data in transit and at rest." },
               { icon: Lock, title: "Privacy First", desc: "We never sell or share your data. Your financial information belongs to you and only you." },
@@ -846,7 +846,7 @@ const Welcome = () => {
       </section>
 
       {/* How to Get Started */}
-      <section className="py-16 sm:py-24">
+      <section className="py-20 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -862,7 +862,7 @@ const Welcome = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto">
             {[
               { 
                 step: "1", 
@@ -914,7 +914,7 @@ const Welcome = () => {
       </section>
 
       {/* Educational Resources Preview */}
-      <section className="py-16 sm:py-24 bg-muted/30">
+      <section className="py-20 sm:py-32 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -934,7 +934,7 @@ const Welcome = () => {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
             {[
               { icon: BookOpen, title: "Budgeting Guide", desc: "Master the art of creating and maintaining budgets that work for your lifestyle", link: "/budgeting-guide" },
               { icon: Target, title: "Savings Guide", desc: "Proven strategies for building savings and reaching your financial goals faster", link: "/savings-guide" },
@@ -966,7 +966,7 @@ const Welcome = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="py-16 sm:py-24">
+      <section className="py-20 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
