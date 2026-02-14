@@ -6,10 +6,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { 
   Shield, Lock, Globe, Zap, ArrowRight, DollarSign, Repeat, Target, 
-  BarChart3, Smartphone, Laptop, CheckCircle2, TrendingUp, Wallet, 
-  PieChart, Clock, Sparkles, BookOpen, GraduationCap, Calculator, 
-  CreditCard, Bell, LineChart, Lightbulb, Users, Home, Briefcase,
-  FileText, AlertCircle, Calendar
+  BarChart3, CheckCircle2, TrendingUp, Wallet, 
+  PieChart, Sparkles, BookOpen, GraduationCap, Calculator, 
+  CreditCard, Bell, Lightbulb, Users, Home, Briefcase,
+  FileText, Flame, Trophy, Star, Gamepad2, Rocket, Gift, Medal
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Footer } from "@/components/Footer";
@@ -23,9 +23,9 @@ const Welcome = () => {
   return (
     <>
       <SEOHead
-        title="Trackora - Smart Expense Tracker & Budget Analytics Platform"
-        description="Take control of your finances with Trackora. Track daily expenses, manage loans, monitor subscriptions, set savings goals, and get clear spending insights. Free to use."
-        keywords="expense tracker, budget analytics, personal finance, track expenses, financial planning, savings goals, loan tracker, subscription management"
+        title="Trackora – Manage Money Like a Game | Smart Expense Tracker"
+        description="Track expenses, earn XP, build streaks, and level up your financial life. Trackora turns personal finance into a fun daily challenge. Free to use."
+        keywords="expense tracker, gamified finance, budget game, personal finance, track expenses, XP rewards, savings goals, financial challenges"
         canonicalUrl="https://trackorapp.in"
       />
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
@@ -34,738 +34,425 @@ const Welcome = () => {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-border">
         <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
-          <span className="font-bold text-xl sm:text-2xl text-foreground">
-            Trackora
-          </span>
+          <div className="flex items-center gap-2">
+            <Gamepad2 className="h-6 w-6 text-primary" />
+            <span className="font-bold text-xl sm:text-2xl text-foreground">
+              Trackora
+            </span>
+          </div>
           <div className="flex items-center gap-2 sm:gap-3">
+            <Link to="/blog">
+              <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
+                Blog
+              </Button>
+            </Link>
+            <Link to="/about">
+              <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
+                About
+              </Button>
+            </Link>
             <Button 
               onClick={enterAsGuest} 
               variant="ghost" 
               className="hidden sm:inline-flex font-semibold"
             >
-              Enter
+              Explore Demo
             </Button>
             <ThemeToggle />
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 sm:px-6 pt-28 sm:pt-36 pb-16 sm:pb-24 flex flex-col items-center text-center">
-        {/* Device Recommendation Notice */}
+      {/* ═══════════ HERO SECTION ═══════════ */}
+      <section className="container mx-auto px-4 sm:px-6 pt-28 sm:pt-40 pb-20 sm:pb-32 flex flex-col items-center text-center">
+        {/* Game badge */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-6 sm:mb-8"
+          className="mb-8"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-border text-xs sm:text-sm text-muted-foreground">
-            <Laptop className="h-4 w-4" />
-            <span>For best experience, use laptop or tablet</span>
-            <Smartphone className="h-4 w-4" />
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/10 border border-primary/20 text-sm font-semibold text-primary">
+            <Sparkles className="h-4 w-4" />
+            Finance Meets Fun
+            <Flame className="h-4 w-4 text-warning" />
           </div>
         </motion.div>
 
-        {/* Featured Slogan */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative mb-8 sm:mb-12 w-full max-w-4xl"
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent opacity-20 blur-3xl rounded-full" />
-          <div className="relative px-4 sm:px-8 py-4 sm:py-6 rounded-2xl sm:rounded-3xl border-2 border-primary/30 bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 backdrop-blur-sm">
-            <p className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
-              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-                "All the power of an app.
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent">
-                Without installing."
-              </span>
-            </p>
-          </div>
-        </motion.div>
-
-        {/* Main Headline */}
+        {/* Main headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl mb-4 sm:mb-6 px-2"
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-5xl mb-6 sm:mb-8 px-2"
         >
-          Financial Clarity.{" "}
-          <span className="text-primary">Zero Stress.</span>
+          Manage Money{" "}
+          <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            Like a Game
+          </span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-sm sm:text-lg md:text-xl text-muted-foreground max-w-2xl mb-8 sm:mb-10 px-4"
+          transition={{ delay: 0.35, duration: 0.6 }}
+          className="text-base sm:text-xl text-muted-foreground max-w-2xl mb-10 sm:mb-14 px-4 leading-relaxed"
         >
-          Track expenses, manage debts, monitor subscriptions, and achieve your savings goals—all in one beautiful web app.
+          Track expenses, earn XP, build streaks, and improve your financial life daily. 
+          Trackora turns budgeting into a rewarding challenge you'll actually enjoy.
         </motion.p>
 
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center mb-8 sm:mb-12 w-full sm:w-auto px-4 sm:px-0"
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="flex flex-col sm:flex-row gap-4 items-center mb-10 w-full sm:w-auto px-4 sm:px-0"
         >
           <Button
             onClick={enterAsGuest}
             size="lg"
-            className="w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-xl sm:rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-primary to-secondary hover:opacity-90"
+            className="w-full sm:w-auto text-base sm:text-lg px-10 py-7 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-primary to-secondary hover:opacity-90"
           >
-            Start Free Today
-            <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+            <Rocket className="mr-2 h-5 w-5" />
+            Start Tracking Free
           </Button>
           <Button
             variant="outline"
             size="lg"
             onClick={enterAsGuest}
-            className="w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-6 sm:py-7 rounded-xl sm:rounded-2xl border-2 border-primary/50 hover:bg-primary/10 font-semibold"
+            className="w-full sm:w-auto text-base sm:text-lg px-10 py-7 rounded-2xl border-2 border-primary/40 hover:bg-primary/10 font-semibold"
           >
-            Enter
+            <Gamepad2 className="mr-2 h-5 w-5" />
+            Explore Demo
           </Button>
         </motion.div>
 
-        {/* Support Notice */}
+        {/* Trust bar */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-primary/10 border border-primary/30 mx-4"
+          transition={{ delay: 0.7, duration: 0.6 }}
+          className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
         >
-          <p className="text-xs sm:text-sm font-medium">
-            <span className="text-primary font-bold">✓ Free to Use</span>{" "}
-            — Questions? Contact{" "}
-            <a href="mailto:pla.team@cadliotech.com" className="text-primary underline font-semibold">
-              pla.team@cadliotech.com
-            </a>
-          </p>
+          {[
+            { icon: Shield, text: "Bank-level security" },
+            { icon: Zap, text: "No app install needed" },
+            { icon: Gift, text: "100% free to use" },
+          ].map((item) => (
+            <div key={item.text} className="flex items-center gap-2">
+              <item.icon className="h-4 w-4 text-primary" />
+              <span>{item.text}</span>
+            </div>
+          ))}
         </motion.div>
       </section>
 
-      {/* What is Trackora Section - Educational Introduction */}
+      {/* ═══════════ HOW IT WORKS (3 Steps) ═══════════ */}
       <section className="py-20 sm:py-32 bg-muted/30">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center mb-12"
+            className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
-              What is Trackora?
-            </h2>
-            <div className="text-base sm:text-lg space-y-5 text-left">
-              <div className="relative pl-5 border-l-4 border-primary/40 py-3 px-4 rounded-r-xl bg-primary/5">
-                <p className="text-muted-foreground leading-relaxed">
-                  <strong className="text-foreground">Trackora is a comprehensive personal finance management platform</strong> designed to help individuals and families take complete control of their money. Unlike simple expense trackers that only record transactions, Trackora provides a complete financial ecosystem where you can manage daily expenses, track multiple income sources, monitor loan repayments, control subscription costs, and work toward meaningful savings goals.
-                </p>
-              </div>
-              <div className="relative pl-5 border-l-4 border-secondary/40 py-3 px-4 rounded-r-xl bg-secondary/5">
-                <p className="text-muted-foreground leading-relaxed">
-                  Whether you're a college student managing a tight budget, a working professional juggling multiple financial responsibilities, or a family planning for the future, Trackora adapts to your unique financial situation. The platform is built on the principle that <strong className="text-foreground">financial clarity leads to better decisions</strong>, and better decisions lead to financial freedom.
-                </p>
-              </div>
-              <div className="relative pl-5 border-l-4 border-accent/40 py-3 px-4 rounded-r-xl bg-accent/5">
-                <p className="text-muted-foreground leading-relaxed">
-                  <strong className="text-foreground">Key benefits you'll experience:</strong> Instantly see where your money goes each month, identify spending patterns you weren't aware of, receive gentle alerts before subscription renewals, track your debt payoff journey with visual progress indicators, and celebrate milestones as you reach your savings targets.
-                </p>
-              </div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
+              <Rocket className="h-4 w-4" />
+              Simple to Start
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why Expense Tracking Matters - Educational Content */}
-      <section className="py-20 sm:py-32">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              <Lightbulb className="h-4 w-4" />
-              Financial Education
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-              Why Tracking Expenses Matters
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
+              How Trackora Works
             </h2>
-            <p className="text-muted-foreground text-sm sm:text-lg max-w-3xl mx-auto">
-              Understanding where your money goes is the foundation of financial wellness
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
+              Three simple steps to turn your finances into a rewarding daily habit
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full">
-                <CardContent className="p-6 sm:p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 rounded-lg bg-destructive/10">
-                      <AlertCircle className="h-6 w-6 text-destructive" />
-                    </div>
-                    <h3 className="text-xl font-bold">The Problem</h3>
+          <div className="grid md:grid-cols-3 gap-8 sm:gap-12 max-w-5xl mx-auto">
+            {[
+              {
+                step: "1",
+                icon: Wallet,
+                title: "Add an Expense or Income",
+                desc: "Log your daily transactions in seconds. Quick-add buttons and smart categories make data entry effortless—it takes less than 5 seconds per entry.",
+                color: "primary",
+              },
+              {
+                step: "2",
+                icon: Star,
+                title: "Earn XP & Level Up",
+                desc: "Every action earns experience points. Adding expenses gives +10 XP, income +15 XP, savings progress +20 XP. Watch your level grow as you build better habits.",
+                color: "secondary",
+              },
+              {
+                step: "3",
+                icon: Trophy,
+                title: "Complete Missions & Grow",
+                desc: "Take on daily finance challenges—log all expenses, stay under budget, maintain streaks. Unlock badges and see your financial skills improve over time.",
+                color: "accent",
+              },
+            ].map((item, idx) => (
+              <motion.div
+                key={item.step}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.15 }}
+                className="text-center"
+              >
+                <div className={`w-20 h-20 mx-auto mb-6 rounded-2xl bg-${item.color}/10 border-2 border-${item.color}/20 flex items-center justify-center relative`}>
+                  <item.icon className={`w-9 h-9 text-${item.color}`} />
+                  <div className={`absolute -top-3 -right-3 w-8 h-8 rounded-full bg-${item.color} flex items-center justify-center text-sm font-bold text-${item.color}-foreground shadow-lg`}>
+                    {item.step}
                   </div>
-                  <div className="space-y-4">
-                    <div className="pl-4 border-l-3 border-destructive/30 py-2">
-                      <p className="text-muted-foreground leading-relaxed">
-                        Studies show that most people have no clear idea where their money actually goes. Small daily purchases—a coffee here, a snack there, an impulse buy online—add up to <strong className="text-foreground">hundreds or even thousands of rupees</strong> each month that simply "disappear."
-                      </p>
-                    </div>
-                    <div className="pl-4 border-l-3 border-destructive/30 py-2">
-                      <p className="text-muted-foreground leading-relaxed">
-                        Without tracking, you might believe you're spending ₹5,000 on food when you're actually spending ₹12,000. This <strong className="text-foreground">gap between perception and reality</strong> prevents people from saving money, paying off debts, and reaching their financial goals.
-                      </p>
-                    </div>
-                    <div className="rounded-xl bg-destructive/5 p-4 border border-destructive/10">
-                      <p className="text-muted-foreground leading-relaxed text-sm">
-                        💡 Many people avoid tracking because traditional methods are tedious—spreadsheets are time-consuming, and most apps are either too complex or too limited. This creates a cycle where financial awareness remains low.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full border-primary/20">
-                <CardContent className="p-6 sm:p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 rounded-lg bg-primary/10">
-                      <CheckCircle2 className="h-6 w-6 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-bold">The Solution</h3>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="pl-4 border-l-3 border-primary/30 py-2">
-                      <p className="text-muted-foreground leading-relaxed">
-                        <strong className="text-foreground">Trackora makes financial awareness effortless.</strong> By providing quick-add features, intelligent categorization, and beautiful visualizations, tracking becomes a natural part of your daily routine—taking seconds, not minutes.
-                      </p>
-                    </div>
-                    <div className="pl-4 border-l-3 border-primary/30 py-2">
-                      <p className="text-muted-foreground leading-relaxed">
-                        When you can clearly see that dining out costs ₹8,000/month while groceries cost ₹4,000, you gain the power to make <strong className="text-foreground">informed choices</strong>. Maybe you decide to cook more often, or maybe you realize dining out brings you joy worth the cost. Either way, you're in control.
-                      </p>
-                    </div>
-                    <div className="rounded-xl bg-primary/5 p-4 border border-primary/10">
-                      <p className="text-muted-foreground leading-relaxed text-sm">
-                        📊 Research shows that simply becoming aware of spending patterns leads to a natural <strong className="text-foreground">15-20% reduction</strong> in unnecessary expenses—without any strict budgeting rules.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold mb-3">{item.title}</h3>
+                <p className="text-muted-foreground leading-relaxed max-w-sm mx-auto">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Detailed Features Section - High Value Content */}
-      <section className="py-20 sm:py-32 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-              Complete Financial Management Features
-            </h2>
-            <p className="text-muted-foreground text-sm sm:text-lg max-w-3xl mx-auto">
-              Every tool you need to understand, manage, and grow your finances—explained in detail
-            </p>
-          </motion.div>
-
-          {/* Feature 1: Expense Tracking */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16 sm:mb-20"
-          >
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="grid lg:grid-cols-5">
-                  <div className="lg:col-span-2 bg-gradient-to-br from-primary/20 to-secondary/20 p-8 sm:p-10 flex flex-col justify-center">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-5">
-                      <Wallet className="w-8 h-8 text-primary" />
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-3">
-                      💰 Smart Expense Tracking
-                    </h3>
-                    <p className="text-primary font-medium">
-                      Every rupee accounted for—without effort
-                    </p>
-                  </div>
-                  <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 mb-6">
-                      <div className="pl-4 border-l-3 border-primary/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          <strong className="text-foreground">Record daily expenses with minimal effort.</strong> By automatically categorizing transactions, you can identify spending habits and reduce unnecessary costs without spending hours on manual data entry.
-                        </p>
-                      </div>
-                      <div className="rounded-xl bg-muted/50 p-4">
-                        <p className="text-muted-foreground leading-relaxed text-sm">
-                          ⚡ The quick-add feature lets you log expenses in <strong className="text-foreground">under 5 seconds</strong>. Enter the amount, select a category, add an optional note—done. Immediately reflected in your analytics.
-                        </p>
-                      </div>
-                      <div className="pl-4 border-l-3 border-primary/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          Color-coded categories make visual scanning effortless. At a glance, see how much you've spent on groceries versus dining out, or how transportation costs compare to entertainment.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {[
-                        "Quick-add buttons for common expenses",
-                        "Intelligent auto-categorization",
-                        "Color-coded category visualization",
-                        "Add notes and custom tags",
-                        "Filter by date, category, or amount",
-                        "Edit or delete any transaction easily"
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm">
-                          <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Feature 2: Income Tracking */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16 sm:mb-20"
-          >
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="grid lg:grid-cols-5">
-                  <div className="lg:col-span-2 bg-gradient-to-br from-secondary/20 to-accent/20 p-8 flex flex-col justify-center">
-                    <div className="w-16 h-16 rounded-2xl bg-secondary/20 flex items-center justify-center mb-4">
-                      <TrendingUp className="w-8 h-8 text-secondary" />
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">
-                      📈 Income Tracking
-                    </h3>
-                    <p className="text-secondary font-medium">
-                      See the complete picture of your earnings
-                    </p>
-                  </div>
-                  <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 mb-6">
-                      <div className="pl-4 border-l-3 border-secondary/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          <strong className="text-foreground">Understanding your income is just as important as tracking expenses.</strong> Record all your income sources—salary, freelance payments, rental income, dividends, gifts—giving you a complete picture of your cash flow.
-                        </p>
-                      </div>
-                      <div className="rounded-xl bg-muted/50 p-4">
-                        <p className="text-muted-foreground leading-relaxed text-sm">
-                          📈 For freelancers and gig workers: identify which months are typically higher or lower, plan for lean periods, and calculate your <strong className="text-foreground">true average monthly income</strong> for better budgeting.
-                        </p>
-                      </div>
-                      <div className="pl-4 border-l-3 border-secondary/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          The income vs. expense comparison shows you exactly how much you're saving (or overspending) each month—the <strong className="text-foreground">foundation of wealth building</strong>.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {[
-                        "Track multiple income sources",
-                        "Categorize by type (salary, freelance, etc.)",
-                        "Monthly income summaries",
-                        "Income vs expense comparison",
-                        "Identify seasonal patterns",
-                        "Plan for variable income"
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm">
-                          <CheckCircle2 className="h-4 w-4 text-secondary flex-shrink-0" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Feature 3: Loans & Debts */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16 sm:mb-20"
-          >
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="grid lg:grid-cols-5">
-                  <div className="lg:col-span-2 bg-gradient-to-br from-accent/20 to-primary/20 p-8 flex flex-col justify-center">
-                    <div className="w-16 h-16 rounded-2xl bg-accent/20 flex items-center justify-center mb-4">
-                      <DollarSign className="w-8 h-8 text-accent" />
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">
-                      💳 Loans & Debt Tracker
-                    </h3>
-                    <p className="text-accent font-medium">
-                      Breathe easy with complete debt visibility
-                    </p>
-                  </div>
-                  <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 mb-6">
-                      <div className="pl-4 border-l-3 border-accent/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          <strong className="text-foreground">Managing debt shouldn't feel overwhelming.</strong> Trackora brings all your loans into one unified view—personal loans, student loans, home loans, car loans, and credit card balances.
-                        </p>
-                      </div>
-                      <div className="rounded-xl bg-muted/50 p-4">
-                        <p className="text-muted-foreground leading-relaxed text-sm">
-                          🎯 Track principal amount, interest rate, monthly EMI, and remaining balance. Know exactly <strong className="text-foreground">when you'll be debt-free</strong> if you continue current payments.
-                        </p>
-                      </div>
-                      <div className="pl-4 border-l-3 border-accent/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          Visual progress bars turn what feels like an endless burden into a <strong className="text-foreground">manageable path with a clear destination</strong>. Seeing debt decrease month by month provides motivation to stay on track.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {[
-                        "Track all loan types in one place",
-                        "Monitor interest rates and total interest paid",
-                        "EMI payment reminders",
-                        "Visualize debt payoff timelines",
-                        "Track multiple creditors",
-                        "Calculate total debt burden"
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm">
-                          <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Feature 4: Subscriptions */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16 sm:mb-20"
-          >
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="grid lg:grid-cols-5">
-                  <div className="lg:col-span-2 bg-gradient-to-br from-primary/20 to-accent/20 p-8 flex flex-col justify-center">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-4">
-                      <Repeat className="w-8 h-8 text-primary" />
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">
-                      🔄 Subscription Management
-                    </h3>
-                    <p className="text-primary font-medium">
-                      No more surprise charges—ever
-                    </p>
-                  </div>
-                  <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 mb-6">
-                      <div className="rounded-xl bg-warning/5 p-4 border border-warning/15">
-                        <p className="text-muted-foreground leading-relaxed text-sm">
-                          ⚠️ <strong className="text-foreground">The average person spends ₹2,000-5,000 monthly</strong> on subscriptions they barely use. Streaming, gym, software, cloud storage—these charges silently drain your account.
-                        </p>
-                      </div>
-                      <div className="pl-4 border-l-3 border-primary/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          Trackora gives you a unified view with costs and renewal dates. Before each renewal: <strong className="text-foreground">"Do you still need this?"</strong> This simple prompt has helped users save thousands per year.
-                        </p>
-                      </div>
-                      <div className="pl-4 border-l-3 border-primary/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          Many users are shocked to discover they're spending <strong className="text-foreground">₹40,000+ annually</strong> on subscriptions—money that could go toward savings, investments, or experiences that truly matter.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {[
-                        "All subscriptions in one view",
-                        "Alerts before auto-renewals",
-                        "Total monthly & yearly costs",
-                        "Identify unused subscriptions",
-                        "Track billing cycles",
-                        "Different payment method tracking"
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm">
-                          <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Feature 5: Savings Goals */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16 sm:mb-20"
-          >
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="grid lg:grid-cols-5">
-                  <div className="lg:col-span-2 bg-gradient-to-br from-secondary/20 to-primary/20 p-8 flex flex-col justify-center">
-                    <div className="w-16 h-16 rounded-2xl bg-secondary/20 flex items-center justify-center mb-4">
-                      <Target className="w-8 h-8 text-secondary" />
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">
-                      🎯 Savings Goals
-                    </h3>
-                    <p className="text-secondary font-medium">
-                      Celebrate every step toward your dreams
-                    </p>
-                  </div>
-                  <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 mb-6">
-                      <div className="pl-4 border-l-3 border-secondary/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          <strong className="text-foreground">Saving becomes exciting with clear goals.</strong> Create custom goals for anything—emergency fund, dream vacation, new laptop, wedding, home down payment, or your child's education.
-                        </p>
-                      </div>
-                      <div className="rounded-xl bg-secondary/5 p-4 border border-secondary/10">
-                        <p className="text-muted-foreground leading-relaxed text-sm">
-                          🏆 Visualizing progress increases the likelihood of reaching goals by <strong className="text-foreground">over 40%</strong>. Progress rings make every contribution feel rewarding.
-                        </p>
-                      </div>
-                      <div className="pl-4 border-l-3 border-secondary/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          Reached 25%? Congratulatory message. Hit 50%? The progress ring glows brighter. These <strong className="text-foreground">small celebrations maintain motivation</strong> over the months it takes to reach major financial goals.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {[
-                        "Create unlimited savings goals",
-                        "Visual progress rings",
-                        "Set target amounts and deadlines",
-                        "Track contributions over time",
-                        "Milestone celebrations",
-                        "Priority ordering for multiple goals"
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm">
-                          <CheckCircle2 className="h-4 w-4 text-secondary flex-shrink-0" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Feature 6: Budget Planning */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-16 sm:mb-20"
-          >
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="grid lg:grid-cols-5">
-                  <div className="lg:col-span-2 bg-gradient-to-br from-accent/20 to-secondary/20 p-8 flex flex-col justify-center">
-                    <div className="w-16 h-16 rounded-2xl bg-accent/20 flex items-center justify-center mb-4">
-                      <Calculator className="w-8 h-8 text-accent" />
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">
-                      📊 Budget Planning
-                    </h3>
-                    <p className="text-accent font-medium">
-                      Spend intentionally, not accidentally
-                    </p>
-                  </div>
-                  <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 mb-6">
-                      <div className="pl-4 border-l-3 border-accent/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          <strong className="text-foreground">A budget isn't about restriction—it's about giving every rupee a purpose.</strong> Allocate income across categories, ensuring you spend on what truly matters to you.
-                        </p>
-                      </div>
-                      <div className="rounded-xl bg-muted/50 p-4">
-                        <p className="text-muted-foreground leading-relaxed text-sm">
-                          📋 Set limits per category (Food: ₹8,000, Transport: ₹3,000, Entertainment: ₹2,000) or an <strong className="text-foreground">overall monthly spending limit</strong>. Progress bars show how close you are with gentle color changes.
-                        </p>
-                      </div>
-                      <div className="pl-4 border-l-3 border-accent/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          Designed to be <strong className="text-foreground">encouraging, not punitive</strong>. Instead of harsh warnings, Trackora uses positive language like "You're doing great!" to build sustainable habits without financial anxiety.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {[
-                        "Category-wise budget limits",
-                        "Overall monthly spending limits",
-                        "Visual progress bars",
-                        "Gentle approaching-limit alerts",
-                        "Historical budget comparison",
-                        "Auto-suggestions based on history"
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm">
-                          <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Feature 7: Analytics & Insights */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="grid lg:grid-cols-5">
-                  <div className="lg:col-span-2 bg-gradient-to-br from-primary/20 to-secondary/20 p-8 flex flex-col justify-center">
-                    <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-4">
-                      <BarChart3 className="w-8 h-8 text-primary" />
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-2">
-                      📈 Analytics & Insights
-                    </h3>
-                    <p className="text-primary font-medium">
-                      Numbers that help, not stress
-                    </p>
-                  </div>
-                  <div className="lg:col-span-3 p-8">
-                    <div className="space-y-4 mb-6">
-                      <div className="pl-4 border-l-3 border-primary/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          <strong className="text-foreground">Data becomes powerful when presented clearly.</strong> Beautiful charts and visualizations reveal patterns you might never notice otherwise.
-                        </p>
-                      </div>
-                      <div className="pl-4 border-l-3 border-primary/30 py-2">
-                        <p className="text-muted-foreground leading-relaxed">
-                          Colorful pie charts for category breakdowns. Trend lines for income vs expenses. Identify which months you tend to <strong className="text-foreground">overspend</strong> and prepare accordingly.
-                        </p>
-                      </div>
-                      <div className="rounded-xl bg-primary/5 p-4 border border-primary/10">
-                        <p className="text-muted-foreground leading-relaxed text-sm">
-                          💡 Insights like <strong className="text-foreground">"You spent 35% more on dining out this month"</strong> help you spot issues early and make informed adjustments.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {[
-                        "Category spending breakdown",
-                        "Monthly trend analysis",
-                        "Income vs expense comparison",
-                        "Spending pattern identification",
-                        "Export reports (CSV/JSON)",
-                        "Historical data access"
-                      ].map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm">
-                          <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
-                          <span>{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Who Uses Trackora - Use Cases */}
+      {/* ═══════════ FEATURES SECTION (Cards) ═══════════ */}
       <section className="py-20 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
+              Everything You Need to Win at Money
+            </h2>
+            <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto">
+              Powerful tools wrapped in a fun experience—track, analyze, and improve every aspect of your finances
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                icon: Wallet,
+                title: "Expense Tracking",
+                desc: "Record daily expenses in seconds with smart categories, quick-add buttons, and color-coded visualizations. Know exactly where every rupee goes.",
+                color: "primary",
+                xp: "+10 XP per entry",
+              },
+              {
+                icon: TrendingUp,
+                title: "Income Logging",
+                desc: "Track all income sources—salary, freelance, side hustles. Compare income vs spending monthly and identify your true savings rate.",
+                color: "secondary",
+                xp: "+15 XP per entry",
+              },
+              {
+                icon: Target,
+                title: "Savings Goals",
+                desc: "Set goals for vacations, emergencies, or big purchases. Visual progress bars and milestone celebrations keep you motivated to save.",
+                color: "accent",
+                xp: "+20 XP per update",
+              },
+              {
+                icon: Star,
+                title: "XP & Level System",
+                desc: "Every financial action earns experience points. Level up from Beginner to Finance Master as you build consistent money habits.",
+                color: "warning",
+                xp: "Level up rewards",
+              },
+              {
+                icon: Flame,
+                title: "Daily Streak Rewards",
+                desc: "Log in daily and track expenses to build a streak. The longer you maintain it, the faster you earn XP and unlock exclusive badges.",
+                color: "destructive",
+                xp: "+5 XP daily login",
+              },
+              {
+                icon: Trophy,
+                title: "Finance Challenges",
+                desc: "Complete daily missions like 'Stay under budget today' or 'Track expenses 3 days in a row' to earn badges and boost your rank.",
+                color: "primary",
+                xp: "Badge rewards",
+              },
+            ].map((feature, idx) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.08 }}
+              >
+                <Card className="h-full hover-lift group">
+                  <CardContent className="p-7 sm:p-8">
+                    <div className="flex items-start justify-between mb-5">
+                      <div className={`p-3 rounded-xl bg-${feature.color}/10 group-hover:bg-${feature.color}/20 transition-colors`}>
+                        <feature.icon className={`h-7 w-7 text-${feature.color}`} />
+                      </div>
+                      <span className={`text-xs font-semibold px-3 py-1 rounded-full bg-${feature.color}/10 text-${feature.color}`}>
+                        {feature.xp}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed">{feature.desc}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Additional feature row */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto mt-8">
+            {[
+              { icon: Repeat, title: "Subscriptions", desc: "Track recurring charges, get alerts before renewals, and cut wasted spending." },
+              { icon: DollarSign, title: "Loan Tracker", desc: "Monitor all debts with progress bars showing your payoff journey." },
+              { icon: Calculator, title: "Budget Planning", desc: "Set category limits and overall monthly budgets with visual progress." },
+              { icon: BarChart3, title: "Smart Analytics", desc: "Charts and insights that reveal spending patterns and opportunities." },
+            ].map((item, idx) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.08 }}
+              >
+                <Card className="h-full hover-lift">
+                  <CardContent className="p-6">
+                    <div className="p-2.5 rounded-lg bg-muted w-fit mb-4">
+                      <item.icon className="h-5 w-5 text-foreground" />
+                    </div>
+                    <h3 className="font-bold mb-2">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ WHY TRACKORA IS DIFFERENT ═══════════ */}
+      <section className="py-20 sm:py-32 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary text-sm font-medium mb-4">
+                <Lightbulb className="h-4 w-4" />
+                Our Philosophy
+              </div>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-6">
+                Why Trackora is Different
+              </h2>
+            </div>
+
+            <div className="space-y-6">
+              <div className="relative pl-6 border-l-4 border-primary/40 py-4 px-5 rounded-r-2xl bg-primary/5">
+                <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
+                  <strong className="text-foreground">Most finance apps feel like homework.</strong> They're boring spreadsheets with a prettier interface. You open them once, feel guilty about your spending, and never return. That's not how lasting financial habits are built.
+                </p>
+              </div>
+
+              <div className="relative pl-6 border-l-4 border-secondary/40 py-4 px-5 rounded-r-2xl bg-secondary/5">
+                <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
+                  <strong className="text-foreground">Trackora uses gamification to change that.</strong> By rewarding every positive financial action with XP, streaks, levels, and badges, we tap into the same psychology that makes games addictive—but channel it toward building wealth. When tracking expenses earns you points and maintaining a budget unlocks a new badge, managing money stops feeling like a chore and starts feeling like progress.
+                </p>
+              </div>
+
+              <div className="relative pl-6 border-l-4 border-accent/40 py-4 px-5 rounded-r-2xl bg-accent/5">
+                <p className="text-muted-foreground leading-relaxed text-base sm:text-lg">
+                  <strong className="text-foreground">The result?</strong> Users who gamify their finances are significantly more likely to stick with tracking long-term. Daily missions give you a reason to open the app. Streaks create accountability. Level-ups celebrate consistency. And before you know it, you've built habits that genuinely improve your financial life—not because you forced yourself, but because it was <strong className="text-foreground">actually fun</strong>.
+                </p>
+              </div>
+            </div>
+
+            {/* Gamification stats */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-10">
+              {[
+                { value: "10+", label: "Levels to unlock" },
+                { value: "15+", label: "Badges to earn" },
+                { value: "5+", label: "Daily missions" },
+                { value: "∞", label: "XP to collect" },
+              ].map((stat, idx) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="text-center p-5 rounded-2xl bg-card border border-border"
+                >
+                  <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                    {stat.value}
+                  </p>
+                  <p className="text-xs sm:text-sm text-muted-foreground mt-1">{stat.label}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════ WHO USES TRACKORA ═══════════ */}
+      <section className="py-20 sm:py-32">
+        <div className="container mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-14"
+          >
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
               Who Uses Trackora?
             </h2>
-            <p className="text-muted-foreground text-sm sm:text-lg max-w-3xl mx-auto">
+            <p className="text-muted-foreground text-base sm:text-lg max-w-3xl mx-auto">
               Real people with real financial goals—Trackora adapts to every situation
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
             {[
               {
                 icon: GraduationCap,
                 title: "Students",
-                description: "Managing limited budgets on hostel fees, food, books, and entertainment while building financial habits that last a lifetime. Track part-time job income, control impulse spending, and save for future goals.",
+                description: "Managing limited budgets on hostel fees, food, books, and entertainment while building financial habits that last a lifetime. Track part-time job income and save for future goals.",
                 color: "primary"
               },
               {
                 icon: Briefcase,
                 title: "Working Professionals",
-                description: "Balancing salary, bonuses, and side income while managing EMIs, rent, subscriptions, and lifestyle expenses. Trackora helps you see where your paycheck actually goes each month.",
+                description: "Balancing salary, bonuses, and side income while managing EMIs, rent, subscriptions, and lifestyle expenses. See where your paycheck actually goes each month.",
                 color: "secondary"
               },
               {
                 icon: Home,
                 title: "Families",
-                description: "Managing household budgets, children's education expenses, family vacations, and long-term savings. Coordinate spending across family members and plan for major milestones together.",
+                description: "Managing household budgets, children's education expenses, family vacations, and long-term savings. Plan for major milestones together with shared visibility.",
                 color: "accent"
               },
               {
                 icon: Users,
                 title: "Freelancers",
-                description: "Handling variable income, tracking business expenses for tax purposes, and maintaining financial stability despite irregular payment schedules. Know your true monthly average and plan accordingly.",
+                description: "Handling variable income, tracking business expenses, and maintaining stability despite irregular payment schedules. Know your true monthly average.",
                 color: "primary"
               },
               {
                 icon: CreditCard,
                 title: "Debt-Free Seekers",
-                description: "Actively paying down loans, credit cards, or other debts. Use the loan tracker to visualize your payoff journey, stay motivated, and accelerate your path to financial freedom.",
+                description: "Actively paying down loans or credit cards. Use the loan tracker to visualize your payoff journey and accelerate your path to financial freedom.",
                 color: "secondary"
               },
               {
                 icon: Target,
                 title: "Goal Setters",
-                description: "Saving for specific targets—dream vacations, new gadgets, wedding, home down payment, or emergency funds. Visual progress tracking keeps you motivated and on track.",
+                description: "Saving for dream vacations, new gadgets, weddings, or emergency funds. Visual progress tracking and XP rewards keep you motivated and on track.",
                 color: "accent"
               }
             ].map((useCase, idx) => (
@@ -774,11 +461,11 @@ const Welcome = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                transition={{ delay: idx * 0.08 }}
               >
-                <Card className={`h-full hover:shadow-lg transition-shadow border-l-4 border-l-${useCase.color}`}>
-                  <CardContent className="p-6">
-                    <div className={`p-3 rounded-lg bg-${useCase.color}/10 w-fit mb-4`}>
+                <Card className={`h-full hover-lift border-l-4 border-l-${useCase.color}`}>
+                  <CardContent className="p-7">
+                    <div className={`p-3 rounded-xl bg-${useCase.color}/10 w-fit mb-5`}>
                       <useCase.icon className={`h-6 w-6 text-${useCase.color}`} />
                     </div>
                     <h3 className="text-xl font-bold mb-3">{useCase.title}</h3>
@@ -791,24 +478,24 @@ const Welcome = () => {
         </div>
       </section>
 
-      {/* Security Section */}
+      {/* ═══════════ SECURITY ═══════════ */}
       <section className="py-20 sm:py-32 bg-gradient-to-br from-foreground to-foreground/95 text-background">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-14"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-background">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 text-background">
               Security & Privacy You Can Trust
             </h2>
-            <p className="text-background/70 text-sm sm:text-lg max-w-3xl mx-auto">
+            <p className="text-background/70 text-base sm:text-lg max-w-3xl mx-auto">
               Your financial data deserves bank-level protection—and that's exactly what we provide
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-12">
             {[
               { icon: Shield, title: "256-bit Encryption", desc: "The same encryption standard used by major banks protects all your data in transit and at rest." },
               { icon: Lock, title: "Privacy First", desc: "We never sell or share your data. Your financial information belongs to you and only you." },
@@ -821,78 +508,65 @@ const Welcome = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="text-center p-6 rounded-2xl bg-background/10 border border-background/20"
+                className="text-center p-7 rounded-2xl bg-background/10 border border-background/20"
               >
-                <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary flex items-center justify-center">
+                <div className="w-14 h-14 mx-auto mb-5 rounded-xl bg-primary flex items-center justify-center">
                   <item.icon className="w-7 h-7 text-primary-foreground" />
                 </div>
                 <h3 className="text-lg font-bold text-background mb-2">{item.title}</h3>
-                <p className="text-background/70 text-sm">{item.desc}</p>
+                <p className="text-background/70 text-sm leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <p className="text-background/80 leading-relaxed">
-              We understand that financial data is among the most sensitive information you have. That's why security isn't an afterthought at Trackora—it's foundational to everything we build. From encrypted storage to secure authentication, every aspect of our platform is designed with your protection in mind.
-            </p>
-          </motion.div>
         </div>
       </section>
 
-      {/* How to Get Started */}
+      {/* ═══════════ EDUCATIONAL RESOURCES ═══════════ */}
       <section className="py-20 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-14"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-              How to Get Started
+            <div className="inline-flex items-center gap-2 mb-4">
+              <GraduationCap className="w-5 h-5 text-primary" />
+              <span className="text-sm font-medium text-primary">Free Resources</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
+              Learn & Grow Your Financial Knowledge
             </h2>
-            <p className="text-muted-foreground text-sm sm:text-lg">
-              Three simple steps to financial clarity
+            <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
+              Trackora is more than a tool—it's a learning platform. Explore our guides and articles to build lasting financial skills.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-10 max-w-4xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 max-w-6xl mx-auto mb-10">
             {[
-              { 
-                step: "1", 
-                title: "Create Your Free Account", 
-                desc: "Sign up with just your email address. No credit card required, no hidden fees. Your account is protected with bank-level encryption from day one." 
-              },
-              { 
-                step: "2", 
-                title: "Add Your Financial Data", 
-                desc: "Log your expenses, income sources, active subscriptions, outstanding loans, and savings goals. The quick-add features make data entry fast and painless." 
-              },
-              { 
-                step: "3", 
-                title: "Track & Improve", 
-                desc: "Watch your finances come into focus. View analytics, track progress toward goals, and make informed decisions that build long-term wealth." 
-              }
-            ].map((item, idx) => (
+              { icon: BookOpen, title: "Budgeting Guide", desc: "Master the art of creating and maintaining budgets that work for your lifestyle", link: "/budgeting-guide" },
+              { icon: Target, title: "Savings Guide", desc: "Proven strategies for building savings and reaching your financial goals faster", link: "/savings-guide" },
+              { icon: CreditCard, title: "Debt Management", desc: "Effective strategies for paying off debt and achieving financial freedom", link: "/debt-management-guide" },
+              { icon: FileText, title: "Finance Blog", desc: "22+ articles on personal finance, expense tracking, and money management", link: "/blog" }
+            ].map((resource, idx) => (
               <motion.div
-                key={item.step}
+                key={resource.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="text-center"
               >
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-2xl font-bold text-primary-foreground">
-                  {item.step}
-                </div>
-                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                <p className="text-muted-foreground">{item.desc}</p>
+                <Link to={resource.link}>
+                  <Card className="h-full hover-lift cursor-pointer group">
+                    <CardContent className="p-7">
+                      <div className="p-3 rounded-xl bg-primary/10 w-fit mb-5 group-hover:bg-primary/20 transition-colors">
+                        <resource.icon className="h-6 w-6 text-primary" />
+                      </div>
+                      <h3 className="font-bold mb-2 group-hover:text-primary transition-colors">{resource.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{resource.desc}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -901,7 +575,7 @@ const Welcome = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mt-12"
+            className="text-center"
           >
             <Link to="/how-it-works">
               <Button variant="outline" size="lg" className="gap-2">
@@ -913,60 +587,8 @@ const Welcome = () => {
         </div>
       </section>
 
-      {/* Educational Resources Preview */}
+      {/* ═══════════ FINAL CTA ═══════════ */}
       <section className="py-20 sm:py-32 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center gap-2 mb-4">
-              <GraduationCap className="w-5 h-5 text-primary" />
-              <span className="text-sm font-medium text-primary">Free Resources</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-              Learn & Grow Your Financial Knowledge
-            </h2>
-            <p className="text-muted-foreground text-sm sm:text-lg max-w-2xl mx-auto">
-              Trackora is more than a tool—it's a learning platform. Explore our guides and articles to build lasting financial skills.
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
-            {[
-              { icon: BookOpen, title: "Budgeting Guide", desc: "Master the art of creating and maintaining budgets that work for your lifestyle", link: "/budgeting-guide" },
-              { icon: Target, title: "Savings Guide", desc: "Proven strategies for building savings and reaching your financial goals faster", link: "/savings-guide" },
-              { icon: CreditCard, title: "Debt Management", desc: "Effective strategies for paying off debt and achieving financial freedom", link: "/debt-management-guide" },
-              { icon: FileText, title: "Finance Blog", desc: "Articles on personal finance, expense tracking, and money management tips", link: "/blog" }
-            ].map((resource, idx) => (
-              <motion.div
-                key={resource.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-              >
-                <Link to={resource.link}>
-                  <Card className="h-full hover:shadow-lg transition-all hover:border-primary/50 cursor-pointer group">
-                    <CardContent className="p-6">
-                      <div className="p-3 rounded-lg bg-primary/10 w-fit mb-4 group-hover:bg-primary/20 transition-colors">
-                        <resource.icon className="h-6 w-6 text-primary" />
-                      </div>
-                      <h3 className="font-bold mb-2 group-hover:text-primary transition-colors">{resource.title}</h3>
-                      <p className="text-sm text-muted-foreground">{resource.desc}</p>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="py-20 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -974,13 +596,17 @@ const Welcome = () => {
             viewport={{ once: true }}
           >
             <Card className="bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 border-2 border-primary/20 overflow-hidden">
-              <CardContent className="p-8 sm:p-12 text-center">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-                  Ready to Take Control of Your Finances?
+              <CardContent className="p-10 sm:p-16 text-center">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-6">
+                  <Gamepad2 className="h-4 w-4" />
+                  Ready to Play?
+                </div>
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-5">
+                  Start Your Finance Game Today
                 </h2>
-                <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                  Join thousands who have transformed their relationship with money. 
-                  Start your journey to financial clarity today—it's completely free.
+                <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+                  Join thousands who've turned money management into a rewarding daily challenge. 
+                  Level up your finances—it's completely free.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button
@@ -988,8 +614,8 @@ const Welcome = () => {
                     size="lg"
                     className="text-lg px-10 py-7 rounded-2xl shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-primary to-secondary"
                   >
+                    <Rocket className="mr-2 h-5 w-5" />
                     Get Started Free
-                    <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                   <Link to="/faq">
                     <Button
