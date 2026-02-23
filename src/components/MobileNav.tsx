@@ -65,7 +65,7 @@ export function MobileNav() {
             scale: 1.05
           }} whileTap={{
             scale: 0.95
-          }} className="text-lg sm:text-xl font-bold gradient-text truncate text-destructive-foreground">
+          }} className="text-lg sm:text-xl font-bold gradient-text truncate text-card-foreground">
               Trackora
             </motion.div>
           </Link>
