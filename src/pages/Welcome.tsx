@@ -17,6 +17,7 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { useAuth } from "@/hooks/useAuth";
 import { SEOHead } from "@/components/SEOHead";
 import { useRef } from "react";
+import dashboardPreview from "@/assets/dashboard-preview.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
