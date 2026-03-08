@@ -75,7 +75,7 @@ const Welcome = () => {
         canonicalUrl="https://trackorapp.in"
       />
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
-      <BackgroundBlobs />
+      <MeshWaveBackground />
       <CookieConsent />
       
       {/* Floating Header */}
