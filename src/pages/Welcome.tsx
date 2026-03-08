@@ -8,6 +8,8 @@ import {
   BarChart3, CheckCircle2, TrendingUp, Wallet, 
   Sparkles, BookOpen, GraduationCap, Calculator, 
   CreditCard, Users, Home, Briefcase,
+  FileText, AlertCircle, ChevronRight, Lightbulb, HelpCircle, ChevronDown
+} from "lucide-react";
   FileText, AlertCircle, ChevronRight, Lightbulb
 } from "lucide-react";
 import { Link } from "react-router-dom";
