@@ -323,6 +323,76 @@ const Welcome = () => {
         </div>
       </section>
 
+      {/* ═══════ DASHBOARD SHOWCASE ═══════ */}
+      <section className="py-16 sm:py-24 md:py-36 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-transparent to-transparent" />
+        <div className="container mx-auto px-4 sm:px-6 relative">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={staggerContainer}
+            className="max-w-6xl mx-auto"
+          >
+            <motion.div variants={fadeUp} className="text-center mb-12 sm:mb-20">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6">
+                See Your Expenses Clearly in One Dashboard
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+                Trackora brings all your financial information together in a single dashboard so you can quickly understand your spending and stay organized.
+              </p>
+            </motion.div>
+
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+              {/* Left — Text */}
+              <motion.div variants={slideInLeft}>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight mb-4 sm:mb-6">
+                  Everything You Need to Track Your Spending
+                </h3>
+                <p className="text-muted-foreground text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8">
+                  The Trackora dashboard gives you a clear overview of your daily expenses, spending categories, and financial summaries. Instead of scattered records, everything is organized in one simple and easy-to-understand interface.
+                </p>
+                <ul className="space-y-3 sm:space-y-4">
+                  {[
+                    "View all recorded expenses in one organized list",
+                    "Automatically categorize your spending",
+                    "See summaries that highlight your spending patterns",
+                    "Quickly review recent transactions"
+                  ].map((item, idx) => (
+                    <motion.li
+                      key={idx}
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                      className="flex items-start gap-3"
+                    >
+                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-foreground mt-0.5 shrink-0" />
+                      <span className="text-xs sm:text-sm md:text-base text-muted-foreground">{item}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Right — Dashboard Image */}
+              <motion.div variants={slideInRight}>
+                <div className="rounded-2xl overflow-hidden border border-border/40 shadow-2xl bg-card/50 backdrop-blur-sm">
+                  <img
+                    src={dashboardPreview}
+                    alt="Trackora dashboard showing expense list, spending categories pie chart, and budget summary cards"
+                    className="w-full h-auto"
+                    loading="lazy"
+                  />
+                </div>
+                <p className="text-[11px] sm:text-xs md:text-sm text-muted-foreground text-center mt-4 sm:mt-6 max-w-md mx-auto leading-relaxed font-medium">
+                  A clear dashboard that helps you stay aware of your spending and manage your finances more effectively.
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ═══════ WHAT IS TRACKORA ═══════ */}
       <section className="py-16 sm:py-24 md:py-36 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-transparent to-transparent" />
