@@ -20,44 +20,44 @@ import { useRef } from "react";
 import dashboardPreview from "../assets/dashboard-preview.png";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 50 },
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay: i * 0.15, ease: "easeOut" as const }
+    transition: { duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }
   })
 };
 
 const scaleIn = {
-  hidden: { opacity: 0, scale: 0.9 },
+  hidden: { opacity: 0, scale: 0.92 },
   visible: (i: number = 0) => ({
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.6, delay: i * 0.1, ease: "easeOut" as const }
+    transition: { duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }
   })
 };
 
 const slideInLeft = {
-  hidden: { opacity: 0, x: -60 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
+  hidden: { opacity: 0, x: -80 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
 };
 
 const slideInRight = {
-  hidden: { opacity: 0, x: 60 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
+  hidden: { opacity: 0, x: 80 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } }
 };
 
 const staggerContainer = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } }
+  visible: { transition: { staggerChildren: 0.1 } }
 };
 
-const FeatureCheckItem = ({ text, color }: { text: string; color: string }) => (
+const FeatureCheckItem = ({ text }: { text: string; color?: string }) => (
   <motion.div variants={fadeUp} className="flex items-start gap-3 group">
-    <div className={`mt-0.5 p-1 rounded-md bg-${color}/10 group-hover:bg-${color}/20 transition-colors`}>
-      <CheckCircle2 className={`h-3.5 w-3.5 text-${color}`} />
+    <div className="mt-0.5 p-1 rounded-md bg-foreground/10 group-hover:bg-foreground/20 transition-colors">
+      <CheckCircle2 className="h-3.5 w-3.5 text-foreground" />
     </div>
-    <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{text}</span>
+    <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors font-medium">{text}</span>
   </motion.div>
 );
 
@@ -79,23 +79,23 @@ const Welcome = () => {
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
       <CookieConsent />
       
-      {/* Floating Header */}
+      {/* Floating Header — Sleek Matte */}
       <motion.header 
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         className="fixed top-0 left-0 right-0 z-50"
       >
         <div className="mx-4 sm:mx-6 mt-3 sm:mt-4">
-          <div className="bg-background/80 backdrop-blur-2xl border border-border/60 rounded-2xl shadow-lg px-4 sm:px-6 py-3 flex items-center justify-between max-w-6xl mx-auto">
-            <span className="font-bold text-xl sm:text-2xl text-foreground tracking-tight">
+          <div className="bg-background/70 backdrop-blur-3xl border border-border/30 rounded-2xl shadow-lg px-4 sm:px-6 py-3 flex items-center justify-between max-w-6xl mx-auto">
+            <span className="font-extrabold text-xl sm:text-2xl text-foreground tracking-tighter">
               Trackora
             </span>
             <div className="flex items-center gap-2 sm:gap-3">
               <Button 
                 onClick={enterAsGuest} 
                 variant="ghost" 
-                className="hidden sm:inline-flex font-semibold text-sm"
+                className="hidden sm:inline-flex font-bold text-sm tracking-tight"
               >
                 Enter
               </Button>
@@ -105,73 +105,77 @@ const Welcome = () => {
         </div>
       </motion.header>
 
-      {/* Hero Section — Clean & Professional */}
-      <section ref={heroRef} className="relative pt-28 sm:pt-36 pb-20 sm:pb-28 overflow-hidden">
-        {/* Subtle Background */}
+      {/* Hero Section — Bold & Minimal */}
+      <section ref={heroRef} className="relative pt-32 sm:pt-40 pb-24 sm:pb-32 overflow-hidden">
+        {/* Minimal accent lines */}
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
-          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px]" />
+          <div className="absolute top-20 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center max-w-6xl mx-auto">
             {/* Left — Content */}
             <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             >
               <motion.h1
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.15] mb-6"
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter leading-[1.05] mb-7"
               >
                 Track Your Daily Expenses{" "}
-                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <span className="text-muted-foreground">
                   Clearly and Effortlessly
                 </span>
               </motion.h1>
 
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 max-w-xl"
+                transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-7 max-w-xl font-medium"
               >
                 Trackora is a simple expense tracking platform designed to help people record daily spending and understand where their money goes. By keeping all expenses organized in one place, Trackora makes it easier to monitor spending habits and manage personal finances without complicated tools.
-              </motion.p>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.55 }}
-                className="text-sm font-medium text-foreground/70 mb-10 tracking-wide"
-              >
-                Simple tracking&nbsp; •&nbsp; Clear summaries&nbsp; •&nbsp; Built for everyday personal finance
               </motion.p>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
+                transition={{ duration: 0.7, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                className="flex items-center gap-3 text-sm font-bold text-foreground/60 mb-10 tracking-wide uppercase"
+              >
+                <span>Simple tracking</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-foreground/30" />
+                <span>Clear summaries</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-foreground/30" />
+                <span>Personal finance</span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
                 className="flex flex-col sm:flex-row gap-4 mb-10"
               >
                 <Button
                   onClick={enterAsGuest}
                   size="lg"
-                  className="text-base px-8 py-6 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-primary to-secondary hover:opacity-90 group"
+                  className="text-base px-10 py-7 rounded-xl font-extrabold tracking-tight shadow-lg hover:shadow-xl transition-all group"
                 >
                   Start Tracking
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
                 </Button>
                 <Link to="/how-it-works">
                   <Button
                     variant="outline"
                     size="lg"
-                    className="text-base px-8 py-6 rounded-2xl border-2 border-border hover:border-primary/40 hover:bg-primary/5 font-semibold w-full sm:w-auto"
+                    className="text-base px-10 py-7 rounded-xl border-2 font-bold tracking-tight w-full sm:w-auto hover:bg-foreground hover:text-background transition-all duration-300"
                   >
-                    Learn How Trackora Works
+                    Learn How It Works
                   </Button>
                 </Link>
               </motion.div>
@@ -179,8 +183,8 @@ const Welcome = () => {
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
-                className="text-sm text-muted-foreground leading-relaxed max-w-lg"
+                transition={{ duration: 0.8, delay: 0.9 }}
+                className="text-sm text-muted-foreground leading-relaxed max-w-lg font-medium"
               >
                 Trackora is designed to help individuals build better financial awareness by keeping daily expenses organized and easy to review.
               </motion.p>
@@ -188,12 +192,12 @@ const Welcome = () => {
 
             {/* Right — Dashboard Preview */}
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="relative"
             >
-              <div className="rounded-3xl overflow-hidden border border-border/60 shadow-2xl bg-card">
+              <div className="rounded-2xl overflow-hidden border border-border/40 shadow-2xl bg-card">
                 <img
                   src={dashboardPreview}
                   alt="Trackora dashboard showing expense list, spending categories pie chart, and budget summary cards"
@@ -204,8 +208,8 @@ const Welcome = () => {
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 0.6 }}
-                className="text-xs sm:text-sm text-muted-foreground text-center mt-5 max-w-md mx-auto leading-relaxed"
+                transition={{ delay: 1.1, duration: 0.7 }}
+                className="text-xs sm:text-sm text-muted-foreground text-center mt-6 max-w-md mx-auto leading-relaxed font-medium"
               >
                 A simple dashboard that shows your expenses, spending categories, and financial summaries in one clear view.
               </motion.p>
