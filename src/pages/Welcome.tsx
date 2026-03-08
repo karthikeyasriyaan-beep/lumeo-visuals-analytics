@@ -211,6 +211,63 @@ const Welcome = () => {
         </div>
       </section>
 
+      {/* ═══════ CORE FEATURES ═══════ */}
+      <section className="py-16 sm:py-24 md:py-36 relative">
+        <div className="container mx-auto px-4 sm:px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={staggerContainer}
+            className="max-w-6xl mx-auto"
+          >
+            <motion.div variants={fadeUp} className="text-center mb-12 sm:mb-20">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6">
+                Simple Features That Make Expense Tracking Easy
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+                Trackora provides simple tools designed to help you record expenses, stay organized, and understand your spending habits without complicated financial systems.
+              </p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+              {[
+                {
+                  icon: Wallet,
+                  title: "Smart Expense Tracking",
+                  desc: "Quickly record your daily expenses and keep your spending organized in one place. Trackora makes it easy to monitor your expenses and maintain clear financial records."
+                },
+                {
+                  icon: FileText,
+                  title: "Receipt Scanner",
+                  desc: "Upload a receipt image and Trackora can extract key details such as the total amount and store information to help you log expenses faster."
+                },
+                {
+                  icon: Zap,
+                  title: "Voice Expense Entry",
+                  desc: "Add expenses by simply speaking. Trackora converts your voice input into expense entries so you can record spending quickly without typing."
+                },
+                {
+                  icon: BarChart3,
+                  title: "Clear Spending Insights",
+                  desc: "View summaries and visual charts that help you understand where your money goes and how your spending patterns change over time."
+                }
+              ].map((item, idx) => (
+                <motion.div key={item.title} variants={fadeUp} custom={idx}>
+                  <div className="h-full rounded-2xl sm:rounded-3xl bg-card/50 backdrop-blur-sm border border-border/50 p-6 sm:p-8 hover:shadow-xl hover:border-border transition-all duration-500 hover:-translate-y-1">
+                    <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-foreground/5 flex items-center justify-center mb-5 sm:mb-6">
+                      <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-foreground" />
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold mb-2 sm:mb-3">{item.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ═══════ WHAT IS TRACKORA ═══════ */}
       <section className="py-16 sm:py-24 md:py-36 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-transparent to-transparent" />
