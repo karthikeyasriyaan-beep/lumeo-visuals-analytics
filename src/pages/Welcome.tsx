@@ -52,12 +52,12 @@ const staggerContainer = {
   visible: { transition: { staggerChildren: 0.1 } }
 };
 
-const FeatureCheckItem = ({ text, color }: { text: string; color: string }) => (
+const FeatureCheckItem = ({ text }: { text: string; color?: string }) => (
   <motion.div variants={fadeUp} className="flex items-start gap-3 group">
-    <div className={`mt-0.5 p-1 rounded-md bg-${color}/10 group-hover:bg-${color}/20 transition-colors`}>
-      <CheckCircle2 className={`h-3.5 w-3.5 text-${color}`} />
+    <div className="mt-0.5 p-1 rounded-md bg-foreground/10 group-hover:bg-foreground/20 transition-colors">
+      <CheckCircle2 className="h-3.5 w-3.5 text-foreground" />
     </div>
-    <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{text}</span>
+    <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors font-medium">{text}</span>
   </motion.div>
 );
 
