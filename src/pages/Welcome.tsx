@@ -393,6 +393,53 @@ const Welcome = () => {
         </div>
       </section>
 
+      {/* ═══════ WHY PEOPLE USE TRACKORA ═══════ */}
+      <section className="py-16 sm:py-24 md:py-36 relative">
+        <div className="container mx-auto px-4 sm:px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={staggerContainer}
+            className="max-w-6xl mx-auto"
+          >
+            <motion.div variants={fadeUp} className="text-center mb-12 sm:mb-20">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6">
+                Why People Use Trackora for Expense Tracking
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+                Trackora is designed to simplify personal expense tracking. Instead of complex financial tools, Trackora focuses on making daily expense recording easy and understandable.
+              </p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+              {[
+                { icon: Target, title: "Stay Organized", desc: "Keep all your daily expenses in one place so you no longer need to rely on scattered notes or memory to track your spending." },
+                { icon: TrendingUp, title: "Understand Spending Habits", desc: "Trackora helps you see where your money goes by providing clear summaries of your spending patterns." },
+                { icon: Zap, title: "Save Time", desc: "Quickly record expenses using manual entry, receipt scanning, or voice input so tracking expenses takes only a few seconds." },
+                { icon: Sparkles, title: "Improve Financial Awareness", desc: "By consistently recording your expenses, you can better understand your financial behavior and make more informed spending decisions." }
+              ].map((item, idx) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, x: idx % 2 === 0 ? -60 : 60, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.7, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <div className="h-full rounded-2xl sm:rounded-3xl bg-card/50 backdrop-blur-sm border border-border/50 p-6 sm:p-8 hover:shadow-xl hover:border-border transition-all duration-500 hover:-translate-y-1">
+                    <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-foreground/5 flex items-center justify-center mb-5 sm:mb-6">
+                      <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-foreground" />
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold mb-2 sm:mb-3">{item.title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ═══════ WHAT IS TRACKORA ═══════ */}
       <section className="py-16 sm:py-24 md:py-36 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-transparent to-transparent" />
