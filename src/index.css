@@ -54,50 +54,50 @@
   }
 
   .dark {
-    /* Dark Mode — Deep Matte Black */
-    --background: 0 0% 4%;
-    --foreground: 0 0% 96%;
-    --card: 0 0% 7%;
-    --card-foreground: 0 0% 96%;
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 96%;
-    --primary: 0 0% 96%;
-    --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 14%;
-    --secondary-foreground: 0 0% 96%;
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 55%;
-    --accent: 0 0% 16%;
-    --accent-foreground: 0 0% 96%;
+    /* Dark Mode — Cinematic Deep Black */
+    --background: 0 0% 2%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 2%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 50%;
+    --accent: 0 0% 12%;
+    --accent-foreground: 0 0% 95%;
     --destructive: 0 68% 55%;
     --destructive-foreground: 0 0% 100%;
     --success: 145 60% 48%;
     --success-foreground: 0 0% 100%;
     --warning: 38 88% 55%;
     --warning-foreground: 0 0% 5%;
-    --border: 0 0% 16%;
-    --input: 0 0% 12%;
-    --ring: 0 0% 96%;
+    --border: 0 0% 12%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 95%;
 
     /* Brand Tokens — Dark */
-    --deep-blue: 0 0% 96%;
-    --calm-teal: 0 0% 65%;
+    --deep-blue: 0 0% 95%;
+    --calm-teal: 0 0% 60%;
     --pastel-green: 145 60% 48%;
-    --warm-peach: 0 0% 14%;
+    --warm-peach: 0 0% 10%;
 
     /* Chart Palette — Dark */
-    --chart-1: 0 0% 96%;
+    --chart-1: 0 0% 95%;
     --chart-2: 0 0% 75%;
     --chart-3: 0 0% 55%;
     --chart-4: 0 0% 35%;
     --chart-5: 145 60% 48%;
 
-    /* Shadows — Dark */
-    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.5);
-    --shadow-md: 0 4px 12px -2px hsl(0 0% 0% / 0.6);
-    --shadow-lg: 0 12px 32px -8px hsl(0 0% 0% / 0.7);
-    --shadow-xl: 0 24px 48px -12px hsl(0 0% 0% / 0.8);
-    --shadow-glow: 0 0 50px -8px hsl(0 0% 100% / 0.08);
+    /* Shadows — Dark Cinematic */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.6);
+    --shadow-md: 0 4px 16px -2px hsl(0 0% 0% / 0.7);
+    --shadow-lg: 0 12px 40px -8px hsl(0 0% 0% / 0.8);
+    --shadow-xl: 0 24px 60px -12px hsl(0 0% 0% / 0.9);
+    --shadow-glow: 0 0 60px -8px hsl(0 0% 100% / 0.06);
   }
 }
 
@@ -112,7 +112,8 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Sora', 'DM Sans', sans-serif;
     font-weight: 800;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
   }
 }
 
