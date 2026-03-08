@@ -16,7 +16,7 @@ import { CookieConsent } from "@/components/CookieConsent";
 import { useAuth } from "@/hooks/useAuth";
 import { SEOHead } from "@/components/SEOHead";
 import { useRef } from "react";
-import BackgroundBlobs from "@/components/BackgroundBlobs";
+import MeshWaveBackground from "@/components/MeshWaveBackground";
 import dashboardPreview from "../assets/dashboard-preview.png";
 
 /* ——— Animation Variants ——— */
