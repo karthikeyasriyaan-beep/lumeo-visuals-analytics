@@ -441,6 +441,54 @@ const Welcome = () => {
         </div>
       </section>
 
+      {/* ═══════ FAQ ═══════ */}
+      <section className="py-16 sm:py-24 md:py-36 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-transparent to-transparent" />
+        <div className="container mx-auto px-4 sm:px-6 relative">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={staggerContainer}
+            className="max-w-3xl mx-auto"
+          >
+            <motion.div variants={fadeUp} className="text-center mb-12 sm:mb-20">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                Here are answers to some common questions about how Trackora works and how it helps you track your daily expenses.
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeUp}>
+              <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
+                {[
+                  { q: "What is Trackora?", a: "Trackora is a simple expense tracking platform that helps individuals record their daily spending and understand where their money goes. It keeps expenses organized in one place so users can easily review their financial activity." },
+                  { q: "How do I add expenses in Trackora?", a: "You can add expenses manually, upload a receipt image, or use voice input to record your spending quickly. Trackora is designed to make expense entry fast and convenient." },
+                  { q: "Can I view summaries of my expenses?", a: "Yes. Trackora provides summaries and simple charts that help you understand your spending habits and review how your expenses change over time." },
+                  { q: "Is Trackora suitable for personal expense tracking?", a: "Yes. Trackora is built specifically for individuals who want a simple and organized way to track daily expenses and improve financial awareness." },
+                  { q: "Do I need financial knowledge to use Trackora?", a: "No. Trackora is designed to be simple and easy to use, even for people who have never used financial tracking tools before." }
+                ].map((faq, idx) => (
+                  <AccordionItem
+                    key={idx}
+                    value={`faq-${idx}`}
+                    className="rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm px-5 sm:px-6 data-[state=open]:shadow-lg transition-all duration-300"
+                  >
+                    <AccordionTrigger className="text-sm sm:text-base font-bold hover:no-underline py-5 sm:py-6">
+                      {faq.q}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-xs sm:text-sm text-muted-foreground leading-relaxed pb-5 sm:pb-6">
+                      {faq.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ═══════ WHAT IS TRACKORA ═══════ */}
       <section className="py-16 sm:py-24 md:py-36 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-transparent to-transparent" />
