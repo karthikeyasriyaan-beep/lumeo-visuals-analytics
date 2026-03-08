@@ -2,105 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Trackora Luxury Design System - Premium, High Contrast, Elegant */
+/* Trackora — Bold Matte Black & White Design System */
 
 @layer base {
   :root {
-    /* Luxury Light Mode - High Contrast */
-    --background: 0 0% 100%;           /* pure white foundation */
-    --foreground: 220 20% 10%;         /* deep charcoal text */
-    --card: 0 0% 100%;                 /* pure white cards */
-    --card-foreground: 220 20% 10%;
+    /* Light Mode — Crisp White with Matte Black Accents */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 10%;
-    --primary: 220 90% 50%;            /* vivid royal blue */
+    --popover-foreground: 0 0% 5%;
+    --primary: 0 0% 8%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 270 70% 55%;          /* rich purple */
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 15% 95%;              /* soft gray */
-    --muted-foreground: 220 10% 40%;
-    --accent: 160 80% 40%;             /* emerald green */
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 80% 55%;
+    --secondary: 0 0% 92%;
+    --secondary-foreground: 0 0% 8%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 0 0% 90%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 100%;
-    --success: 160 80% 40%;            /* emerald */
+    --success: 145 65% 42%;
     --success-foreground: 0 0% 100%;
-    --warning: 40 95% 55%;             /* golden amber */
-    --warning-foreground: 220 20% 10%;
-    --border: 220 15% 88%;
-    --input: 220 15% 94%;
-    --ring: 220 90% 50%;
-    --radius: 1rem;
-    
-    /* Luxury Brand Colors */
-    --deep-blue: 220 90% 50%;
-    --calm-teal: 185 70% 45%;
-    --pastel-green: 160 80% 40%;
-    --warm-beige: 40 50% 92%;
-    --luxury-gold: 40 90% 55%;
-    --luxury-purple: 270 70% 55%;
-    
-    /* Chart colors - premium vibrant palette */
-    --chart-1: 220 90% 50%;            /* royal blue */
-    --chart-2: 160 80% 40%;            /* emerald */
-    --chart-3: 270 70% 55%;            /* purple */
-    --chart-4: 40 95% 55%;             /* gold */
-    --chart-5: 340 75% 55%;            /* magenta */
-    
-    /* Premium Shadows */
-    --shadow-sm: 0 1px 3px 0 hsl(220 30% 15% / 0.08);
-    --shadow-md: 0 4px 12px -2px hsl(220 30% 15% / 0.12);
-    --shadow-lg: 0 12px 32px -8px hsl(220 30% 15% / 0.18);
-    --shadow-xl: 0 24px 48px -12px hsl(220 30% 15% / 0.22);
-    --shadow-glow: 0 0 40px -8px hsl(220 90% 50% / 0.35);
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 5%;
+    --border: 0 0% 88%;
+    --input: 0 0% 92%;
+    --ring: 0 0% 8%;
+    --radius: 0.875rem;
+
+    /* Brand Tokens */
+    --deep-blue: 0 0% 8%;
+    --calm-teal: 0 0% 30%;
+    --pastel-green: 145 65% 42%;
+    --warm-peach: 0 0% 92%;
+
+    /* Chart Palette — Monochrome with one accent */
+    --chart-1: 0 0% 10%;
+    --chart-2: 0 0% 30%;
+    --chart-3: 0 0% 50%;
+    --chart-4: 0 0% 70%;
+    --chart-5: 145 65% 42%;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.04);
+    --shadow-md: 0 4px 12px -2px hsl(0 0% 0% / 0.08);
+    --shadow-lg: 0 12px 32px -8px hsl(0 0% 0% / 0.12);
+    --shadow-xl: 0 24px 48px -12px hsl(0 0% 0% / 0.16);
+    --shadow-glow: 0 0 40px -8px hsl(0 0% 0% / 0.15);
   }
 
   .dark {
-    --background: 220 25% 8%;          /* deep dark blue-black */
-    --foreground: 0 0% 98%;            /* pure white text */
-    --card: 220 25% 12%;               /* elevated cards */
-    --card-foreground: 0 0% 98%;
-    --popover: 220 25% 14%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 220 85% 60%;            /* bright blue */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 270 65% 65%;          /* bright purple */
-    --secondary-foreground: 0 0% 100%;
-    --muted: 220 25% 18%;
-    --muted-foreground: 220 15% 65%;
-    --accent: 160 75% 50%;             /* bright emerald */
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 75% 60%;
+    /* Dark Mode — Deep Matte Black */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 0 0% 96%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 0 0% 16%;
+    --accent-foreground: 0 0% 96%;
+    --destructive: 0 68% 55%;
     --destructive-foreground: 0 0% 100%;
-    --success: 160 75% 50%;
+    --success: 145 60% 48%;
     --success-foreground: 0 0% 100%;
-    --warning: 40 90% 60%;
-    --warning-foreground: 220 20% 10%;
-    --border: 220 25% 22%;
-    --input: 220 25% 18%;
-    --ring: 220 85% 60%;
-    
-    /* Luxury Brand Colors - dark adjusted */
-    --deep-blue: 220 85% 60%;
-    --calm-teal: 185 65% 55%;
-    --pastel-green: 160 75% 50%;
-    --warm-beige: 40 45% 80%;
-    --luxury-gold: 40 85% 60%;
-    --luxury-purple: 270 65% 65%;
-    
-    /* Chart colors - dark adjusted */
-    --chart-1: 220 85% 60%;
-    --chart-2: 160 75% 50%;
-    --chart-3: 270 65% 65%;
-    --chart-4: 40 90% 60%;
-    --chart-5: 340 70% 60%;
-    
-    /* Premium Shadows - dark mode */
-    --shadow-sm: 0 1px 3px 0 hsl(0 0% 0% / 0.4);
-    --shadow-md: 0 4px 12px -2px hsl(0 0% 0% / 0.5);
-    --shadow-lg: 0 12px 32px -8px hsl(0 0% 0% / 0.6);
-    --shadow-xl: 0 24px 48px -12px hsl(0 0% 0% / 0.7);
-    --shadow-glow: 0 0 50px -8px hsl(220 85% 60% / 0.4);
+    --warning: 38 88% 55%;
+    --warning-foreground: 0 0% 5%;
+    --border: 0 0% 16%;
+    --input: 0 0% 12%;
+    --ring: 0 0% 96%;
+
+    /* Brand Tokens — Dark */
+    --deep-blue: 0 0% 96%;
+    --calm-teal: 0 0% 65%;
+    --pastel-green: 145 60% 48%;
+    --warm-peach: 0 0% 14%;
+
+    /* Chart Palette — Dark */
+    --chart-1: 0 0% 96%;
+    --chart-2: 0 0% 75%;
+    --chart-3: 0 0% 55%;
+    --chart-4: 0 0% 35%;
+    --chart-5: 145 60% 48%;
+
+    /* Shadows — Dark */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.5);
+    --shadow-md: 0 4px 12px -2px hsl(0 0% 0% / 0.6);
+    --shadow-lg: 0 12px 32px -8px hsl(0 0% 0% / 0.7);
+    --shadow-xl: 0 24px 48px -12px hsl(0 0% 0% / 0.8);
+    --shadow-glow: 0 0 50px -8px hsl(0 0% 100% / 0.08);
   }
 }
 
@@ -114,35 +111,35 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Sora', 'DM Sans', sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+    font-weight: 800;
+    letter-spacing: -0.04em;
   }
 }
 
 @layer utilities {
-  /* Luxury Glass Effects */
+  /* Glass Effects — Matte */
   .glass { 
-    @apply bg-card/90 backdrop-blur-xl border border-border/50;
+    @apply bg-card/80 backdrop-blur-2xl border border-border/40;
     box-shadow: var(--shadow-lg);
   }
   .glass-strong { 
-    @apply bg-card/95 backdrop-blur-2xl border border-border/60;
+    @apply bg-card/90 backdrop-blur-2xl border border-border/50;
     box-shadow: var(--shadow-xl);
   }
   
-  /* Premium Gradient Text */
+  /* Gradient Text — Monochrome */
   .gradient-text { 
-    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-bold; 
+    @apply bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text text-transparent font-extrabold; 
   }
   
-  /* Luxury Card Styles */
+  /* Bold Card Styles */
   .luxury-card {
-    @apply relative overflow-hidden rounded-2xl border-2 transition-all duration-500;
-    box-shadow: var(--shadow-lg);
+    @apply relative overflow-hidden rounded-2xl border border-border/60 bg-card transition-all duration-500;
+    box-shadow: var(--shadow-md);
   }
   .luxury-card:hover {
     box-shadow: var(--shadow-xl);
-    transform: translateY(-4px);
+    transform: translateY(-6px);
   }
   .luxury-card::before {
     content: '';
@@ -150,11 +147,11 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
+    height: 2px;
+    background: linear-gradient(90deg, hsl(var(--foreground)), hsl(var(--muted-foreground)), hsl(var(--foreground)));
   }
   
-  /* Premium Hover Effects */
+  /* Hover Effects */
   .hover-glow { 
     @apply transition-all duration-300 ease-out;
   }
@@ -164,62 +161,50 @@
   }
   .hover-lift { 
     @apply transition-all duration-300 ease-out;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-sm);
   }
   .hover-lift:hover {
-    box-shadow: var(--shadow-xl);
+    box-shadow: var(--shadow-lg);
     transform: translateY(-4px);
   }
   
-  /* Premium Button Styles */
+  /* Bold Button */
   .btn-luxury {
-    @apply rounded-2xl px-8 py-4 font-bold transition-all duration-300;
-    @apply shadow-lg hover:shadow-xl active:scale-[0.98];
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    @apply rounded-xl px-8 py-4 font-extrabold tracking-tight transition-all duration-300;
+    @apply shadow-lg hover:shadow-xl active:scale-[0.97];
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
   }
   .btn-luxury:hover {
     box-shadow: var(--shadow-glow);
     transform: translateY(-2px);
   }
   
-  /* Status Colors */
-  .status-positive { @apply text-success font-semibold; }
-  .status-negative { @apply text-destructive font-semibold; }
-  .status-neutral { @apply text-secondary font-semibold; }
+  /* Status */
+  .status-positive { @apply text-success font-bold; }
+  .status-negative { @apply text-destructive font-bold; }
+  .status-neutral { @apply text-muted-foreground font-bold; }
   .transition-smooth { @apply transition-all duration-300 ease-out; }
   
-  /* Premium Highlight Box */
+  /* Highlight Box */
   .highlight-box {
-    @apply relative rounded-2xl p-8 overflow-hidden;
-    background: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--secondary) / 0.1));
-    border: 2px solid hsl(var(--primary) / 0.2);
-  }
-  .highlight-box::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, hsl(var(--primary) / 0.05) 0%, transparent 60%);
-    animation: rotate-glow 15s linear infinite;
+    @apply relative rounded-2xl p-8 overflow-hidden bg-muted/50 border border-border/40;
   }
   
   /* Feature Badge */
   .feature-badge {
-    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full font-semibold text-sm;
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
-    color: hsl(var(--primary-foreground));
-    box-shadow: 0 4px 15px -3px hsl(var(--primary) / 0.4);
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full font-bold text-sm;
+    background: hsl(var(--foreground));
+    color: hsl(var(--background));
   }
 
-  /* Premium Animations */
+  /* Animations */
   @keyframes gentle-pulse { 
     0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.95; transform: scale(1.01); }
+    50% { opacity: 0.92; transform: scale(1.01); }
   }
   @keyframes soft-slide-up { 
-    from { opacity: 0; transform: translateY(30px); } 
+    from { opacity: 0; transform: translateY(40px); } 
     to { opacity: 1; transform: translateY(0); } 
   }
   @keyframes fade-in { 
@@ -227,16 +212,16 @@
     to { opacity: 1; } 
   }
   @keyframes count-up { 
-    from { transform: translateY(10px); opacity: 0; } 
+    from { transform: translateY(12px); opacity: 0; } 
     to { transform: translateY(0); opacity: 1; } 
   }
   @keyframes subtle-glow { 
-    0%, 100% { box-shadow: 0 0 20px 0 hsl(var(--primary) / 0.3); }
-    50% { box-shadow: 0 0 40px 8px hsl(var(--primary) / 0.2); }
+    0%, 100% { box-shadow: 0 0 20px 0 hsl(var(--foreground) / 0.1); }
+    50% { box-shadow: 0 0 40px 8px hsl(var(--foreground) / 0.06); }
   }
   @keyframes gentle-float { 
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
+    50% { transform: translateY(-10px); }
   }
   @keyframes soft-shimmer { 
     0% { background-position: -1000px 0; }
@@ -250,10 +235,14 @@
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
+  @keyframes text-reveal {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0% 0 0); }
+  }
 
   .animate-gentle-pulse { animation: gentle-pulse 4s ease-in-out infinite; }
-  .animate-soft-slide-up { animation: soft-slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-  .animate-fade-in { animation: fade-in 0.4s ease-out; }
+  .animate-soft-slide-up { animation: soft-slide-up 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+  .animate-fade-in { animation: fade-in 0.5s ease-out; }
   .animate-count-up { animation: count-up 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); }
   .animate-subtle-glow { animation: subtle-glow 5s ease-in-out infinite; }
   .animate-gentle-float { animation: gentle-float 6s ease-in-out infinite; }
@@ -262,4 +251,5 @@
     animation: gradient-shift 8s ease infinite;
     background-size: 200% 200%;
   }
+  .animate-text-reveal { animation: text-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 }
