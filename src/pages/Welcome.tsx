@@ -10,6 +10,7 @@ import {
   CreditCard, Users, Home, Briefcase,
   FileText, AlertCircle, ChevronRight, Lightbulb, HelpCircle, ChevronDown
 } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
 import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
