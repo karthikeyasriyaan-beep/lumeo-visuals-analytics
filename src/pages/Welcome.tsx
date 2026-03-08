@@ -274,6 +274,55 @@ const Welcome = () => {
         </div>
       </section>
 
+      {/* ═══════ HOW IT WORKS ═══════ */}
+      <section className="py-16 sm:py-24 md:py-36 relative">
+        <div className="container mx-auto px-4 sm:px-6">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={staggerContainer}
+            className="max-w-6xl mx-auto"
+          >
+            <motion.div variants={fadeUp} className="text-center mb-12 sm:mb-20">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6">
+                How Trackora Helps You Track Your Expenses
+              </h2>
+              <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+                Trackora is designed to make expense tracking simple and quick. Follow these steps to start recording and understanding your daily spending.
+              </p>
+            </motion.div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 relative">
+              {/* Connecting line */}
+              <div className="hidden lg:block absolute top-16 left-[12.5%] right-[12.5%] h-px bg-border/60" />
+
+              {[
+                { num: "01", title: "Create Your Account", desc: "Sign up and access your personal expense tracking dashboard where all your spending records will be stored securely." },
+                { num: "02", title: "Add Your Expenses", desc: "Record your daily expenses manually, upload a receipt, or use voice input to quickly add spending entries." },
+                { num: "03", title: "Organize Your Spending", desc: "Trackora automatically organizes your expenses so you can see how much you spend across different categories." },
+                { num: "04", title: "Review Your Insights", desc: "View summaries and simple charts that help you understand your spending habits and manage your finances better." }
+              ].map((step, idx) => (
+                <motion.div
+                  key={step.num}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative text-center"
+                >
+                  <div className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-foreground text-background flex items-center justify-center mx-auto mb-5 sm:mb-7 text-sm sm:text-lg font-extrabold tracking-tight">
+                    {step.num}
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold mb-2 sm:mb-3">{step.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm max-w-[260px] mx-auto">{step.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ═══════ WHAT IS TRACKORA ═══════ */}
       <section className="py-16 sm:py-24 md:py-36 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-transparent to-transparent" />
