@@ -104,154 +104,113 @@ const Welcome = () => {
         </div>
       </motion.header>
 
-      {/* Hero Section — Immersive Full-Screen */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated Background Orbs */}
+      {/* Hero Section — Clean & Professional */}
+      <section ref={heroRef} className="relative pt-28 sm:pt-36 pb-20 sm:pb-28 overflow-hidden">
+        {/* Subtle Background */}
         <div className="absolute inset-0 -z-10">
-          <motion.div
-            animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[120px]"
-          />
-          <motion.div
-            animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-secondary/8 rounded-full blur-[100px]"
-          />
-          <motion.div
-            animate={{ x: [0, 15, 0], y: [0, 15, 0] }}
-            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/2 right-1/3 w-[300px] h-[300px] bg-accent/6 rounded-full blur-[80px]"
-          />
+          <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px]" />
         </div>
 
-        <motion.div style={{ opacity: heroOpacity, y: heroY }} className="container mx-auto px-4 sm:px-6 text-center pt-20">
-          {/* Device Hint */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mb-8"
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/60 border border-border/50 text-xs sm:text-sm text-muted-foreground backdrop-blur-sm">
-              <Laptop className="h-3.5 w-3.5" />
-              <span>Best on laptop or tablet</span>
-              <Smartphone className="h-3.5 w-3.5" />
-            </div>
-          </motion.div>
-
-          {/* Tagline Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.4, 0.25, 1] }}
-            className="mb-10"
-          >
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary/15 to-secondary/15 border border-primary/25 backdrop-blur-sm">
-              <Sparkles className="h-4 w-4 text-primary" />
-              <span className="text-sm font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                All the power of an app — without installing
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Main Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-5xl mx-auto mb-6 leading-[1.1]"
-          >
-            Financial Clarity.{" "}
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-              Zero Stress.
-            </span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.7 }}
-            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
-          >
-            Track expenses, manage debts, monitor subscriptions, and achieve your savings goals—all in one beautiful web app.
-          </motion.p>
-
-          {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 items-center justify-center mb-16"
-          >
-            <Button
-              onClick={enterAsGuest}
-              size="lg"
-              className="text-base sm:text-lg px-10 py-7 rounded-2xl font-bold shadow-xl hover:shadow-2xl transition-all bg-gradient-to-r from-primary to-secondary hover:opacity-90 group"
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+            {/* Left — Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              Start Free Today
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={enterAsGuest}
-              className="text-base sm:text-lg px-10 py-7 rounded-2xl border-2 border-border hover:border-primary/50 hover:bg-primary/5 font-semibold"
-            >
-              Explore Dashboard
-            </Button>
-          </motion.div>
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.15] mb-6"
+              >
+                Track Your Daily Expenses{" "}
+                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Clearly and Effortlessly
+                </span>
+              </motion.h1>
 
-          {/* Trust Bar */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
-          >
-            {[
-              { icon: Shield, text: "256-bit Encrypted" },
-              { icon: Zap, text: "Instant Setup" },
-              { icon: Star, text: "100% Free" },
-            ].map((item) => (
-              <div key={item.text} className="flex items-center gap-2">
-                <item.icon className="h-4 w-4 text-primary" />
-                <span>{item.text}</span>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+                className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6 max-w-xl"
+              >
+                Trackora is a simple expense tracking platform designed to help people record daily spending and understand where their money goes. By keeping all expenses organized in one place, Trackora makes it easier to monitor spending habits and manage personal finances without complicated tools.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.55 }}
+                className="text-sm font-medium text-foreground/70 mb-10 tracking-wide"
+              >
+                Simple tracking&nbsp; •&nbsp; Clear summaries&nbsp; •&nbsp; Built for everyday personal finance
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="flex flex-col sm:flex-row gap-4 mb-10"
+              >
+                <Button
+                  onClick={enterAsGuest}
+                  size="lg"
+                  className="text-base px-8 py-6 rounded-2xl font-bold shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-primary to-secondary hover:opacity-90 group"
+                >
+                  Start Tracking
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Link to="/how-it-works">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="text-base px-8 py-6 rounded-2xl border-2 border-border hover:border-primary/40 hover:bg-primary/5 font-semibold w-full sm:w-auto"
+                  >
+                    Learn How Trackora Works
+                  </Button>
+                </Link>
+              </motion.div>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="text-sm text-muted-foreground leading-relaxed max-w-lg"
+              >
+                Trackora is designed to help individuals build better financial awareness by keeping daily expenses organized and easy to review.
+              </motion.p>
+            </motion.div>
+
+            {/* Right — Dashboard Preview */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative"
+            >
+              <div className="rounded-3xl overflow-hidden border border-border/60 shadow-2xl bg-card">
+                <img
+                  src={dashboardPreview}
+                  alt="Trackora dashboard showing expense list, spending categories pie chart, and budget summary cards"
+                  className="w-full h-auto"
+                  loading="eager"
+                />
               </div>
-            ))}
-          </motion.div>
-
-          {/* Support Notice */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 0.6 }}
-            className="mt-8"
-          >
-            <p className="text-xs text-muted-foreground">
-              Questions? Contact{" "}
-              <a href="mailto:pla.team@cadliotech.com" className="text-primary underline font-medium">
-                pla.team@cadliotech.com
-              </a>
-            </p>
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-1.5"
-          >
-            <div className="w-1.5 h-2.5 rounded-full bg-muted-foreground/50" />
-          </motion.div>
-        </motion.div>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 0.6 }}
+                className="text-xs sm:text-sm text-muted-foreground text-center mt-5 max-w-md mx-auto leading-relaxed"
+              >
+                A simple dashboard that shows your expenses, spending categories, and financial summaries in one clear view.
+              </motion.p>
+            </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* What is Trackora — Magazine-Style */}
