@@ -8,9 +8,9 @@ function WaveMesh() {
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
-      uColor1: { value: new THREE.Color("#333333") },
-      uColor2: { value: new THREE.Color("#555555") },
-      uColor3: { value: new THREE.Color("#444444") },
+      uColor1: { value: new THREE.Color("#888888") },
+      uColor2: { value: new THREE.Color("#aaaaaa") },
+      uColor3: { value: new THREE.Color("#999999") },
     }),
     []
   );
@@ -24,10 +24,10 @@ function WaveMesh() {
       vUv = uv;
       vec3 pos = position;
       
-      float wave1 = sin(pos.x * 1.5 + uTime * 0.4) * 0.35;
-      float wave2 = sin(pos.y * 2.0 + uTime * 0.3) * 0.25;
-      float wave3 = cos(pos.x * 1.0 + pos.y * 1.0 + uTime * 0.5) * 0.3;
-      float wave4 = sin(pos.x * 3.0 + uTime * 0.2) * cos(pos.y * 2.5 + uTime * 0.35) * 0.15;
+      float wave1 = sin(pos.x * 1.5 + uTime * 0.4) * 0.4;
+      float wave2 = sin(pos.y * 2.0 + uTime * 0.3) * 0.3;
+      float wave3 = cos(pos.x * 1.0 + pos.y * 1.0 + uTime * 0.5) * 0.35;
+      float wave4 = sin(pos.x * 3.0 + uTime * 0.2) * cos(pos.y * 2.5 + uTime * 0.35) * 0.2;
       
       pos.z = wave1 + wave2 + wave3 + wave4;
       vElevation = pos.z;
@@ -45,11 +45,11 @@ function WaveMesh() {
     varying float vElevation;
     
     void main() {
-      float mixFactor = (vElevation + 0.6) * 0.9;
+      float mixFactor = (vElevation + 0.8) * 0.8;
       vec3 color = mix(uColor1, uColor2, mixFactor);
       color = mix(color, uColor3, sin(vUv.x * 3.14 + uTime * 0.1) * 0.3 + 0.3);
       
-      float alpha = 0.7 + vElevation * 0.3;
+      float alpha = 0.5 + vElevation * 0.25;
       gl_FragColor = vec4(color, alpha);
     }
   `;
@@ -59,8 +59,8 @@ function WaveMesh() {
   });
 
   return (
-    <mesh ref={meshRef} rotation={[-Math.PI / 2.8, 0, 0]} position={[0, -0.5, 0]}>
-      <planeGeometry args={[24, 24, 150, 150]} />
+    <mesh ref={meshRef} rotation={[-Math.PI / 2.5, 0, 0]} position={[0, -1, 0]}>
+      <planeGeometry args={[28, 28, 180, 180]} />
       <shaderMaterial
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
@@ -79,16 +79,15 @@ export default function MeshWaveBackground() {
       <div className="absolute inset-0 bg-background" />
       <div style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}>
         <Canvas
-          camera={{ position: [0, 4, 7], fov: 65 }}
+          camera={{ position: [0, 5, 8], fov: 60 }}
           gl={{ alpha: true, antialias: true }}
-          dpr={[1, 1.5]}
+          dpr={[1, 2]}
           style={{ width: "100%", height: "100%" }}
         >
           <WaveMesh />
         </Canvas>
       </div>
-      {/* Soft fade at bottom only so wave is visible */}
-      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-background to-transparent" />
     </div>
   );
 }
