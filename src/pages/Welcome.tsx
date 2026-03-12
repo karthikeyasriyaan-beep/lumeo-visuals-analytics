@@ -82,7 +82,7 @@ const Welcome = () => {
         style={{ opacity: scrollIndicatorOpacity }}
         className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-2 pointer-events-none"
       >
-        <span className="text-xs font-bold text-foreground tracking-widest uppercase">Scroll to explore</span>
+        <span className="text-xs font-bold text-foreground tracking-widest uppercase">Discover What Makes Trackora Special</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
