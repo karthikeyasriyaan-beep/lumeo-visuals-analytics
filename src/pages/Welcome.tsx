@@ -66,6 +66,7 @@ const Welcome = () => {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   return (
     <>
