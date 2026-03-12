@@ -872,6 +872,35 @@ const Welcome = () => {
         </div>
       </section>
 
+      {/* ═══ Final CTA ═══ */}
+      <section className="py-20 sm:py-28 px-4">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="max-w-3xl mx-auto text-center"
+        >
+          <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6">
+            Start Tracking Your Expenses Today
+          </motion.h2>
+          <motion.p variants={fadeUp} custom={1} className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-8">
+            Take control of your daily spending with Trackora. Record your expenses, stay organized, and understand your financial habits with a simple and easy-to-use expense tracking dashboard.
+          </motion.p>
+          <motion.div variants={fadeUp} custom={2}>
+            <Button asChild size="lg" className="text-base px-10 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <Link to="/dashboard">
+                Get Started with Trackora
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+          </motion.div>
+          <motion.p variants={fadeUp} custom={3} className="text-sm text-muted-foreground mt-6">
+            Start tracking your expenses in just a few simple steps.
+          </motion.p>
+        </motion.div>
+      </section>
+
       <Footer />
     </div>
     </>
