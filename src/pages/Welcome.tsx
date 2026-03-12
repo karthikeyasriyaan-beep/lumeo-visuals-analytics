@@ -79,11 +79,8 @@ const Welcome = () => {
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
       {/* Scroll Down Indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
+        style={{ opacity: scrollIndicatorOpacity }}
         className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-2 pointer-events-none"
-        id="scroll-indicator"
       >
         <span className="text-xs font-bold text-muted-foreground tracking-widest uppercase">Scroll to explore</span>
         <motion.div
