@@ -82,12 +82,12 @@ const Welcome = () => {
         style={{ opacity: scrollIndicatorOpacity }}
         className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-2 pointer-events-none"
       >
-        <span className="text-xs font-bold text-muted-foreground tracking-widest uppercase">Scroll to explore</span>
+        <span className="text-xs font-bold text-foreground tracking-widest uppercase">Scroll to explore</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ChevronDown className="h-5 w-5 text-muted-foreground" />
+          <ChevronDown className="h-5 w-5 text-foreground" />
         </motion.div>
       </motion.div>
       <CookieConsent />
