@@ -52,6 +52,8 @@ import HowItWorks from "./pages/HowItWorks";
 import BudgetingGuide from "./pages/BudgetingGuide";
 import SavingsGuide from "./pages/SavingsGuide";
 import DebtManagementGuide from "./pages/DebtManagementGuide";
+import Resources from "./pages/Resources";
+import ResourceArticle from "./pages/ResourceArticle";
 import ResetPassword from "./pages/ResetPassword";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
