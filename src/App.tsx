@@ -141,6 +141,8 @@ const App = () => (
                 <Route path="/budgeting-guide" element={<BudgetingGuide />} />
                 <Route path="/savings-guide" element={<SavingsGuide />} />
                 <Route path="/debt-management-guide" element={<DebtManagementGuide />} />
+                <Route path="/resources" element={<Resources />} />
+                <Route path="/resources/:slug" element={<ResourceArticle />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
