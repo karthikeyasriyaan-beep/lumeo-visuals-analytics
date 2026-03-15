@@ -61,7 +61,7 @@ import { CookieConsent } from "./components/CookieConsent";
 
 function AppLayout() {
   const location = useLocation();
-  const publicPaths = ["/", "/privacy", "/terms", "/features", "/about", "/contact", "/faq", "/blog", "/disclaimer", "/reset-password", "/how-it-works", "/budgeting-guide", "/savings-guide", "/debt-management-guide"];
+  const publicPaths = ["/", "/privacy", "/terms", "/features", "/about", "/contact", "/faq", "/blog", "/disclaimer", "/reset-password", "/how-it-works", "/budgeting-guide", "/savings-guide", "/debt-management-guide", "/resources"];
   const showNav = !publicPaths.includes(location.pathname) && !location.pathname.startsWith("/blog/");
 
   return (
