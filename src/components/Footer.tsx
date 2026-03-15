@@ -86,6 +86,11 @@ export function Footer() {
                   Debt Management
                 </Link>
               </li>
+              <li>
+                <Link to="/resources" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Resources
+                </Link>
+              </li>
             </ul>
           </div>
           
