@@ -22,6 +22,12 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
+  useEffect(() => {
+    if (!localStorage.getItem("trackora_onboarded")) {
+      navigate("/onboarding", { replace: true });
+    }
+  }, [navigate]);
+
   const [guestIncome, setGuestIncome] = useState<GuestIncome[]>([]);
   const [guestExpenses, setGuestExpenses] = useState<GuestExpense[]>([]);
 
