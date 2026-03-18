@@ -62,7 +62,7 @@ export default function DigitalVsManualTracking() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trackora Team
+                Trame Team
               </div>
             </div>
           </header>
@@ -250,7 +250,7 @@ export default function DigitalVsManualTracking() {
               </p>
 
               <div className="mt-10 p-6 bg-primary/5 rounded-lg">
-                <p className="font-semibold text-lg mb-2">Try Digital Tracking with Trackora</p>
+                <p className="font-semibold text-lg mb-2">Try Digital Tracking with Trame</p>
                 <p className="text-muted-foreground">
                   Experience the best of digital expense tracking—quick logging, smart categorization, and insightful analytics—all in one intuitive app.
                 </p>

@@ -62,7 +62,7 @@ export default function WhyTrackingExpenses() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trackora Team
+                Trame Team
               </div>
             </div>
           </header>
@@ -131,7 +131,7 @@ export default function WhyTrackingExpenses() {
               
               <h3 className="text-xl font-semibold mt-6 mb-3">"It's Too Time-Consuming"</h3>
               <p>
-                Modern expense tracking apps make logging expenses quick and easy. With Trackora, you can add an expense in seconds. The few minutes spent tracking daily can save you hours of financial stress and thousands of dollars over time.
+                Modern expense tracking apps make logging expenses quick and easy. With Trame, you can add an expense in seconds. The few minutes spent tracking daily can save you hours of financial stress and thousands of dollars over time.
               </p>
 
               <h3 className="text-xl font-semibold mt-6 mb-3">"I Don't Want to Know"</h3>
@@ -149,7 +149,7 @@ export default function WhyTrackingExpenses() {
                 Beginning your expense tracking journey doesn't have to be complicated. Here's a simple approach:
               </p>
               <ol className="list-decimal pl-6 space-y-2">
-                <li><strong>Choose Your Method:</strong> Whether it's an app like Trackora, a spreadsheet, or even a notebook, pick a method that works for your lifestyle.</li>
+                <li><strong>Choose Your Method:</strong> Whether it's an app like Trame, a spreadsheet, or even a notebook, pick a method that works for your lifestyle.</li>
                 <li><strong>Track Everything:</strong> For the first month, record every single expense, no matter how small. This complete picture is essential for understanding your habits.</li>
                 <li><strong>Categorize Your Spending:</strong> Group expenses into categories like food, transportation, entertainment, and utilities. This helps identify where your money goes.</li>
                 <li><strong>Review Weekly:</strong> Set aside time each week to review your spending. Look for patterns, surprises, and opportunities to improve.</li>
@@ -187,7 +187,7 @@ export default function WhyTrackingExpenses() {
               <div className="mt-10 p-6 bg-primary/5 rounded-lg">
                 <p className="font-semibold text-lg mb-2">Start Your Expense Tracking Journey</p>
                 <p className="text-muted-foreground">
-                  Trackora makes expense tracking simple and insightful. Begin your path to financial freedom today with our intuitive tracking tools.
+                  Trame makes expense tracking simple and insightful. Begin your path to financial freedom today with our intuitive tracking tools.
                 </p>
               </div>
 

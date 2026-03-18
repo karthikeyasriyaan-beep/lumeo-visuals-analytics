@@ -9,7 +9,7 @@ const GUEST_USER: User = {
   id: "00000000-0000-0000-0000-000000000000",
   aud: "authenticated",
   role: "authenticated",
-  email: "guest@trackora.app",
+  email: "guest@trame.app",
   email_confirmed_at: new Date().toISOString(),
   phone: "",
   confirmed_at: new Date().toISOString(),

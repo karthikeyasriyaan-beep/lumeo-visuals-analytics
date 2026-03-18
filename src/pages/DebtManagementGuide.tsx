@@ -169,7 +169,7 @@ export default function DebtManagementGuide() {
     {
       mistake: "Not Tracking Progress",
       impact: "Without visible progress, motivation fades. Many abandon debt payoff plans due to feeling overwhelmed.",
-      fix: "Use Trackora to track loan balances, visualize payoff timelines, and celebrate milestones."
+      fix: "Use Trame to track loan balances, visualize payoff timelines, and celebrate milestones."
     }
   ];
 
@@ -206,7 +206,7 @@ export default function DebtManagementGuide() {
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <span className="font-bold text-xl text-foreground">Trackora</span>
+            <span className="font-bold text-xl text-foreground">Trame</span>
           </Link>
           <Link to="/">
             <Button variant="ghost" size="sm">
@@ -503,11 +503,11 @@ export default function DebtManagementGuide() {
           <Card className="bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 border-2 border-primary/20">
             <CardContent className="p-8 sm:p-12 text-center">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                Track Your Debt Payoff with Trackora
+                Track Your Debt Payoff with Trame
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
                 Monitor all your loans, visualize payoff timelines, and celebrate every payment. 
-                Trackora makes debt repayment visible and motivating.
+                Trame makes debt repayment visible and motivating.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button

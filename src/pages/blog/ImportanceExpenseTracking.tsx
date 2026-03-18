@@ -70,7 +70,7 @@ export default function ImportanceExpenseTracking() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trackora Team
+                Trame Team
               </div>
             </div>
           </div>
@@ -175,7 +175,7 @@ export default function ImportanceExpenseTracking() {
 
                 <p>
                   In the past, expense tracking meant paper ledgers and calculator sessions. Today's digital tools have eliminated most 
-                  friction from the process. Platforms like Trackora offer features that make tracking genuinely effortless:
+                  friction from the process. Platforms like Trame offer features that make tracking genuinely effortless:
                 </p>
 
                 <ul className="list-disc list-inside space-y-2 ml-4">
@@ -233,7 +233,7 @@ export default function ImportanceExpenseTracking() {
                 <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <p className="text-base font-medium text-foreground">
                     Ready to start tracking your expenses? <Link to="/" className="text-primary hover:underline">
-                    Get started with Trackora</Link> and discover where your money really goes. Our intuitive tools make 
+                    Get started with Trame</Link> and discover where your money really goes. Our intuitive tools make 
                     expense tracking simple, insightful, and even enjoyable.
                   </p>
                 </div>

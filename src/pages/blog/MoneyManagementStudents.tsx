@@ -62,7 +62,7 @@ export default function MoneyManagementStudents() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trackora Team
+                Trame Team
               </div>
             </div>
           </header>
@@ -258,7 +258,7 @@ export default function MoneyManagementStudents() {
               <div className="mt-10 p-6 bg-primary/5 rounded-lg">
                 <p className="font-semibold text-lg mb-2">Perfect for Students: Free Financial Tracking</p>
                 <p className="text-muted-foreground">
-                  Trackora helps students track expenses, manage budgets, and build healthy financial habits. Start your journey to financial literacy today.
+                  Trame helps students track expenses, manage budgets, and build healthy financial habits. Start your journey to financial literacy today.
                 </p>
               </div>
 

@@ -66,7 +66,7 @@ export default function Resources() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <h1 className="text-3xl sm:text-4xl font-bold mb-4">Resources and Financial Guides</h1>
           <p className="text-muted-foreground text-lg mb-12 max-w-3xl">
-            The Trackora Resources section provides helpful guides and insights designed to help individuals better understand their spending habits, improve financial awareness, and manage personal finances more effectively.
+            The Trame Resources section provides helpful guides and insights designed to help individuals better understand their spending habits, improve financial awareness, and manage personal finances more effectively.
           </p>
 
           <div className="space-y-14">

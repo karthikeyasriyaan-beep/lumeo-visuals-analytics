@@ -62,7 +62,7 @@ export default function WhatIsPersonalFinance() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trackora Team
+                Trame Team
               </div>
             </div>
           </header>
@@ -165,7 +165,7 @@ export default function WhatIsPersonalFinance() {
                 Modern technology has made managing personal finances easier than ever. Financial apps and tools can help you track spending, create budgets, monitor investments, and plan for the future—all from your smartphone.
               </p>
               <p>
-                Using a comprehensive expense tracking app like Trackora can simplify the process of monitoring your finances. With features like automatic categorization, spending insights, and goal tracking, you can stay on top of your finances with minimal effort.
+                Using a comprehensive expense tracking app like Trame can simplify the process of monitoring your finances. With features like automatic categorization, spending insights, and goal tracking, you can stay on top of your finances with minimal effort.
               </p>
 
               <h2 className="text-2xl font-bold mt-8 mb-4">Conclusion</h2>
@@ -179,7 +179,7 @@ export default function WhatIsPersonalFinance() {
               <div className="mt-10 p-6 bg-primary/5 rounded-lg">
                 <p className="font-semibold text-lg mb-2">Ready to take control of your finances?</p>
                 <p className="text-muted-foreground">
-                  Start your financial journey with Trackora. Our intuitive expense tracking and budgeting tools make managing your money simple and effective.
+                  Start your financial journey with Trame. Our intuitive expense tracking and budgeting tools make managing your money simple and effective.
                 </p>
               </div>
 

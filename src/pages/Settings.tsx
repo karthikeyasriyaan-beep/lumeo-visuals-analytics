@@ -116,7 +116,7 @@ export default function Settings() {
                 Appearance
               </CardTitle>
               <CardDescription className="text-sm break-words">
-                Customize how Trackora looks and feels
+                Customize how Trame looks and feels
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4 p-4 sm:p-6 pt-0">
