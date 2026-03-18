@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { 
@@ -8,7 +8,7 @@ import {
   BarChart3, CheckCircle2, TrendingUp, Wallet, 
   Sparkles, BookOpen, GraduationCap, Calculator, 
   CreditCard, Users, Home, Briefcase,
-  FileText, AlertCircle, ChevronRight, Lightbulb, HelpCircle, ChevronDown
+  FileText, AlertCircle, ChevronRight, Lightbulb, HelpCircle, ChevronDown, X
 } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
@@ -16,7 +16,8 @@ import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { useAuth } from "@/hooks/useAuth";
 import { SEOHead } from "@/components/SEOHead";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 
 import dashboardPreview from "../assets/dashboard-preview.png";
 
