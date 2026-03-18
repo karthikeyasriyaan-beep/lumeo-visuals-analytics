@@ -77,18 +77,20 @@ const Welcome = () => {
         canonicalUrl="https://trackorapp.in"
       />
     <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
-      {/* Scroll Down Indicator */}
+      {/* Scroll Down Indicator — compact pill */}
       <motion.div
         style={{ opacity: scrollIndicatorOpacity }}
-        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-2 pointer-events-none"
+        className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 pointer-events-none"
       >
-        <span className="text-xs font-bold text-foreground tracking-widest uppercase">Discover What Makes Trackora Special</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ChevronDown className="h-5 w-5 text-foreground" />
-        </motion.div>
+        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/80 backdrop-blur-md border border-border/50 shadow-lg">
+          <span className="text-[10px] sm:text-xs font-semibold text-muted-foreground whitespace-nowrap">Scroll to explore</span>
+          <motion.div
+            animate={{ y: [0, 4, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+          </motion.div>
+        </div>
       </motion.div>
       <CookieConsent />
       

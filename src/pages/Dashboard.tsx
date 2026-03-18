@@ -351,29 +351,28 @@ export default function Dashboard() {
           </div>
 
           {/* Quick Actions + Financial Insights row */}
-          <div className="grid gap-4 lg:grid-cols-2">
+          <div className="grid gap-3 sm:gap-4 lg:grid-cols-2">
             {/* Quick Actions */}
             <Card className="border border-border/50 bg-card/95">
-              <CardHeader className="pb-3 px-4 sm:px-6 pt-4 sm:pt-6">
-                <CardTitle className="text-sm sm:text-base font-semibold">Quick Actions</CardTitle>
-                <CardDescription className="text-xs">Common tasks at your fingertips</CardDescription>
+              <CardHeader className="pb-2 px-3 sm:px-6 pt-3 sm:pt-6">
+                <CardTitle className="text-xs sm:text-base font-semibold">Quick Actions</CardTitle>
               </CardHeader>
-              <CardContent className="grid grid-cols-2 gap-2.5 px-4 sm:px-6 pb-4 sm:pb-6">
-                <Button variant="outline" className="h-auto py-3 flex-col gap-1.5 text-xs sm:text-sm" onClick={() => navigate("/transactions")}>
-                  <Plus className="h-4 w-4 text-primary" />
+              <CardContent className="grid grid-cols-2 gap-2 px-3 sm:px-6 pb-3 sm:pb-6">
+                <Button variant="outline" className="h-auto py-2.5 sm:py-3 flex-col gap-1 text-[11px] sm:text-sm" onClick={() => navigate("/transactions")}>
+                  <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                   Add Expense
                 </Button>
-                <Button variant="outline" className="h-auto py-3 flex-col gap-1.5 text-xs sm:text-sm" onClick={() => navigate("/budget")}>
-                  <Wallet className="h-4 w-4 text-primary" />
+                <Button variant="outline" className="h-auto py-2.5 sm:py-3 flex-col gap-1 text-[11px] sm:text-sm" onClick={() => navigate("/budget")}>
+                  <Wallet className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                   Create Budget
                 </Button>
-                <Button variant="outline" className="h-auto py-3 flex-col gap-1.5 text-xs sm:text-sm" onClick={() => navigate("/savings")}>
-                  <Target className="h-4 w-4 text-primary" />
-                  Add Savings Goal
+                <Button variant="outline" className="h-auto py-2.5 sm:py-3 flex-col gap-1 text-[11px] sm:text-sm" onClick={() => navigate("/savings")}>
+                  <Target className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
+                  Savings Goal
                 </Button>
-                <Button variant="outline" className="h-auto py-3 flex-col gap-1.5 text-xs sm:text-sm" onClick={() => navigate("/subscriptions")}>
-                  <Repeat className="h-4 w-4 text-primary" />
-                  Track Subscription
+                <Button variant="outline" className="h-auto py-2.5 sm:py-3 flex-col gap-1 text-[11px] sm:text-sm" onClick={() => navigate("/subscriptions")}>
+                  <Repeat className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
+                  Subscription
                 </Button>
               </CardContent>
             </Card>
