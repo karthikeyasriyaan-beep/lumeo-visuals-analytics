@@ -189,10 +189,10 @@ const Welcome = () => {
       </motion.header>
 
       {/* ═══════ HERO ═══════ */}
-      <section ref={heroRef} className="relative pt-24 sm:pt-36 md:pt-40 pb-16 sm:pb-24 md:pb-32 overflow-hidden">
+      <section ref={heroRef} className="relative pt-28 sm:pt-40 md:pt-48 pb-20 sm:pb-28 md:pb-36 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div style={{ opacity: heroOpacity, y: heroY }}>
-            <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
               {/* Left — Content */}
               <motion.div
                 initial="hidden"
@@ -202,13 +202,13 @@ const Welcome = () => {
                 <motion.h1
                   variants={textReveal}
                   custom={0}
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-[-0.06em] leading-[0.95] mb-6 sm:mb-8"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-[-0.06em] leading-[1.05] mb-8 sm:mb-10"
                 >
                   Track Your
                   <br />
-                  Daily Expenses
+                  <span className="mt-1 block">Daily Expenses</span>
                   <br />
-                  <span className="text-muted-foreground/70">
+                  <span className="text-muted-foreground/70 block mt-1">
                     Effortlessly.
                   </span>
                 </motion.h1>
