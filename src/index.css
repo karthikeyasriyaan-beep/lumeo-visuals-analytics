@@ -163,7 +163,7 @@
     background: linear-gradient(90deg, hsl(var(--foreground)), hsl(var(--muted-foreground)), hsl(var(--foreground)));
   }
   
-  /* Hover Effects */
+  /* Hover Effects — Premium */
   .hover-glow { 
     @apply transition-all duration-300 ease-out;
   }
@@ -172,12 +172,20 @@
     transform: translateY(-2px);
   }
   .hover-lift { 
-    @apply transition-all duration-300 ease-out;
+    @apply transition-all duration-500 ease-out;
     box-shadow: var(--shadow-sm);
   }
   .hover-lift:hover {
     box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
+    transform: translateY(-6px);
+  }
+
+  /* Icon hover micro-interaction */
+  .icon-hover {
+    @apply transition-transform duration-200 ease-out;
+  }
+  .icon-hover:hover {
+    transform: scale(1.1) rotate(-3deg);
   }
   
   /* Bold Button */
