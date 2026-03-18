@@ -62,7 +62,7 @@ export default function PsychologyOfSpending() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trackora Team
+                Trame Team
               </div>
             </div>
           </header>
@@ -253,9 +253,9 @@ export default function PsychologyOfSpending() {
               </p>
 
               <div className="mt-10 p-6 bg-primary/5 rounded-lg">
-                <p className="font-semibold text-lg mb-2">Build Awareness with Trackora</p>
+                <p className="font-semibold text-lg mb-2">Build Awareness with Trame</p>
                 <p className="text-muted-foreground">
-                  Expense tracking is the foundation of mindful spending. Trackora helps you see your patterns clearly and make conscious financial choices.
+                  Expense tracking is the foundation of mindful spending. Trame helps you see your patterns clearly and make conscious financial choices.
                 </p>
               </div>
 

@@ -38,7 +38,7 @@ export default function Dashboard() {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (!localStorage.getItem("trackora_onboarded")) {
+    if (!localStorage.getItem("trame_onboarded")) {
       navigate("/onboarding", { replace: true });
     }
   }, [navigate]);

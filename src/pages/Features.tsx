@@ -17,7 +17,7 @@ const Features = () => {
     {
       icon: DollarSign,
       title: "💰 Loans & Debts Tracker — Breathe Easy",
-      description: "Managing debt shouldn't feel overwhelming. Trackora makes it calm and clear:",
+      description: "Managing debt shouldn't feel overwhelming. Trame makes it calm and clear:",
       features: [
         "Track multiple loans: personal, student, home, car, credit cards",
         "Monitor interest rates and total interest paid",
@@ -114,8 +114,8 @@ const Features = () => {
   return (
     <>
       <SEOHead
-        title="Trackora Features - Expense Tracking, Budgeting & Savings Tools"
-        description="Explore Trackora's powerful features: expense tracking, budget management, subscription monitoring, loan tracking, savings goals, and spending analytics. All free to use."
+        title="Trame Features - Expense Tracking, Budgeting & Savings Tools"
+        description="Explore Trame's powerful features: expense tracking, budget management, subscription monitoring, loan tracking, savings goals, and spending analytics. All free to use."
         keywords="expense tracking features, budget management tools, subscription tracker, loan management, savings goals, spending analytics"
         canonicalUrl="https://trackorapp.in/features"
       />
@@ -125,7 +125,7 @@ const Features = () => {
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <button onClick={() => navigate("/")} className="flex items-center gap-2">
             <Sparkles className="h-6 w-6 text-primary" />
-            <span className="font-bold text-xl">Trackora</span>
+            <span className="font-bold text-xl">Trame</span>
           </button>
           <Button onClick={() => navigate("/")} variant="ghost">
             Back to Home
@@ -159,7 +159,7 @@ const Features = () => {
           transition={{ delay: 0.2 }}
           className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
         >
-          Trackora brings together everything you need to manage your money with confidence and calm. 
+          Trame brings together everything you need to manage your money with confidence and calm. 
           From expense tracking to debt management, every feature is designed to reduce stress, not add to it.
         </motion.p>
       </section>

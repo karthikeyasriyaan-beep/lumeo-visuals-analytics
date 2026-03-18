@@ -70,7 +70,7 @@ export default function FinancialDisciplineHabits() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trackora Team
+                Trame Team
               </div>
             </div>
           </div>
@@ -110,7 +110,7 @@ export default function FinancialDisciplineHabits() {
                 </p>
                 <p>
                   <strong>How to build it:</strong> Set a daily reminder (perhaps after dinner) to record any expenses from 
-                  the day. Use an app like Trackora that makes entry quick—under 30 seconds per expense. Start tracking 
+                  the day. Use an app like Trame that makes entry quick—under 30 seconds per expense. Start tracking 
                   everything; don't worry about categories initially. The habit of recording matters more than perfect 
                   categorization.
                 </p>
@@ -232,7 +232,7 @@ export default function FinancialDisciplineHabits() {
                 </ul>
 
                 <p>
-                  Trackora provides these features in an integrated platform designed to make financial discipline achievable 
+                  Trame provides these features in an integrated platform designed to make financial discipline achievable 
                   for everyone—not just financial experts.
                 </p>
 
@@ -253,7 +253,7 @@ export default function FinancialDisciplineHabits() {
                 <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <p className="text-base font-medium text-foreground">
                     Ready to build lasting financial habits? <Link to="/" className="text-primary hover:underline">
-                    Get started with Trackora</Link> and use our tools to make expense tracking, budgeting, and goal 
+                    Get started with Trame</Link> and use our tools to make expense tracking, budgeting, and goal 
                     tracking effortless parts of your daily routine.
                   </p>
                 </div>

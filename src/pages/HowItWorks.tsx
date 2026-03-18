@@ -43,7 +43,7 @@ export default function HowItWorks() {
       number: "02",
       icon: Wallet,
       title: "Set Up Your Financial Profile",
-      subtitle: "Customize Trackora to match your financial life",
+      subtitle: "Customize Trame to match your financial life",
       description: "Configure your preferred currency, set your monthly budget limits, and define spending categories that make sense for your lifestyle. The more personalized your setup, the better insights you'll receive.",
       details: [
         "Choose from 30+ supported currencies",
@@ -58,7 +58,7 @@ export default function HowItWorks() {
       icon: PlusCircle,
       title: "Add Your Financial Data",
       subtitle: "Build your complete financial picture",
-      description: "Enter your income sources, recurring expenses, active subscriptions, outstanding loans, and savings goals. Trackora's quick-add feature makes data entry fast and painless.",
+      description: "Enter your income sources, recurring expenses, active subscriptions, outstanding loans, and savings goals. Trame's quick-add feature makes data entry fast and painless.",
       details: [
         "Quick-add buttons for common expenses",
         "Automatic category suggestions",
@@ -72,7 +72,7 @@ export default function HowItWorks() {
       icon: BarChart3,
       title: "Track Daily Spending",
       subtitle: "Build the habit that changes everything",
-      description: "Log your expenses as they happen or at the end of each day. Trackora makes tracking so simple that it becomes a natural part of your routine. Each transaction takes just seconds to add.",
+      description: "Log your expenses as they happen or at the end of each day. Trame makes tracking so simple that it becomes a natural part of your routine. Each transaction takes just seconds to add.",
       details: [
         "Add expenses in under 5 seconds",
         "Automatic date and category defaults",
@@ -148,23 +148,23 @@ export default function HowItWorks() {
       a: "No problem! You can add past transactions by changing the date. Review your bank statement or receipts to catch up. Consistency over time matters more than daily perfection."
     },
     {
-      q: "Can I use Trackora on my phone?",
-      a: "Absolutely! Trackora is a Progressive Web App (PWA) that works beautifully on all devices. Add it to your home screen for instant access—no app store download required."
+      q: "Can I use Trame on my phone?",
+      a: "Absolutely! Trame is a Progressive Web App (PWA) that works beautifully on all devices. Add it to your home screen for instant access—no app store download required."
     }
   ];
 
   return (
     <>
       <SEOHead
-        title="How Trackora Works - Step-by-Step Guide to Financial Clarity"
-        description="Learn how to use Trackora expense tracker in 6 simple steps. From creating your account to analyzing spending patterns and achieving your financial goals."
-        keywords="how to use Trackora, expense tracking guide, budget tracker tutorial, financial tracking steps, personal finance app guide"
+        title="How Trame Works - Step-by-Step Guide to Financial Clarity"
+        description="Learn how to use Trame expense tracker in 6 simple steps. From creating your account to analyzing spending patterns and achieving your financial goals."
+        keywords="how to use Trame, expense tracking guide, budget tracker tutorial, financial tracking steps, personal finance app guide"
         canonicalUrl="https://trackorapp.in/how-it-works"
       />
       <SchemaMarkup
         type="howto"
-        name="How to Take Control of Your Finances with Trackora"
-        description="A step-by-step guide to using Trackora for expense tracking and budget management."
+        name="How to Take Control of Your Finances with Trame"
+        description="A step-by-step guide to using Trame for expense tracking and budget management."
         steps={howToSteps}
       />
     <div className="min-h-screen bg-gradient-to-br from-background via-background/95 to-primary/5">
@@ -172,7 +172,7 @@ export default function HowItWorks() {
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <span className="font-bold text-xl text-foreground">Trackora</span>
+            <span className="font-bold text-xl text-foreground">Trame</span>
           </Link>
           <div className="flex items-center gap-3">
             <Link to="/">
@@ -199,12 +199,12 @@ export default function HowItWorks() {
           </div>
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            How Trackora <span className="text-primary">Works</span>
+            How Trame <span className="text-primary">Works</span>
           </h1>
           
           <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Transform your financial life in six simple steps. From creating your account to achieving your 
-            financial goals, here's exactly how Trackora helps you take control of your money.
+            financial goals, here's exactly how Trame helps you take control of your money.
           </p>
         </motion.div>
 
@@ -222,7 +222,7 @@ export default function HowItWorks() {
                 <Smartphone className="h-5 w-5 text-primary" />
               </div>
               <p className="text-muted-foreground">
-                <strong className="text-foreground">Works everywhere:</strong> Access Trackora from any device—desktop, tablet, or smartphone. 
+                <strong className="text-foreground">Works everywhere:</strong> Access Trame from any device—desktop, tablet, or smartphone. 
                 Your data syncs automatically across all your devices.
               </p>
             </CardContent>
@@ -296,7 +296,7 @@ export default function HowItWorks() {
               Why This <span className="text-primary">Approach Works</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Trackora is designed based on behavioral science principles that make financial 
+              Trame is designed based on behavioral science principles that make financial 
               tracking sustainable and effective.
             </p>
           </div>
@@ -367,7 +367,7 @@ export default function HowItWorks() {
                 Ready to Take Control?
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Join thousands who have transformed their financial lives with Trackora. 
+                Join thousands who have transformed their financial lives with Trame. 
                 Start your journey to financial clarity today—it's completely free.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

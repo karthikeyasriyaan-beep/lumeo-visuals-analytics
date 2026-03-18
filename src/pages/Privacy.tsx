@@ -7,35 +7,35 @@ import { Footer } from "@/components/Footer";
 const sections = [
   {
     title: "Information We Collect",
-    body: "Trackora may collect certain information when users interact with the platform. This can include basic account information provided during registration, expense data entered by the user, and technical information such as browser type, device type, and usage activity.",
+    body: "Trame may collect certain information when users interact with the platform. This can include basic account information provided during registration, expense data entered by the user, and technical information such as browser type, device type, and usage activity.",
   },
   {
     title: "How We Use Information",
-    body: "The information collected is used to operate and improve the Trackora platform. This includes storing expense records, displaying spending summaries, improving system performance, and ensuring the security of the service.",
+    body: "The information collected is used to operate and improve the Trame platform. This includes storing expense records, displaying spending summaries, improving system performance, and ensuring the security of the service.",
   },
   {
     title: "Cookies and Analytics",
-    body: "Trackora may use cookies and analytics tools to understand how visitors interact with the website. These technologies help improve user experience by analyzing general usage patterns.",
+    body: "Trame may use cookies and analytics tools to understand how visitors interact with the website. These technologies help improve user experience by analyzing general usage patterns.",
   },
   {
     title: "Data Security",
-    body: "Trackora takes reasonable steps to protect user information from unauthorized access, misuse, or disclosure. Security practices are used to ensure that financial records and personal information remain protected.",
+    body: "Trame takes reasonable steps to protect user information from unauthorized access, misuse, or disclosure. Security practices are used to ensure that financial records and personal information remain protected.",
   },
   {
     title: "Third-Party Services",
-    body: "Trackora may integrate third-party services such as analytics providers or advertising networks. These services may collect anonymous usage information according to their own privacy policies.",
+    body: "Trame may integrate third-party services such as analytics providers or advertising networks. These services may collect anonymous usage information according to their own privacy policies.",
   },
   {
     title: "User Control",
-    body: "Users can manage and edit their expense records directly from their Trackora dashboard. The platform is designed to give users control over the information they choose to store.",
+    body: "Users can manage and edit their expense records directly from their Trame dashboard. The platform is designed to give users control over the information they choose to store.",
   },
   {
     title: "Policy Updates",
-    body: "Trackora may update this Privacy Policy occasionally to reflect improvements or changes to the platform. Any updates will be posted on this page.",
+    body: "Trame may update this Privacy Policy occasionally to reflect improvements or changes to the platform. Any updates will be posted on this page.",
   },
   {
     title: "Contact",
-    body: "If you have questions about this Privacy Policy or how Trackora handles user information, you can contact the Trackora team through the website contact page.",
+    body: "If you have questions about this Privacy Policy or how Trame handles user information, you can contact the Trame team through the website contact page.",
   },
 ];
 
@@ -54,7 +54,7 @@ const Privacy = () => {
           <h1 className="text-4xl font-bold text-foreground mb-4">Privacy Policy</h1>
 
           <p className="text-muted-foreground leading-relaxed mb-10">
-            This Privacy Policy describes how Trackora collects, uses, and protects information when users access the Trackora website and its expense tracking services. By using Trackora, users agree to the practices described in this policy.
+            This Privacy Policy describes how Trame collects, uses, and protects information when users access the Trame website and its expense tracking services. By using Trame, users agree to the practices described in this policy.
           </p>
 
           <div className="space-y-8">

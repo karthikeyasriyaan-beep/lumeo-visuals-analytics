@@ -70,7 +70,7 @@ export default function PersonalFinanceBasics() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trackora Team
+                Trame Team
               </div>
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function PersonalFinanceBasics() {
 
                 <p>
                   Start by tracking every single expense for at least one month. This includes everything from your rent or 
-                  mortgage payment to that morning coffee. Modern tools like Trackora make this incredibly easy with features 
+                  mortgage payment to that morning coffee. Modern tools like Trame make this incredibly easy with features 
                   like automatic categorization and visual budgeting, so managing your finances becomes effortless.
                 </p>
 
@@ -174,7 +174,7 @@ export default function PersonalFinanceBasics() {
 
                 <p>
                   Modern financial management tools have made it easier than ever to take control of your money. Apps like 
-                  Trackora provide features that would have required hours of manual work just a decade ago:
+                  Trame provide features that would have required hours of manual work just a decade ago:
                 </p>
 
                 <ul className="list-disc list-inside space-y-2 ml-4">
@@ -214,7 +214,7 @@ export default function PersonalFinanceBasics() {
                 <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <p className="text-base font-medium text-foreground">
                     Ready to take control of your finances? <Link to="/" className="text-primary hover:underline">
-                    Get started with Trackora</Link> and track your expenses, set budgets, and work toward your 
+                    Get started with Trame</Link> and track your expenses, set budgets, and work toward your 
                     financial goals with ease.
                   </p>
                 </div>

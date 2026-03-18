@@ -62,7 +62,7 @@ export default function FinancialGoalSetting() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trackora Team
+                Trame Team
               </div>
             </div>
           </header>
@@ -314,7 +314,7 @@ export default function FinancialGoalSetting() {
               <div className="mt-10 p-6 bg-primary/5 rounded-lg">
                 <p className="font-semibold text-lg mb-2">Set and Track Your Financial Goals</p>
                 <p className="text-muted-foreground">
-                  Trackora's goal tracking features help you set realistic financial targets and monitor progress with visual insights and analytics.
+                  Trame's goal tracking features help you set realistic financial targets and monitor progress with visual insights and analytics.
                 </p>
               </div>
 

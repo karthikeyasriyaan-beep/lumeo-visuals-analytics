@@ -62,7 +62,7 @@ export default function FiftyThirtyTwentyRule() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trackora Team
+                Trame Team
               </div>
             </div>
           </header>
@@ -223,9 +223,9 @@ export default function FiftyThirtyTwentyRule() {
               </p>
 
               <div className="mt-10 p-6 bg-primary/5 rounded-lg">
-                <p className="font-semibold text-lg mb-2">Make Budgeting Easy with Trackora</p>
+                <p className="font-semibold text-lg mb-2">Make Budgeting Easy with Trame</p>
                 <p className="text-muted-foreground">
-                  Trackora automatically categorizes your expenses, making it simple to see if you're hitting your 50/30/20 targets. Start budgeting smarter today.
+                  Trame automatically categorizes your expenses, making it simple to see if you're hitting your 50/30/20 targets. Start budgeting smarter today.
                 </p>
               </div>
 

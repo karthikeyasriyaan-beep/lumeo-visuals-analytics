@@ -65,7 +65,7 @@ export default function BudgetingGuide() {
     {
       mistake: "Not Tracking Small Purchases",
       explanation: "The ₹50 coffee, ₹100 snack, and ₹200 impulse buy seem insignificant individually, but they add up to thousands monthly. These 'financial leaks' often account for 15-20% of monthly spending.",
-      solution: "Track every expense, no matter how small. Trackora's quick-add feature makes this painless."
+      solution: "Track every expense, no matter how small. Trame's quick-add feature makes this painless."
     },
     {
       mistake: "Setting Unrealistic Goals",
@@ -123,7 +123,7 @@ export default function BudgetingGuide() {
       <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
         <div className="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <span className="font-bold text-xl text-foreground">Trackora</span>
+            <span className="font-bold text-xl text-foreground">Trame</span>
           </Link>
           <Link to="/">
             <Button variant="ghost" size="sm">
@@ -402,10 +402,10 @@ export default function BudgetingGuide() {
           <Card className="bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 border-2 border-primary/20">
             <CardContent className="p-8 sm:p-12 text-center">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                Start Budgeting with Trackora
+                Start Budgeting with Trame
               </h2>
               <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-                Put these strategies into practice with Trackora's intuitive budgeting tools. 
+                Put these strategies into practice with Trame's intuitive budgeting tools. 
                 Set limits, track spending, and watch your financial health improve.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -414,7 +414,7 @@ export default function BudgetingGuide() {
                   size="lg"
                   className="text-lg px-10 py-7 rounded-2xl shadow-lg hover:shadow-xl transition-all bg-gradient-to-r from-primary to-secondary"
                 >
-                  Try Trackora Free
+                  Try Trame Free
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Link to="/blog">

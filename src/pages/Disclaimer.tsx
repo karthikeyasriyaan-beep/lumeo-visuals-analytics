@@ -32,14 +32,14 @@ const Disclaimer = () => {
               </div>
               <p className="text-muted-foreground">Last updated: {new Date().toLocaleDateString()}</p>
               <p className="text-sm text-muted-foreground mt-4">
-                Please read this disclaimer carefully before using Trackora. This disclaimer governs your use of our website and services.
+                Please read this disclaimer carefully before using Trame. This disclaimer governs your use of our website and services.
               </p>
             </CardHeader>
             <CardContent className="prose prose-sm max-w-none space-y-6">
               <section>
                 <h2 className="text-xl font-semibold mb-3 text-foreground">1. General Information Purpose</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  The information provided on Trackora (trackorapp.in) is for <strong>general informational and educational purposes only</strong>. 
+                  The information provided on Trame (trackorapp.in) is for <strong>general informational and educational purposes only</strong>. 
                   All content, including articles, guides, tools, and features, is provided in good faith. However, we make no representation 
                   or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or 
                   completeness of any information on the website.
@@ -50,7 +50,7 @@ const Disclaimer = () => {
                 <h2 className="text-xl font-semibold mb-3 text-foreground">2. Not Financial Advice</h2>
                 <div className="p-4 rounded-lg bg-destructive/10 border border-destructive/20 mb-4">
                   <p className="text-foreground font-medium">
-                    <strong>IMPORTANT:</strong> Trackora is a financial tracking and budgeting tool, NOT a financial advisory service.
+                    <strong>IMPORTANT:</strong> Trame is a financial tracking and budgeting tool, NOT a financial advisory service.
                   </p>
                 </div>
                 <p className="text-muted-foreground leading-relaxed">
@@ -72,7 +72,7 @@ const Disclaimer = () => {
               <section>
                 <h2 className="text-xl font-semibold mb-3 text-foreground">3. No Professional Relationship</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Using Trackora does not create a fiduciary, advisory, or professional relationship between you and Trackora, 
+                  Using Trame does not create a fiduciary, advisory, or professional relationship between you and Trame, 
                   its owners, operators, or affiliates. We are not licensed financial advisors, tax professionals, or investment managers. 
                   Any information provided through our platform is general in nature and may not be suitable for your particular situation.
                 </p>
@@ -101,7 +101,7 @@ const Disclaimer = () => {
                   You are solely responsible for:
                 </p>
                 <ul className="list-disc list-inside text-muted-foreground mt-2 space-y-2">
-                  <li>Evaluating the accuracy and usefulness of any information, product, or service available through Trackora</li>
+                  <li>Evaluating the accuracy and usefulness of any information, product, or service available through Trame</li>
                   <li>Ensuring the accuracy of data you enter into the platform</li>
                   <li>Making your own financial decisions based on your own research and professional advice</li>
                   <li>Understanding the risks associated with any financial decisions you make</li>
@@ -112,7 +112,7 @@ const Disclaimer = () => {
               <section>
                 <h2 className="text-xl font-semibold mb-3 text-foreground">6. Limitation of Liability</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Under no circumstances shall Trackora, its owners, operators, employees, or affiliates be liable for any:
+                  Under no circumstances shall Trame, its owners, operators, employees, or affiliates be liable for any:
                 </p>
                 <ul className="list-disc list-inside text-muted-foreground mt-2 space-y-2">
                   <li>Direct, indirect, incidental, special, or consequential damages</li>
@@ -153,7 +153,7 @@ const Disclaimer = () => {
               <section>
                 <h2 className="text-xl font-semibold mb-3 text-foreground">9. "As Is" Basis</h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Trackora is provided on an "as is" and "as available" basis. We expressly disclaim all warranties of any kind, 
+                  Trame is provided on an "as is" and "as available" basis. We expressly disclaim all warranties of any kind, 
                   whether express or implied, including but not limited to:
                 </p>
                 <ul className="list-disc list-inside text-muted-foreground mt-2 space-y-2">
@@ -168,7 +168,7 @@ const Disclaimer = () => {
                 <h2 className="text-xl font-semibold mb-3 text-foreground">10. Changes to This Disclaimer</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   We reserve the right to modify this disclaimer at any time without prior notice. Changes become effective 
-                  immediately upon posting. Your continued use of Trackora after changes constitutes acceptance of the updated disclaimer.
+                  immediately upon posting. Your continued use of Trame after changes constitutes acceptance of the updated disclaimer.
                 </p>
               </section>
 
@@ -188,7 +188,7 @@ const Disclaimer = () => {
 
               <div className="mt-8 p-6 rounded-xl bg-primary/10 border border-primary/20">
                 <p className="text-sm text-foreground font-medium">
-                  <strong>Remember:</strong> Trackora is a tool to help you organize and understand your finances better. 
+                  <strong>Remember:</strong> Trame is a tool to help you organize and understand your finances better. 
                   It is not a substitute for professional financial advice. Always consult qualified professionals for 
                   important financial decisions.
                 </p>

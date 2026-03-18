@@ -62,7 +62,7 @@ export default function ControlUnnecessarySpending() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trackora Team
+                Trame Team
               </div>
             </div>
           </header>
@@ -245,7 +245,7 @@ export default function ControlUnnecessarySpending() {
               <div className="mt-10 p-6 bg-primary/5 rounded-lg">
                 <p className="font-semibold text-lg mb-2">Track and Control Your Spending</p>
                 <p className="text-muted-foreground">
-                  Trackora helps you see exactly where your money goes, identify unnecessary spending, and build better financial habits. Start taking control today.
+                  Trame helps you see exactly where your money goes, identify unnecessary spending, and build better financial habits. Start taking control today.
                 </p>
               </div>
 
