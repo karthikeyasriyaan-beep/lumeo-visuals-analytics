@@ -182,84 +182,76 @@ export default function Dashboard() {
 
         <div className="relative max-w-7xl mx-auto space-y-5 sm:space-y-6 p-3 sm:p-6 lg:p-8">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+          <div className="flex items-center justify-between gap-2">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Dashboard</h1>
-              <p className="text-muted-foreground text-sm">A quick overview of your financial activity.</p>
+              <h1 className="text-xl sm:text-3xl font-bold tracking-tight">Dashboard</h1>
+              <p className="text-muted-foreground text-[11px] sm:text-sm">Your financial overview</p>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex gap-1.5 sm:gap-2">
               <AddIncomeDialog onSuccess={refetchAll} />
               <AddExpenseDialog onSuccess={refetchAll} />
             </div>
           </div>
 
           {/* 4 Summary Cards */}
-          <div className="grid gap-3 sm:gap-4 grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-2.5 sm:gap-4 grid-cols-2 lg:grid-cols-4">
             <Card className="border border-border/50 bg-card/95 hover:shadow-lg transition-all">
-              <CardContent className="p-4 sm:p-5">
-                <div className="flex items-start justify-between">
+              <CardContent className="p-3 sm:p-5">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 sm:p-2 rounded-lg bg-destructive/10 flex-shrink-0">
+                    <TrendingDown className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-destructive" />
+                  </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs sm:text-sm text-muted-foreground font-medium">Total Expenses</p>
-                    <p className="text-lg sm:text-2xl font-bold mt-1 truncate text-destructive">
+                    <p className="text-[10px] sm:text-xs text-muted-foreground font-medium leading-tight">Total Expenses</p>
+                    <p className="text-sm sm:text-xl font-bold truncate text-destructive">
                       {formatAmount(totalExpenses)}
                     </p>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">This month</p>
-                  </div>
-                  <div className="p-2 rounded-xl bg-destructive/10 flex-shrink-0">
-                    <TrendingDown className="h-4 w-4 sm:h-5 sm:w-5 text-destructive" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             <Card className="border border-border/50 bg-card/95 hover:shadow-lg transition-all">
-              <CardContent className="p-4 sm:p-5">
-                <div className="flex items-start justify-between">
+              <CardContent className="p-3 sm:p-5">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 sm:p-2 rounded-lg bg-success/10 flex-shrink-0">
+                    <Wallet className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-success" />
+                  </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs sm:text-sm text-muted-foreground font-medium">Budget Remaining</p>
-                    <p className="text-lg sm:text-2xl font-bold mt-1 truncate text-success">
+                    <p className="text-[10px] sm:text-xs text-muted-foreground font-medium leading-tight">Budget Left</p>
+                    <p className="text-sm sm:text-xl font-bold truncate text-success">
                       {monthlyBudget ? formatAmount(budgetRemaining) : "—"}
                     </p>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">
-                      {monthlyBudget ? `${budgetProgress.toFixed(0)}% used` : "No budget set"}
-                    </p>
-                  </div>
-                  <div className="p-2 rounded-xl bg-success/10 flex-shrink-0">
-                    <Wallet className="h-4 w-4 sm:h-5 sm:w-5 text-success" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             <Card className="border border-border/50 bg-card/95 hover:shadow-lg transition-all">
-              <CardContent className="p-4 sm:p-5">
-                <div className="flex items-start justify-between">
+              <CardContent className="p-3 sm:p-5">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 sm:p-2 rounded-lg bg-primary/10 flex-shrink-0">
+                    <PiggyBank className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
+                  </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs sm:text-sm text-muted-foreground font-medium">Savings Progress</p>
-                    <p className="text-lg sm:text-2xl font-bold mt-1 truncate text-primary">
+                    <p className="text-[10px] sm:text-xs text-muted-foreground font-medium leading-tight">Savings</p>
+                    <p className="text-sm sm:text-xl font-bold truncate text-primary">
                       {formatAmount(savingsProgress)}
                     </p>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">
-                      {(savings as any[]).length} goal{(savings as any[]).length !== 1 ? "s" : ""}
-                    </p>
-                  </div>
-                  <div className="p-2 rounded-xl bg-primary/10 flex-shrink-0">
-                    <PiggyBank className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             <Card className="border border-border/50 bg-card/95 hover:shadow-lg transition-all">
-              <CardContent className="p-4 sm:p-5">
-                <div className="flex items-start justify-between">
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs sm:text-sm text-muted-foreground font-medium">Active Subscriptions</p>
-                    <p className="text-lg sm:text-2xl font-bold mt-1 truncate">{activeSubscriptions}</p>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">Recurring</p>
+              <CardContent className="p-3 sm:p-5">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 sm:p-2 rounded-lg bg-accent/20 flex-shrink-0">
+                    <Repeat className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-accent-foreground" />
                   </div>
-                  <div className="p-2 rounded-xl bg-accent/20 flex-shrink-0">
-                    <Repeat className="h-4 w-4 sm:h-5 sm:w-5 text-accent-foreground" />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] sm:text-xs text-muted-foreground font-medium leading-tight">Subscriptions</p>
+                    <p className="text-sm sm:text-xl font-bold truncate">{activeSubscriptions}</p>
                   </div>
                 </div>
               </CardContent>
@@ -359,29 +351,28 @@ export default function Dashboard() {
           </div>
 
           {/* Quick Actions + Financial Insights row */}
-          <div className="grid gap-4 lg:grid-cols-2">
+          <div className="grid gap-3 sm:gap-4 lg:grid-cols-2">
             {/* Quick Actions */}
             <Card className="border border-border/50 bg-card/95">
-              <CardHeader className="pb-3 px-4 sm:px-6 pt-4 sm:pt-6">
-                <CardTitle className="text-sm sm:text-base font-semibold">Quick Actions</CardTitle>
-                <CardDescription className="text-xs">Common tasks at your fingertips</CardDescription>
+              <CardHeader className="pb-2 px-3 sm:px-6 pt-3 sm:pt-6">
+                <CardTitle className="text-xs sm:text-base font-semibold">Quick Actions</CardTitle>
               </CardHeader>
-              <CardContent className="grid grid-cols-2 gap-2.5 px-4 sm:px-6 pb-4 sm:pb-6">
-                <Button variant="outline" className="h-auto py-3 flex-col gap-1.5 text-xs sm:text-sm" onClick={() => navigate("/transactions")}>
-                  <Plus className="h-4 w-4 text-primary" />
+              <CardContent className="grid grid-cols-2 gap-2 px-3 sm:px-6 pb-3 sm:pb-6">
+                <Button variant="outline" className="h-auto py-2.5 sm:py-3 flex-col gap-1 text-[11px] sm:text-sm" onClick={() => navigate("/transactions")}>
+                  <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                   Add Expense
                 </Button>
-                <Button variant="outline" className="h-auto py-3 flex-col gap-1.5 text-xs sm:text-sm" onClick={() => navigate("/budget")}>
-                  <Wallet className="h-4 w-4 text-primary" />
+                <Button variant="outline" className="h-auto py-2.5 sm:py-3 flex-col gap-1 text-[11px] sm:text-sm" onClick={() => navigate("/budget")}>
+                  <Wallet className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
                   Create Budget
                 </Button>
-                <Button variant="outline" className="h-auto py-3 flex-col gap-1.5 text-xs sm:text-sm" onClick={() => navigate("/savings")}>
-                  <Target className="h-4 w-4 text-primary" />
-                  Add Savings Goal
+                <Button variant="outline" className="h-auto py-2.5 sm:py-3 flex-col gap-1 text-[11px] sm:text-sm" onClick={() => navigate("/savings")}>
+                  <Target className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
+                  Savings Goal
                 </Button>
-                <Button variant="outline" className="h-auto py-3 flex-col gap-1.5 text-xs sm:text-sm" onClick={() => navigate("/subscriptions")}>
-                  <Repeat className="h-4 w-4 text-primary" />
-                  Track Subscription
+                <Button variant="outline" className="h-auto py-2.5 sm:py-3 flex-col gap-1 text-[11px] sm:text-sm" onClick={() => navigate("/subscriptions")}>
+                  <Repeat className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary" />
+                  Subscription
                 </Button>
               </CardContent>
             </Card>
