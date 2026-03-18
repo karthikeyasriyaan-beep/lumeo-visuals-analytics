@@ -97,29 +97,76 @@ const Welcome = () => {
         keywords="expense tracker, budget analytics, personal finance, track expenses, financial planning, savings goals, loan tracker, subscription management"
         canonicalUrl="https://trackorapp.in"
       />
-    <div className="relative min-h-screen bg-background text-foreground overflow-hidden">
-      {/* Scroll Down Indicator — compact pill */}
-      <motion.div
-        style={{ opacity: scrollIndicatorOpacity }}
-        className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 pointer-events-none"
-      >
-        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/80 backdrop-blur-md border border-border/50 shadow-lg">
-          <span className="text-[10px] sm:text-xs font-semibold text-muted-foreground whitespace-nowrap">Scroll to explore</span>
+    <div className="relative min-h-screen bg-background text-foreground overflow-hidden scroll-smooth">
+      {/* Discover More Popup */}
+      <AnimatePresence>
+        {showDiscoverPopup && (
           <motion.div
-            animate={{ y: [0, 4, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center px-4"
+            onClick={() => setShowDiscoverPopup(false)}
           >
-            <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+            <div className="absolute inset-0 bg-background/60 backdrop-blur-sm" />
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-md rounded-3xl bg-card border border-border/50 p-8 sm:p-10 text-center shadow-2xl"
+              style={{ boxShadow: "0 0 60px -12px hsl(var(--foreground) / 0.08)" }}
+            >
+              <button
+                onClick={() => setShowDiscoverPopup(false)}
+                className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-muted transition-colors"
+              >
+                <X className="h-4 w-4 text-muted-foreground" />
+              </button>
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5"
+              >
+                <Sparkles className="h-7 w-7 text-primary" />
+              </motion.div>
+              <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight mb-3">
+                Discover What Trame Can Do
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+                Track expenses, manage budgets, monitor savings goals, and gain powerful insights into your spending — all in one beautifully simple platform.
+              </p>
+              <div className="flex flex-col gap-2.5">
+                <Button
+                  onClick={() => { setShowDiscoverPopup(false); enterAsGuest(); }}
+                  size="lg"
+                  className="w-full py-5 rounded-xl font-extrabold tracking-tight group"
+                >
+                  Start Exploring
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  onClick={() => setShowDiscoverPopup(false)}
+                  className="text-sm text-muted-foreground font-medium"
+                >
+                  Continue to homepage
+                </Button>
+              </div>
+            </motion.div>
           </motion.div>
-        </div>
-      </motion.div>
+        )}
+      </AnimatePresence>
+
       <CookieConsent />
       
-      {/* Floating Header */}
+      {/* Floating Header — hides on scroll down */}
       <motion.header 
         initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        animate={{ y: navHidden ? -100 : 0, opacity: navHidden ? 0 : 1 }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         className="fixed top-0 left-0 right-0 z-50"
       >
         <div className="mx-3 sm:mx-6 mt-2 sm:mt-4">
