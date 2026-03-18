@@ -69,6 +69,26 @@ const Welcome = () => {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
+  // Discover More popup
+  const [showDiscoverPopup, setShowDiscoverPopup] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setShowDiscoverPopup(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Hide/show navbar on scroll
+  const [navHidden, setNavHidden] = useState(false);
+  const { scrollY } = useScroll();
+  const lastScrollY = useRef(0);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > lastScrollY.current && latest > 100) {
+      setNavHidden(true);
+    } else {
+      setNavHidden(false);
+    }
+    lastScrollY.current = latest;
+  });
+
   return (
     <>
       <SEOHead
