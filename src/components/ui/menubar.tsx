@@ -15,7 +15,7 @@ export const Menubar = React.forwardRef<
     <div className="w-full border-b bg-background shadow-sm fixed top-0 left-0 z-50">
       {/* Top Navbar */}
       <div className="flex items-center justify-between px-4 py-3 md:px-8">
-        <div className="text-lg font-bold text-foreground">Lumeo Vision</div>
+        <div className="text-lg font-bold text-foreground">Trame</div>
 
         {/* Desktop Menu */}
         <MenubarPrimitive.Root
