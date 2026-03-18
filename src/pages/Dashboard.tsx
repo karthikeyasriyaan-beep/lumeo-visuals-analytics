@@ -182,12 +182,12 @@ export default function Dashboard() {
 
         <div className="relative max-w-7xl mx-auto space-y-5 sm:space-y-6 p-3 sm:p-6 lg:p-8">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+          <div className="flex items-center justify-between gap-2">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Dashboard</h1>
-              <p className="text-muted-foreground text-sm">A quick overview of your financial activity.</p>
+              <h1 className="text-xl sm:text-3xl font-bold tracking-tight">Dashboard</h1>
+              <p className="text-muted-foreground text-[11px] sm:text-sm">Your financial overview</p>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex gap-1.5 sm:gap-2">
               <AddIncomeDialog onSuccess={refetchAll} />
               <AddExpenseDialog onSuccess={refetchAll} />
             </div>
