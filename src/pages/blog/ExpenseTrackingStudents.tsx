@@ -70,7 +70,7 @@ export default function ExpenseTrackingStudents() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trame Team
+                Trackora Team
               </div>
             </div>
           </div>
@@ -147,7 +147,7 @@ export default function ExpenseTrackingStudents() {
                 </p>
 
                 <ol className="list-decimal list-inside space-y-2 ml-4">
-                  <li><strong>Choose a mobile-first tool:</strong> Your phone is always with you; use an app like Trame that 
+                  <li><strong>Choose a mobile-first tool:</strong> Your phone is always with you; use an app like Trackora that 
                   allows one-tap expense entry</li>
                   <li><strong>Create student-specific categories:</strong> Textbooks, campus food, entertainment, 
                   transportation, going out</li>
@@ -168,7 +168,7 @@ export default function ExpenseTrackingStudents() {
                 <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Subscription Creep</h3>
                 <p>
                   Free trials that auto-convert to paid subscriptions are designed to catch busy people—like students. A ₹99 
-                  here and ₹199 there adds up to significant monthly drain. Use Trame's subscription tracking to maintain 
+                  here and ₹199 there adds up to significant monthly drain. Use Trackora's subscription tracking to maintain 
                   visibility on all recurring charges and cancel unused services promptly.
                 </p>
 
@@ -259,14 +259,14 @@ export default function ExpenseTrackingStudents() {
                 </ul>
 
                 <p>
-                  Trame offers all these features specifically designed for users who need simple, effective tracking without 
+                  Trackora offers all these features specifically designed for users who need simple, effective tracking without 
                   complexity. The goal is spending two minutes daily on tracking, not two hours weekly on spreadsheets.
                 </p>
 
                 <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <p className="text-base font-medium text-foreground">
                     Ready to take control of your student finances? <Link to="/" className="text-primary hover:underline">
-                    Get started with Trame</Link>—it's completely free and designed to make expense tracking as simple 
+                    Get started with Trackora</Link>—it's completely free and designed to make expense tracking as simple 
                     as checking your phone.
                   </p>
                 </div>

@@ -70,7 +70,7 @@ export default function MonthlyBudgetingGuide() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trame Team
+                Trackora Team
               </div>
             </div>
           </div>
@@ -226,7 +226,7 @@ export default function MonthlyBudgetingGuide() {
                 <p>
                   Cash is divided into category envelopes. When an envelope is empty, spending in that category stops. This 
                   physical system enforces limits effectively but can be impractical in an increasingly cashless world. Digital 
-                  envelope systems in apps like Trame provide similar benefits with modern convenience.
+                  envelope systems in apps like Trackora provide similar benefits with modern convenience.
                 </p>
 
                 <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Making Your Budget Work: Daily Practices</h2>
@@ -268,7 +268,7 @@ export default function MonthlyBudgetingGuide() {
                 <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Tools to Simplify Budgeting</h2>
 
                 <p>
-                  Modern budgeting apps eliminate much of the tedious work that made budgeting difficult in the past. Trame, 
+                  Modern budgeting apps eliminate much of the tedious work that made budgeting difficult in the past. Trackora, 
                   for example, provides:
                 </p>
 
@@ -288,7 +288,7 @@ export default function MonthlyBudgetingGuide() {
                 <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <p className="text-base font-medium text-foreground">
                     Ready to create your monthly budget? <Link to="/" className="text-primary hover:underline">
-                    Get started with Trame</Link> and use our intuitive budget tracking tools to take control of 
+                    Get started with Trackora</Link> and use our intuitive budget tracking tools to take control of 
                     your finances today.
                   </p>
                 </div>

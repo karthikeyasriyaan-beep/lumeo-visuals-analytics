@@ -63,7 +63,8 @@ import { CookieConsent } from "./components/CookieConsent";
 function AppLayout() {
   const location = useLocation();
   const publicPaths = ["/", "/privacy", "/terms", "/features", "/about", "/contact", "/faq", "/blog", "/disclaimer", "/reset-password", "/how-it-works", "/budgeting-guide", "/savings-guide", "/debt-management-guide", "/resources"];
-  const showNav = !publicPaths.includes(location.pathname) && !location.pathname.startsWith("/blog/");
+  const hideNavPaths = ["/onboarding"];
+  const showNav = !publicPaths.includes(location.pathname) && !location.pathname.startsWith("/blog/") && !hideNavPaths.includes(location.pathname);
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden scroll-smooth">

@@ -70,7 +70,7 @@ export default function SavingMoneyEffectively() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trame Team
+                Trackora Team
               </div>
             </div>
           </div>
@@ -161,7 +161,7 @@ export default function SavingMoneyEffectively() {
                 </p>
 
                 <p>
-                  Tools like Trame's savings goals feature provide visual progress tracking—watching that progress bar fill 
+                  Tools like Trackora's savings goals feature provide visual progress tracking—watching that progress bar fill 
                   provides dopamine hits that reinforce saving behavior. Some people add photos or vision boards of their goals 
                   to savings accounts for additional motivation.
                 </p>
@@ -187,7 +187,7 @@ export default function SavingMoneyEffectively() {
                 </ul>
 
                 <p>
-                  Perform a thorough subscription audit quarterly. Use Trame's subscription tracking feature to identify all 
+                  Perform a thorough subscription audit quarterly. Use Trackora's subscription tracking feature to identify all 
                   recurring charges and evaluate each one's value relative to its cost.
                 </p>
 
@@ -258,7 +258,7 @@ export default function SavingMoneyEffectively() {
                 <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <p className="text-base font-medium text-foreground">
                     Ready to start building your savings? <Link to="/" className="text-primary hover:underline">
-                    Get started with Trame</Link> and use our savings goal tracking tools to visualize your progress 
+                    Get started with Trackora</Link> and use our savings goal tracking tools to visualize your progress 
                     and stay motivated on your journey to financial security.
                   </p>
                 </div>

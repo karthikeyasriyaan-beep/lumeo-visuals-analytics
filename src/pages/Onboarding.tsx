@@ -6,39 +6,39 @@ import { Button } from "@/components/ui/button";
 
 const steps = [
   {
-    title: "Welcome to Trame",
-    text: "Trame helps you record your daily expenses, track budgets, monitor savings, and stay aware of your financial habits.",
+    title: "Welcome to Trackora",
+    text: "Trackora helps you record daily expenses, track budgets, monitor savings, and stay aware of your financial habits.",
     button: "Get Started",
     icon: null,
   },
   {
-    title: "Track Your Expenses",
-    text: "Easily record your daily spending by adding expenses with categories, notes, and receipt images. Keeping a record of your expenses helps you understand where your money goes.",
+    title: "Track Expenses",
+    text: "Record your daily spending with categories and notes. Know where your money goes.",
     button: "Next",
     icon: Receipt,
   },
   {
-    title: "Manage Your Budget",
-    text: "Set monthly budgets to control spending and monitor how much of your budget has been used. Trame helps you stay within your planned financial limits.",
+    title: "Manage Budget",
+    text: "Set monthly budgets and monitor how much you've used to stay within limits.",
     button: "Next",
     icon: Wallet,
   },
   {
-    title: "Track Your Savings Goals",
-    text: "Create savings goals and monitor your progress over time. Trame helps you stay motivated while building your financial future.",
+    title: "Savings Goals",
+    text: "Create savings goals and track progress over time toward your financial future.",
     button: "Next",
     icon: PiggyBank,
   },
   {
-    title: "Manage Subscriptions and Loans",
-    text: "Keep track of recurring subscriptions, loans, and debts in one place so you always know your financial commitments.",
+    title: "Subscriptions & Loans",
+    text: "Track recurring subscriptions and loans so you always know your commitments.",
     button: "Next",
     icon: Repeat,
   },
   {
-    title: "Your Financial Dashboard",
-    text: "The Trame dashboard gives you a clear overview of expenses, budgets, savings, and subscriptions so you can quickly understand your financial activity.",
-    button: "Start Using Trame",
+    title: "Your Dashboard",
+    text: "Get a clear overview of expenses, budgets, savings, and subscriptions in one place.",
+    button: "Start Using Trackora",
     icon: LayoutDashboard,
   },
 ];
@@ -68,20 +68,20 @@ export default function Onboarding() {
       {/* Skip button */}
       {current < steps.length - 1 && (
         <div className="fixed top-4 right-4 z-10">
-          <Button variant="ghost" size="sm" onClick={finish} className="gap-1.5 text-muted-foreground">
-            Skip <SkipForward className="h-4 w-4" />
+          <Button variant="ghost" size="sm" onClick={finish} className="gap-1.5 text-muted-foreground text-xs">
+            Skip <SkipForward className="h-3.5 w-3.5" />
           </Button>
         </div>
       )}
 
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-sm">
         {/* Progress dots */}
-        <div className="flex justify-center gap-2 mb-10">
+        <div className="flex justify-center gap-1.5 mb-8">
           {steps.map((_, i) => (
             <div
               key={i}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === current ? "w-8 bg-primary" : i < current ? "w-2 bg-primary/50" : "w-2 bg-muted"
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === current ? "w-6 bg-primary" : i < current ? "w-1.5 bg-primary/50" : "w-1.5 bg-muted"
               }`}
             />
           ))}
@@ -94,19 +94,19 @@ export default function Onboarding() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.3 }}
-            className="text-center space-y-6"
+            className="text-center space-y-4"
           >
             {Icon && (
-              <div className="mx-auto w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-                <Icon className="h-8 w-8 text-primary" />
+              <div className="mx-auto w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Icon className="h-6 w-6 text-primary" />
               </div>
             )}
 
-            <h1 className="text-2xl sm:text-3xl font-bold">{step.title}</h1>
-            <p className="text-muted-foreground leading-relaxed">{step.text}</p>
+            <h1 className="text-lg sm:text-xl font-bold">{step.title}</h1>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{step.text}</p>
 
-            <Button size="lg" onClick={next} className="gap-2 mt-4">
-              {step.button} <ArrowRight className="h-4 w-4" />
+            <Button size="default" onClick={next} className="gap-1.5 mt-3 text-sm">
+              {step.button} <ArrowRight className="h-3.5 w-3.5" />
             </Button>
           </motion.div>
         </AnimatePresence>

@@ -70,7 +70,7 @@ export default function CommonFinancialMistakes() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trame Team
+                Trackora Team
               </div>
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function CommonFinancialMistakes() {
                   budgets, or make informed decisions.
                 </p>
                 <p>
-                  <strong>The fix:</strong> Start tracking every expense, even small ones. Use an app like Trame that makes 
+                  <strong>The fix:</strong> Start tracking every expense, even small ones. Use an app like Trackora that makes 
                   this effortless. Even one month of complete tracking provides invaluable insights. Once you see where money 
                   actually goes, you gain power to redirect it where you want.
                 </p>
@@ -158,7 +158,7 @@ export default function CommonFinancialMistakes() {
                 </p>
                 <p>
                   <strong>The fix:</strong> Audit all subscriptions quarterly. List every recurring charge, evaluate actual usage, 
-                  and cancel anything providing insufficient value. Use Trame's subscription tracking to maintain visibility 
+                  and cancel anything providing insufficient value. Use Trackora's subscription tracking to maintain visibility 
                   on recurring expenses.
                 </p>
 
@@ -234,7 +234,7 @@ export default function CommonFinancialMistakes() {
                 </p>
 
                 <p>
-                  Financial tools like Trame exist precisely to create this awareness. When you can see where money goes, set 
+                  Financial tools like Trackora exist precisely to create this awareness. When you can see where money goes, set 
                   budgets that reflect reality, and track progress toward goals, you naturally avoid the mistakes that hold so 
                   many people back.
                 </p>
@@ -242,7 +242,7 @@ export default function CommonFinancialMistakes() {
                 <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <p className="text-base font-medium text-foreground">
                     Ready to avoid these common mistakes? <Link to="/" className="text-primary hover:underline">
-                    Get started with Trame</Link> and build the awareness that leads to better financial decisions 
+                    Get started with Trackora</Link> and build the awareness that leads to better financial decisions 
                     and lasting financial security.
                   </p>
                 </div>

@@ -11,7 +11,7 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <BarChart3 className="h-6 w-6 text-primary" />
-              <span className="font-display font-bold text-xl">Trame</span>
+              <span className="font-display font-bold text-xl">Trackora</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">
               Your personal finance companion. Track expenses, manage budgets, and achieve your financial goals with clarity.

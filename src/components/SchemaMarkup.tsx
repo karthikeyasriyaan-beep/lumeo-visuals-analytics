@@ -67,12 +67,12 @@ export const SchemaMarkup = (props: SchemaProps) => {
           dateModified: props.dateModified || props.datePublished,
           author: {
             "@type": "Organization",
-            name: props.author || "Trame Team",
+            name: props.author || "Trackora Team",
             url: "https://trackorapp.in/about"
           },
           publisher: {
             "@type": "Organization",
-            name: "Trame",
+            name: "Trackora",
             url: "https://trackorapp.in",
             logo: {
               "@type": "ImageObject",
@@ -134,10 +134,10 @@ export const SchemaMarkup = (props: SchemaProps) => {
         schema = {
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "Trame",
+          name: "Trackora",
           url: "https://trackorapp.in",
           logo: "https://trackorapp.in/favicon.ico",
-          description: "Trame is a smart expense tracker and budget analytics platform helping users take control of their finances.",
+          description: "Trackora is a smart expense tracker and budget analytics platform helping users take control of their finances.",
           foundingDate: "2024",
           founder: {
             "@type": "Person",

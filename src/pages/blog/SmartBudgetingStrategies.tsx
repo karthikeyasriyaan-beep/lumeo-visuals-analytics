@@ -70,7 +70,7 @@ export default function SmartBudgetingStrategies() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trame Team
+                Trackora Team
               </div>
             </div>
           </div>
@@ -127,7 +127,7 @@ export default function SmartBudgetingStrategies() {
                 </p>
 
                 <p>
-                  Modern budgeting apps like Trame bring envelope budgeting into the digital age. Set spending limits 
+                  Modern budgeting apps like Trackora bring envelope budgeting into the digital age. Set spending limits 
                   for each category and watch your progress throughout the month. Visual indicators show when you're 
                   approaching limits, helping you make better spending decisions without the hassle of managing physical cash.
                 </p>
@@ -212,7 +212,7 @@ export default function SmartBudgetingStrategies() {
                 <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <p className="text-base font-medium text-foreground">
                     Ready to implement these budgeting strategies? <Link to="/" className="text-primary hover:underline">
-                    Start using Trame</Link> to track expenses, set category budgets, and gain visual insights into 
+                    Start using Trackora</Link> to track expenses, set category budgets, and gain visual insights into 
                     your spending patterns—making any budgeting method easier to follow.
                   </p>
                 </div>
