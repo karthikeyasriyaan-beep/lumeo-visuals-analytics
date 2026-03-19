@@ -70,7 +70,7 @@ export default function BudgetingFamilies() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trame Team
+                Trackora Team
               </div>
             </div>
           </div>
@@ -285,14 +285,14 @@ export default function BudgetingFamilies() {
                 </ul>
 
                 <p>
-                  Trame provides these features with an intuitive interface that makes family expense tracking straightforward 
+                  Trackora provides these features with an intuitive interface that makes family expense tracking straightforward 
                   rather than burdensome. When tracking is easy, it becomes sustainable.
                 </p>
 
                 <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <p className="text-base font-medium text-foreground">
                     Ready to organize your family finances? <Link to="/" className="text-primary hover:underline">
-                    Get started with Trame</Link> and use our comprehensive tracking tools to build financial security 
+                    Get started with Trackora</Link> and use our comprehensive tracking tools to build financial security 
                     for your entire household.
                   </p>
                 </div>

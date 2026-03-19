@@ -70,7 +70,7 @@ export default function SubscriptionAuditGuide() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trame Team
+                Trackora Team
               </div>
             </div>
           </div>
@@ -134,7 +134,7 @@ export default function SubscriptionAuditGuide() {
 
                 <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Use Subscription Tracking Tools</h3>
                 <p>
-                  Tools like Trame help automate this process by monitoring your transactions and identifying recurring 
+                  Tools like Trackora help automate this process by monitoring your transactions and identifying recurring 
                   charges. This eliminates the manual work and ensures nothing slips through the cracks.
                 </p>
 
@@ -307,7 +307,7 @@ export default function SubscriptionAuditGuide() {
                 <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <p className="text-base font-medium text-foreground">
                     Ready to optimize your subscriptions? <Link to="/" className="text-primary hover:underline">
-                    Try Trame</Link> to automatically track all your recurring subscriptions, receive renewal 
+                    Try Trackora</Link> to automatically track all your recurring subscriptions, receive renewal 
                     alerts, and see exactly how much you're spending monthly and annually on subscriptions.
                   </p>
                 </div>

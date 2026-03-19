@@ -92,8 +92,8 @@ const Welcome = () => {
   return (
     <>
       <SEOHead
-        title="Trame - Smart Expense Tracker & Budget Analytics Platform"
-        description="Take control of your finances with Trame. Track daily expenses, manage loans, monitor subscriptions, set savings goals, and get clear spending insights. Free to use."
+        title="Trackora - Smart Expense Tracker & Budget Analytics Platform"
+        description="Take control of your finances with Trackora. Track daily expenses, manage loans, monitor subscriptions, set savings goals, and get clear spending insights. Free to use."
         keywords="expense tracker, budget analytics, personal finance, track expenses, financial planning, savings goals, loan tracker, subscription management"
         canonicalUrl="https://trackorapp.in"
       />
@@ -133,7 +133,7 @@ const Welcome = () => {
                 <Sparkles className="h-7 w-7 text-primary" />
               </motion.div>
               <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight mb-3">
-                Discover What Trame Can Do
+                Discover What Trackora Can Do
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-6">
                 Track expenses, manage budgets, monitor savings goals, and gain powerful insights into your spending — all in one beautifully simple platform.
@@ -172,7 +172,7 @@ const Welcome = () => {
         <div className="mx-3 sm:mx-6 mt-2 sm:mt-4">
           <div className="bg-background/60 backdrop-blur-2xl border border-border/30 rounded-2xl shadow-lg px-4 sm:px-6 py-3 flex items-center justify-between max-w-6xl mx-auto">
             <span className="font-extrabold text-lg sm:text-2xl text-foreground tracking-tighter">
-              Trame
+              Trackora
             </span>
             <div className="flex items-center gap-2 sm:gap-3">
               <Button 
@@ -218,7 +218,7 @@ const Welcome = () => {
                   custom={1}
                   className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed mb-5 sm:mb-7 max-w-xl font-medium"
                 >
-                  Trame is a simple expense tracking platform designed to help people record daily spending and understand where their money goes. By keeping all expenses organized in one place, Trame makes it easier to monitor spending habits and manage personal finances without complicated tools.
+                  Trackora is a simple expense tracking platform designed to help people record daily spending and understand where their money goes. By keeping all expenses organized in one place, Trackora makes it easier to monitor spending habits and manage personal finances without complicated tools.
                 </motion.p>
 
                 <motion.div
@@ -262,7 +262,7 @@ const Welcome = () => {
                   custom={4}
                   className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-lg font-medium"
                 >
-                  Trame is designed to help individuals build better financial awareness by keeping daily expenses organized and easy to review.
+                  Trackora is designed to help individuals build better financial awareness by keeping daily expenses organized and easy to review.
                 </motion.p>
               </motion.div>
 
@@ -276,7 +276,7 @@ const Welcome = () => {
                 <div className="rounded-2xl overflow-hidden border border-border/40 shadow-2xl bg-card/50 backdrop-blur-sm">
                   <img
                     src={dashboardPreview}
-                    alt="Trame dashboard showing expense list, spending categories pie chart, and budget summary cards"
+                    alt="Trackora dashboard showing expense list, spending categories pie chart, and budget summary cards"
                     className="w-full h-auto"
                     loading="eager"
                   />
@@ -310,7 +310,7 @@ const Welcome = () => {
                 Simple Features That Make Expense Tracking Easy
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-                Trame provides simple tools designed to help you record expenses, stay organized, and understand your spending habits without complicated financial systems.
+                Trackora provides simple tools designed to help you record expenses, stay organized, and understand your spending habits without complicated financial systems.
               </p>
             </motion.div>
 
@@ -319,17 +319,17 @@ const Welcome = () => {
                 {
                   icon: Wallet,
                   title: "Smart Expense Tracking",
-                  desc: "Quickly record your daily expenses and keep your spending organized in one place. Trame makes it easy to monitor your expenses and maintain clear financial records."
+                  desc: "Quickly record your daily expenses and keep your spending organized in one place. Trackora makes it easy to monitor your expenses and maintain clear financial records."
                 },
                 {
                   icon: FileText,
                   title: "Receipt Scanner",
-                  desc: "Upload a receipt image and Trame can extract key details such as the total amount and store information to help you log expenses faster."
+                  desc: "Upload a receipt image and Trackora can extract key details such as the total amount and store information to help you log expenses faster."
                 },
                 {
                   icon: Zap,
                   title: "Voice Expense Entry",
-                  desc: "Add expenses by simply speaking. Trame converts your voice input into expense entries so you can record spending quickly without typing."
+                  desc: "Add expenses by simply speaking. Trackora converts your voice input into expense entries so you can record spending quickly without typing."
                 },
                 {
                   icon: BarChart3,
@@ -370,10 +370,10 @@ const Welcome = () => {
           >
             <motion.div variants={fadeUp} className="text-center mb-12 sm:mb-20">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6">
-                How Trame Helps You Track Your Expenses
+                How Trackora Helps You Track Your Expenses
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-                Trame is designed to make expense tracking simple and quick. Follow these steps to start recording and understanding your daily spending.
+                Trackora is designed to make expense tracking simple and quick. Follow these steps to start recording and understanding your daily spending.
               </p>
             </motion.div>
 
@@ -384,7 +384,7 @@ const Welcome = () => {
               {[
                 { num: "01", title: "Create Your Account", desc: "Sign up and access your personal expense tracking dashboard where all your spending records will be stored securely." },
                 { num: "02", title: "Add Your Expenses", desc: "Record your daily expenses manually, upload a receipt, or use voice input to quickly add spending entries." },
-                { num: "03", title: "Organize Your Spending", desc: "Trame automatically organizes your expenses so you can see how much you spend across different categories." },
+                { num: "03", title: "Organize Your Spending", desc: "Trackora automatically organizes your expenses so you can see how much you spend across different categories." },
                 { num: "04", title: "Review Your Insights", desc: "View summaries and simple charts that help you understand your spending habits and manage your finances better." }
               ].map((step, idx) => (
                 <motion.div
@@ -423,7 +423,7 @@ const Welcome = () => {
                 See Your Expenses Clearly in One Dashboard
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-                Trame brings all your financial information together in a single dashboard so you can quickly understand your spending and stay organized.
+                Trackora brings all your financial information together in a single dashboard so you can quickly understand your spending and stay organized.
               </p>
             </motion.div>
 
@@ -434,7 +434,7 @@ const Welcome = () => {
                   Everything You Need to Track Your Spending
                 </h3>
                 <p className="text-muted-foreground text-xs sm:text-sm md:text-base leading-relaxed mb-6 sm:mb-8">
-                  The Trame dashboard gives you a clear overview of your daily expenses, spending categories, and financial summaries. Instead of scattered records, everything is organized in one simple and easy-to-understand interface.
+                  The Trackora dashboard gives you a clear overview of your daily expenses, spending categories, and financial summaries. Instead of scattered records, everything is organized in one simple and easy-to-understand interface.
                 </p>
                 <ul className="space-y-3 sm:space-y-4">
                   {[
@@ -463,7 +463,7 @@ const Welcome = () => {
                 <div className="rounded-2xl overflow-hidden border border-border/40 shadow-2xl bg-card/50 backdrop-blur-sm">
                   <img
                     src={dashboardPreview}
-                    alt="Trame dashboard showing expense list, spending categories pie chart, and budget summary cards"
+                    alt="Trackora dashboard showing expense list, spending categories pie chart, and budget summary cards"
                     className="w-full h-auto"
                     loading="lazy"
                   />
@@ -489,17 +489,17 @@ const Welcome = () => {
           >
             <motion.div variants={fadeUp} className="text-center mb-12 sm:mb-20">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6">
-                Why People Use Trame for Expense Tracking
+                Why People Use Trackora for Expense Tracking
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-                Trame is designed to simplify personal expense tracking. Instead of complex financial tools, Trame focuses on making daily expense recording easy and understandable.
+                Trackora is designed to simplify personal expense tracking. Instead of complex financial tools, Trackora focuses on making daily expense recording easy and understandable.
               </p>
             </motion.div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {[
                 { icon: Target, title: "Stay Organized", desc: "Keep all your daily expenses in one place so you no longer need to rely on scattered notes or memory to track your spending." },
-                { icon: TrendingUp, title: "Understand Spending Habits", desc: "Trame helps you see where your money goes by providing clear summaries of your spending patterns." },
+                { icon: TrendingUp, title: "Understand Spending Habits", desc: "Trackora helps you see where your money goes by providing clear summaries of your spending patterns." },
                 { icon: Zap, title: "Save Time", desc: "Quickly record expenses using manual entry, receipt scanning, or voice input so tracking expenses takes only a few seconds." },
                 { icon: Sparkles, title: "Improve Financial Awareness", desc: "By consistently recording your expenses, you can better understand your financial behavior and make more informed spending decisions." }
               ].map((item, idx) => (
@@ -540,18 +540,18 @@ const Welcome = () => {
                 Frequently Asked Questions
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                Here are answers to some common questions about how Trame works and how it helps you track your daily expenses.
+                Here are answers to some common questions about how Trackora works and how it helps you track your daily expenses.
               </p>
             </motion.div>
 
             <motion.div variants={fadeUp}>
               <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
                 {[
-                  { q: "What is Trame?", a: "Trame is a simple expense tracking platform that helps individuals record their daily spending and understand where their money goes. It keeps expenses organized in one place so users can easily review their financial activity." },
-                  { q: "How do I add expenses in Trame?", a: "You can add expenses manually, upload a receipt image, or use voice input to record your spending quickly. Trame is designed to make expense entry fast and convenient." },
-                  { q: "Can I view summaries of my expenses?", a: "Yes. Trame provides summaries and simple charts that help you understand your spending habits and review how your expenses change over time." },
-                  { q: "Is Trame suitable for personal expense tracking?", a: "Yes. Trame is built specifically for individuals who want a simple and organized way to track daily expenses and improve financial awareness." },
-                  { q: "Do I need financial knowledge to use Trame?", a: "No. Trame is designed to be simple and easy to use, even for people who have never used financial tracking tools before." }
+                  { q: "What is Trackora?", a: "Trackora is a simple expense tracking platform that helps individuals record their daily spending and understand where their money goes. It keeps expenses organized in one place so users can easily review their financial activity." },
+                  { q: "How do I add expenses in Trackora?", a: "You can add expenses manually, upload a receipt image, or use voice input to record your spending quickly. Trackora is designed to make expense entry fast and convenient." },
+                  { q: "Can I view summaries of my expenses?", a: "Yes. Trackora provides summaries and simple charts that help you understand your spending habits and review how your expenses change over time." },
+                  { q: "Is Trackora suitable for personal expense tracking?", a: "Yes. Trackora is built specifically for individuals who want a simple and organized way to track daily expenses and improve financial awareness." },
+                  { q: "Do I need financial knowledge to use Trackora?", a: "No. Trackora is designed to be simple and easy to use, even for people who have never used financial tracking tools before." }
                 ].map((faq, idx) => (
                   <AccordionItem
                     key={idx}
@@ -586,17 +586,17 @@ const Welcome = () => {
             <motion.div variants={fadeUp} className="text-center mb-10 sm:mb-16">
               <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-foreground/5 border border-border/50 text-xs sm:text-sm font-bold mb-4 sm:mb-5">
                 <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                About Trame
+                About Trackora
               </div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 sm:mb-4">
-                What is Trame?
+                What is Trackora?
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
               {[
-                { icon: Globe, title: "Complete Finance Platform", desc: "Trame is a comprehensive personal finance management platform designed to help individuals and families take complete control of their money. Unlike simple expense trackers that only record transactions, Trame provides a complete financial ecosystem." },
-                { icon: Users, title: "For Everyone", desc: "Whether you're a college student managing a tight budget, a working professional juggling multiple financial responsibilities, or a family planning for the future, Trame adapts to your unique financial situation." },
+                { icon: Globe, title: "Complete Finance Platform", desc: "Trackora is a comprehensive personal finance management platform designed to help individuals and families take complete control of their money. Unlike simple expense trackers that only record transactions, Trackora provides a complete financial ecosystem." },
+                { icon: Users, title: "For Everyone", desc: "Whether you're a college student managing a tight budget, a working professional juggling multiple financial responsibilities, or a family planning for the future, Trackora adapts to your unique financial situation." },
                 { icon: Lightbulb, title: "Powerful Insights", desc: "Instantly see where your money goes each month, identify spending patterns you weren't aware of, receive gentle alerts before subscription renewals, and track your debt payoff journey with visual progress indicators." }
               ].map((item, idx) => (
                 <motion.div key={item.title} variants={fadeUp} custom={idx}>
@@ -666,7 +666,7 @@ const Welcome = () => {
                   </div>
                   <div className="space-y-3 sm:space-y-5">
                     <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm md:text-base">
-                      <strong className="text-foreground">Trame makes financial awareness effortless.</strong> Quick-add features, intelligent categorization, and beautiful visualizations make tracking a natural habit—taking seconds, not minutes.
+                      <strong className="text-foreground">Trackora makes financial awareness effortless.</strong> Quick-add features, intelligent categorization, and beautiful visualizations make tracking a natural habit—taking seconds, not minutes.
                     </p>
                     <p className="text-muted-foreground leading-relaxed text-xs sm:text-sm md:text-base">
                       Research shows that simply becoming aware of spending patterns leads to a natural <strong className="text-foreground">15-20% reduction</strong> in unnecessary expenses.
@@ -757,7 +757,7 @@ const Welcome = () => {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer}>
             <motion.div variants={fadeUp} className="text-center mb-10 sm:mb-16">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 sm:mb-4">
-                Who Uses Trame?
+                Who Uses Trackora?
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
                 Real people with real financial goals
@@ -968,12 +968,12 @@ const Welcome = () => {
             Start Tracking Your Expenses Today
           </motion.h2>
           <motion.p variants={fadeUp} custom={1} className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-8">
-            Take control of your daily spending with Trame. Record your expenses, stay organized, and understand your financial habits with a simple and easy-to-use expense tracking dashboard.
+            Take control of your daily spending with Trackora. Record your expenses, stay organized, and understand your financial habits with a simple and easy-to-use expense tracking dashboard.
           </motion.p>
           <motion.div variants={fadeUp} custom={2}>
             <Button asChild size="lg" className="text-base px-10 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
               <Link to="/dashboard">
-                Get Started with Trame
+                Get Started with Trackora
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>

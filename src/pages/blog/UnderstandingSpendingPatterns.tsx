@@ -70,7 +70,7 @@ export default function UnderstandingSpendingPatterns() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trame Team
+                Trackora Team
               </div>
             </div>
           </div>
@@ -203,7 +203,7 @@ export default function UnderstandingSpendingPatterns() {
                 <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Tools for Pattern Analysis</h2>
 
                 <p>
-                  Modern expense tracking apps like Trame provide built-in analytics that make pattern recognition easy:
+                  Modern expense tracking apps like Trackora provide built-in analytics that make pattern recognition easy:
                 </p>
 
                 <ul className="list-disc list-inside space-y-2 ml-4">
@@ -250,7 +250,7 @@ export default function UnderstandingSpendingPatterns() {
                 <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <p className="text-base font-medium text-foreground">
                     Ready to understand your spending patterns? <Link to="/" className="text-primary hover:underline">
-                    Get started with Trame</Link> and use our visual analytics to discover insights about your 
+                    Get started with Trackora</Link> and use our visual analytics to discover insights about your 
                     financial behavior.
                   </p>
                 </div>

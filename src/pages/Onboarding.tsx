@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 
 const steps = [
   {
-    title: "Welcome to Trame",
-    text: "Trame helps you record your daily expenses, track budgets, monitor savings, and stay aware of your financial habits.",
+    title: "Welcome to Trackora",
+    text: "Trackora helps you record your daily expenses, track budgets, monitor savings, and stay aware of your financial habits.",
     button: "Get Started",
     icon: null,
   },
@@ -19,13 +19,13 @@ const steps = [
   },
   {
     title: "Manage Your Budget",
-    text: "Set monthly budgets to control spending and monitor how much of your budget has been used. Trame helps you stay within your planned financial limits.",
+    text: "Set monthly budgets to control spending and monitor how much of your budget has been used. Trackora helps you stay within your planned financial limits.",
     button: "Next",
     icon: Wallet,
   },
   {
     title: "Track Your Savings Goals",
-    text: "Create savings goals and monitor your progress over time. Trame helps you stay motivated while building your financial future.",
+    text: "Create savings goals and monitor your progress over time. Trackora helps you stay motivated while building your financial future.",
     button: "Next",
     icon: PiggyBank,
   },
@@ -37,8 +37,8 @@ const steps = [
   },
   {
     title: "Your Financial Dashboard",
-    text: "The Trame dashboard gives you a clear overview of expenses, budgets, savings, and subscriptions so you can quickly understand your financial activity.",
-    button: "Start Using Trame",
+    text: "The Trackora dashboard gives you a clear overview of expenses, budgets, savings, and subscriptions so you can quickly understand your financial activity.",
+    button: "Start Using Trackora",
     icon: LayoutDashboard,
   },
 ];

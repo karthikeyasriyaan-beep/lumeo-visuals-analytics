@@ -11,9 +11,9 @@ export default function About() {
   return (
     <>
       <SEOHead
-        title="About Trame - Our Mission to Democratize Financial Management"
-        description="Learn about Trame's mission to make personal finance accessible to everyone. Discover our story, values, and commitment to helping you achieve financial wellness."
-        keywords="about Trame, expense tracker company, personal finance app, financial management tool, Trame team"
+        title="About Trackora - Our Mission to Democratize Financial Management"
+        description="Learn about Trackora's mission to make personal finance accessible to everyone. Discover our story, values, and commitment to helping you achieve financial wellness."
+        keywords="about Trackora, expense tracker company, personal finance app, financial management tool, Trackora team"
         canonicalUrl="https://trackorapp.in/about"
       />
       <SchemaMarkup type="organization" />
@@ -34,7 +34,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              About Trame
+              About Trackora
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground">
               Building the future of personal finance management, one user at a time.
@@ -55,7 +55,7 @@ export default function About() {
                 <h2 className="text-2xl sm:text-3xl font-bold mb-4">Our Story</h2>
                 <div className="space-y-4 text-base sm:text-lg leading-relaxed text-muted-foreground">
                   <p>
-                    Trame was born from a simple realization: managing personal finances shouldn't require complex 
+                    Trackora was born from a simple realization: managing personal finances shouldn't require complex 
                     spreadsheets, expensive software, or a degree in accounting. We noticed that while financial literacy 
                     is crucial for building wealth and achieving life goals, the tools available were either too complicated 
                     for everyday use or too simplistic to provide real value.
@@ -68,7 +68,7 @@ export default function About() {
                   </p>
                   <p>
                     What started as a small project quickly grew into a comprehensive financial management platform. 
-                    Today, Trame helps thousands of users take control of their finances, achieve their savings goals, 
+                    Today, Trackora helps thousands of users take control of their finances, achieve their savings goals, 
                     and build a more secure financial future. We're proud to be part of their journey toward financial 
                     wellness and independence.
                   </p>
@@ -148,7 +148,7 @@ export default function About() {
                     <h3 className="text-xl font-bold mb-2">Community Driven</h3>
                     <p className="text-muted-foreground leading-relaxed">
                       Our roadmap is shaped by your feedback. We actively listen to our community and continuously 
-                      improve Trame based on real user needs and suggestions.
+                      improve Trackora based on real user needs and suggestions.
                     </p>
                   </div>
                 </div>
@@ -157,16 +157,16 @@ export default function About() {
           </div>
         </motion.div>
 
-        {/* Who Uses Trame */}
+        {/* Who Uses Trackora */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
           className="mb-12"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Who Uses Trame?</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6">Who Uses Trackora?</h2>
           <p className="text-muted-foreground mb-8 text-lg">
-            Trame is designed for anyone who wants to take control of their finances. From students 
+            Trackora is designed for anyone who wants to take control of their finances. From students 
             just starting out to professionals managing complex budgets, our platform adapts to your needs.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -259,7 +259,7 @@ export default function About() {
         >
           <Card className="border-2">
             <CardContent className="p-6 sm:p-8">
-              <h2 className="text-2xl sm:text-3xl font-bold mb-4">Why We Built Trame</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-4">Why We Built Trackora</h2>
               <div className="space-y-4 text-base sm:text-lg leading-relaxed text-muted-foreground">
                 <p>
                   Financial wellness is a cornerstone of a fulfilling life, yet too many people struggle with basic 
@@ -269,18 +269,18 @@ export default function About() {
                 <p>
                   Traditional financial software often falls into two extremes: overly complex enterprise solutions 
                   designed for accountants, or oversimplified apps that fail to provide meaningful insights. We built 
-                  Trame to fill this gap, creating a platform that respects your intelligence while removing 
+                  Trackora to fill this gap, creating a platform that respects your intelligence while removing 
                   unnecessary complexity.
                 </p>
                 <p>
                   Our vision extends beyond simple expense tracking. We want to help you understand your financial 
                   patterns, make informed decisions, and build sustainable habits that lead to long-term financial 
                   health. Whether you're saving for a house, paying off debt, or simply trying to understand where 
-                  your money goes each month, Trame provides the insights you need to succeed.
+                  your money goes each month, Trackora provides the insights you need to succeed.
                 </p>
                 <p>
                   We believe financial empowerment should be accessible to everyone, which is why we're committed to 
-                  keeping Trame affordable and continuously improving it based on your needs. Your success is our 
+                  keeping Trackora affordable and continuously improving it based on your needs. Your success is our 
                   success, and we're honored to be part of your financial journey.
                 </p>
               </div>
@@ -299,14 +299,14 @@ export default function About() {
             <CardContent className="p-6 sm:p-8">
               <h2 className="text-2xl sm:text-3xl font-bold mb-4">Our Team</h2>
               <p className="text-base sm:text-lg leading-relaxed text-muted-foreground mb-6">
-                Trame is developed by a dedicated team of engineers, designers, and financial enthusiasts who 
+                Trackora is developed by a dedicated team of engineers, designers, and financial enthusiasts who 
                 are passionate about creating tools that make a real difference in people's lives. We combine 
                 expertise in software development, user experience design, and personal finance to deliver a product 
                 that truly serves our users' needs.
               </p>
               <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
                 Behind every feature is countless hours of research, testing, and refinement. We're continuously 
-                learning from our community and evolving Trame to meet the changing needs of modern financial 
+                learning from our community and evolving Trackora to meet the changing needs of modern financial 
                 management. Our commitment is to provide you with the best possible tools for financial success.
               </p>
             </CardContent>
@@ -361,7 +361,7 @@ export default function About() {
               <h3 className="text-xl sm:text-2xl font-bold mb-4">Join Us on This Journey</h3>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                 Ready to take control of your finances? Join thousands of users who are already building a better 
-                financial future with Trame.
+                financial future with Trackora.
               </p>
               <Link to="/">
                 <Button size="lg" className="text-lg px-8 py-6">

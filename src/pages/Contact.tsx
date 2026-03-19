@@ -50,7 +50,7 @@ export default function Contact() {
           <h1 className="text-4xl font-bold text-foreground mb-4">Contact</h1>
 
           <p className="text-muted-foreground leading-relaxed mb-10">
-            If you have questions about Trame, feedback about the platform, or need assistance, you can contact the Trame team using the form below.
+            If you have questions about Trackora, feedback about the platform, or need assistance, you can contact the Trackora team using the form below.
           </p>
 
           {/* Contact Form */}
@@ -103,7 +103,7 @@ export default function Contact() {
           <div className="space-y-4">
             <h2 className="text-xl font-semibold text-foreground">Contact Information</h2>
             <p className="text-muted-foreground leading-relaxed">
-              You can also reach the Trame team through the following contact email.
+              You can also reach the Trackora team through the following contact email.
             </p>
             <p className="text-foreground font-medium">
               Email:{" "}

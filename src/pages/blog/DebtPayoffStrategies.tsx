@@ -70,7 +70,7 @@ export default function DebtPayoffStrategies() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trame Team
+                Trackora Team
               </div>
             </div>
           </div>
@@ -213,7 +213,7 @@ export default function DebtPayoffStrategies() {
 
                 <h3 className="text-xl font-semibold text-foreground mt-6 mb-3">Track Everything</h3>
                 <p>
-                  Use tools like Trame to monitor all your debts in one place. Seeing your balances decrease provides 
+                  Use tools like Trackora to monitor all your debts in one place. Seeing your balances decrease provides 
                   motivation and helps you stay accountable. Visual progress indicators make the journey feel more tangible.
                 </p>
 
@@ -266,7 +266,7 @@ export default function DebtPayoffStrategies() {
                 <div className="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
                   <p className="text-base font-medium text-foreground">
                     Ready to tackle your debt strategically? <Link to="/" className="text-primary hover:underline">
-                    Use Trame</Link> to monitor all your loans and debts in one place, track payoff progress, 
+                    Use Trackora</Link> to monitor all your loans and debts in one place, track payoff progress, 
                     and receive reminders for upcoming payments—helping you stay on track toward financial freedom.
                   </p>
                 </div>

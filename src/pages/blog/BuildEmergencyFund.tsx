@@ -62,7 +62,7 @@ export default function BuildEmergencyFund() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trame Team
+                Trackora Team
               </div>
             </div>
           </header>
@@ -237,7 +237,7 @@ export default function BuildEmergencyFund() {
               <div className="mt-10 p-6 bg-primary/5 rounded-lg">
                 <p className="font-semibold text-lg mb-2">Track Your Emergency Fund Progress</p>
                 <p className="text-muted-foreground">
-                  Use Trame to set savings goals and watch your emergency fund grow. Our visual progress tracking keeps you motivated on your journey to financial security.
+                  Use Trackora to set savings goals and watch your emergency fund grow. Our visual progress tracking keeps you motivated on your journey to financial security.
                 </p>
               </div>
 

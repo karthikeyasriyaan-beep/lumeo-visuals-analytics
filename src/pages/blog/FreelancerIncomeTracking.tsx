@@ -62,7 +62,7 @@ export default function FreelancerIncomeTracking() {
               </div>
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4" />
-                Trame Team
+                Trackora Team
               </div>
             </div>
           </header>
@@ -273,7 +273,7 @@ export default function FreelancerIncomeTracking() {
               <div className="mt-10 p-6 bg-primary/5 rounded-lg">
                 <p className="font-semibold text-lg mb-2">Track Your Freelance Finances with Ease</p>
                 <p className="text-muted-foreground">
-                  Trame helps freelancers track income, expenses, and financial goals in one place. Perfect for managing the complexity of variable income.
+                  Trackora helps freelancers track income, expenses, and financial goals in one place. Perfect for managing the complexity of variable income.
                 </p>
               </div>
 

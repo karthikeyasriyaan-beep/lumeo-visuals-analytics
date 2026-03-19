@@ -25,13 +25,13 @@ export const SEOHead = ({
   type = "website",
   publishedTime,
   modifiedTime,
-  author = "Trame Team",
+  author = "Trackora Team",
   section,
   imageUrl,
 }: SEOHeadProps) => {
   useEffect(() => {
     // Update document title
-    document.title = `${title} | Trame`;
+    document.title = `${title} | Trackora`;
 
     // Helper function to set or update meta tags
     const setMetaTag = (name: string, content: string, isProperty = false) => {
@@ -70,7 +70,7 @@ export const SEOHead = ({
     if (canonicalUrl) {
       setMetaTag("og:url", canonicalUrl, true);
     }
-    setMetaTag("og:site_name", "Trame", true);
+    setMetaTag("og:site_name", "Trackora", true);
     if (imageUrl) {
       setMetaTag("og:image", imageUrl, true);
     }
@@ -101,7 +101,7 @@ export const SEOHead = ({
 
     // Cleanup function - reset to defaults when component unmounts
     return () => {
-      document.title = "Trame - Smart Expense Tracker & Budget Analytics Platform";
+      document.title = "Trackora - Smart Expense Tracker & Budget Analytics Platform";
     };
   }, [title, description, keywords, canonicalUrl, type, publishedTime, modifiedTime, author, section, imageUrl]);
 
