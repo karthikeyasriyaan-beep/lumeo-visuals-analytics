@@ -419,7 +419,7 @@ const Welcome = () => {
             className="max-w-6xl mx-auto"
           >
             <motion.div variants={fadeUp} className="text-center mb-12 sm:mb-20">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-4 sm:mb-6">
                 See Your Expenses Clearly in One Dashboard
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
@@ -488,7 +488,7 @@ const Welcome = () => {
             className="max-w-6xl mx-auto"
           >
             <motion.div variants={fadeUp} className="text-center mb-12 sm:mb-20">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-4 sm:mb-6">
                 Why People Use Trackora for Expense Tracking
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
@@ -536,7 +536,7 @@ const Welcome = () => {
             className="max-w-3xl mx-auto"
           >
             <motion.div variants={fadeUp} className="text-center mb-12 sm:mb-20">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-4 sm:mb-6">
                 Frequently Asked Questions
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
@@ -588,7 +588,7 @@ const Welcome = () => {
                 <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 About Trackora
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 sm:mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3 sm:mb-4">
                 What is Trackora?
               </h2>
             </motion.div>
@@ -628,7 +628,7 @@ const Welcome = () => {
                 <Lightbulb className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 Financial Education
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 sm:mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3 sm:mb-4">
                 Why Tracking Expenses Matters
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
@@ -690,7 +690,7 @@ const Welcome = () => {
             variants={fadeUp}
             className="text-center mb-12 sm:mb-20"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 sm:mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3 sm:mb-4">
               Complete Financial Management
             </h2>
             <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
@@ -756,7 +756,7 @@ const Welcome = () => {
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer}>
             <motion.div variants={fadeUp} className="text-center mb-10 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 sm:mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3 sm:mb-4">
                 Who Uses Trackora?
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
@@ -797,7 +797,7 @@ const Welcome = () => {
         <div className="container mx-auto px-4 sm:px-6 relative">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer}>
             <motion.div variants={fadeUp} className="text-center mb-10 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 sm:mb-4 text-background">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3 sm:mb-4 text-background">
                 Security & Privacy
               </h2>
               <p className="text-background/50 text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
@@ -832,7 +832,7 @@ const Welcome = () => {
         <div className="container mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={staggerContainer}>
             <motion.div variants={fadeUp} className="text-center mb-10 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 sm:mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3 sm:mb-4">
                 How to Get Started
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg">
@@ -882,7 +882,7 @@ const Welcome = () => {
                 <GraduationCap className="w-4 h-4 sm:w-5 sm:h-5 text-foreground" />
                 <span className="text-xs sm:text-sm font-bold">Free Resources</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 sm:mb-4">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3 sm:mb-4">
                 Learn & Grow
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
@@ -928,7 +928,7 @@ const Welcome = () => {
           >
             <div className="relative rounded-2xl sm:rounded-[2rem] overflow-hidden border border-border/50 bg-card/50 backdrop-blur-sm">
               <div className="relative p-6 sm:p-10 md:p-16 text-center">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3 sm:mb-5">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3 sm:mb-5">
                   Ready to Take Control?
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
