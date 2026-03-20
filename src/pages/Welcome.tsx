@@ -202,13 +202,13 @@ const Welcome = () => {
                 <motion.h1
                   variants={textReveal}
                   custom={0}
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-[-0.06em] leading-[1.05] mb-8 sm:mb-10"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-[-0.05em] leading-[1.08] mb-6 sm:mb-8"
                 >
                   Track Your
                   <br />
-                  <span className="mt-1 block">Daily Expenses</span>
+                  <span className="mt-0.5 block">Daily Expenses</span>
                   <br />
-                  <span className="text-muted-foreground/70 block mt-1">
+                  <span className="text-muted-foreground/70 block mt-0.5">
                     Effortlessly.
                   </span>
                 </motion.h1>
