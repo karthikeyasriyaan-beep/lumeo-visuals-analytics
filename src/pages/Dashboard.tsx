@@ -419,9 +419,9 @@ function TransactionRow({
       transition={{ duration: 0.35, delay, ease: [0.16, 1, 0.3, 1] }}
       className="flex items-center gap-3 px-3.5 py-3 rounded-xl hover:bg-muted/30 transition-colors duration-200 cursor-default"
     >
-      <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${isIncome ? "bg-emerald-500/10" : "bg-destructive/10"}`}>
+      <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${isIncome ? "bg-success/10" : "bg-destructive/10"}`}>
         {isIncome ? (
-          <TrendingUp className="h-3.5 w-3.5 text-emerald-500" />
+          <TrendingUp className="h-3.5 w-3.5 text-success" />
         ) : (
           <TrendingDown className="h-3.5 w-3.5 text-destructive" />
         )}
@@ -430,7 +430,7 @@ function TransactionRow({
         <p className="text-xs font-semibold truncate">{isIncome ? t.source : t.name}</p>
         <p className="text-[10px] text-muted-foreground">{timeStr}</p>
       </div>
-      <p className={`text-xs font-bold flex-shrink-0 ${isIncome ? "text-emerald-500" : "text-destructive"}`}>
+      <p className={`text-xs font-bold flex-shrink-0 ${isIncome ? "text-success" : "text-destructive"}`}>
         {isIncome ? "+" : "-"}{formatAmount(t.amount)}
       </p>
     </motion.div>
