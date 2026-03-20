@@ -369,7 +369,7 @@ const Welcome = () => {
             className="max-w-6xl mx-auto"
           >
             <motion.div variants={fadeUp} className="text-center mb-12 sm:mb-20">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3 sm:mb-5">
                 How Trackora Helps You Track Your Expenses
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
