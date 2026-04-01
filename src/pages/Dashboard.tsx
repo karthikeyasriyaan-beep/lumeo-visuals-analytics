@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,8 +6,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrency } from "@/components/currency-selector";
 import {
-  Plus, TrendingUp, TrendingDown, Wallet, PiggyBank, CreditCard, Target,
-  ShoppingCart, Utensils, Plane, Home, MoreHorizontal, ArrowRight, Lightbulb
+  TrendingUp, TrendingDown, Wallet, PiggyBank, CreditCard, Target,
+  ArrowRight
 } from "lucide-react";
 import { NoIndexMeta } from "@/components/NoIndexMeta";
 import { useNavigate } from "react-router-dom";
@@ -20,13 +20,6 @@ import {
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
-const CATEGORY_ICONS: Record<string, any> = {
-  food: Utensils,
-  travel: Plane,
-  shopping: ShoppingCart,
-  bills: Home,
-};
-
 const CHART_COLORS = [
   "hsl(var(--chart-1))",
   "hsl(var(--chart-2))",
@@ -34,6 +27,32 @@ const CHART_COLORS = [
   "hsl(var(--chart-4))",
   "hsl(var(--chart-5))",
 ];
+
+/* ——— Animated Number ——— */
+function AnimatedNumber({ value, format }: { value: number; format: (n: number) => string }) {
+  const [display, setDisplay] = useState(value);
+  const ref = useRef<number>(0);
+
+  useEffect(() => {
+    const start = ref.current;
+    const diff = value - start;
+    if (diff === 0) return;
+    const duration = 700;
+    const startTime = performance.now();
+    const tick = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = start + diff * eased;
+      setDisplay(current);
+      if (progress < 1) requestAnimationFrame(tick);
+      else ref.current = value;
+    };
+    requestAnimationFrame(tick);
+  }, [value]);
+
+  return <>{format(display)}</>;
+}
 
 export default function Dashboard() {
   const { user, isGuest } = useAuth();
@@ -141,11 +160,26 @@ export default function Dashboard() {
     return d.getMonth() === currentMonth && d.getFullYear() === currentYear;
   });
 
+  const monthIncome = displayedIncome.filter((i: any) => {
+    const d = new Date(i.date);
+    return d.getMonth() === currentMonth && d.getFullYear() === currentYear;
+  });
+
   const totalExpenses = monthExpenses.reduce((s: number, e: any) => s + Number(e.amount), 0);
+  const totalIncome = monthIncome.reduce((s: number, i: any) => s + Number(i.amount), 0);
   const budgetLimit = monthlyBudget?.total_limit || 0;
   const budgetRemaining = budgetLimit > 0 ? Math.max(budgetLimit - totalExpenses, 0) : 0;
   const totalSaved = (savings as any[]).reduce((s: number, sv: any) => s + Number(sv.current_amount || 0), 0);
   const activeSubscriptions = (subscriptions as any[]).length;
+
+  // Safe to spend
+  const safeToSpend = budgetLimit > 0
+    ? Math.max(budgetLimit - totalExpenses, 0)
+    : Math.max(totalIncome - totalExpenses, 0);
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+  const dayOfMonth = now.getDate();
+  const daysLeft = daysInMonth - dayOfMonth;
+  const dailySafe = daysLeft > 0 ? safeToSpend / daysLeft : safeToSpend;
 
   // Category breakdown
   const categoryData = useMemo(() => {
@@ -170,8 +204,6 @@ export default function Dashboard() {
       .slice(0, 5);
   }, [displayedExpenses, displayedIncome]);
 
-  // Insights
-  const highestCategory = categoryData.length > 0 ? categoryData[0] : null;
   const budgetUsagePercent = budgetLimit > 0 ? Math.round((totalExpenses / budgetLimit) * 100) : 0;
 
   const summaryCards = [
@@ -179,31 +211,31 @@ export default function Dashboard() {
       title: "Total Expenses",
       value: formatAmount(totalExpenses),
       icon: Wallet,
-      description: "This month's spending",
+      description: "This month",
       color: "text-destructive",
       bgColor: "bg-destructive/10",
     },
     {
-      title: "Budget Remaining",
-      value: budgetLimit > 0 ? formatAmount(budgetRemaining) : "Not set",
+      title: "Budget Left",
+      value: budgetLimit > 0 ? formatAmount(budgetRemaining) : "—",
       icon: Target,
-      description: budgetLimit > 0 ? `${budgetUsagePercent}% used` : "Set a budget to track",
+      description: budgetLimit > 0 ? `${budgetUsagePercent}% used` : "Not set",
       color: "text-primary",
       bgColor: "bg-primary/10",
     },
     {
-      title: "Savings Progress",
+      title: "Saved",
       value: formatAmount(totalSaved),
       icon: PiggyBank,
-      description: `${(savings as any[]).length} active goal${(savings as any[]).length !== 1 ? "s" : ""}`,
+      description: `${(savings as any[]).length} goal${(savings as any[]).length !== 1 ? "s" : ""}`,
       color: "text-success",
       bgColor: "bg-success/10",
     },
     {
-      title: "Active Subscriptions",
+      title: "Subscriptions",
       value: String(activeSubscriptions),
       icon: CreditCard,
-      description: "Recurring payments",
+      description: "Active",
       color: "text-muted-foreground",
       bgColor: "bg-muted",
     },
@@ -213,39 +245,72 @@ export default function Dashboard() {
     <>
       <NoIndexMeta />
       <div className="relative min-h-screen w-full bg-background">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-6 pb-28 space-y-6">
+        <div className="max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 pt-8 pb-32 space-y-8">
 
           {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease }}
+            transition={{ duration: 0.7, ease }}
           >
-            <h1 className="text-xl sm:text-2xl font-bold tracking-tight">Dashboard</h1>
-            <p className="text-xs sm:text-sm text-muted-foreground mt-0.5">
+            <h1 className="text-lg sm:text-xl font-bold tracking-tight">Dashboard</h1>
+            <p className="text-[11px] sm:text-xs text-muted-foreground mt-0.5">
               A quick overview of your financial activity.
             </p>
           </motion.div>
 
+          {/* ——— HERO: Safe to Spend ——— */}
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.1, ease }}
+            className="relative text-center py-10 sm:py-14"
+          >
+            {/* Subtle glow */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-primary/[0.04] blur-3xl" />
+            </div>
+
+            <p className="relative text-[10px] sm:text-xs text-muted-foreground font-semibold uppercase tracking-[0.2em] mb-3">
+              Safe to spend today
+            </p>
+            <motion.p
+              className="relative text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, delay: 0.25, ease }}
+            >
+              <AnimatedNumber value={dailySafe} format={(n) => formatAmount(Math.round(n))} />
+            </motion.p>
+            <motion.p
+              className="relative text-[10px] sm:text-xs text-muted-foreground mt-3 font-medium"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              {formatAmount(safeToSpend)} left this month · {daysLeft} day{daysLeft !== 1 ? "s" : ""} remaining
+            </motion.p>
+          </motion.div>
+
           {/* Summary Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {summaryCards.map((card, i) => (
               <motion.div
                 key={card.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.08 * i, ease }}
+                transition={{ duration: 0.6, delay: 0.15 + 0.08 * i, ease }}
               >
                 <Card className="h-full">
-                  <CardContent className="p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className={`w-7 h-7 rounded-lg flex items-center justify-center ${card.bgColor}`}>
-                        <card.icon className={`h-3.5 w-3.5 ${card.color}`} />
+                  <CardContent className="p-4 sm:p-5">
+                    <div className="flex items-center gap-2 mb-2.5">
+                      <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${card.bgColor}`}>
+                        <card.icon className={`h-4 w-4 ${card.color}`} />
                       </div>
                       <p className="text-[10px] sm:text-xs font-medium text-muted-foreground">{card.title}</p>
                     </div>
                     <p className="text-lg sm:text-xl font-bold tracking-tight">{card.value}</p>
-                    <p className="text-[10px] text-muted-foreground mt-0.5">{card.description}</p>
+                    <p className="text-[10px] text-muted-foreground mt-1">{card.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -253,21 +318,21 @@ export default function Dashboard() {
           </div>
 
           {/* Expense Overview + Recent Transactions */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5">
             {/* Expense Chart */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.35, ease }}
+              transition={{ duration: 0.6, delay: 0.45, ease }}
             >
               <Card>
-                <CardHeader className="pb-2 p-4">
-                  <CardTitle className="text-sm font-semibold">Expense Overview</CardTitle>
+                <CardHeader className="pb-2 p-4 sm:p-5">
+                  <CardTitle className="text-xs sm:text-sm font-semibold">Expense Overview</CardTitle>
                 </CardHeader>
-                <CardContent className="p-4 pt-0">
+                <CardContent className="p-4 sm:p-5 pt-0">
                   {categoryData.length > 0 ? (
-                    <ResponsiveContainer width="100%" height={180}>
-                      <BarChart data={categoryData} barSize={28}>
+                    <ResponsiveContainer width="100%" height={200}>
+                      <BarChart data={categoryData} barSize={32}>
                         <XAxis
                           dataKey="name"
                           tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))" }}
@@ -280,11 +345,11 @@ export default function Dashboard() {
                           contentStyle={{
                             background: "hsl(var(--card))",
                             border: "1px solid hsl(var(--border))",
-                            borderRadius: "8px",
+                            borderRadius: "10px",
                             fontSize: "11px",
                           }}
                         />
-                        <Bar dataKey="value" radius={[6, 6, 0, 0]}>
+                        <Bar dataKey="value" radius={[8, 8, 0, 0]}>
                           {categoryData.map((_, index) => (
                             <Cell key={index} fill={CHART_COLORS[index % CHART_COLORS.length]} />
                           ))}
@@ -292,7 +357,7 @@ export default function Dashboard() {
                       </BarChart>
                     </ResponsiveContainer>
                   ) : (
-                    <div className="h-[180px] flex items-center justify-center">
+                    <div className="h-[200px] flex items-center justify-center">
                       <p className="text-xs text-muted-foreground">No expenses this month</p>
                     </div>
                   )}
@@ -302,13 +367,13 @@ export default function Dashboard() {
 
             {/* Recent Transactions */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.42, ease }}
+              transition={{ duration: 0.6, delay: 0.52, ease }}
             >
               <Card>
-                <CardHeader className="pb-2 p-4 flex flex-row items-center justify-between">
-                  <CardTitle className="text-sm font-semibold">Recent Transactions</CardTitle>
+                <CardHeader className="pb-2 p-4 sm:p-5 flex flex-row items-center justify-between">
+                  <CardTitle className="text-xs sm:text-sm font-semibold">Recent Transactions</CardTitle>
                   <Button
                     variant="ghost"
                     size="sm"
@@ -318,9 +383,9 @@ export default function Dashboard() {
                     View all <ArrowRight className="h-3 w-3" />
                   </Button>
                 </CardHeader>
-                <CardContent className="p-4 pt-0">
+                <CardContent className="p-4 sm:p-5 pt-0">
                   {recentTransactions.length > 0 ? (
-                    <div className="space-y-1">
+                    <div className="space-y-0.5">
                       {recentTransactions.map((t, idx) => {
                         const isIncome = t.type === "income";
                         const dateStr = new Date(t.date).toLocaleDateString(undefined, {
@@ -328,19 +393,22 @@ export default function Dashboard() {
                           day: "numeric",
                         });
                         return (
-                          <div
+                          <motion.div
                             key={`${t.id}-${idx}`}
-                            className="flex items-center gap-3 py-2.5 px-2 rounded-lg hover:bg-muted/30 transition-colors"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.4, delay: 0.55 + idx * 0.06, ease }}
+                            className="flex items-center gap-3 py-3 px-2.5 rounded-xl hover:bg-muted/30 transition-all duration-200"
                           >
                             <div
-                              className={`w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                              className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${
                                 isIncome ? "bg-success/10" : "bg-destructive/10"
                               }`}
                             >
                               {isIncome ? (
-                                <TrendingUp className="h-3 w-3 text-success" />
+                                <TrendingUp className="h-3.5 w-3.5 text-success" />
                               ) : (
-                                <TrendingDown className="h-3 w-3 text-destructive" />
+                                <TrendingDown className="h-3.5 w-3.5 text-destructive" />
                               )}
                             </div>
                             <div className="flex-1 min-w-0">
@@ -359,12 +427,12 @@ export default function Dashboard() {
                               {isIncome ? "+" : "-"}
                               {formatAmount(t.amount)}
                             </p>
-                          </div>
+                          </motion.div>
                         );
                       })}
                     </div>
                   ) : (
-                    <div className="h-[180px] flex items-center justify-center">
+                    <div className="h-[200px] flex items-center justify-center">
                       <p className="text-xs text-muted-foreground">No transactions yet</p>
                     </div>
                   )}
@@ -375,39 +443,39 @@ export default function Dashboard() {
 
           {/* Quick Actions */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5, ease }}
+            transition={{ duration: 0.6, delay: 0.6, ease }}
           >
             <Card>
-              <CardHeader className="pb-2 p-4">
-                <CardTitle className="text-sm font-semibold">Quick Actions</CardTitle>
+              <CardHeader className="pb-2 p-4 sm:p-5">
+                <CardTitle className="text-xs sm:text-sm font-semibold">Quick Actions</CardTitle>
               </CardHeader>
-              <CardContent className="p-4 pt-0">
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <CardContent className="p-4 sm:p-5 pt-0">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                   <AddExpenseDialog onSuccess={refetchAll} />
                   <Button
                     variant="outline"
-                    className="h-11 text-xs font-medium gap-2 rounded-xl"
+                    className="h-12 text-xs font-medium gap-2 rounded-xl"
                     onClick={() => navigate("/budget")}
                   >
-                    <Target className="h-3.5 w-3.5" />
+                    <Target className="h-4 w-4" />
                     Create Budget
                   </Button>
                   <Button
                     variant="outline"
-                    className="h-11 text-xs font-medium gap-2 rounded-xl"
+                    className="h-12 text-xs font-medium gap-2 rounded-xl"
                     onClick={() => navigate("/savings")}
                   >
-                    <PiggyBank className="h-3.5 w-3.5" />
+                    <PiggyBank className="h-4 w-4" />
                     Add Savings Goal
                   </Button>
                   <Button
                     variant="outline"
-                    className="h-11 text-xs font-medium gap-2 rounded-xl"
+                    className="h-12 text-xs font-medium gap-2 rounded-xl"
                     onClick={() => navigate("/subscriptions")}
                   >
-                    <CreditCard className="h-3.5 w-3.5" />
+                    <CreditCard className="h-4 w-4" />
                     Track Subscription
                   </Button>
                 </div>
@@ -415,79 +483,6 @@ export default function Dashboard() {
             </Card>
           </motion.div>
 
-          {/* Financial Insights */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.58, ease }}
-          >
-            <Card>
-              <CardHeader className="pb-2 p-4">
-                <CardTitle className="text-sm font-semibold flex items-center gap-2">
-                  <Lightbulb className="h-3.5 w-3.5 text-warning" />
-                  Financial Insights
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="p-4 pt-0">
-                <div className="space-y-3">
-                  {highestCategory && (
-                    <div className="flex items-start gap-3 p-3 rounded-xl bg-muted/30">
-                      <div className="w-7 h-7 rounded-lg bg-destructive/10 flex items-center justify-center flex-shrink-0">
-                        <TrendingUp className="h-3 w-3 text-destructive" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-medium">Highest spending category</p>
-                        <p className="text-[10px] text-muted-foreground mt-0.5">
-                          <span className="font-semibold text-foreground">{highestCategory.name}</span> at{" "}
-                          {formatAmount(highestCategory.value)} this month
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="flex items-start gap-3 p-3 rounded-xl bg-muted/30">
-                    <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Wallet className="h-3 w-3 text-primary" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-medium">Total expenses this month</p>
-                      <p className="text-[10px] text-muted-foreground mt-0.5">
-                        You've spent <span className="font-semibold text-foreground">{formatAmount(totalExpenses)}</span>{" "}
-                        across {monthExpenses.length} transaction{monthExpenses.length !== 1 ? "s" : ""}
-                      </p>
-                    </div>
-                  </div>
-
-                  {budgetLimit > 0 && (
-                    <div className="flex items-start gap-3 p-3 rounded-xl bg-muted/30">
-                      <div className="w-7 h-7 rounded-lg bg-success/10 flex items-center justify-center flex-shrink-0">
-                        <Target className="h-3 w-3 text-success" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-medium">Budget usage</p>
-                        <p className="text-[10px] text-muted-foreground mt-0.5">
-                          {budgetUsagePercent}% of your {formatAmount(budgetLimit)} budget used.{" "}
-                          {budgetUsagePercent < 50
-                            ? "Great job staying on track!"
-                            : budgetUsagePercent < 80
-                            ? "You're managing well."
-                            : "Consider slowing down spending."}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {monthExpenses.length === 0 && !highestCategory && (
-                    <div className="text-center py-6">
-                      <p className="text-xs text-muted-foreground">
-                        Add expenses to see your financial insights
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
         </div>
       </div>
     </>
