@@ -15,7 +15,7 @@ import Transactions from "./pages/Transactions";
 import Subscriptions from "./pages/Subscriptions";
 import Loans from "./pages/Loans";
 import Savings from "./pages/Savings";
-import Analytics from "./pages/Analytics";
+
 import Budget from "./pages/Budget";
 import Settings from "./pages/Settings";
 import Privacy from "./pages/Privacy";
