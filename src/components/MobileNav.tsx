@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, Receipt, TrendingUp, Repeat, CreditCard, PiggyBank, BarChart3, Settings, LogOut, Calculator, Wallet } from "lucide-react";
+import { Menu, X, Home, Receipt, TrendingUp, Repeat, CreditCard, PiggyBank, Settings, LogOut, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -32,10 +32,6 @@ const navigation = [{
   name: "Savings",
   href: "/savings",
   icon: PiggyBank
-}, {
-  name: "Analytics",
-  href: "/analytics",
-  icon: BarChart3
 }, {
   name: "Settings",
   href: "/settings",
