@@ -104,7 +104,7 @@ const App = () => (
                   <Route path="/subscriptions" element={<Subscriptions />} />
                   <Route path="/loans" element={<Loans />} />
                   <Route path="/savings" element={<Savings />} />
-                  <Route path="/analytics" element={<Analytics />} />
+                  
                   
                   <Route path="/settings" element={<Settings />} />
                 </Route>
