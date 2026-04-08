@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrency } from "@/components/currency-selector";
 import {
-  Plus, Mic, TrendingUp, TrendingDown, ChevronDown, ChevronUp, X, Wallet
+  Plus, Mic, TrendingUp, TrendingDown, ChevronDown, ChevronUp, X, Wallet, ArrowRight
 } from "lucide-react";
 import { NoIndexMeta } from "@/components/NoIndexMeta";
 import { useNavigate } from "react-router-dom";
@@ -104,7 +104,6 @@ export default function Dashboard() {
   const [guestIncome, setGuestIncome] = useState<GuestIncome[]>([]);
   const [guestExpenses, setGuestExpenses] = useState<GuestExpense[]>([]);
   const [showLoans, setShowLoans] = useState(false);
-  const [expandedTx, setExpandedTx] = useState<string | null>(null);
 
   const refreshGuestData = () => { setGuestIncome(getGuestIncome()); setGuestExpenses(getGuestExpenses()); };
   useEffect(() => { if (isGuest) refreshGuestData(); }, [isGuest]);
@@ -177,181 +176,161 @@ export default function Dashboard() {
     ].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }, [displayedIncome, displayedExpenses]);
 
-  const todayTx = allTransactions.filter((t) => t.date === todayStr);
-  const earlierTx = allTransactions.filter((t) => t.date !== todayStr).slice(0, 5);
+  const recentTx = allTransactions.slice(0, 5);
 
   return (
     <>
       <NoIndexMeta />
       <div className="relative min-h-screen w-full overflow-x-hidden bg-background">
-        <div className="max-w-lg mx-auto px-5 pt-6 pb-28 space-y-7">
+        <div className="max-w-6xl mx-auto px-5 md:px-8 pt-6 pb-28 space-y-6">
 
-          {/* ——— Safe to Spend ——— */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="text-center pt-6 pb-4">
-            <p className="text-[11px] text-muted-foreground font-medium uppercase tracking-widest mb-3">Safe to spend today</p>
-            <div className="relative inline-block">
-              <div className="absolute inset-0 rounded-full bg-primary/5 blur-3xl scale-150" />
-              <p className="relative text-5xl sm:text-6xl font-extrabold tracking-tight">
-                <AnimatedNumber value={dailySafe} format={(n) => formatAmount(Math.round(n))} />
+          {/* ——— Top: Safe to Spend (full width, compact) ——— */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }}
+            className="rounded-2xl bg-card border border-border/40 px-6 py-6 md:py-8 flex flex-col md:flex-row items-center md:items-start gap-6">
+            <div className="flex-1 text-center md:text-left">
+              <p className="text-[11px] text-muted-foreground font-medium uppercase tracking-widest mb-2">Safe to spend today</p>
+              <div className="relative inline-block">
+                <div className="absolute inset-0 rounded-full bg-primary/5 blur-3xl scale-150" />
+                <p className="relative text-4xl sm:text-5xl font-extrabold tracking-tight">
+                  <AnimatedNumber value={dailySafe} format={(n) => formatAmount(Math.round(n))} />
+                </p>
+              </div>
+              <p className="text-xs text-muted-foreground mt-2 font-medium">
+                {formatAmount(safeToSpend)} left · {daysLeft} days remaining
               </p>
             </div>
-            <p className="text-xs text-muted-foreground mt-3 font-medium">
-              {formatAmount(safeToSpend)} left this month · {daysLeft} days remaining
-            </p>
+
+            {/* Quick Actions inline on desktop */}
+            <div className="flex gap-3 flex-shrink-0">
+              <Button variant="outline" className="h-12 rounded-xl border-2 border-primary/20 hover:border-primary/40 gap-2 text-sm font-bold relative overflow-hidden group px-5" onClick={() => navigate("/transactions")}>
+                <motion.div animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}>
+                  <Mic className="h-4 w-4 text-primary" />
+                </motion.div>
+                Voice
+              </Button>
+              <AddExpenseDialog onSuccess={refetchAll} />
+            </div>
           </motion.div>
 
-          {/* ——— Budget Progress (if set) ——— */}
-          {budgetLimit > 0 && (
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08, ease }} className="px-5 py-5 rounded-2xl bg-card border border-border/40 space-y-3">
-              <div className="flex justify-between items-center">
-                <p className="text-xs text-muted-foreground font-medium">Monthly Budget</p>
-                <p className="text-xs font-bold">{formatAmount(totalExpenses)} / {formatAmount(budgetLimit)}</p>
-              </div>
-              <Progress value={budgetProgress} className="h-2.5" indicatorClassName={budgetProgress >= 90 ? "bg-destructive" : budgetProgress >= 70 ? "bg-warning" : ""} />
-              <p className="text-[11px] text-center text-muted-foreground">
-                {budgetProgress >= 100 ? "Budget limit reached" : budgetProgress >= 80 ? "Getting close — spend wisely" : "You're doing great!"}
-              </p>
-            </motion.div>
-          )}
-
-          {/* ——— Quick Actions ——— */}
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.12, ease }} className="flex gap-4">
-            <Button variant="outline" className="flex-1 h-16 rounded-2xl border-2 border-primary/20 hover:border-primary/40 gap-3 text-sm font-bold relative overflow-hidden group" onClick={() => navigate("/transactions")}>
-              <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <motion.div animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}>
-                <Mic className="h-5 w-5 text-primary" />
-              </motion.div>
-              Voice Add
-            </Button>
-            <AddExpenseDialog onSuccess={refetchAll} />
-          </motion.div>
-
-          {/* ——— Summary Cards ——— */}
-          <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18, ease }} className="flex gap-4">
-            <div className="flex-1 px-5 py-5 rounded-2xl bg-card border border-border/40">
+          {/* ——— Grid: Summary + Budget ——— */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08, ease }}
+              className="px-5 py-5 rounded-2xl bg-card border border-border/40">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingUp className="h-4 w-4 text-success" />
                 <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Income</p>
               </div>
-              <p className="text-lg font-bold text-success">+{formatAmount(totalIncome)}</p>
-            </div>
-            <div className="flex-1 px-5 py-5 rounded-2xl bg-card border border-border/40">
+              <p className="text-xl font-bold text-success">+{formatAmount(totalIncome)}</p>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12, ease }}
+              className="px-5 py-5 rounded-2xl bg-card border border-border/40">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingDown className="h-4 w-4 text-destructive" />
                 <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Spent</p>
               </div>
-              <p className="text-lg font-bold text-destructive">-{formatAmount(totalExpenses)}</p>
-            </div>
-          </motion.div>
+              <p className="text-xl font-bold text-destructive">-{formatAmount(totalExpenses)}</p>
+            </motion.div>
 
-          {/* ——— Loans & Debts (expandable) ——— */}
-          {!isGuest && (
-            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.22, ease }}>
-              <button onClick={() => setShowLoans(!showLoans)} className="w-full flex items-center justify-between px-5 py-4 rounded-2xl bg-card border border-border/40 hover:bg-muted/30 transition-all duration-200">
-                <div className="flex items-center gap-3">
-                  <Wallet className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm font-semibold text-muted-foreground">
-                    You owe <span className="text-foreground font-bold">{formatAmount(totalOwed)}</span>
-                  </span>
+            {budgetLimit > 0 ? (
+              <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16, ease }}
+                className="px-5 py-5 rounded-2xl bg-card border border-border/40 space-y-3">
+                <div className="flex justify-between items-center">
+                  <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Budget</p>
+                  <p className="text-xs font-bold">{formatAmount(totalExpenses)} / {formatAmount(budgetLimit)}</p>
                 </div>
-                {showLoans ? <ChevronUp className="h-4 w-4 text-muted-foreground" /> : <ChevronDown className="h-4 w-4 text-muted-foreground" />}
-              </button>
-              <AnimatePresence>
-                {showLoans && (loans as any[]).length > 0 && (
-                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25, ease }} className="overflow-hidden">
-                    <div className="mt-3 space-y-2">
-                      {(loans as any[]).map((loan: any) => (
-                        <div key={loan.id} className="flex items-center justify-between px-5 py-4 rounded-xl bg-muted/20 border border-border/30">
+                <Progress value={budgetProgress} className="h-2" indicatorClassName={budgetProgress >= 90 ? "bg-destructive" : budgetProgress >= 70 ? "bg-warning" : ""} />
+                <p className="text-[10px] text-muted-foreground">
+                  {budgetProgress >= 100 ? "Limit reached" : budgetProgress >= 80 ? "Getting close" : "On track"}
+                </p>
+              </motion.div>
+            ) : (
+              <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.16, ease }}
+                className="px-5 py-5 rounded-2xl bg-card border border-border/40 flex flex-col justify-center">
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium mb-1">Net</p>
+                <p className={`text-xl font-bold ${totalIncome - totalExpenses >= 0 ? "text-success" : "text-destructive"}`}>
+                  {formatAmount(totalIncome - totalExpenses)}
+                </p>
+              </motion.div>
+            )}
+          </div>
+
+          {/* ——— Bottom Grid: Transactions + Loans ——— */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            {/* Recent Transactions */}
+            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, ease }}
+              className="rounded-2xl bg-card border border-border/40 overflow-hidden">
+              <div className="flex items-center justify-between px-5 pt-5 pb-3">
+                <p className="text-sm font-bold">Recent Transactions</p>
+                <Button variant="ghost" size="sm" onClick={() => navigate("/transactions")} className="h-8 text-xs font-semibold text-muted-foreground gap-1 rounded-lg">
+                  View all <ArrowRight className="h-3 w-3" />
+                </Button>
+              </div>
+              <div className="px-3 pb-3 space-y-1">
+                {recentTx.length === 0 && (
+                  <div className="text-center py-8">
+                    <p className="text-sm text-muted-foreground">No transactions yet</p>
+                  </div>
+                )}
+                {recentTx.map((t, idx) => {
+                  const isIncome = t.type === "income";
+                  const title = isIncome ? t.source : t.name;
+                  const timeStr = new Date(t.date).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+                  return (
+                    <motion.div key={`${t.type}-${t.id}`} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.22 + idx * 0.03, ease }}
+                      className="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-muted/30 transition-colors cursor-pointer"
+                      onClick={() => navigate("/transactions")}>
+                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${isIncome ? "bg-success/10" : "bg-destructive/10"}`}>
+                        {isIncome ? <TrendingUp className="h-3.5 w-3.5 text-success" /> : <TrendingDown className="h-3.5 w-3.5 text-destructive" />}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium truncate">{title}</p>
+                        <p className="text-[11px] text-muted-foreground">{timeStr}</p>
+                      </div>
+                      <p className={`text-sm font-bold flex-shrink-0 ${isIncome ? "text-success" : "text-destructive"}`}>
+                        {isIncome ? "+" : "-"}{formatAmount(t.amount)}
+                      </p>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
+
+            {/* Loans & Debts */}
+            {!isGuest && (
+              <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24, ease }}
+                className="rounded-2xl bg-card border border-border/40 overflow-hidden">
+                <div className="flex items-center justify-between px-5 pt-5 pb-3">
+                  <div className="flex items-center gap-2">
+                    <Wallet className="h-4 w-4 text-muted-foreground" />
+                    <p className="text-sm font-bold">Loans & Debts</p>
+                  </div>
+                  <Button variant="ghost" size="sm" onClick={() => navigate("/loans")} className="h-8 text-xs font-semibold text-muted-foreground gap-1 rounded-lg">
+                    View all <ArrowRight className="h-3 w-3" />
+                  </Button>
+                </div>
+                <div className="px-5 pb-5">
+                  <p className="text-2xl font-bold text-destructive mb-3">{formatAmount(totalOwed)}</p>
+                  {(loans as any[]).length > 0 ? (
+                    <div className="space-y-2 max-h-[200px] overflow-y-auto pr-1">
+                      {(loans as any[]).slice(0, 4).map((loan: any) => (
+                        <div key={loan.id} className="flex items-center justify-between px-3 py-3 rounded-xl bg-muted/20 border border-border/30">
                           <span className="text-sm font-medium truncate">{loan.name}</span>
                           <span className="text-sm font-bold text-destructive">{formatAmount(loan.current_balance)}</span>
                         </div>
                       ))}
                     </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          )}
-
-          {/* ——— Recent Transactions (expandable cards) ——— */}
-          <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.28, ease }} className="space-y-4">
-            {todayTx.length > 0 && (
-              <div>
-                <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3 px-1">Today</p>
-                <div className="space-y-3">
-                  {todayTx.map((t, idx) => (
-                    <ExpandableTransactionCard key={`t-${t.id}-${idx}`} t={t} formatAmount={formatAmount} delay={idx * 0.04} expanded={expandedTx === t.id} onToggle={() => setExpandedTx(expandedTx === t.id ? null : t.id)} />
-                  ))}
+                  ) : (
+                    <p className="text-sm text-muted-foreground">No active loans</p>
+                  )}
                 </div>
-              </div>
+              </motion.div>
             )}
-            {earlierTx.length > 0 && (
-              <div>
-                <p className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground mb-3 px-1">Earlier</p>
-                <div className="space-y-3">
-                  {earlierTx.map((t, idx) => (
-                    <ExpandableTransactionCard key={`e-${t.id}-${idx}`} t={t} formatAmount={formatAmount} delay={idx * 0.04} expanded={expandedTx === `e-${t.id}`} onToggle={() => setExpandedTx(expandedTx === `e-${t.id}` ? null : `e-${t.id}`)} />
-                  ))}
-                </div>
-              </div>
-            )}
-            {allTransactions.length === 0 && (
-              <div className="text-center py-12">
-                <p className="text-sm text-muted-foreground font-medium">No transactions yet</p>
-                <p className="text-xs text-muted-foreground/60 mt-1">Add your first expense to get started</p>
-              </div>
-            )}
-            {allTransactions.length > 0 && (
-              <Button variant="ghost" onClick={() => navigate("/transactions")} className="w-full text-xs text-muted-foreground font-semibold h-10 mt-2">
-                View all transactions
-              </Button>
-            )}
-          </motion.div>
+          </div>
         </div>
         <OnboardingPopups />
       </div>
     </>
-  );
-}
-
-/* ——— Expandable Transaction Card ——— */
-function ExpandableTransactionCard({ t, formatAmount, delay = 0, expanded, onToggle }: { t: any; formatAmount: (n: number) => string; delay?: number; expanded: boolean; onToggle: () => void }) {
-  const isIncome = t.type === "income";
-  const timeStr = new Date(t.date).toLocaleDateString(undefined, { month: "short", day: "numeric" });
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -8 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.35, delay, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ scale: 1.01, y: -1 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={onToggle}
-      className="rounded-2xl bg-card border border-border/40 hover:border-border/60 hover:shadow-lg transition-all duration-200 cursor-pointer overflow-hidden"
-    >
-      <div className="flex items-center gap-4 px-5 py-4">
-        <div className={`w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${isIncome ? "bg-success/10" : "bg-destructive/10"}`}>
-          {isIncome ? <TrendingUp className="h-4.5 w-4.5 text-success" /> : <TrendingDown className="h-4.5 w-4.5 text-destructive" />}
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-sm font-semibold truncate">{isIncome ? t.source : t.name}</p>
-          <p className="text-xs text-muted-foreground mt-0.5">{timeStr}</p>
-        </div>
-        <p className={`text-base font-bold flex-shrink-0 ${isIncome ? "text-success" : "text-destructive"}`}>
-          {isIncome ? "+" : "-"}{formatAmount(t.amount)}
-        </p>
-      </div>
-      <AnimatePresence>
-        {expanded && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
-            <div className="px-5 pb-4 pt-0 space-y-2 border-t border-border/30 mt-0 pt-3">
-              {t.category && <p className="text-xs text-muted-foreground"><span className="font-medium text-foreground">Category:</span> {t.category}</p>}
-              {t.notes && <p className="text-xs text-muted-foreground"><span className="font-medium text-foreground">Notes:</span> {t.notes}</p>}
-              <p className="text-xs text-muted-foreground"><span className="font-medium text-foreground">Amount:</span> {formatAmount(t.amount)}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
   );
 }
