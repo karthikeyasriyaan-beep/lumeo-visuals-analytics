@@ -188,55 +188,62 @@ export default function Transactions() {
     <>
       <NoIndexMeta />
       <div className="relative min-h-screen w-full overflow-x-hidden bg-background">
-        <div className="max-w-6xl mx-auto px-5 md:px-8 pt-6 pb-28 space-y-6">
+        <div className="max-w-5xl mx-auto px-4 sm:px-5 md:px-8 pt-4 sm:pt-6 pb-28 space-y-4 sm:space-y-5">
 
-          {/* Header + Smart Input (sticky) */}
+          {/* Header + Smart Input */}
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }}
-            className="sticky top-16 z-20 bg-background/95 backdrop-blur-md pb-4 -mx-5 md:-mx-8 px-5 md:px-8 pt-2 space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-xl font-bold tracking-tight">Transactions</h1>
-                <p className="text-xs text-muted-foreground mt-0.5">Smart add · Auto categorize</p>
+            className="sticky top-14 sm:top-16 z-20 bg-background/95 backdrop-blur-md pb-3 -mx-4 sm:-mx-5 md:-mx-8 px-4 sm:px-5 md:px-8 pt-2 space-y-3">
+            
+            <div className="flex items-center justify-between gap-2">
+              <div className="min-w-0">
+                <h1 className="text-lg sm:text-xl font-bold tracking-tight">Transactions</h1>
+                <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">Smart add · Auto categorize</p>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-1.5 sm:gap-2 flex-shrink-0">
                 <AddIncomeDialog onSuccess={refetchAll} />
                 <AddExpenseDialog onSuccess={refetchAll} />
               </div>
             </div>
-            <div className="flex gap-3">
+
+            {/* Smart input */}
+            <div className="flex gap-2">
               <div className="relative flex-1">
-                <Sparkles className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-primary/50" />
+                <Sparkles className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary/50" />
                 <Input
                   ref={inputRef} placeholder='Try "500 food" or "2000 salary"' value={smartInput}
                   onChange={(e) => { setSmartInput(e.target.value); setShowSuggestions(true); }}
                   onFocus={() => setShowSuggestions(true)}
                   onKeyDown={(e) => { if (e.key === "Enter") handleSmartAdd(); if (e.key === "Escape") setShowSuggestions(false); }}
-                  className="pl-10 h-12 rounded-xl bg-card border-border/50 text-sm font-medium"
+                  className="pl-9 sm:pl-10 h-11 rounded-xl bg-card border-border/50 text-sm font-medium"
                 />
               </div>
               {smartInput && (
                 <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-                  <Button onClick={handleSmartAdd} className="h-12 px-5 rounded-xl text-sm font-bold">Add</Button>
+                  <Button onClick={handleSmartAdd} className="h-11 px-4 sm:px-5 rounded-xl text-sm font-bold">Add</Button>
                 </motion.div>
               )}
             </div>
+
+            {/* Preview */}
             {preview && smartInput && (
-              <motion.div initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} className="px-4 py-3 rounded-xl bg-card border border-border/40 flex items-center justify-between">
+              <motion.div initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} className="px-3 py-2.5 rounded-xl bg-card border border-border/40 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Badge variant="outline" className="text-xs h-6 px-2">{preview.type === "income" ? "Income" : "Expense"}</Badge>
-                  <span className="text-xs text-muted-foreground font-medium">{preview.category}</span>
+                  <Badge variant="outline" className="text-[10px] h-5 px-1.5">{preview.type === "income" ? "Income" : "Expense"}</Badge>
+                  <span className="text-[10px] sm:text-xs text-muted-foreground font-medium">{preview.category}</span>
                 </div>
-                <span className={`text-sm font-bold ${preview.type === "income" ? "text-success" : "text-destructive"}`}>
+                <span className={`text-xs sm:text-sm font-bold ${preview.type === "income" ? "text-success" : "text-destructive"}`}>
                   {preview.type === "income" ? "+" : "-"}{formatAmount(preview.amount)}
                 </span>
               </motion.div>
             )}
+
+            {/* Suggestions dropdown */}
             <AnimatePresence>
               {showSuggestions && !preview && (
-                <motion.div initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} className="absolute top-full left-5 right-5 md:left-8 md:right-8 mt-1 z-30 bg-card border border-border/50 rounded-xl shadow-xl overflow-hidden">
-                  <p className="px-4 pt-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Quick add</p>
-                  {filteredSuggestions.slice(0, 5).map((s) => (
-                    <button key={s} className="w-full text-left px-4 py-3 text-sm hover:bg-muted/40 transition-colors" onMouseDown={(e) => { e.preventDefault(); setSmartInput(s); setShowSuggestions(false); inputRef.current?.focus(); }}>
+                <motion.div initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} className="absolute top-full left-4 right-4 sm:left-5 sm:right-5 md:left-8 md:right-8 mt-1 z-30 bg-card border border-border/50 rounded-xl shadow-xl overflow-hidden">
+                  <p className="px-3 pt-2.5 pb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Quick add</p>
+                  {filteredSuggestions.slice(0, 4).map((s) => (
+                    <button key={s} className="w-full text-left px-3 py-2.5 text-xs sm:text-sm hover:bg-muted/40 transition-colors" onMouseDown={(e) => { e.preventDefault(); setSmartInput(s); setShowSuggestions(false); inputRef.current?.focus(); }}>
                       {s}
                     </button>
                   ))}
@@ -245,51 +252,54 @@ export default function Transactions() {
             </AnimatePresence>
           </motion.div>
 
-          {/* Summary + Filters Row */}
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-start">
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, ease }} className="flex gap-4">
-              <div className="flex-1 px-5 py-4 rounded-2xl bg-card border border-border/40">
-                <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Income</p>
-                <p className="text-lg font-bold text-success mt-1">+{formatAmount(totalIncome)}</p>
-              </div>
-              <div className="flex-1 px-5 py-4 rounded-2xl bg-card border border-border/40">
-                <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Expenses</p>
-                <p className="text-lg font-bold text-destructive mt-1">-{formatAmount(totalExpenses)}</p>
-              </div>
-              <div className="flex-1 px-5 py-4 rounded-2xl bg-card border border-border/40">
-                <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Net</p>
-                <p className={`text-lg font-bold mt-1 ${totalIncome - totalExpenses >= 0 ? "text-success" : "text-destructive"}`}>{formatAmount(totalIncome - totalExpenses)}</p>
-              </div>
+          {/* Summary cards - horizontal scroll on mobile, grid on desktop */}
+          <div className="flex gap-3 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3">
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, ease }}
+              className="min-w-[140px] flex-shrink-0 sm:min-w-0 px-4 py-3.5 rounded-2xl bg-card border border-border/40">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Income</p>
+              <p className="text-base sm:text-lg font-bold text-success mt-1">+{formatAmount(totalIncome)}</p>
             </motion.div>
-
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }} className="flex items-center gap-3">
-              <div className="flex gap-1 bg-card border border-border/40 rounded-xl p-1">
-                {(["today", "week", "month"] as const).map((f) => (
-                  <button key={f} onClick={() => setTimeFilter(f)}
-                    className={`px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all duration-200 ${timeFilter === f ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
-                    {f === "today" ? "Today" : f === "week" ? "Week" : "Month"}
-                  </button>
-                ))}
-              </div>
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/50" />
-                <Input placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="h-10 pl-8 text-sm rounded-lg bg-card border-border/40 w-40" />
-              </div>
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12, ease }}
+              className="min-w-[140px] flex-shrink-0 sm:min-w-0 px-4 py-3.5 rounded-2xl bg-card border border-border/40">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Expenses</p>
+              <p className="text-base sm:text-lg font-bold text-destructive mt-1">-{formatAmount(totalExpenses)}</p>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14, ease }}
+              className="min-w-[140px] flex-shrink-0 sm:min-w-0 px-4 py-3.5 rounded-2xl bg-card border border-border/40">
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Net</p>
+              <p className={`text-base sm:text-lg font-bold mt-1 ${totalIncome - totalExpenses >= 0 ? "text-success" : "text-destructive"}`}>{formatAmount(totalIncome - totalExpenses)}</p>
             </motion.div>
           </div>
 
-          {/* Insight */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="flex items-center gap-3 px-5 py-3 rounded-xl bg-primary/5 border border-primary/10">
-            <Sparkles className="h-4 w-4 text-primary flex-shrink-0" />
-            <p className="text-xs text-muted-foreground font-medium">{insight}</p>
+          {/* Filters Row */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}
+            className="flex items-center gap-2 sm:gap-3 flex-wrap">
+            <div className="flex gap-1 bg-card border border-border/40 rounded-xl p-1">
+              {(["today", "week", "month"] as const).map((f) => (
+                <button key={f} onClick={() => setTimeFilter(f)}
+                  className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-200 ${timeFilter === f ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
+                  {f === "today" ? "Today" : f === "week" ? "Week" : "Month"}
+                </button>
+              ))}
+            </div>
+            <div className="relative flex-1 min-w-[120px] max-w-[200px]">
+              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3 w-3 sm:h-3.5 sm:w-3.5 text-muted-foreground/50" />
+              <Input placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="h-9 pl-7 sm:pl-8 text-xs sm:text-sm rounded-lg bg-card border-border/40" />
+            </div>
           </motion.div>
 
-          {/* Transaction List (grouped, limited per group) */}
-          <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, ease }} className="space-y-5">
+          {/* Insight */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-primary/5 border border-primary/10">
+            <Sparkles className="h-3.5 w-3.5 text-primary flex-shrink-0" />
+            <p className="text-[10px] sm:text-xs text-muted-foreground font-medium">{insight}</p>
+          </motion.div>
+
+          {/* Transaction List */}
+          <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25, ease }} className="space-y-4">
             {grouped.map((group) => (
               <div key={group.label}>
-                <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground mb-3 px-1">{group.label}</p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.12em] text-muted-foreground mb-2.5 px-1">{group.label}</p>
+                <div className="space-y-2">
                   {group.items.map((t, idx) => {
                     const isIncome = t.type === "income";
                     const title = isIncome ? t.source : t.name;
@@ -299,33 +309,33 @@ export default function Transactions() {
 
                     return (
                       <motion.div key={`${t.type}-${t.id}`} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, delay: idx * 0.03, ease }}
-                        whileHover={{ scale: 1.01, y: -1 }} whileTap={{ scale: 0.98 }}
-                        className="rounded-xl bg-card border border-border/40 hover:border-border/60 hover:shadow-md transition-all duration-200 cursor-pointer overflow-hidden"
+                        whileTap={{ scale: 0.98 }}
+                        className="rounded-xl bg-card border border-border/40 hover:border-border/60 transition-all duration-200 cursor-pointer overflow-hidden"
                         onClick={() => setExpandedId(isExpanded ? null : `${t.type}-${t.id}`)}
                       >
-                        <div className="flex items-center gap-3 px-4 py-4">
-                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${isIncome ? "bg-success/10" : "bg-destructive/10"}`}>
+                        <div className="flex items-center gap-3 px-3.5 sm:px-4 py-3.5 sm:py-4">
+                          <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${isIncome ? "bg-success/10" : "bg-destructive/10"}`}>
                             <Icon className={`h-4 w-4 ${isIncome ? "text-success" : "text-destructive"}`} />
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-semibold truncate">{title}</p>
-                            <p className="text-xs text-muted-foreground mt-0.5">{timeStr}{t.category ? ` · ${t.category}` : ""}</p>
+                            <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">{timeStr}{t.category ? ` · ${t.category}` : ""}</p>
                           </div>
                           <p className={`text-sm font-bold flex-shrink-0 ${isIncome ? "text-success" : "text-destructive"}`}>
                             {isIncome ? "+" : "-"}{formatAmount(Number(t.amount))}
                           </p>
-                          <ChevronDown className={`h-3.5 w-3.5 text-muted-foreground transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
+                          <ChevronDown className={`h-3.5 w-3.5 text-muted-foreground transition-transform duration-200 flex-shrink-0 ${isExpanded ? "rotate-180" : ""}`} />
                         </div>
                         <AnimatePresence>
                           {isExpanded && (
                             <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
-                              <div className="px-4 pb-4 pt-0 border-t border-border/30">
+                              <div className="px-3.5 sm:px-4 pb-3.5 sm:pb-4 pt-0 border-t border-border/30">
                                 <div className="pt-3 flex items-center gap-2">
-                                  <Button size="sm" variant="outline" className="h-9 px-4 rounded-lg text-xs font-bold gap-1.5"
+                                  <Button size="sm" variant="outline" className="h-9 px-3 sm:px-4 rounded-lg text-xs font-bold gap-1.5"
                                     onClick={(e) => { e.stopPropagation(); if (isIncome) setSelectedIncome(t); else setSelectedExpense(t); }}>
                                     <Pencil className="h-3 w-3" /> Edit
                                   </Button>
-                                  <Button size="sm" variant="outline" className="h-9 px-4 rounded-lg text-xs font-bold gap-1.5 hover:bg-destructive/10 hover:border-destructive/30"
+                                  <Button size="sm" variant="outline" className="h-9 px-3 sm:px-4 rounded-lg text-xs font-bold gap-1.5 hover:bg-destructive/10 hover:border-destructive/30"
                                     onClick={(e) => { e.stopPropagation(); handleDelete(t); }}>
                                     <Trash2 className="h-3 w-3 text-destructive" /> Delete
                                   </Button>
