@@ -1,183 +1,176 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Plus, TrendingUp, Wallet, Target, Pencil } from "lucide-react";
+import { Plus, TrendingUp, Wallet, Target, Pencil, Trash2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrency } from "@/components/currency-selector";
 import { AddSavingsDialog } from "@/components/forms/AddSavingsDialog";
 import EditSavingsDialog from "@/components/forms/EditSavingsDialog";
-import BackgroundBlobs from "@/components/BackgroundBlobs";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { SavingsChart } from "@/components/charts/SavingsChart";
 import { NoIndexMeta } from "@/components/NoIndexMeta";
+import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "sonner";
+
+const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 const Savings = () => {
   const { user } = useAuth();
   const { formatAmount } = useCurrency();
   const [selectedSaving, setSelectedSaving] = useState<any>(null);
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const { data: savings = [], refetch } = useQuery({
-    queryKey: ['savings', user?.id],
+    queryKey: ["savings", user?.id],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('savings')
-        .select('*')
-        .eq('user_id', user?.id)
-        .order('created_at', { ascending: false });
-      
+      const { data, error } = await supabase.from("savings").select("*").eq("user_id", user?.id).order("created_at", { ascending: false });
       if (error) throw error;
       return data || [];
     },
     enabled: !!user,
   });
 
-  const totalSavings = savings.reduce((sum, saving) => sum + Number(saving.current_amount || 0), 0);
-  const totalGoals = savings.reduce((sum, saving) => sum + Number(saving.target_amount || 0), 0);
-  const averageProgress = savings.length > 0
-    ? savings.reduce((sum, saving) => {
-        const progress = (Number(saving.current_amount) / Number(saving.target_amount)) * 100;
-        return sum + progress;
-      }, 0) / savings.length
+  const totalSavings = savings.reduce((sum, s) => sum + Number(s.current_amount || 0), 0);
+  const totalGoals = savings.reduce((sum, s) => sum + Number(s.target_amount || 0), 0);
+  const avgProgress = savings.length > 0
+    ? savings.reduce((sum, s) => sum + (Number(s.current_amount) / Number(s.target_amount)) * 100, 0) / savings.length
     : 0;
+
+  const handleDelete = async (id: string) => {
+    const { error } = await supabase.from("savings").delete().eq("id", id);
+    if (error) { toast.error("Failed to delete"); return; }
+    toast.success("Goal deleted");
+    refetch();
+  };
 
   return (
     <>
       <NoIndexMeta />
-      <div className="relative min-h-screen p-4 sm:p-6 lg:p-8">
-      <BackgroundBlobs />
-      
-      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8 animate-slide-up">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <div>
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight gradient-text">Savings Goals</h1>
-            <p className="text-muted-foreground mt-2">
-              {savings.length > 0 
-                ? `You're building wealth! ${savings.length} ${savings.length === 1 ? 'goal' : 'goals'} in progress` 
-                : "Start your journey to financial freedom"}
-            </p>
+      <div className="relative min-h-screen bg-background">
+        <div className="max-w-6xl mx-auto px-5 md:px-8 pt-6 pb-28 space-y-6">
+
+          {/* Header */}
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ ease }}
+            className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div>
+              <h1 className="text-2xl font-bold">Savings Goals</h1>
+              <p className="text-xs text-muted-foreground mt-1">
+                {savings.length > 0 ? `${savings.length} goal${savings.length > 1 ? "s" : ""} in progress` : "Start your journey to financial freedom"}
+              </p>
+            </div>
+            <AddSavingsDialog onSuccess={refetch} />
+          </motion.div>
+
+          {/* Summary Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.06, ease }}
+              className="px-5 py-5 rounded-2xl bg-card border border-border/40">
+              <div className="flex items-center gap-2 mb-2">
+                <Wallet className="h-4 w-4 text-primary" />
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Total Saved</p>
+              </div>
+              <p className="text-xl font-bold">{formatAmount(totalSavings)}</p>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, ease }}
+              className="px-5 py-5 rounded-2xl bg-card border border-border/40">
+              <div className="flex items-center gap-2 mb-2">
+                <Target className="h-4 w-4 text-primary" />
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Total Goals</p>
+              </div>
+              <p className="text-xl font-bold">{formatAmount(totalGoals)}</p>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14, ease }}
+              className="px-5 py-5 rounded-2xl bg-card border border-border/40">
+              <div className="flex items-center gap-2 mb-2">
+                <TrendingUp className="h-4 w-4 text-success" />
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Avg Progress</p>
+              </div>
+              <p className="text-xl font-bold text-success">{avgProgress.toFixed(1)}%</p>
+            </motion.div>
           </div>
-          <AddSavingsDialog onSuccess={refetch} />
-        </div>
 
-        {/* Summary Cards */}
-        <div className="grid gap-6 md:grid-cols-3">
-          <Card className="glass hover-glow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Saved</CardTitle>
-              <Wallet className="h-5 w-5 text-primary" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold gradient-text">{formatAmount(totalSavings)}</div>
-            </CardContent>
-          </Card>
+          {/* Savings List - Wide expandable cards */}
+          <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18, ease }}
+            className="rounded-2xl bg-card border border-border/40 overflow-hidden">
+            <div className="px-5 pt-5 pb-3">
+              <p className="text-sm font-bold">Your Savings Goals</p>
+            </div>
 
-          <Card className="glass hover-glow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Goals</CardTitle>
-              <Target className="h-5 w-5 text-primary" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold gradient-text">{formatAmount(totalGoals)}</div>
-            </CardContent>
-          </Card>
-
-          <Card className="glass hover-glow">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Average Progress</CardTitle>
-              <TrendingUp className="h-5 w-5 text-success" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-3xl font-bold status-positive">{averageProgress.toFixed(1)}%</div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Analytics Chart */}
-        {savings.length > 0 && (
-          <SavingsChart savings={savings} formatAmount={formatAmount} />
-        )}
-
-        {/* Savings List */}
-        <Card className="glass">
-          <CardHeader>
-            <CardTitle className="text-2xl">Your Savings Goals</CardTitle>
-          </CardHeader>
-          <CardContent>
             {savings.length === 0 ? (
-              <div className="text-center py-12">
-                <Wallet className="h-16 w-16 text-muted-foreground mx-auto mb-4 opacity-50" />
-                <p className="text-muted-foreground text-lg">Your savings journey starts here</p>
-                <p className="text-sm text-muted-foreground mt-2">Set your first goal and watch your wealth grow</p>
+              <div className="text-center py-16 px-5">
+                <Wallet className="h-10 w-10 text-muted-foreground/30 mx-auto mb-3" />
+                <p className="text-sm text-muted-foreground font-medium">Your savings journey starts here</p>
+                <p className="text-xs text-muted-foreground mt-1">Set your first goal and watch your wealth grow</p>
               </div>
             ) : (
-              <div className="space-y-4">
-                {savings.map((saving) => {
-                  const progress = (Number(saving.current_amount) / Number(saving.target_amount)) * 100;
+              <div className="px-3 pb-3 space-y-2">
+                {savings.map((saving, idx) => {
+                  const progress = Math.min((Number(saving.current_amount) / Number(saving.target_amount)) * 100, 100);
+                  const isExpanded = expandedId === saving.id;
                   return (
-                     <div 
-                      key={saving.id}
-                      className="p-4 sm:p-6 rounded-xl border bg-card/50 hover:bg-card/80 transition-all duration-300 hover:shadow-lg"
-                    >
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                    <motion.div key={saving.id}
+                      initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + idx * 0.03, ease }}
+                      className="rounded-xl border border-border/30 bg-muted/10 hover:bg-muted/20 transition-all cursor-pointer overflow-hidden"
+                      onClick={() => setExpandedId(isExpanded ? null : saving.id)}>
+
+                      <div className="flex items-center gap-4 px-5 py-4">
+                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${progress >= 100 ? "bg-success/10" : "bg-primary/10"}`}>
+                          <Target className={`h-4 w-4 ${progress >= 100 ? "text-success" : "text-primary"}`} />
+                        </div>
                         <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-2 flex-wrap">
-                            <h3 className="text-lg sm:text-xl font-semibold break-words">{saving.name}</h3>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0"
-                              onClick={() => setSelectedSaving(saving)}
-                            >
-                              <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0"
-                              onClick={() => setSelectedSaving(saving)}
-                            >
-                              <Pencil className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                            </Button>
+                          <div className="flex items-center gap-2">
+                            <p className="text-sm font-semibold truncate">{saving.name}</p>
+                            {saving.category && <Badge variant="outline" className="text-[9px] px-1.5 py-0">{saving.category}</Badge>}
                           </div>
-                          {saving.notes && (
-                            <p className="text-sm text-muted-foreground break-words">{saving.notes}</p>
-                          )}
-                          {saving.category && (
-                            <Badge variant="outline" className="mt-2 text-xs">{saving.category}</Badge>
-                          )}
+                          <div className="flex items-center gap-2 mt-1">
+                            <Progress value={progress} className="h-1.5 flex-1" />
+                            <span className="text-[10px] text-muted-foreground font-medium flex-shrink-0">{progress.toFixed(0)}%</span>
+                          </div>
                         </div>
-                        <div className="text-left sm:text-right">
-                          <div className="text-xl sm:text-2xl font-bold gradient-text">
-                            {formatAmount(Number(saving.current_amount))}
-                          </div>
-                          <div className="text-sm text-muted-foreground">
-                            of {formatAmount(Number(saving.target_amount))}
-                          </div>
+                        <div className="text-right flex-shrink-0">
+                          <p className="text-sm font-bold">{formatAmount(Number(saving.current_amount))}</p>
+                          <p className="text-[10px] text-muted-foreground">of {formatAmount(Number(saving.target_amount))}</p>
                         </div>
                       </div>
-                      <div className="space-y-2">
-                        <div className="flex justify-between text-sm">
-                          <span className="text-muted-foreground">Progress</span>
-                          <span className="font-medium">{progress.toFixed(1)}%</span>
-                        </div>
-                        <Progress value={progress} className="h-3" />
-                      </div>
-                      {saving.deadline && (
-                        <div className="mt-3 text-sm text-muted-foreground">
-                          Target Date: {new Date(saving.deadline).toLocaleDateString()}
-                        </div>
-                      )}
-                    </div>
+
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.25, ease }}
+                            className="overflow-hidden">
+                            <div className="px-5 pb-4 pt-1 border-t border-border/20 space-y-3" onClick={e => e.stopPropagation()}>
+                              {saving.notes && <p className="text-xs text-muted-foreground">{saving.notes}</p>}
+                              {saving.deadline && (
+                                <p className="text-xs text-muted-foreground">
+                                  Deadline: {new Date(saving.deadline).toLocaleDateString()}
+                                </p>
+                              )}
+                              <div className="flex gap-2">
+                                <Button variant="outline" size="sm" className="h-9 rounded-lg text-xs font-semibold gap-1.5 flex-1"
+                                  onClick={() => setSelectedSaving(saving)}>
+                                  <Pencil className="h-3 w-3" /> Edit
+                                </Button>
+                                <Button variant="outline" size="sm" className="h-9 rounded-lg text-xs font-semibold gap-1.5 text-destructive hover:bg-destructive/10"
+                                  onClick={() => handleDelete(saving.id)}>
+                                  <Trash2 className="h-3 w-3" /> Delete
+                                </Button>
+                              </div>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
                   );
                 })}
               </div>
             )}
-          </CardContent>
-        </Card>
+          </motion.div>
+        </div>
       </div>
 
       {selectedSaving && (
@@ -185,13 +178,9 @@ const Savings = () => {
           saving={selectedSaving}
           open={!!selectedSaving}
           onOpenChange={(open) => !open && setSelectedSaving(null)}
-          onSuccess={() => {
-            refetch();
-            setSelectedSaving(null);
-          }}
+          onSuccess={() => { refetch(); setSelectedSaving(null); }}
         />
       )}
-    </div>
     </>
   );
 };
