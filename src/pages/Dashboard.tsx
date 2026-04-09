@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { useCurrency } from "@/components/currency-selector";
 import {
-  Plus, Mic, TrendingUp, TrendingDown, ChevronDown, ChevronUp, X, Wallet, ArrowRight
+  Plus, Mic, TrendingUp, TrendingDown, ChevronDown, ChevronUp, X, Wallet, ArrowRight, Sparkles
 } from "lucide-react";
 import { NoIndexMeta } from "@/components/NoIndexMeta";
 import { useNavigate } from "react-router-dom";
@@ -201,12 +201,10 @@ export default function Dashboard() {
             </div>
 
             {/* Quick Actions inline on desktop */}
-            <div className="flex gap-3 flex-shrink-0">
-              <Button variant="outline" className="h-12 rounded-xl border-2 border-primary/20 hover:border-primary/40 gap-2 text-sm font-bold relative overflow-hidden group px-5" onClick={() => navigate("/transactions")}>
-                <motion.div animate={{ scale: [1, 1.15, 1] }} transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}>
-                  <Mic className="h-4 w-4 text-primary" />
-                </motion.div>
-                Voice
+            <div className="flex gap-3 flex-shrink-0 flex-wrap">
+              <Button variant="outline" className="h-12 rounded-xl border-2 border-primary/20 hover:border-primary/40 gap-2 text-sm font-bold px-5" onClick={() => navigate("/smart-import")}>
+                <Sparkles className="h-4 w-4 text-primary" />
+                Smart Import
               </Button>
               <AddExpenseDialog onSuccess={refetchAll} />
             </div>
