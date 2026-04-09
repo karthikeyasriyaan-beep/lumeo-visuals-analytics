@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Receipt, Wallet, PiggyBank, Repeat, LayoutDashboard, ArrowRight, SkipForward } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
 const steps = [
   {
     title: "Welcome to Trackora",
@@ -42,16 +41,13 @@ const steps = [
     icon: LayoutDashboard,
   },
 ];
-
 export default function Onboarding() {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
-
   const finish = () => {
     localStorage.setItem("trame_onboarded", "true");
     navigate("/dashboard");
   };
-
   const next = () => {
     if (current === steps.length - 1) {
       finish();
@@ -59,10 +55,8 @@ export default function Onboarding() {
       setCurrent((p) => p + 1);
     }
   };
-
   const step = steps[current];
   const Icon = step.icon;
-
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4">
       {/* Skip button */}
@@ -73,7 +67,6 @@ export default function Onboarding() {
           </Button>
         </div>
       )}
-
       <div className="w-full max-w-sm">
         {/* Progress dots */}
         <div className="flex justify-center gap-1.5 mb-8">
@@ -86,7 +79,6 @@ export default function Onboarding() {
             />
           ))}
         </div>
-
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -101,10 +93,8 @@ export default function Onboarding() {
                 <Icon className="h-6 w-6 text-primary" />
               </div>
             )}
-
             <h1 className="text-lg sm:text-xl font-bold">{step.title}</h1>
             <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{step.text}</p>
-
             <Button size="default" onClick={next} className="gap-1.5 mt-3 text-sm">
               {step.button} <ArrowRight className="h-3.5 w-3.5" />
             </Button>
