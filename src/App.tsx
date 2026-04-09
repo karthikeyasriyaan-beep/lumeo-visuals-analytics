@@ -56,6 +56,7 @@ import Resources from "./pages/Resources";
 import ResourceArticle from "./pages/ResourceArticle";
 import ResetPassword from "./pages/ResetPassword";
 import Onboarding from "./pages/Onboarding";
+import SmartImport from "./pages/SmartImport";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import { CookieConsent } from "./components/CookieConsent";
@@ -104,8 +105,7 @@ const App = () => (
                   <Route path="/subscriptions" element={<Subscriptions />} />
                   <Route path="/loans" element={<Loans />} />
                   <Route path="/savings" element={<Savings />} />
-                  
-                  
+                  <Route path="/smart-import" element={<SmartImport />} />
                   <Route path="/settings" element={<Settings />} />
                 </Route>
 
