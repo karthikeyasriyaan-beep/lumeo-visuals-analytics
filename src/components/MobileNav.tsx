@@ -58,7 +58,7 @@ export function MobileNav() {
       y: -100
     }} animate={{
       y: 0
-    }} className="fixed top-0 left-0 right-0 z-50 glass-strong border-b border-border/50 safe-top">
+    }} className="fixed top-0 left-0 right-0 z-50 glass-strong border-b border-border/50 safe-top lg:hidden">
         <div className="flex items-center justify-between px-3 sm:px-4 h-14 sm:h-16">
           <Link to="/dashboard" className="flex items-center gap-2 min-w-0">
             <motion.div whileHover={{
