@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Receipt, Wallet, PiggyBank, Repeat, LayoutDashboard, ArrowRight, SkipForward } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
 const steps = [
   {
     title: "Welcome to Trackora",
@@ -41,13 +42,16 @@ const steps = [
     icon: LayoutDashboard,
   },
 ];
+
 export default function Onboarding() {
   const [current, setCurrent] = useState(0);
   const navigate = useNavigate();
+
   const finish = () => {
-    localStorage.setItem("trame_onboarded", "true");
+    localStorage.setItem("trackora_onboarded", "true"); // ✅ FIXED
     navigate("/dashboard");
   };
+
   const next = () => {
     if (current === steps.length - 1) {
       finish();
@@ -55,11 +59,12 @@ export default function Onboarding() {
       setCurrent((p) => p + 1);
     }
   };
+
   const step = steps[current];
   const Icon = step.icon;
+
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4">
-      {/* Skip button */}
       {current < steps.length - 1 && (
         <div className="fixed top-4 right-4 z-10">
           <Button variant="ghost" size="sm" onClick={finish} className="gap-1.5 text-muted-foreground text-xs">
@@ -67,8 +72,8 @@ export default function Onboarding() {
           </Button>
         </div>
       )}
+
       <div className="w-full max-w-sm">
-        {/* Progress dots */}
         <div className="flex justify-center gap-1.5 mb-8">
           {steps.map((_, i) => (
             <div
@@ -79,6 +84,7 @@ export default function Onboarding() {
             />
           ))}
         </div>
+
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
