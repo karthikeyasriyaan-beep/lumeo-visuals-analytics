@@ -6,6 +6,8 @@ import { BrowserRouter, Routes, Route, Outlet, useLocation } from "react-router-
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { AuthProvider } from "@/hooks/useAuth";
 import { CurrencyProvider } from "@/components/currency-selector";
+import { DesktopSidebar } from "@/components/DesktopSidebar";
+import { BottomNav } from "@/components/BottomNav";
 import { MobileNav } from "@/components/MobileNav";
 import { PageTransition } from "@/components/PageTransition";
 import { AnimatePresence } from "framer-motion";
@@ -68,14 +70,18 @@ function AppLayout() {
   const showNav = !publicPaths.includes(location.pathname) && !location.pathname.startsWith("/blog/") && !hideNavPaths.includes(location.pathname);
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden scroll-smooth">
-      {showNav && <MobileNav />}
-      <div className={showNav ? "pt-14 sm:pt-16" : ""}>
-        <AnimatePresence mode="wait">
-          <PageTransition key={location.pathname}>
-            <Outlet />
-          </PageTransition>
-        </AnimatePresence>
+    <div className="min-h-screen w-full overflow-x-hidden scroll-smooth flex">
+      {showNav && <DesktopSidebar />}
+      <div className="flex-1 flex flex-col min-w-0">
+        {showNav && <MobileNav />}
+        <div className={showNav ? "pt-14 sm:pt-16 lg:pt-0 pb-16 lg:pb-0" : ""}>
+          <AnimatePresence mode="wait">
+            <PageTransition key={location.pathname}>
+              <Outlet />
+            </PageTransition>
+          </AnimatePresence>
+        </div>
+        {showNav && <BottomNav />}
       </div>
     </div>
   );
