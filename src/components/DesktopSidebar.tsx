@@ -36,7 +36,7 @@ export function DesktopSidebar() {
     navigate("/");
   };
 
-  const NavItem = ({ item }: { item: typeof mainNav[0] & { badge?: string } }) => {
+  const NavItem = ({ item }: { item: { name: string; href: string; icon: typeof Home; badge?: string } }) => {
     const isActive = location.pathname === item.href;
     return (
       <Link
