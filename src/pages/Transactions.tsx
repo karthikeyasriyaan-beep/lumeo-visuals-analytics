@@ -83,11 +83,24 @@ export default function Transactions() {
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const suggestionsRef = useRef<HTMLDivElement>(null);
   const [guestIncome, setGuestIncome] = useState<GuestIncome[]>([]);
   const [guestExpenses, setGuestExpenses] = useState<GuestExpense[]>([]);
 
   const refreshGuestData = () => { setGuestIncome(getGuestIncome()); setGuestExpenses(getGuestExpenses()); };
   useEffect(() => { if (isGuest) refreshGuestData(); }, [isGuest]);
+
+  // Close suggestions on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (suggestionsRef.current && !suggestionsRef.current.contains(e.target as Node) &&
+        inputRef.current && !inputRef.current.contains(e.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const { data: supabaseIncome = [], refetch: refetchIncome } = useQuery({
     queryKey: ["income", user?.id],
@@ -167,6 +180,7 @@ export default function Transactions() {
     toast.success("Deleted"); refetchAll();
   };
 
+  // FIX 1: Removed .slice(0, 10) cap — show ALL earlier transactions
   const grouped = useMemo(() => {
     const todayStr = new Date().toDateString();
     const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
@@ -177,7 +191,7 @@ export default function Transactions() {
     const ei = filtered.filter((t) => new Date(t.date).toDateString() !== todayStr && new Date(t.date).toDateString() !== yesterdayStr);
     if (ti.length > 0) groups.push({ label: "Today", items: ti });
     if (yi.length > 0) groups.push({ label: "Yesterday", items: yi });
-    if (ei.length > 0) groups.push({ label: "Earlier", items: ei.slice(0, 10) });
+    if (ei.length > 0) groups.push({ label: "Earlier", items: ei }); // removed slice(0,10)
     return groups;
   }, [filtered]);
 
@@ -190,106 +204,161 @@ export default function Transactions() {
       <div className="relative min-h-screen w-full overflow-x-hidden bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-5 md:px-8 pt-4 sm:pt-6 pb-28 space-y-4 sm:space-y-5">
 
-          {/* Header + Smart Input */}
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }}
-            className="sticky top-14 sm:top-16 z-20 bg-background/95 backdrop-blur-md pb-3 -mx-4 sm:-mx-5 md:-mx-8 px-4 sm:px-5 md:px-8 pt-2 space-y-3">
-            
-            <div className="flex items-center justify-between gap-2">
-              <div className="min-w-0">
-                <h1 className="text-lg sm:text-xl font-bold tracking-tight">Transactions</h1>
-                <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">Smart add · Auto categorize</p>
+          {/* FIX 2: Sticky header — removed overflow-hidden so dropdown isn't clipped */}
+          <div className="sticky top-14 sm:top-16 z-20 bg-background/95 backdrop-blur-md pb-3 -mx-4 sm:-mx-5 md:-mx-8 px-4 sm:px-5 md:px-8 pt-2 space-y-3">
+
+            <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }}>
+              <div className="flex items-center justify-between gap-2">
+                <div className="min-w-0">
+                  <h1 className="text-lg sm:text-xl font-bold tracking-tight">Transactions</h1>
+                  <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">Smart add · Auto categorize</p>
+                </div>
+                <div className="flex gap-1.5 sm:gap-2 flex-shrink-0">
+                  <AddIncomeDialog onSuccess={refetchAll} />
+                  <AddExpenseDialog onSuccess={refetchAll} />
+                </div>
               </div>
-              <div className="flex gap-1.5 sm:gap-2 flex-shrink-0">
-                <AddIncomeDialog onSuccess={refetchAll} />
-                <AddExpenseDialog onSuccess={refetchAll} />
-              </div>
-            </div>
+            </motion.div>
 
             {/* Smart input */}
-            <div className="flex gap-2">
-              <div className="relative flex-1">
-                <Sparkles className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary/50" />
-                <Input
-                  ref={inputRef} placeholder='Try "500 food" or "2000 salary"' value={smartInput}
-                  onChange={(e) => { setSmartInput(e.target.value); setShowSuggestions(true); }}
-                  onFocus={() => setShowSuggestions(true)}
-                  onKeyDown={(e) => { if (e.key === "Enter") handleSmartAdd(); if (e.key === "Escape") setShowSuggestions(false); }}
-                  className="pl-9 sm:pl-10 h-11 rounded-xl bg-card border-border/50 text-sm font-medium"
-                />
+            {/* FIX 3: Wrapped input + dropdown in a relative container OUTSIDE sticky overflow */}
+            <div className="relative">
+              <div className="flex gap-2">
+                <div className="relative flex-1">
+                  <Sparkles className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary/50" />
+                  <Input
+                    ref={inputRef}
+                    placeholder='Try "500 food" or "2000 salary"'
+                    value={smartInput}
+                    onChange={(e) => { setSmartInput(e.target.value); setShowSuggestions(true); }}
+                    onFocus={() => setShowSuggestions(true)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleSmartAdd();
+                      if (e.key === "Escape") setShowSuggestions(false);
+                    }}
+                    className="pl-9 sm:pl-10 h-11 rounded-xl bg-card border-border/50 text-sm font-medium"
+                  />
+                </div>
+                <AnimatePresence>
+                  {smartInput && (
+                    <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}>
+                      <Button onClick={handleSmartAdd} className="h-11 px-4 sm:px-5 rounded-xl text-sm font-bold">Add</Button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-              {smartInput && (
-                <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-                  <Button onClick={handleSmartAdd} className="h-11 px-4 sm:px-5 rounded-xl text-sm font-bold">Add</Button>
-                </motion.div>
-              )}
+
+              {/* FIX 4: Suggestions dropdown — now portaled outside sticky header via z-50 */}
+              <AnimatePresence>
+                {showSuggestions && !preview && filteredSuggestions.length > 0 && (
+                  <motion.div
+                    ref={suggestionsRef}
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-[calc(100%+6px)] left-0 right-0 z-50 bg-card border border-border/50 rounded-xl shadow-xl overflow-hidden"
+                  >
+                    <p className="px-3 pt-2.5 pb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Quick add</p>
+                    {filteredSuggestions.slice(0, 4).map((s) => (
+                      <button
+                        key={s}
+                        className="w-full text-left px-3 py-2.5 text-xs sm:text-sm hover:bg-muted/40 transition-colors"
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          setSmartInput(s);
+                          setShowSuggestions(false);
+                          inputRef.current?.focus();
+                        }}
+                      >
+                        {s}
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
-            {/* Preview */}
-            {preview && smartInput && (
-              <motion.div initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} className="px-3 py-2.5 rounded-xl bg-card border border-border/40 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Badge variant="outline" className="text-[10px] h-5 px-1.5">{preview.type === "income" ? "Income" : "Expense"}</Badge>
-                  <span className="text-[10px] sm:text-xs text-muted-foreground font-medium">{preview.category}</span>
-                </div>
-                <span className={`text-xs sm:text-sm font-bold ${preview.type === "income" ? "text-success" : "text-destructive"}`}>
-                  {preview.type === "income" ? "+" : "-"}{formatAmount(preview.amount)}
-                </span>
-              </motion.div>
-            )}
-
-            {/* Suggestions dropdown */}
+            {/* FIX 5: Preview shown below input, never overlaps suggestions */}
             <AnimatePresence>
-              {showSuggestions && !preview && (
-                <motion.div initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }} className="absolute top-full left-4 right-4 sm:left-5 sm:right-5 md:left-8 md:right-8 mt-1 z-30 bg-card border border-border/50 rounded-xl shadow-xl overflow-hidden">
-                  <p className="px-3 pt-2.5 pb-1 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Quick add</p>
-                  {filteredSuggestions.slice(0, 4).map((s) => (
-                    <button key={s} className="w-full text-left px-3 py-2.5 text-xs sm:text-sm hover:bg-muted/40 transition-colors" onMouseDown={(e) => { e.preventDefault(); setSmartInput(s); setShowSuggestions(false); inputRef.current?.focus(); }}>
-                      {s}
-                    </button>
-                  ))}
+              {preview && smartInput && (
+                <motion.div
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  className="px-3 py-2.5 rounded-xl bg-card border border-border/40 flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-2">
+                    <Badge variant="outline" className="text-[10px] h-5 px-1.5">
+                      {preview.type === "income" ? "Income" : "Expense"}
+                    </Badge>
+                    <span className="text-[10px] sm:text-xs text-muted-foreground font-medium">{preview.category}</span>
+                  </div>
+                  <span className={`text-xs sm:text-sm font-bold ${preview.type === "income" ? "text-success" : "text-destructive"}`}>
+                    {preview.type === "income" ? "+" : "-"}{formatAmount(preview.amount)}
+                  </span>
                 </motion.div>
               )}
             </AnimatePresence>
-          </motion.div>
-
-          {/* Summary cards - horizontal scroll on mobile, grid on desktop */}
-          <div className="flex gap-3 overflow-x-auto pb-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3">
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, ease }}
-              className="min-w-[140px] flex-shrink-0 sm:min-w-0 px-4 py-3.5 rounded-2xl bg-card border border-border/40">
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Income</p>
-              <p className="text-base sm:text-lg font-bold text-success mt-1">+{formatAmount(totalIncome)}</p>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12, ease }}
-              className="min-w-[140px] flex-shrink-0 sm:min-w-0 px-4 py-3.5 rounded-2xl bg-card border border-border/40">
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Expenses</p>
-              <p className="text-base sm:text-lg font-bold text-destructive mt-1">-{formatAmount(totalExpenses)}</p>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.14, ease }}
-              className="min-w-[140px] flex-shrink-0 sm:min-w-0 px-4 py-3.5 rounded-2xl bg-card border border-border/40">
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-medium">Net</p>
-              <p className={`text-base sm:text-lg font-bold mt-1 ${totalIncome - totalExpenses >= 0 ? "text-success" : "text-destructive"}`}>{formatAmount(totalIncome - totalExpenses)}</p>
-            </motion.div>
           </div>
 
-          {/* Filters Row */}
+          {/* FIX 6: Summary cards — clean grid, no bleed issues */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, ease }}
+            className="grid grid-cols-3 gap-2 sm:gap-3"
+          >
+            {[
+              { label: "Income", value: `+${formatAmount(totalIncome)}`, color: "text-success" },
+              { label: "Expenses", value: `-${formatAmount(totalExpenses)}`, color: "text-destructive" },
+              {
+                label: "Net",
+                value: formatAmount(totalIncome - totalExpenses),
+                color: totalIncome - totalExpenses >= 0 ? "text-success" : "text-destructive",
+              },
+            ].map((card, i) => (
+              <motion.div
+                key={card.label}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + i * 0.02, ease }}
+                className="px-3 sm:px-4 py-3 sm:py-3.5 rounded-2xl bg-card border border-border/40"
+              >
+                <p className="text-[9px] sm:text-[10px] text-muted-foreground uppercase tracking-wider font-medium truncate">{card.label}</p>
+                <p className={`text-sm sm:text-lg font-bold mt-1 truncate ${card.color}`}>{card.value}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* FIX 7: Filters row — no flex-wrap breakage, search stays constrained */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}
-            className="flex items-center gap-2 sm:gap-3 flex-wrap">
-            <div className="flex gap-1 bg-card border border-border/40 rounded-xl p-1">
+            className="flex items-center gap-2 sm:gap-3">
+            <div className="flex gap-1 bg-card border border-border/40 rounded-xl p-1 flex-shrink-0">
               {(["today", "week", "month"] as const).map((f) => (
-                <button key={f} onClick={() => setTimeFilter(f)}
-                  className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-200 ${timeFilter === f ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}>
-                  {f === "today" ? "Today" : f === "week" ? "Week" : "Month"}
+                <button
+                  key={f}
+                  onClick={() => setTimeFilter(f)}
+                  className={`px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-200 ${timeFilter === f ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
+                >
+                  {f === "today" ? "Today" : f === "week" ? "7D" : "30D"}
                 </button>
               ))}
             </div>
-            <div className="relative flex-1 min-w-[120px] max-w-[200px]">
+            <div className="relative flex-1">
               <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3 w-3 sm:h-3.5 sm:w-3.5 text-muted-foreground/50" />
-              <Input placeholder="Search..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="h-9 pl-7 sm:pl-8 text-xs sm:text-sm rounded-lg bg-card border-border/40" />
+              <Input
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="h-9 pl-7 sm:pl-8 text-xs sm:text-sm rounded-lg bg-card border-border/40 w-full"
+              />
             </div>
           </motion.div>
 
           {/* Insight */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }} className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-primary/5 border border-primary/10">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
+            className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-primary/5 border border-primary/10">
             <Sparkles className="h-3.5 w-3.5 text-primary flex-shrink-0" />
             <p className="text-[10px] sm:text-xs text-muted-foreground font-medium">{insight}</p>
           </motion.div>
@@ -308,7 +377,11 @@ export default function Transactions() {
                     const isExpanded = expandedId === `${t.type}-${t.id}`;
 
                     return (
-                      <motion.div key={`${t.type}-${t.id}`} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, delay: idx * 0.03, ease }}
+                      <motion.div
+                        key={`${t.type}-${t.id}`}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.25, delay: idx * 0.03, ease }}
                         whileTap={{ scale: 0.98 }}
                         className="rounded-xl bg-card border border-border/40 hover:border-border/60 transition-all duration-200 cursor-pointer overflow-hidden"
                         onClick={() => setExpandedId(isExpanded ? null : `${t.type}-${t.id}`)}
@@ -319,7 +392,9 @@ export default function Transactions() {
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-semibold truncate">{title}</p>
-                            <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">{timeStr}{t.category ? ` · ${t.category}` : ""}</p>
+                            <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">
+                              {timeStr}{t.category ? ` · ${t.category}` : ""}
+                            </p>
                           </div>
                           <p className={`text-sm font-bold flex-shrink-0 ${isIncome ? "text-success" : "text-destructive"}`}>
                             {isIncome ? "+" : "-"}{formatAmount(Number(t.amount))}
@@ -328,15 +403,33 @@ export default function Transactions() {
                         </div>
                         <AnimatePresence>
                           {isExpanded && (
-                            <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden"
+                            >
                               <div className="px-3.5 sm:px-4 pb-3.5 sm:pb-4 pt-0 border-t border-border/30">
                                 <div className="pt-3 flex items-center gap-2">
-                                  <Button size="sm" variant="outline" className="h-9 px-3 sm:px-4 rounded-lg text-xs font-bold gap-1.5"
-                                    onClick={(e) => { e.stopPropagation(); if (isIncome) setSelectedIncome(t); else setSelectedExpense(t); }}>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    className="h-9 px-3 sm:px-4 rounded-lg text-xs font-bold gap-1.5"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      if (isIncome) setSelectedIncome(t);
+                                      else setSelectedExpense(t);
+                                    }}
+                                  >
                                     <Pencil className="h-3 w-3" /> Edit
                                   </Button>
-                                  <Button size="sm" variant="outline" className="h-9 px-3 sm:px-4 rounded-lg text-xs font-bold gap-1.5 hover:bg-destructive/10 hover:border-destructive/30"
-                                    onClick={(e) => { e.stopPropagation(); handleDelete(t); }}>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    className="h-9 px-3 sm:px-4 rounded-lg text-xs font-bold gap-1.5 hover:bg-destructive/10 hover:border-destructive/30"
+                                    onClick={(e) => { e.stopPropagation(); handleDelete(t); }}
+                                  >
                                     <Trash2 className="h-3 w-3 text-destructive" /> Delete
                                   </Button>
                                 </div>
@@ -350,18 +443,40 @@ export default function Transactions() {
                 </div>
               </div>
             ))}
+
             {filtered.length === 0 && (
-              <div className="text-center py-12">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center py-16"
+              >
+                <div className="w-12 h-12 rounded-full bg-muted/40 flex items-center justify-center mx-auto mb-3">
+                  <Search className="h-5 w-5 text-muted-foreground/40" />
+                </div>
                 <p className="text-sm text-muted-foreground font-medium">No transactions found</p>
                 <p className="text-xs text-muted-foreground/60 mt-1">Try a different filter or add one above</p>
-              </div>
+              </motion.div>
             )}
           </motion.div>
         </div>
       </div>
 
-      {selectedIncome && <EditIncomeDialog income={selectedIncome} open={!!selectedIncome} onOpenChange={(open: boolean) => !open && setSelectedIncome(null)} onSuccess={() => { refetchAll(); setSelectedIncome(null); }} />}
-      {selectedExpense && <EditExpenseDialog expense={selectedExpense} open={!!selectedExpense} onOpenChange={(open: boolean) => !open && setSelectedExpense(null)} onSuccess={() => { refetchAll(); setSelectedExpense(null); }} />}
+      {selectedIncome && (
+        <EditIncomeDialog
+          income={selectedIncome}
+          open={!!selectedIncome}
+          onOpenChange={(open: boolean) => !open && setSelectedIncome(null)}
+          onSuccess={() => { refetchAll(); setSelectedIncome(null); }}
+        />
+      )}
+      {selectedExpense && (
+        <EditExpenseDialog
+          expense={selectedExpense}
+          open={!!selectedExpense}
+          onOpenChange={(open: boolean) => !open && setSelectedExpense(null)}
+          onSuccess={() => { refetchAll(); setSelectedExpense(null); }}
+        />
+      )}
     </>
   );
 }
