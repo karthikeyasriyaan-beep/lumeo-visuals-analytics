@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+} from "@/components/ui/select";
 import { Plus } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -15,7 +18,11 @@ interface AddLoanDialogProps {
   onSuccess?: () => void;
 }
 
-const loanStatuses = ["active", "paid_off", "defaulted"];
+const loanStatuses = [
+  { value: "active", label: "Active" },
+  { value: "paid_off", label: "Paid Off" },
+  { value: "defaulted", label: "Defaulted" },
+];
 
 export function AddLoanDialog({ onSuccess }: AddLoanDialogProps) {
   const [open, setOpen] = useState(false);
@@ -25,241 +32,225 @@ export function AddLoanDialog({ onSuccess }: AddLoanDialogProps) {
     initial_amount: "",
     interest_rate: "",
     monthly_payment: "",
-    start_date: new Date().toISOString().split('T')[0],
+    start_date: new Date().toISOString().split("T")[0],
     status: "active",
-    notes: ""
+    notes: "",
   });
-  
+
   const { user } = useAuth();
   const { toast } = useToast();
+
+  const reset = () =>
+    setFormData({
+      name: "", initial_amount: "", interest_rate: "",
+      monthly_payment: "", start_date: new Date().toISOString().split("T")[0],
+      status: "active", notes: "",
+    });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
-
-    // Validate required fields
-    if (!formData.name.trim()) {
-      toast({
-        title: "Validation Error",
-        description: "Please enter a loan name.",
-        variant: "destructive",
-      });
-      return;
-    }
 
     const initialAmount = parseFloat(formData.initial_amount) || 0;
     const interestRate = parseFloat(formData.interest_rate) || 0;
     const monthlyPayment = parseFloat(formData.monthly_payment) || 0;
 
     if (initialAmount <= 0) {
-      toast({
-        title: "Validation Error",
-        description: "Loan amount must be greater than 0.",
-        variant: "destructive",
-      });
+      toast({ title: "Validation Error", description: "Loan amount must be greater than 0.", variant: "destructive" });
       return;
     }
-
     if (monthlyPayment <= 0) {
-      toast({
-        title: "Validation Error",
-        description: "Monthly payment must be greater than 0.",
-        variant: "destructive",
-      });
+      toast({ title: "Validation Error", description: "Monthly payment must be greater than 0.", variant: "destructive" });
       return;
     }
 
     setLoading(true);
     try {
-      // Calculate end date based on loan amortization
-      let endDate = null;
+      // Auto-calculate end date
+      let endDate: string | null = null;
       if (interestRate > 0 && monthlyPayment > 0) {
         const monthlyRate = interestRate / 12 / 100;
         const principalTimesRate = initialAmount * monthlyRate;
-        
-        // Only calculate if monthly payment is greater than interest
         if (monthlyPayment > principalTimesRate) {
-          const numerator = Math.log(monthlyPayment / (monthlyPayment - principalTimesRate));
-          const denominator = Math.log(1 + monthlyRate);
-          const months = Math.ceil(numerator / denominator);
-          
-          if (months > 0 && months < 1200) { // Max 100 years
-            const startDate = new Date(formData.start_date);
-            const calculatedEndDate = new Date(startDate);
-            calculatedEndDate.setMonth(calculatedEndDate.getMonth() + months);
-            endDate = calculatedEndDate.toISOString().split('T')[0];
+          const months = Math.ceil(Math.log(monthlyPayment / (monthlyPayment - principalTimesRate)) / Math.log(1 + monthlyRate));
+          if (months > 0 && months < 1200) {
+            const end = new Date(formData.start_date);
+            end.setMonth(end.getMonth() + months);
+            endDate = end.toISOString().split("T")[0];
           }
         }
       } else if (monthlyPayment > 0) {
-        // Simple calculation without interest
         const months = Math.ceil(initialAmount / monthlyPayment);
         if (months > 0 && months < 1200) {
-          const startDate = new Date(formData.start_date);
-          const calculatedEndDate = new Date(startDate);
-          calculatedEndDate.setMonth(calculatedEndDate.getMonth() + months);
-          endDate = calculatedEndDate.toISOString().split('T')[0];
+          const end = new Date(formData.start_date);
+          end.setMonth(end.getMonth() + months);
+          endDate = end.toISOString().split("T")[0];
         }
       }
 
-      const { error } = await supabase
-        .from('loans')
-        .insert({
-          user_id: user.id,
-          name: formData.name.trim(),
-          initial_amount: initialAmount,
-          current_balance: initialAmount,
-          interest_rate: interestRate,
-          monthly_payment: monthlyPayment,
-          start_date: formData.start_date,
-          end_date: endDate,
-          status: formData.status,
-          notes: formData.notes.trim() || null
-        });
+      const { error } = await supabase.from("loans").insert({
+        user_id: user.id,
+        name: formData.name.trim(),
+        initial_amount: initialAmount,
+        current_balance: initialAmount,
+        interest_rate: interestRate,
+        monthly_payment: monthlyPayment,
+        start_date: formData.start_date,
+        end_date: endDate,
+        status: formData.status,
+        notes: formData.notes.trim() || null,
+      });
 
       if (error) throw error;
 
-      toast({
-        title: "Loan added successfully",
-        description: `${formData.name} has been added to your loans.`,
-      });
-
-      setFormData({
-        name: "",
-        initial_amount: "",
-        interest_rate: "",
-        monthly_payment: "",
-        start_date: new Date().toISOString().split('T')[0],
-        status: "active",
-        notes: ""
-      });
+      toast({ title: "Loan added", description: `${formData.name} added successfully.` });
+      reset();
       setOpen(false);
       onSuccess?.();
     } catch (error) {
-      console.error('Error adding loan:', error);
-      toast({
-        title: "Error adding loan",
-        description: "There was an error adding your loan. Please try again.",
-        variant: "destructive",
-      });
+      console.error("Error adding loan:", error);
+      toast({ title: "Error", description: "Failed to add loan. Please try again.", variant: "destructive" });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) reset(); }}>
       <DialogTrigger asChild>
-        <Button className="gap-2">
-          <Plus className="h-4 w-4" />
+        <Button size="sm" className="gap-1.5 h-9 sm:h-10 px-3 sm:px-4 text-xs sm:text-sm">
+          <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           Add Loan
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] max-h-[90vh] p-0">
-        <DialogHeader className="px-6 pt-6">
-          <DialogTitle>Add New Loan</DialogTitle>
+
+      <DialogContent className="w-full max-w-md border-border/50 bg-background p-0 gap-0">
+        {/* Header */}
+        <DialogHeader className="px-5 pt-5 pb-4 border-b border-border/30">
+          <DialogTitle className="text-base font-semibold">Add Loan</DialogTitle>
         </DialogHeader>
-        <ScrollArea className="max-h-[calc(90vh-8rem)] px-6">
-          <form onSubmit={handleSubmit} className="space-y-4 pb-6">
-          <div className="space-y-2">
-            <Label htmlFor="name">Loan Name</Label>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="px-5 py-4 space-y-4 overflow-y-auto max-h-[70vh]">
+
+          {/* Loan Name */}
+          <div className="space-y-1.5">
+            <Label htmlFor="loan-name" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Loan Name</Label>
             <Input
-              id="name"
+              id="loan-name"
               placeholder="e.g., Car Loan, Student Loan"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="h-10 text-sm rounded-lg"
               required
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="initial_amount">Loan Amount</Label>
+          {/* Loan Amount */}
+          <div className="space-y-1.5">
+            <Label htmlFor="loan-amount" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Loan Amount</Label>
             <Input
-              id="initial_amount"
+              id="loan-amount"
               type="number"
               step="0.01"
+              min="0"
               placeholder="0.00"
               value={formData.initial_amount}
               onChange={(e) => setFormData({ ...formData, initial_amount: e.target.value })}
+              className="h-10 text-sm rounded-lg"
               required
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="interest_rate">Interest Rate (%)</Label>
+          {/* Interest Rate + Monthly Payment */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="loan-rate" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Interest (%)</Label>
               <Input
-                id="interest_rate"
+                id="loan-rate"
                 type="number"
                 step="0.01"
+                min="0"
                 placeholder="0.00"
                 value={formData.interest_rate}
                 onChange={(e) => setFormData({ ...formData, interest_rate: e.target.value })}
-                required
+                className="h-10 text-sm rounded-lg"
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="monthly_payment">Monthly Payment</Label>
+            <div className="space-y-1.5">
+              <Label htmlFor="loan-payment" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Monthly EMI</Label>
               <Input
-                id="monthly_payment"
+                id="loan-payment"
                 type="number"
                 step="0.01"
+                min="0"
                 placeholder="0.00"
                 value={formData.monthly_payment}
                 onChange={(e) => setFormData({ ...formData, monthly_payment: e.target.value })}
+                className="h-10 text-sm rounded-lg"
                 required
               />
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="start_date">Start Date</Label>
-            <Input
-              id="start_date"
-              type="date"
-              value={formData.start_date}
-              onChange={(e) => setFormData({ ...formData, start_date: e.target.value })}
-              required
-            />
-            <p className="text-xs text-muted-foreground">End date will be calculated automatically</p>
+          {/* Start Date + Status */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="loan-start" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Start Date</Label>
+              <Input
+                id="loan-start"
+                type="date"
+                value={formData.start_date}
+                onChange={(e) => setFormData({ ...formData, start_date: e.target.value })}
+                className="h-10 text-sm rounded-lg"
+                required
+              />
+            </div>
+            <div className="space-y-1.5">
+              <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Status</Label>
+              <Select value={formData.status} onValueChange={(v) => setFormData({ ...formData, status: v })}>
+                <SelectTrigger className="h-10 text-sm rounded-lg">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {loanStatuses.map((s) => (
+                    <SelectItem key={s.value} value={s.value} className="text-sm">{s.label}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="status">Status</Label>
-            <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {loanStatuses.map((status) => (
-                  <SelectItem key={status} value={status}>
-                    {status.charAt(0).toUpperCase() + status.slice(1).replace('_', ' ')}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+          {/* End date auto-calc hint */}
+          <p className="text-[11px] text-muted-foreground/60 -mt-2">
+            End date is calculated automatically from your amount and EMI.
+          </p>
 
-          <div className="space-y-2">
-            <Label htmlFor="notes">Notes (Optional)</Label>
+          {/* Notes */}
+          <div className="space-y-1.5">
+            <Label htmlFor="loan-notes" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+              Notes <span className="normal-case tracking-normal">(optional)</span>
+            </Label>
             <Textarea
-              id="notes"
-              placeholder="Add any additional notes..."
+              id="loan-notes"
+              placeholder="Any extra details..."
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-              rows={3}
+              rows={2}
+              className="resize-none text-sm rounded-lg"
             />
           </div>
 
-          <div className="flex justify-end gap-2 pt-4">
-            <Button type="button" variant="outline" onClick={() => setOpen(false)}>
+          {/* Actions */}
+          <div className="flex gap-2 pt-1">
+            <Button type="button" variant="outline" onClick={() => setOpen(false)} className="flex-1 h-10 text-sm rounded-lg">
               Cancel
             </Button>
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading} className="flex-1 h-10 text-sm rounded-lg">
               {loading ? "Adding..." : "Add Loan"}
             </Button>
           </div>
-          </form>
-        </ScrollArea>
+        </form>
       </DialogContent>
     </Dialog>
   );
