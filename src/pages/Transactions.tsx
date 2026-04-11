@@ -204,8 +204,8 @@ export default function Transactions() {
       <div className="relative min-h-screen w-full overflow-x-hidden bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-5 md:px-8 pt-4 sm:pt-6 pb-28 space-y-4 sm:space-y-5">
 
-          {/* FIX 2: Sticky header — removed overflow-hidden so dropdown isn't clipped */}
-          <div className="sticky top-14 sm:top-16 z-20 bg-background/95 backdrop-blur-md pb-3 -mx-4 sm:-mx-5 md:-mx-8 px-4 sm:px-5 md:px-8 pt-2 space-y-3">
+          {/* Sticky header — only smart input + title, NOT summary cards */}
+          <div className="sticky top-14 sm:top-16 z-10 bg-background/95 backdrop-blur-md pb-3 -mx-4 sm:-mx-5 md:-mx-8 px-4 sm:px-5 md:px-8 pt-2 space-y-3">
 
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }}>
               <div className="flex items-center justify-between gap-2">
@@ -302,12 +302,12 @@ export default function Transactions() {
             </AnimatePresence>
           </div>
 
-          {/* FIX 6: Summary cards — clean grid, no bleed issues */}
+          {/* Summary cards — scrolls normally, NOT sticky */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, ease }}
-            className="grid grid-cols-3 gap-2 sm:gap-3"
+            className="grid grid-cols-3 gap-2 sm:gap-3 mt-2"
           >
             {[
               { label: "Income", value: `+${formatAmount(totalIncome)}`, color: "text-success" },
