@@ -1,23 +1,14 @@
 import { useState } from "react";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Minus } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
@@ -29,19 +20,9 @@ interface AddExpenseDialogProps {
 }
 
 const expenseCategories = [
-  "Groceries",
-  "Rent",
-  "Utilities",
-  "Fuel",
-  "Subscription",
-  "Dining Out",
-  "Shopping",
-  "Medical",
-  "Education",
-  "Travel",
-  "Entertainment",
-  "Transport",
-  "Other",
+  "Groceries", "Rent", "Utilities", "Fuel", "Subscription",
+  "Dining Out", "Shopping", "Medical", "Education", "Travel",
+  "Entertainment", "Transport", "Other",
 ];
 
 export function AddExpenseDialog({ onSuccess }: AddExpenseDialogProps) {
@@ -58,14 +39,15 @@ export function AddExpenseDialog({ onSuccess }: AddExpenseDialogProps) {
   const { user, isGuest } = useAuth();
   const { toast } = useToast();
 
+  const reset = () =>
+    setFormData({ name: "", amount: "", category: "", notes: "", date: new Date().toISOString().split("T")[0] });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
-
     setLoading(true);
     try {
       if (isGuest) {
-        // Save to local storage for guest users
         addGuestExpense({
           name: formData.name,
           amount: parseFloat(formData.amount),
@@ -75,7 +57,6 @@ export function AddExpenseDialog({ onSuccess }: AddExpenseDialogProps) {
           user_id: user.id,
         });
       } else {
-        // Save to Supabase for authenticated users
         const { error } = await supabase.from("expenses").insert({
           user_id: user.id,
           name: formData.name,
@@ -84,135 +65,120 @@ export function AddExpenseDialog({ onSuccess }: AddExpenseDialogProps) {
           notes: formData.notes,
           date: formData.date,
         });
-
         if (error) throw error;
       }
-
-      toast({
-        title: "Expense added",
-        description: `${formData.name} has been added successfully.`,
-      });
-
-      setFormData({
-        name: "",
-        amount: "",
-        category: "",
-        notes: "",
-        date: new Date().toISOString().split("T")[0],
-      });
+      toast({ title: "Expense added", description: `${formData.name} added successfully.` });
+      reset();
       setOpen(false);
       onSuccess?.();
     } catch (error) {
       console.error("Error adding expense:", error);
-      toast({
-        title: "Error",
-        description: "Failed to add expense. Please try again.",
-        variant: "destructive",
-      });
+      toast({ title: "Error", description: "Failed to add expense. Please try again.", variant: "destructive" });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) reset(); }}>
       <DialogTrigger asChild>
-        <Button size="sm" className="gap-1.5 sm:gap-2 shadow-lg hover:shadow-xl transition-all duration-300 text-xs sm:text-sm h-9 sm:h-10 px-3 sm:px-4">
+        <Button size="sm" className="gap-1.5 h-9 sm:h-10 px-3 sm:px-4 text-xs sm:text-sm">
           <Minus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-          <span>Add Expense</span>
+          Add Expense
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] max-h-[90vh] border-border/50 bg-background/95 backdrop-blur-sm p-0">
-        <DialogHeader className="p-4 sm:p-6 pb-0">
-          <DialogTitle className="text-lg sm:text-xl font-semibold">Add Expense</DialogTitle>
+
+      <DialogContent className="w-full max-w-md border-border/50 bg-background p-0 gap-0">
+        {/* Header */}
+        <DialogHeader className="px-5 pt-5 pb-4 border-b border-border/30">
+          <DialogTitle className="text-base font-semibold">Add Expense</DialogTitle>
         </DialogHeader>
-        <ScrollArea className="max-h-[calc(90vh-80px)] px-4 sm:px-6 pb-4 sm:pb-6">
-          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 pt-4">
-            <div className="space-y-1.5 sm:space-y-2">
-              <Label htmlFor="name" className="text-xs sm:text-sm">Title</Label>
+
+        {/* Form — no ScrollArea, let dialog handle overflow */}
+        <form onSubmit={handleSubmit} className="px-5 py-4 space-y-4 overflow-y-auto max-h-[70vh]">
+
+          {/* Title */}
+          <div className="space-y-1.5">
+            <Label htmlFor="exp-name" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Title</Label>
+            <Input
+              id="exp-name"
+              placeholder="e.g., Grocery shopping"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="h-10 text-sm rounded-lg"
+              required
+            />
+          </div>
+
+          {/* Amount + Date side by side */}
+          <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-1.5">
+              <Label htmlFor="exp-amount" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Amount</Label>
               <Input
-                id="name"
-                placeholder="e.g., Grocery shopping"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="h-10 sm:h-11 text-sm"
+                id="exp-amount"
+                type="number"
+                step="0.01"
+                min="0"
+                placeholder="0.00"
+                value={formData.amount}
+                onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
+                className="h-10 text-sm rounded-lg"
                 required
               />
             </div>
-
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              <div className="space-y-1.5 sm:space-y-2">
-                <Label htmlFor="amount" className="text-xs sm:text-sm">Amount</Label>
-                <Input
-                  id="amount"
-                  type="number"
-                  step="0.01"
-                  placeholder="0.00"
-                  value={formData.amount}
-                  onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
-                  className="h-10 sm:h-11 text-sm"
-                  required
-                />
-              </div>
-              <div className="space-y-1.5 sm:space-y-2">
-                <Label htmlFor="date" className="text-xs sm:text-sm">Date</Label>
-                <Input
-                  id="date"
-                  type="date"
-                  value={formData.date}
-                  onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                  className="h-10 sm:h-11 text-sm"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="space-y-1.5 sm:space-y-2">
-              <Label className="text-xs sm:text-sm">Category</Label>
-              <Select
-                value={formData.category}
-                onValueChange={(value) => setFormData({ ...formData, category: value })}
-              >
-                <SelectTrigger className="h-10 sm:h-11 text-sm">
-                  <SelectValue placeholder="Select category" />
-                </SelectTrigger>
-                <SelectContent>
-                  {expenseCategories.map((cat) => (
-                    <SelectItem key={cat} value={cat} className="text-sm">
-                      {cat}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-1.5 sm:space-y-2">
-              <Label htmlFor="notes" className="text-xs sm:text-sm">Notes (Optional)</Label>
-              <Textarea
-                id="notes"
-                placeholder="Add any notes..."
-                value={formData.notes}
-                onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                rows={2}
-                className="resize-none text-sm"
+            <div className="space-y-1.5">
+              <Label htmlFor="exp-date" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Date</Label>
+              <Input
+                id="exp-date"
+                type="date"
+                value={formData.date}
+                onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                className="h-10 text-sm rounded-lg"
+                required
               />
             </div>
+          </div>
 
-            <div className="flex gap-2 sm:gap-3 pt-2">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setOpen(false)}
-                className="flex-1 h-10 sm:h-11 text-sm"
-              >
-                Cancel
-              </Button>
-              <Button type="submit" disabled={loading} className="flex-1 h-10 sm:h-11 text-sm">
-                {loading ? "Adding..." : "Add Expense"}
-              </Button>
-            </div>
-          </form>
-        </ScrollArea>
+          {/* Category */}
+          <div className="space-y-1.5">
+            <Label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Category</Label>
+            <Select value={formData.category} onValueChange={(v) => setFormData({ ...formData, category: v })}>
+              <SelectTrigger className="h-10 text-sm rounded-lg">
+                <SelectValue placeholder="Select a category" />
+              </SelectTrigger>
+              <SelectContent>
+                {expenseCategories.map((cat) => (
+                  <SelectItem key={cat} value={cat} className="text-sm">{cat}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Notes */}
+          <div className="space-y-1.5">
+            <Label htmlFor="exp-notes" className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+              Notes <span className="normal-case tracking-normal">(optional)</span>
+            </Label>
+            <Textarea
+              id="exp-notes"
+              placeholder="Any extra details..."
+              value={formData.notes}
+              onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+              rows={2}
+              className="resize-none text-sm rounded-lg"
+            />
+          </div>
+
+          {/* Actions */}
+          <div className="flex gap-2 pt-1">
+            <Button type="button" variant="outline" onClick={() => setOpen(false)} className="flex-1 h-10 text-sm rounded-lg">
+              Cancel
+            </Button>
+            <Button type="submit" disabled={loading} className="flex-1 h-10 text-sm rounded-lg">
+              {loading ? "Adding..." : "Add Expense"}
+            </Button>
+          </div>
+        </form>
       </DialogContent>
     </Dialog>
   );
