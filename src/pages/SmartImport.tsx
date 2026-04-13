@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,7 +11,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import {
   Upload, Sparkles, Trash2, ImageIcon, CheckCircle2, ArrowLeft,
-  Utensils, Car, Zap, Home as HomeIcon, ShoppingBag, Briefcase, Gift, Heart, Plane, Smartphone, ArrowRightLeft
+  Utensils, Car, Zap, Home as HomeIcon, ShoppingBag, Briefcase,
+  Gift, Heart, Plane, Smartphone, ArrowRightLeft
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -58,7 +59,7 @@ export default function SmartImport() {
   const [screenshotPreview, setScreenshotPreview] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  /* ——— Live parse from text ——— */
+  /* ——— Live parse ——— */
   const parsed: ParsedEntry[] = quickText
     .split("\n")
     .filter(l => l.trim())
@@ -74,7 +75,6 @@ export default function SmartImport() {
 
   const total = parsed.reduce((s, e) => s + e.amount, 0);
 
-  /* ——— Screenshot ——— */
   const handleScreenshot = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -83,7 +83,6 @@ export default function SmartImport() {
     reader.readAsDataURL(file);
   };
 
-  /* ——— Submit ——— */
   const handleSubmit = async () => {
     if (!user || parsed.length === 0) return;
     setLoading(true);
@@ -99,7 +98,7 @@ export default function SmartImport() {
       }));
       const { error } = await supabase.from("expenses").insert(inserts);
       if (error) throw error;
-      toast.success(`${parsed.length} transactions added successfully`);
+      toast.success(`${parsed.length} transactions added`);
       queryClient.invalidateQueries({ queryKey: ["expenses"] });
       setQuickText("");
       setScreenshotPreview(null);
@@ -114,146 +113,195 @@ export default function SmartImport() {
   return (
     <>
       <NoIndexMeta />
-      <div className="relative min-h-screen bg-background">
-        <div className="max-w-xl mx-auto px-4 sm:px-6 pt-4 sm:pt-6 pb-28 space-y-4">
+      <div className="min-h-screen bg-background">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 pt-5 pb-28">
 
-          {/* Header */}
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ ease }}>
-            <div className="flex items-center gap-3 mb-1">
-              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-xl flex-shrink-0" onClick={() => navigate(-1)}>
-                <ArrowLeft className="h-4 w-4" />
-              </Button>
-              <div>
-                <div className="flex items-center gap-2">
-                  <h1 className="text-lg sm:text-xl font-bold">Smart Import</h1>
-                  <Badge variant="secondary" className="text-[9px] px-1.5 py-0.5 font-semibold">⭐ Smart</Badge>
-                </div>
-                <p className="text-[10px] sm:text-xs text-muted-foreground mt-0.5">
-                  Quickly add multiple transactions with minimal effort.
-                </p>
+          {/* ── Header ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ ease }}
+            className="flex items-center gap-3 mb-6"
+          >
+            <Button variant="ghost" size="icon" className="h-8 w-8 rounded-xl flex-shrink-0" onClick={() => navigate(-1)}>
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+            <div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-base sm:text-lg font-bold">Smart Import</h1>
+                <Badge variant="secondary" className="text-[9px] px-1.5 py-0.5 font-semibold">⭐ Smart</Badge>
               </div>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Add multiple transactions at once with minimal effort.
+              </p>
             </div>
           </motion.div>
 
-          {/* Screenshot Upload — compact */}
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05, ease }}
-            className="rounded-2xl bg-card border border-border/40 p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <ImageIcon className="h-4 w-4 text-primary" />
-              <p className="text-xs font-bold">Upload Screenshot</p>
-            </div>
-            <p className="text-[10px] text-muted-foreground mb-2">
-              Upload a screenshot of your transactions for quick reference while typing.
-            </p>
-            {screenshotPreview ? (
-              <div className="relative">
-                <img src={screenshotPreview} alt="Screenshot" className="rounded-xl max-h-36 w-full object-cover border border-border/30" />
-                <Button variant="destructive" size="icon" className="absolute top-2 right-2 h-7 w-7 rounded-lg"
-                  onClick={() => setScreenshotPreview(null)}>
-                  <Trash2 className="h-3 w-3" />
-                </Button>
-              </div>
-            ) : (
-              <label className="flex flex-col items-center justify-center gap-1.5 py-5 rounded-xl border-2 border-dashed border-border/40 hover:border-primary/30 transition-colors cursor-pointer bg-muted/10">
-                <Upload className="h-5 w-5 text-muted-foreground" />
-                <span className="text-[10px] text-muted-foreground font-medium">Click to upload</span>
-                <input type="file" accept="image/*" className="hidden" onChange={handleScreenshot} />
-              </label>
-            )}
-          </motion.div>
+          {/* ── Main Grid: left col = inputs, right col = preview ── */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
-          {/* Quick Entry — main feature */}
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, ease }}
-            className="rounded-2xl bg-card border border-border/40 p-4">
-            <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="h-4 w-4 text-primary" />
-              <p className="text-xs font-bold">Quick Entry</p>
-            </div>
-            <p className="text-[10px] text-muted-foreground mb-2">
-              Type one entry per line: <span className="font-mono text-foreground">amount category</span>
-            </p>
-            <Textarea
-              placeholder={"200 food\n500 travel\n1200 shopping"}
-              value={quickText}
-              onChange={e => setQuickText(e.target.value)}
-              rows={5}
-              className="rounded-xl text-sm resize-none bg-muted/20 border-border/30 min-h-[120px]"
-              autoFocus
-            />
-          </motion.div>
+            {/* LEFT — Screenshot + Quick Entry */}
+            <div className="space-y-4">
 
-          {/* Live Preview — simple list */}
-          <AnimatePresence>
-            {parsed.length > 0 && (
+              {/* Screenshot Upload */}
               <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ ease }}
-                className="rounded-2xl bg-card border border-border/40 p-4 overflow-hidden"
+                initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05, ease }}
+                className="rounded-2xl bg-card border border-border/30 p-5"
               >
-                <p className="text-xs font-bold mb-3">Preview ({parsed.length})</p>
-                <div className="space-y-2">
-                  {parsed.map((entry, i) => {
-                    const Icon = entry.icon;
-                    return (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, x: -8 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.03, ease }}
-                        className="flex items-center justify-between py-1.5"
-                      >
-                        <div className="flex items-center gap-2.5">
-                          <div className="h-7 w-7 rounded-lg bg-primary/10 flex items-center justify-center">
-                            <Icon className="h-3.5 w-3.5 text-primary" />
-                          </div>
-                          <span className="text-sm font-medium">{entry.category}</span>
-                        </div>
-                        <span className="text-sm font-bold">{formatAmount(entry.amount)}</span>
-                      </motion.div>
-                    );
-                  })}
+                <div className="flex items-center gap-2 mb-3">
+                  <ImageIcon className="h-4 w-4 text-primary" />
+                  <p className="text-sm font-semibold">Upload Screenshot</p>
                 </div>
-
-                <div className="mt-3 pt-3 border-t border-border/30 flex items-center justify-between">
-                  <p className="text-xs text-muted-foreground">Total</p>
-                  <p className="text-base font-bold">{formatAmount(total)}</p>
-                </div>
+                <p className="text-xs text-muted-foreground mb-3">
+                  Upload a screenshot of your transactions for quick reference while typing.
+                </p>
+                {screenshotPreview ? (
+                  <div className="relative">
+                    <img
+                      src={screenshotPreview} alt="Screenshot"
+                      className="rounded-xl w-full object-cover border border-border/30 max-h-52"
+                    />
+                    <Button
+                      variant="destructive" size="icon"
+                      className="absolute top-2 right-2 h-7 w-7 rounded-lg"
+                      onClick={() => setScreenshotPreview(null)}
+                    >
+                      <Trash2 className="h-3 w-3" />
+                    </Button>
+                  </div>
+                ) : (
+                  <label className="flex flex-col items-center justify-center gap-2 py-8 rounded-xl border-2 border-dashed border-border/30 hover:border-primary/30 hover:bg-muted/10 transition-all cursor-pointer">
+                    <Upload className="h-5 w-5 text-muted-foreground/50" />
+                    <span className="text-xs text-muted-foreground">Click to upload image</span>
+                    <input type="file" accept="image/*" className="hidden" onChange={handleScreenshot} />
+                  </label>
+                )}
               </motion.div>
-            )}
-          </AnimatePresence>
 
-          {/* Actions */}
-          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, ease }}
-            className="flex gap-3">
-            <Button variant="outline" className="flex-1 h-11 rounded-xl text-xs font-semibold" onClick={() => navigate(-1)}>
-              Cancel
-            </Button>
-            <Button
-              className="flex-1 h-11 rounded-xl text-xs font-bold gap-2"
-              onClick={handleSubmit}
-              disabled={loading || parsed.length === 0}
-            >
-              {loading ? (
-                <>Adding {parsed.length}...</>
-              ) : (
-                <>
-                  <CheckCircle2 className="h-4 w-4" />
-                  Add Transactions{parsed.length > 0 ? ` (${parsed.length})` : ""}
-                </>
-              )}
-            </Button>
-          </motion.div>
+              {/* Quick Entry */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, ease }}
+                className="rounded-2xl bg-card border border-border/30 p-5"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  <p className="text-sm font-semibold">Quick Entry</p>
+                </div>
+                <p className="text-xs text-muted-foreground mb-3">
+                  One entry per line —{" "}
+                  <span className="font-mono text-foreground/80 bg-muted/50 px-1 py-0.5 rounded text-[11px]">amount category</span>
+                </p>
+                <Textarea
+                  placeholder={"200 food\n500 travel\n1200 shopping\n3000 salary"}
+                  value={quickText}
+                  onChange={e => setQuickText(e.target.value)}
+                  rows={8}
+                  className="rounded-xl text-sm resize-none bg-muted/10 border-border/30 font-mono leading-relaxed"
+                  autoFocus
+                />
+              </motion.div>
+            </div>
 
-          {/* Empty state */}
-          {!quickText.trim() && !screenshotPreview && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}
-              className="text-center py-8">
-              <Sparkles className="h-8 w-8 text-muted-foreground/20 mx-auto mb-2" />
-              <p className="text-xs text-muted-foreground">Start typing above to add transactions quickly.</p>
-            </motion.div>
-          )}
+            {/* RIGHT — Live Preview */}
+            <div className="space-y-4">
+              <AnimatePresence mode="wait">
+                {parsed.length > 0 ? (
+                  <motion.div
+                    key="preview"
+                    initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ ease }}
+                    className="rounded-2xl bg-card border border-border/30 p-5 h-full"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="text-sm font-semibold">Preview</p>
+                      <span className="text-xs text-muted-foreground bg-muted/50 px-2 py-0.5 rounded-full">
+                        {parsed.length} {parsed.length === 1 ? "entry" : "entries"}
+                      </span>
+                    </div>
+
+                    {/* Entry list */}
+                    <div className="space-y-1 mb-4">
+                      {parsed.map((entry, i) => {
+                        const Icon = entry.icon;
+                        return (
+                          <motion.div
+                            key={entry.id}
+                            initial={{ opacity: 0, x: -6 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: i * 0.03, ease }}
+                            className="flex items-center justify-between px-3 py-2.5 rounded-xl hover:bg-muted/30 transition-colors"
+                          >
+                            <div className="flex items-center gap-3 min-w-0">
+                              <div className="h-8 w-8 rounded-lg bg-primary/8 flex items-center justify-center flex-shrink-0">
+                                <Icon className="h-3.5 w-3.5 text-primary" />
+                              </div>
+                              <div className="min-w-0">
+                                <p className="text-sm font-medium truncate">{entry.category}</p>
+                                {entry.note && entry.note !== entry.category && (
+                                  <p className="text-[11px] text-muted-foreground truncate">{entry.note}</p>
+                                )}
+                              </div>
+                            </div>
+                            <p className="text-sm font-semibold tabular-nums flex-shrink-0 ml-2">
+                              {formatAmount(entry.amount)}
+                            </p>
+                          </motion.div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Total */}
+                    <div className="border-t border-border/20 pt-4 flex items-center justify-between">
+                      <p className="text-xs text-muted-foreground font-medium">Total</p>
+                      <p className="text-lg font-bold">{formatAmount(total)}</p>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="empty"
+                    initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                    className="rounded-2xl border border-dashed border-border/20 p-5 flex flex-col items-center justify-center min-h-[300px] gap-3"
+                  >
+                    <Sparkles className="h-8 w-8 text-muted-foreground/15" />
+                    <p className="text-sm text-muted-foreground/50 text-center">
+                      Your preview will appear here as you type
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Actions — below preview on desktop */}
+              <motion.div
+                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, ease }}
+                className="flex gap-3"
+              >
+                <Button
+                  variant="outline"
+                  className="flex-1 h-11 rounded-xl text-sm"
+                  onClick={() => navigate(-1)}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  className="flex-1 h-11 rounded-xl text-sm font-semibold gap-2"
+                  onClick={handleSubmit}
+                  disabled={loading || parsed.length === 0}
+                >
+                  {loading ? (
+                    `Adding ${parsed.length}...`
+                  ) : (
+                    <>
+                      <CheckCircle2 className="h-4 w-4" />
+                      {parsed.length > 0 ? `Add ${parsed.length} Transaction${parsed.length > 1 ? "s" : ""}` : "Add Transactions"}
+                    </>
+                  )}
+                </Button>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </>
