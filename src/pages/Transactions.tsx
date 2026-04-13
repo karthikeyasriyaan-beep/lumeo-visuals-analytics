@@ -214,7 +214,7 @@ export default function Transactions() {
 
         {/* ── Sticky topbar ── */}
         <div className="sticky top-14 sm:top-16 z-20 bg-background/95 backdrop-blur-md border-b border-border/20">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-3">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 h-14 flex items-center justify-between gap-3">
             <h1 className="text-base font-bold tracking-tight">Transactions</h1>
             <div className="flex gap-2">
               <AddIncomeDialog onSuccess={refetchAll} />
@@ -223,192 +223,219 @@ export default function Transactions() {
           </div>
         </div>
 
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 pt-5 pb-28 space-y-5">
+        {/* ── Wide content ── */}
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 pt-5 pb-28">
 
-          {/* ── Smart input ── */}
-          <div className="relative">
-            <div className="flex gap-2">
-              <div className="relative flex-1">
-                <Sparkles className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/40 pointer-events-none" />
-                <Input
-                  ref={inputRef}
-                  placeholder='Quick add: "500 food" or "2000 salary"'
-                  value={smartInput}
-                  onChange={(e) => setSmartInput(e.target.value)}
-                  onKeyDown={(e) => { if (e.key === "Enter") handleSmartAdd(); }}
-                  className="pl-9 h-10 rounded-xl bg-card border-border/40 text-sm"
-                />
-              </div>
-              <AnimatePresence>
-                {smartInput && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.12 }}
-                  >
-                    <Button onClick={handleSmartAdd} className="h-10 px-4 rounded-xl text-sm">Add</Button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+          {/* ── Summary cards — full width top ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+            transition={{ ease }}
+            className="grid grid-cols-3 gap-3 mb-5"
+          >
+            <div className="rounded-xl bg-success/5 border border-success/15 px-4 py-4">
+              <p className="text-[10px] font-medium text-success/50 uppercase tracking-wide mb-1">Total Income</p>
+              <p className="text-lg font-bold text-success truncate">+{formatAmount(totalIncome)}</p>
             </div>
+            <div className="rounded-xl bg-destructive/5 border border-destructive/15 px-4 py-4">
+              <p className="text-[10px] font-medium text-destructive/50 uppercase tracking-wide mb-1">Total Expenses</p>
+              <p className="text-lg font-bold text-destructive truncate">-{formatAmount(totalExpenses)}</p>
+            </div>
+            <div className={`rounded-xl border px-4 py-4 ${net >= 0 ? "bg-success/5 border-success/15" : "bg-destructive/5 border-destructive/15"}`}>
+              <p className={`text-[10px] font-medium uppercase tracking-wide mb-1 ${net >= 0 ? "text-success/50" : "text-destructive/50"}`}>Net Balance</p>
+              <p className={`text-lg font-bold truncate ${net >= 0 ? "text-success" : "text-destructive"}`}>{formatAmount(net)}</p>
+            </div>
+          </motion.div>
 
-            {/* Preview — only shows type + amount, clean */}
-            <AnimatePresence>
-              {preview && smartInput && (
-                <motion.div
-                  initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                  className="mt-2 flex items-center justify-between px-3 py-2 rounded-lg bg-muted/30 border border-border/20"
-                >
-                  <span className="text-xs text-muted-foreground">{preview.category} · {preview.type}</span>
-                  <span className={`text-sm font-bold ${preview.type === "income" ? "text-success" : "text-destructive"}`}>
-                    {preview.type === "income" ? "+" : "-"}{formatAmount(preview.amount)}
-                  </span>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          {/* ── 2-column grid: left = controls, right = transactions ── */}
+          <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-5">
 
-          {/* ── Summary cards ── */}
-          <div className="grid grid-cols-3 gap-2">
-            <div className="rounded-xl bg-success/5 border border-success/15 px-3 py-3">
-              <p className="text-[10px] font-medium text-success/50 uppercase tracking-wide">Income</p>
-              <p className="text-sm font-bold text-success mt-0.5 truncate">+{formatAmount(totalIncome)}</p>
-            </div>
-            <div className="rounded-xl bg-destructive/5 border border-destructive/15 px-3 py-3">
-              <p className="text-[10px] font-medium text-destructive/50 uppercase tracking-wide">Expenses</p>
-              <p className="text-sm font-bold text-destructive mt-0.5 truncate">-{formatAmount(totalExpenses)}</p>
-            </div>
-            <div className={`rounded-xl border px-3 py-3 ${net >= 0 ? "bg-success/5 border-success/15" : "bg-destructive/5 border-destructive/15"}`}>
-              <p className={`text-[10px] font-medium uppercase tracking-wide ${net >= 0 ? "text-success/50" : "text-destructive/50"}`}>Net</p>
-              <p className={`text-sm font-bold mt-0.5 truncate ${net >= 0 ? "text-success" : "text-destructive"}`}>{formatAmount(net)}</p>
-            </div>
-          </div>
+            {/* LEFT — Smart input + filters + insight */}
+            <div className="space-y-4">
 
-          {/* ── Filters + Search ── */}
-          <div className="flex items-center gap-2">
-            <div className="flex gap-0.5 p-0.5 bg-muted/40 rounded-lg border border-border/20 flex-shrink-0">
-              {(["today", "week", "month"] as const).map((f) => (
-                <button key={f} onClick={() => setTimeFilter(f)}
-                  className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all duration-150 ${
-                    timeFilter === f
-                      ? "bg-background text-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}>
-                  {f === "today" ? "Today" : f === "week" ? "Week" : "Month"}
-                </button>
-              ))}
-            </div>
-            <div className="relative flex-1 min-w-0">
-              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/30 pointer-events-none" />
-              <Input
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-9 pl-8 text-sm rounded-lg bg-card border-border/30 w-full"
-              />
-            </div>
-          </div>
-
-          {/* ── Insight ── */}
-          <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/5 border border-primary/10">
-            <Sparkles className="h-3 w-3 text-primary flex-shrink-0" />
-            <p className="text-xs text-muted-foreground">{insight}</p>
-          </div>
-
-          {/* ── Transaction list ── */}
-          <div className="space-y-6">
-            {grouped.length === 0 && (
-              <div className="flex flex-col items-center py-16 gap-2">
-                <div className="w-10 h-10 rounded-full bg-muted/40 flex items-center justify-center mb-1">
-                  <Search className="h-4 w-4 text-muted-foreground/30" />
+              {/* Smart input */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05, ease }}
+                className="rounded-2xl bg-card border border-border/30 p-4"
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  <p className="text-sm font-semibold">Quick Add</p>
                 </div>
-                <p className="text-sm text-muted-foreground">No transactions found</p>
-                <p className="text-xs text-muted-foreground/40">Try a different filter or add one above</p>
-              </div>
-            )}
-
-            {grouped.map((group) => (
-              <div key={group.label}>
-                {/* Group label */}
-                <div className="flex items-center gap-2 mb-2 px-0.5">
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60">{group.label}</p>
-                  <div className="flex-1 h-px bg-border/20" />
-                </div>
-
-                {/* Items */}
-                <div className="space-y-1">
-                  {group.items.map((t, idx) => {
-                    const isIncome = t.type === "income";
-                    const title = isIncome ? t.source : t.name;
-                    const Icon = getCategoryIcon(t.category);
-                    const dateStr = new Date(t.date).toLocaleDateString(undefined, { month: "short", day: "numeric" });
-                    const isExpanded = expandedId === `${t.type}-${t.id}`;
-
-                    return (
+                <div className="flex gap-2">
+                  <div className="relative flex-1">
+                    <Input
+                      ref={inputRef}
+                      placeholder='"500 food" or "2000 salary"'
+                      value={smartInput}
+                      onChange={(e) => setSmartInput(e.target.value)}
+                      onKeyDown={(e) => { if (e.key === "Enter") handleSmartAdd(); }}
+                      className="h-10 rounded-xl bg-muted/20 border-border/30 text-sm"
+                    />
+                  </div>
+                  <AnimatePresence>
+                    {smartInput && (
                       <motion.div
-                        key={`${t.type}-${t.id}`}
-                        initial={{ opacity: 0, y: 4 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.18, delay: idx * 0.02, ease }}
-                        className="rounded-xl bg-card border border-border/30 hover:border-border/50 transition-colors duration-150 cursor-pointer overflow-hidden"
-                        onClick={() => setExpandedId(isExpanded ? null : `${t.type}-${t.id}`)}
+                        initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.12 }}
                       >
-                        {/* Row */}
-                        <div className="flex items-center gap-3 px-4 py-3">
-                          {/* Icon */}
-                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${isIncome ? "bg-success/10" : "bg-destructive/10"}`}>
-                            <Icon className={`h-3.5 w-3.5 ${isIncome ? "text-success" : "text-destructive"}`} />
-                          </div>
-
-                          {/* Text */}
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium truncate leading-tight">{title}</p>
-                            <p className="text-[11px] text-muted-foreground/60 mt-0.5">
-                              {dateStr}{t.category ? ` · ${t.category}` : ""}
-                            </p>
-                          </div>
-
-                          {/* Amount */}
-                          <p className={`text-sm font-semibold tabular-nums flex-shrink-0 ${isIncome ? "text-success" : "text-destructive"}`}>
-                            {isIncome ? "+" : "-"}{formatAmount(Number(t.amount))}
-                          </p>
-
-                          {/* Chevron */}
-                          <ChevronDown className={`h-3 w-3 text-muted-foreground/30 flex-shrink-0 transition-transform duration-150 ${isExpanded ? "rotate-180" : ""}`} />
-                        </div>
-
-                        {/* Expanded actions */}
-                        <AnimatePresence>
-                          {isExpanded && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.15 }}
-                              className="overflow-hidden"
-                            >
-                              <div className="px-4 py-3 border-t border-border/20 flex gap-2">
-                                <Button size="sm" variant="outline"
-                                  className="h-8 px-3 rounded-lg text-xs gap-1.5"
-                                  onClick={(e) => { e.stopPropagation(); isIncome ? setSelectedIncome(t) : setSelectedExpense(t); }}>
-                                  <Pencil className="h-3 w-3" /> Edit
-                                </Button>
-                                <Button size="sm" variant="outline"
-                                  className="h-8 px-3 rounded-lg text-xs gap-1.5 text-destructive hover:bg-destructive/10 hover:border-destructive/20"
-                                  onClick={(e) => { e.stopPropagation(); handleDelete(t); }}>
-                                  <Trash2 className="h-3 w-3" /> Delete
-                                </Button>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
+                        <Button onClick={handleSmartAdd} className="h-10 px-4 rounded-xl text-sm">Add</Button>
                       </motion.div>
-                    );
-                  })}
+                    )}
+                  </AnimatePresence>
                 </div>
-              </div>
-            ))}
+
+                {/* Preview */}
+                <AnimatePresence>
+                  {preview && smartInput && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+                      className="mt-2 flex items-center justify-between px-3 py-2 rounded-lg bg-muted/30 border border-border/20"
+                    >
+                      <span className="text-xs text-muted-foreground">{preview.category} · {preview.type}</span>
+                      <span className={`text-sm font-bold ${preview.type === "income" ? "text-success" : "text-destructive"}`}>
+                        {preview.type === "income" ? "+" : "-"}{formatAmount(preview.amount)}
+                      </span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+
+              {/* Filters */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.08, ease }}
+                className="rounded-2xl bg-card border border-border/30 p-4 space-y-3"
+              >
+                <p className="text-sm font-semibold">Filters</p>
+
+                {/* Time filter */}
+                <div className="flex gap-0.5 p-0.5 bg-muted/40 rounded-lg border border-border/20">
+                  {(["today", "week", "month"] as const).map((f) => (
+                    <button key={f} onClick={() => setTimeFilter(f)}
+                      className={`flex-1 py-1.5 rounded-md text-xs font-medium transition-all duration-150 ${
+                        timeFilter === f
+                          ? "bg-background text-foreground shadow-sm"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}>
+                      {f === "today" ? "Today" : f === "week" ? "Week" : "Month"}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Search */}
+                <div className="relative">
+                  <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground/30 pointer-events-none" />
+                  <Input
+                    placeholder="Search transactions..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="h-9 pl-8 text-sm rounded-lg bg-muted/20 border-border/30 w-full"
+                  />
+                </div>
+              </motion.div>
+
+              {/* Insight */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, ease }}
+                className="flex items-start gap-2.5 px-4 py-3 rounded-2xl bg-primary/5 border border-primary/10"
+              >
+                <Sparkles className="h-3.5 w-3.5 text-primary flex-shrink-0 mt-0.5" />
+                <p className="text-xs text-muted-foreground leading-relaxed">{insight}</p>
+              </motion.div>
+            </div>
+
+            {/* RIGHT — Transaction list */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, ease }}
+              className="space-y-5"
+            >
+              {grouped.length === 0 && (
+                <div className="rounded-2xl border border-dashed border-border/20 flex flex-col items-center justify-center py-20 gap-2">
+                  <div className="w-10 h-10 rounded-full bg-muted/40 flex items-center justify-center mb-1">
+                    <Search className="h-4 w-4 text-muted-foreground/30" />
+                  </div>
+                  <p className="text-sm text-muted-foreground">No transactions found</p>
+                  <p className="text-xs text-muted-foreground/40">Try a different filter or add one</p>
+                </div>
+              )}
+
+              {grouped.map((group) => (
+                <div key={group.label}>
+                  {/* Group label */}
+                  <div className="flex items-center gap-2 mb-2 px-0.5">
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/50">{group.label}</p>
+                    <div className="flex-1 h-px bg-border/20" />
+                    <span className="text-[10px] text-muted-foreground/30">{group.items.length}</span>
+                  </div>
+
+                  {/* Items */}
+                  <div className="space-y-1">
+                    {group.items.map((t, idx) => {
+                      const isIncome = t.type === "income";
+                      const title = isIncome ? t.source : t.name;
+                      const Icon = getCategoryIcon(t.category);
+                      const dateStr = new Date(t.date).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+                      const isExpanded = expandedId === `${t.type}-${t.id}`;
+
+                      return (
+                        <motion.div
+                          key={`${t.type}-${t.id}`}
+                          initial={{ opacity: 0, y: 4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.18, delay: idx * 0.02, ease }}
+                          className="rounded-xl bg-card border border-border/30 hover:border-border/50 transition-colors duration-150 cursor-pointer overflow-hidden"
+                          onClick={() => setExpandedId(isExpanded ? null : `${t.type}-${t.id}`)}
+                        >
+                          <div className="flex items-center gap-3 px-4 py-3">
+                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${isIncome ? "bg-success/10" : "bg-destructive/10"}`}>
+                              <Icon className={`h-3.5 w-3.5 ${isIncome ? "text-success" : "text-destructive"}`} />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium truncate leading-tight">{title}</p>
+                              <p className="text-[11px] text-muted-foreground/50 mt-0.5">
+                                {dateStr}{t.category ? ` · ${t.category}` : ""}
+                              </p>
+                            </div>
+                            <p className={`text-sm font-semibold tabular-nums flex-shrink-0 ${isIncome ? "text-success" : "text-destructive"}`}>
+                              {isIncome ? "+" : "-"}{formatAmount(Number(t.amount))}
+                            </p>
+                            <ChevronDown className={`h-3 w-3 text-muted-foreground/30 flex-shrink-0 transition-transform duration-150 ${isExpanded ? "rotate-180" : ""}`} />
+                          </div>
+
+                          <AnimatePresence>
+                            {isExpanded && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.15 }}
+                                className="overflow-hidden"
+                              >
+                                <div className="px-4 py-3 border-t border-border/20 flex gap-2">
+                                  <Button size="sm" variant="outline"
+                                    className="h-8 px-3 rounded-lg text-xs gap-1.5"
+                                    onClick={(e) => { e.stopPropagation(); isIncome ? setSelectedIncome(t) : setSelectedExpense(t); }}>
+                                    <Pencil className="h-3 w-3" /> Edit
+                                  </Button>
+                                  <Button size="sm" variant="outline"
+                                    className="h-8 px-3 rounded-lg text-xs gap-1.5 text-destructive hover:bg-destructive/10 hover:border-destructive/20"
+                                    onClick={(e) => { e.stopPropagation(); handleDelete(t); }}>
+                                    <Trash2 className="h-3 w-3" /> Delete
+                                  </Button>
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </div>
