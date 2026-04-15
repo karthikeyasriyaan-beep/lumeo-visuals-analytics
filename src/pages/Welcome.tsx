@@ -8,7 +8,7 @@ import {
   BarChart3, CheckCircle2, TrendingUp, Wallet, 
   Sparkles, BookOpen, GraduationCap, Calculator, 
   CreditCard, Users, Home, Briefcase,
-  FileText, AlertCircle, ChevronRight, Lightbulb, HelpCircle, ChevronDown, X
+  FileText, AlertCircle, ChevronRight, Lightbulb, X
 } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
@@ -67,7 +67,6 @@ const Welcome = () => {
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 80]);
-  const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   // Discover More popup
   const [showDiscoverPopup, setShowDiscoverPopup] = useState(false);
@@ -929,10 +928,10 @@ const Welcome = () => {
             <div className="relative rounded-2xl sm:rounded-[2rem] overflow-hidden border border-border/50 bg-card/50 backdrop-blur-sm">
               <div className="relative p-6 sm:p-10 md:p-16 text-center">
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mb-3 sm:mb-5">
-                  Ready to Take Control?
+                  Start Tracking Your Expenses Today
                 </h2>
                 <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-6 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-                  Start your journey to financial clarity today—it's completely free.
+                  Take control of your daily spending with Trackora. Record your expenses, stay organized, and understand your financial habits with a simple and easy-to-use expense tracking dashboard.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <Button
@@ -949,39 +948,13 @@ const Welcome = () => {
                     </Button>
                   </Link>
                 </div>
+                <p className="text-sm text-muted-foreground mt-6">
+                  Start tracking your expenses in just a few simple steps.
+                </p>
               </div>
             </div>
           </motion.div>
         </div>
-      </section>
-
-      {/* ═══ Final CTA ═══ */}
-      <section className="py-20 sm:py-28 px-4">
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          className="max-w-3xl mx-auto text-center"
-        >
-          <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6">
-            Start Tracking Your Expenses Today
-          </motion.h2>
-          <motion.p variants={fadeUp} custom={1} className="text-muted-foreground text-base sm:text-lg leading-relaxed mb-8">
-            Take control of your daily spending with Trackora. Record your expenses, stay organized, and understand your financial habits with a simple and easy-to-use expense tracking dashboard.
-          </motion.p>
-          <motion.div variants={fadeUp} custom={2}>
-            <Button asChild size="lg" className="text-base px-10 py-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <Link to="/dashboard">
-                Get Started with Trackora
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-          </motion.div>
-          <motion.p variants={fadeUp} custom={3} className="text-sm text-muted-foreground mt-6">
-            Start tracking your expenses in just a few simple steps.
-          </motion.p>
-        </motion.div>
       </section>
 
       <Footer />
